@@ -1,21 +1,22 @@
 {% extends 'header.html' %}
+{% load static %}
 {% block title %}<title>Login</title>{% endblock %}
 {% block head %}
-<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles/style.css' )}}"/>
+<link type="text/css" rel="stylesheet" href="{% static 'styles/style.css' %}"/>
 {% endblock %}
 
 {% block body %}
 <div id="login">
-<h2 align=center>Login <img src="{{ url_for('static', filename='source_images/Lock.png') }}" width=20em height=25em/></h2> 
+<h2 align=center>Login <img src="{% static 'source_images/Lock.png' %}" width=20em height=25em/></h2> 
 {% if message %}
 <div class="alert alert-danger" role="alert" id="alerts">
-  <strong>{{ message[0] }}</strong>{{ message[1] }}
+  <strong>{{ message.0 }}</strong>{{ message.1 }}
 </div>
 {% else %}
     <div></div>
 {% endif %}
     
-<form action="{{ url_for('submit_form') }}" method="post">
+<form action="{% url 'index' %}" method="post">
     <div class="form-text">Username:</div>
     <input type=text name="user" placeholder="Username...">
     <div class="form-text">Password:</div>

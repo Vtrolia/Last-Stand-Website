@@ -20,5 +20,6 @@ from siteserver import views as sv
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", sv.index, name="index"),
-    path("rates", sv.rates, name="rates")
+    path("rates", sv.rates, name="rates"),
+    path("login", sv.login, name="login")
 ]
