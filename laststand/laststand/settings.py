@@ -25,8 +25,9 @@ SECRET_KEY = 'vvke8)j*+&)6i2v2g82ww8se%bk6=t$v2u^!lc9hjd&&1w%1(0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ADMINS = [("Vincent Trolia", "vtrolia@protonmail.com")]
 
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'siteserver.apps.SiteserverConfig'
 ]
 
 MIDDLEWARE = [
@@ -105,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Chicago'
 
 USE_I18N = True
 
