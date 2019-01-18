@@ -1,0 +1,5 @@
+flask_session/*
+.DS_Store
+.idea
+__pycache__/*
+../.DS_Store
