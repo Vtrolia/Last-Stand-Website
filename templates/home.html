@@ -1,0 +1,190 @@
+{% extends 'header.html' %}
+{% block title %}<title>Last Stand Cloud</title>{% endblock %}
+{% block head %}
+<link rel= "stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css')}}">
+<meta name="description" content="Last Stand is a home cloud solution that allows you to access it away from home like it was made by one of the tech giants. Take back control of your data and your privacy"/>
+<script>
+    
+    const staticVals = {
+        "#b": "<strong>",
+        "b#": "</strong>",
+        "#it": "<em>",
+        "it#": "</em>",
+        "#lt": "<s>",
+        "lt#": "</s>",
+        "#sh": "<h4>",
+        "sh#": "</h4>",
+        "#j": "<span style=\"text-align: justify\>",
+        "j#": "</span>",
+        "#c": "<pre>",
+        "c#": "</pre>",
+        "#bl": "<ul>",
+        "bl#": "</ul>",
+        "#nl": "<ol>",
+        "nl#": "</ol>",
+        "#-": "<li>",
+        "--#": "</li>",
+        "#ta": "<table>",
+        "ta#": "</table"
+    };
+    
+    class articlePost {
+        constructor(text, title, date, author, image, imageTitle) {
+            this.text = text;
+            this.title = title;
+            this.date = date;
+            this.author = author;
+            this.imageURL = image; 
+            this.imageTitle = imageTitle;
+        }
+        
+        
+        getHtmlObject() {
+            let html = document.createElement("nav");
+            html.className = "update";
+            let h3 = document.createElement("h3");
+            h3.textContent = this.title + " - " + this.date + " by " + this.author;
+            html.append(h3);
+            
+            if(this.imageTitle != "n") {
+                let img = document.createElement("img");
+                img.setAttribute("src", "{{ url_for('static', filename='article_images/')}}" + this.imageURL);
+                img.setAttribute("title", this.imageTitle);
+                html.append(img);
+            }
+            
+            let p = document.createElement("p");
+            p.innerHTML = articlePost.parse(this.text);
+            html.append(p);
+            document.getElementById("updates").appendChild(html);
+        }
+        
+        getobj() {
+            return {
+                date: this.date,
+                author: this.author,
+                title: this.title,
+                image_src: this.imageURL,
+                image_title: this.imageTitle,
+                content: this.text
+            }
+        }
+        
+        getJSON() {
+            return {
+                "date": this.date.toString(),
+                "author": this.author.toString(),
+                "title": this.title.toString(),
+                "image_src": this.imageURL.toString(),
+                "image_title": this.imageTitle.toString(),
+                "content": this.text.toString()
+            }
+        }
+        
+        static parse(text) {
+            
+            var final_text;
+            final_text = text.replace(/\\\\r\\\\n/g, "<br>");
+            final_text = final_text.replace(/#sq#/g, "'")
+            var iterator = Object.keys(staticVals);
+            for (let prop in iterator) {
+                final_text = final_text.split(iterator[prop]).join(staticVals[iterator[prop]]);
+            } 
+            if (final_text.substr(0, 9) === "&lt;j&gt;") {
+                final_text = "<div align=\"justify\">" + final_text +
+                             "</div>"
+                final_text = final_text.split("&lt;j&gt;").join("");
+            }
+            
+            return final_text;
+        }
+    }
+    
+    window.onscroll = () => {
+        if ((window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight) {
+            var request = new XMLHttpRequest();
+            request.open("GET", "/articles");
+            request.onload = () => {
+                if (!request.responseText) {
+                    return loadStory();
+                }
+                
+                var reps = request.responseText.split(/[[\]]{1,2}/g);
+                for (let r in reps) {
+                    reps[r] = reps[r].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
+                    for (let s in reps[r]) {
+                        reps[r][s] = reps[r][s].replace(/"/g, '');
+                        if (reps[r][s][reps[r][s].length - 1] === "\\") {
+                            reps[r][s] = reps[r][s].substring(0, reps[r][s].length - 1);
+                        }
+                    }
+                    
+                    try{
+                        var article = new articlePost(reps[r][5], reps[r][2], 
+                                                  reps[r][0], reps[r][1], reps[r][3], reps[r][4]);
+                    article.getHtmlObject();
+                    }
+                    catch{continue;}
+                    
+                }
+                
+                
+            }
+            request.send();
+        }
+    }
+    
+    window.onload = () => {
+            var re = new XMLHttpRequest();
+            re.open("POST", "/refresh_articles");
+            re.send("yes");
+    };
+    
+    function loadStory() {
+        var story = new XMLHttpRequest();
+        if (document.getElementById("storytime")) {
+            return false;
+        }
+        story.open("POST", "/stories");
+        story.onload = () => {
+            var newDiv = document.createElement("div");
+            newDiv.setAttribute("id", "storytime");
+            newDiv.className = "jumbotron";
+            newDiv.innerHTML = story.responseText;
+            document.body.appendChild(newDiv);
+            document.getElementById("storytime").style.animationPlayState = "running";
+        }
+        story.send();
+        
+        window.onscroll = undefined;
+    }
+    
+    
+</script>
+
+{% endblock %}
+
+{% block body %}
+    <div id="home-content">
+        <div id="intro">
+        <h3>Welcome to Last Stand Cloud!</h3>
+        <nav style="max-width: 27em; float: left;">This is the home site of the Last Stand Cloud software suite. Here,
+        we make emphasis on the portability and usability of cloud software. Last Stand is currently going through private Alpha testing, so check back soon for more news. No downloads for the public are available yet! Scroll down for more info about our software.
+        </nav>
+            <img src="{{ url_for('static', filename='source_images/cloud-image.jpeg') }}" title="cloud computing, hopefully for all" style="float: right;" width=450px height=250px>
+        </div>
+        
+        
+        <article id="updates">
+            <nav class="update">
+            <h3>Hello, World! - 12/6/2018 by V. Trolia</h3>
+            <img src="article_images/intro.png" title="Our logo">
+            <p>Last Stand Cloud is a personal cloud software. While there are plenty 
+                of personal cloud hardware/software, there seems to be a distinct lack of cloud software for ordinary people to have their own cloud accessible from anywhere. Last Stand hopes to change that. Though still in Alpha, the core idea of this software is hopefully going to release publicly soon. Here, you can have as many clouds as you like, with however much storage as you'd like. This never affects your price. In practice, you never have to pay us for anything.
+                </p>
+                <p>The way that we intend to give our users a cloud accessible from anywhere, much like a large corporate cloud service, is much like many other, peer-to-peer software. Your cloud communicates to us, where it is and its storage capabilities, and when you connect to it we send you to a new connection to where your server says it is. The communications between us and your server and you are of course done over HTTPS, secure and encrypted. The communication between you and your server is all secured using Reliable Cloud Protocol. Much like a VPN service, all that is public is the fact that you connected to our web site.
+                </p>
+            </nav>
+        </article>
+    </div>
+{% endblock %}
