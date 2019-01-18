@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from siteserver import views as sv
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("", sv.index, name="index"),
+    path("rates", sv.rates, name="rates")
 ]

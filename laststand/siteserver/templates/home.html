@@ -1,7 +1,8 @@
 {% extends 'header.html' %}
+{% load static %}
 {% block title %}<title>Last Stand Cloud</title>{% endblock %}
 {% block head %}
-<link rel= "stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css')}}">
+<link rel= "stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
 <meta name="description" content="Last Stand is a home cloud solution that allows you to access it away from home like it was made by one of the tech giants. Take back control of your data and your privacy"/>
 <script>
     
@@ -48,7 +49,7 @@
             
             if(this.imageTitle != "n") {
                 let img = document.createElement("img");
-                img.setAttribute("src", "{{ url_for('static', filename='article_images/')}}" + this.imageURL);
+                img.setAttribute("src", "{% static 'article_images/'}" + this.imageURL);
                 img.setAttribute("title", this.imageTitle);
                 html.append(img);
             }
@@ -171,7 +172,7 @@
         <nav style="max-width: 27em; float: left;">This is the home site of the Last Stand Cloud software suite. Here,
         we make emphasis on the portability and usability of cloud software. Last Stand is currently going through private Alpha testing, so check back soon for more news. No downloads for the public are available yet! Scroll down for more info about our software.
         </nav>
-            <img src="{{ url_for('static', filename='source_images/cloud-image.jpeg') }}" title="cloud computing, hopefully for all" style="float: right;" width=450px height=250px>
+            <img src='{% static "source_images/cloud-image.jpeg" %}' title="cloud computing, hopefully for all" style="float: right;" width=450px height=250px>
         </div>
         
         

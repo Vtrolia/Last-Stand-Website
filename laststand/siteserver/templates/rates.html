@@ -1,10 +1,10 @@
 {% extends 'header.html' %}
+{% load static %}
 {% block title %}<title>Our Rates/Plans</title>{% endblock %}
 {% block head %}
         <meta charset="utf-8" lang="en"/>
-        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}"/>
+        <link type="text/css" rel="stylesheet" href="{% static 'styles/style.css' %}"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Rates and Options</title>
         <script>
             function findSelected(pressed) {
                 document.getElementById("selectButton").disabled = false;
