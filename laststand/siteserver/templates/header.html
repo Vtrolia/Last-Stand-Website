@@ -24,10 +24,10 @@
             <a href=""><div class="col">Downloads</div></a>
             <div id="softname" class="col-4">Last Stand Cloud Software</div>
             {% if name %}
-            <a href="" style="padding-left: .75em;"><div class="col">Log Out</div></a>
+            <a href="{% url 'logout_user' %}" style="padding-left: .75em;"><div class="col">Log Out</div></a>
             <a href="dashboard.html"><div class="col">Dashboard</div></a>
             {% else %}
-            <a href="{% url 'login' %}" style="padding-left: .75em;"><div class="col">Login</div></a>
+            <a href="{% url 'login_page' %}" style="padding-left: .75em;"><div class="col">Login</div></a>
             <a href=""><div class="col">Sign Up</div></a>
             {% endif %}
         <div id="options">

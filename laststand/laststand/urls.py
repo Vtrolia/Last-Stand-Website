@@ -21,5 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", sv.index, name="index"),
     path("rates", sv.rates, name="rates"),
-    path("login", sv.login, name="login")
+    path("login", sv.login_page, name="login_page"),
+    path("submit-login", sv.submit_login, name="submit_login"),
+    path("logout", sv.logout_user, name="logout_user")
 ]

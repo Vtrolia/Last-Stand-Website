@@ -16,7 +16,8 @@
     <div></div>
 {% endif %}
     
-<form action="{% url 'index' %}" method="post">
+<form action="{% url 'submit_login' %}" method="post">
+    {% csrf_token %}
     <div class="form-text">Username:</div>
     <input type=text name="user" placeholder="Username...">
     <div class="form-text">Password:</div>

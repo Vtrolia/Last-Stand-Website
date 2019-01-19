@@ -41,7 +41,7 @@
             
             if(this.imageTitle != "n") {
                 let img = document.createElement("img");
-                img.setAttribute("src", articleImageSrc + this.imageURL);
+                img.setAttribute("src", articleImageSrc + "/" + this.imageURL);
                 img.setAttribute("title", this.imageTitle);
                 html.append(img);
             }
