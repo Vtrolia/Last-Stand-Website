@@ -28,7 +28,7 @@
             <a href="dashboard.html"><div class="col">Dashboard</div></a>
             {% else %}
             <a href="{% url 'login_page' %}" style="padding-left: .75em;"><div class="col">Login</div></a>
-            <a href=""><div class="col">Sign Up</div></a>
+            <a href="{% url 'register_page' %}"><div class="col">Sign Up</div></a>
             {% endif %}
         <div id="options">
             {% if name %}

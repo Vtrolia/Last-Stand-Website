@@ -1,8 +1,9 @@
 {% extends 'header.html' %}
+{% load static %}
 {% block title %}<title>More Details</title>{% endblock %}
 {% block head %}
         <meta charset="utf-8" lang="en"/>
-        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}"/>
+        <link type="text/css" rel="stylesheet" href="{% static 'styles/style.css' %}"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script>
             window.onkeypress =  () => {
@@ -15,15 +16,17 @@
         </script>
 {% endblock %}
 {% block body %}
-    <form action="{{url_for('finish_signup')}}" method="post" id="more">
-        <div align=center class="form-text">Tell us more about you...</div>
+    <form action="{% url 'add_name' %}" method="post" id="more">
+        {% csrf_token %}
+        <div align=center style="padding-top: .5em;" class="form-text">Tell us more about you...</div>
+        <hr style="background-color: whitesmoke">
         <div class="form-text">First Name:</div>
         <input type="text" name="firstName" id="firstName" placeholder="Your name... (eg)John">
         <div class="form-text">Last Name:</div>
         <input type="text" name="lastName" id="lastName" placeholder="Family name... (eg)Smith">
         <div id="button">
             <button type=submit id="databutton" disabled>Register</button>
-            <a href="{{url_for('index')}}" id="skip">Click Here to skip for now</a>
+            <a href="{% url 'index' %}" id="skip">Click Here to skip for now</a>
         </div>
     </form>
     
