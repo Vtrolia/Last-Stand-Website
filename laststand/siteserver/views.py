@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.views.decorators.http import require_http_methods
 from siteserver.models import PublisherUsers, Articles
+from django.core.mail import send_mail, BadHeaderError
 
 # other imports that are useful
 import helpers as h
@@ -48,6 +49,11 @@ def publish_page(request):
         return redirect("/")
     else:
         return h.return_as_wanted(request, "publish.html")
+
+def issue_page(request):
+    if not request.user.is_authenticated:
+        return HttpResponseNotFound(render(request, "error.html"))
+    return h.return_as_wanted(request, "issue.html")
 
 
 # either just log out user, or take them to login to switch to another account
@@ -132,6 +138,23 @@ def submit_article(request):
 
             return h.return_as_wanted(request, "publish.html",
                                     message=["success", "Your article was published successfully!"])
+
+@require_http_methods(["POST"])
+def submit_issue(request):
+    name = request.POST["your-name"]
+    email = request.POST["your-email"]
+    issue_type = request.POST["issue"]
+    issue = request.POST["issue-text"]
+
+    try:
+        success = send_mail(issue_type, name + " -\n" + issue, email, ["vtrolia@live.com"])
+    except BadHeaderError:
+        return h.return_as_wanted(request, "issue.html", ["danger", "Your email was unable to be sent!"])
+
+    if success < 1:
+        return h.return_as_wanted(request, "issue.html", ["danger"], "Something went wrong, your email was not sent!")
+    else:
+        return h.return_as_wanted(request, "issue.html", ["success", "Your message was successfully delivered!"])
 
 
 # other forms or requests to send data

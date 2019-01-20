@@ -1,7 +1,8 @@
 {% extends 'header.html' %}
+{% load static %}
 {% block title %}<title>Report an Issue</title>{% endblock %}
 {% block head %}
-<link rel= "stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css')}}">
+<link rel= "stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
 <script>
     window.oninput = () => {
         var inputs = document.querySelectorAll(".issueBox");
@@ -15,7 +16,7 @@
         }
         
         let text = document.querySelector("textarea").value;
-        if (text.split(" ").length < 100) {
+        if (text.split(" ").length < 40) {
             click.disabled = true;
             return true;
         }
@@ -29,18 +30,19 @@
     <p>Welcome to the Last Stand Issues page. Here you can contact us with any issue you have for any of Last Stand's products. From the parts of our website to our home software servers and clients. As of now, there is a bug bounty for any bugs found with Last Stand's server and client applications. The reward is a free upgrade to an unlimited account when that service is available. Sorry, we are unable to award financial incentives for our bounties at this time, but keep checking in as this may change soon.</p>
     <p style="padding-bottom: 1em;">If you haven't heard from us in 3 days, it may be because I have been busy and didn't get to your message. Send it again, and it will be marked with a priority header so that it's the first thing I see when I check my emails.</p>
 {% if message %}
-    <div class="alert alert-{{ message[0]}}" role="alert" id="publish-alert">
-{% if message[0] == "danger" %}
+    <div class="alert alert-{{ message.0 }}" role="alert" id="publish-alert">
+{% if message.0 == "danger" %}
         <strong>Error!</strong>
     {% else %}
         <strong>Success!</strong>
     {% endif %}
-    {{ message[1] }}
+    {{ message.1 }}
 </div>
 {% else %}
     <div></div>
 {% endif %}
-<form id="issueForm" method="post" action="{{ url_for('email_issue') }}">
+<form id="issueForm" method="post" action="{% url 'submit_issue' %}">
+    {% csrf_token %}
     <div style="margin-top: 1em;">
         <p class="issue-text" style="padding-right: 1em;">Your Name:</p>
         <input class="issueBox" align=center type=text id="your-name" name="your-name">

@@ -135,6 +135,5 @@
             document.getElementById("storytime").style.animationPlayState = "running";
         }
         story.send();
-        return false;
         window.onscroll = undefined;
     }
