@@ -44,10 +44,10 @@ def publish_page(request):
 
     # take them to a home page if they are signed in, but not a publisher
     user = PublisherUsers.objects.filter(base_user=request.user.id)
-    """if not user:
+    if not user:
         return redirect("/")
-    else:"""
-    return h.return_as_wanted(request, "publish.html")
+    else:
+        return h.return_as_wanted(request, "publish.html")
 
 
 # either just log out user, or take them to login to switch to another account
@@ -108,9 +108,13 @@ def submit_article(request):
             if not len(credit) > 1:
                 return h.return_as_wanted(request, "publish.html", message=["danger", "Your article was not accepted, you need to"
                                                                                     " supply an author credit to your image"])
+            if "<self>" not in credit or "<logo>" not in credit:
+                credit = "Photo courtesy of " + credit
+            elif "<self>" in credit:
+                credit = credit.replace("<self>", "")
 
             # write the file to the article_images static directory. WAAAY easier than the Flask version
-            with open( "./static/article_images" + file.name, "wb+") as f:
+            with open( "./static/article_images/" + file.name, "wb+") as f:
                 for chunk in file.chunks():
                     f.write(chunk)
 
@@ -128,7 +132,6 @@ def submit_article(request):
 
             return h.return_as_wanted(request, "publish.html",
                                     message=["success", "Your article was published successfully!"])
-
 
 
 # other forms or requests to send data
@@ -158,10 +161,13 @@ def story(request):
         content = f.read()
     return HttpResponse(content)
 
+
 def load_articles(request):
+    # keep track of the articles that have been loaded so far, so that it isn't grabbing more and more forever
     if not "offset" in request.session.keys():
         request.session["offset"] = 0
 
+    # get them in reverse order, then make all of the objects into one big JSON object, using "i" as the key for each
     article = Articles.objects.order_by("-id")[request.session["offset"]: request.session["offset"] + 5]
     articles = {}
     request.session["offset"] += 5
@@ -170,6 +176,7 @@ def load_articles(request):
         articles[str(i)] = art.asJSON()
         i += 1
 
+    # an empty response leads to the story being loaded, so send nothing back if there are no more articles left
     if not articles:
         return HttpResponse("")
     return HttpResponse(j.dumps(articles))

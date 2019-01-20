@@ -26,7 +26,7 @@ class Articles(models.Model):
 # optimizes searching for a publisher by only querying for the logged in user in this database instead of querying
 # the entire BaseUsers database for whether or not they are allowed to publish
 class PublisherUsers(models.Model):
-    base_user = models.IntegerField()
+    base_user = models.ForeignKey(User, on_delete=models.CASCADE, to_field="id")
 
 
 # data needed to be stored in order to allow clouds to be remote accessed and secure
