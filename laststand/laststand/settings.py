@@ -27,7 +27,7 @@ DEBUG = True
 
 ADMINS = [("Vincent Trolia", "vtrolia@protonmail.com")]
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 

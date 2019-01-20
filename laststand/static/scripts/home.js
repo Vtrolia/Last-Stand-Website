@@ -99,11 +99,12 @@
             request.open("GET", "/get-articles");
             request.onload = () => {
                 if (!request.responseText) {
+                    window.onscroll = undefined;
                     return loadStory();
+                    
                 }
                 
                 var reps = JSON.parse(request.responseText);
-                console.log(reps);
                 for (let r in reps) {
                     var article = new articlePost(reps[r]["content"], 
                                                   reps[r]["title"], 
@@ -134,6 +135,6 @@
             document.getElementById("storytime").style.animationPlayState = "running";
         }
         story.send();
-        
+        return false;
         window.onscroll = undefined;
     }

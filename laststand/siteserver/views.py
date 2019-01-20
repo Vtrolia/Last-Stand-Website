@@ -92,7 +92,7 @@ def submit_register(request):
 
 @require_http_methods(["POST"])
 def submit_article(request):
-    try:
+
         title = request.POST["title"]
         credit = request.POST["credit"]
 
@@ -105,7 +105,7 @@ def submit_article(request):
             file = file["file"]
 
             # for any image, they have to at least leave some author credit
-            if not len(credit > 1):
+            if not len(credit) > 1:
                 return h.return_as_wanted(request, "publish.html", message=["danger", "Your article was not accepted, you need to"
                                                                                     " supply an author credit to your image"])
 
@@ -128,10 +128,7 @@ def submit_article(request):
 
             return h.return_as_wanted(request, "publish.html",
                                     message=["success", "Your article was published successfully!"])
-    except:
-        #if anything for any reason goes wrong, tell the user
-        return h.return_as_wanted(request, "publish.html", message=["danger", "Something went wrong, and your article was not"
-                                                                            " published!"])
+
 
 
 # other forms or requests to send data
@@ -171,7 +168,8 @@ def load_articles(request):
     i = 0
     for art in article:
         articles[str(i)] = art.asJSON()
-    print(articles)
+        i += 1
+
     if not articles:
         return HttpResponse("")
     return HttpResponse(j.dumps(articles))
