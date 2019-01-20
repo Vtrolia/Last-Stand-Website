@@ -25,7 +25,13 @@ urlpatterns = [
     path("signup", sv.register_page, name="register_page"),
     path("submit-login", sv.submit_login, name="submit_login"),
     path("submit-register", sv.submit_register, name="submit_register"),
+    path("submit-article", sv.submit_article, name="submit_article"),
     path("more-info", sv.more_info, name="more_info"),
     path("add-name", sv.add_name, name="add_name"),
-    path("logout", sv.logout_user, name="logout_user")
+    path("logout", sv.logout_user, name="logout_user"),
+    path("relog", sv.relog_page, name="relog"),
+    path("stories", sv.story, name="our_story"),
+    path("publish", sv.publish_page, name="publish_page"),
+    path("get-articles", sv.load_articles, name="load_articles")
+
 ]

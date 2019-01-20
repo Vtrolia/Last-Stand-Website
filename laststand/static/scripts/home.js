@@ -39,7 +39,7 @@
             h3.textContent = this.title + " - " + this.date + " by " + this.author;
             html.append(h3);
             
-            if(this.imageTitle != "n") {
+            if(this.imageTitle != "") {
                 let img = document.createElement("img");
                 img.setAttribute("src", articleImageSrc + "/" + this.imageURL);
                 img.setAttribute("title", this.imageTitle);
@@ -96,42 +96,27 @@
     window.onscroll = () => {
         if ((window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight) {
             var request = new XMLHttpRequest();
-            request.open("GET", "/articles");
+            request.open("GET", "/get-articles");
             request.onload = () => {
                 if (!request.responseText) {
                     return loadStory();
                 }
                 
-                var reps = request.responseText.split(/[[\]]{1,2}/g);
+                var reps = JSON.parse(request.responseText);
+                console.log(reps);
                 for (let r in reps) {
-                    reps[r] = reps[r].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
-                    for (let s in reps[r]) {
-                        reps[r][s] = reps[r][s].replace(/"/g, '');
-                        if (reps[r][s][reps[r][s].length - 1] === "\\") {
-                            reps[r][s] = reps[r][s].substring(0, reps[r][s].length - 1);
-                        }
-                    }
-                    
-                    try{
-                        var article = new articlePost(reps[r][5], reps[r][2], 
-                                                  reps[r][0], reps[r][1], reps[r][3], reps[r][4]);
+                    var article = new articlePost(reps[r]["content"], 
+                                                  reps[r]["title"], 
+                                                  reps[r]["date"], 
+                                                  reps[r]["author"], 
+                                                  reps[r]["image_src"], 
+                                                  reps[r]["image_title"]);
                     article.getHtmlObject();
-                    }
-                    catch{continue;}
-                    
                 }
-                
-                
             }
             request.send();
         }
     }
-    
-    window.onload = () => {
-            var re = new XMLHttpRequest();
-            re.open("POST", "/refresh_articles");
-            re.send("yes");
-    };
     
     function loadStory() {
         var story = new XMLHttpRequest();
@@ -139,6 +124,7 @@
             return false;
         }
         story.open("POST", "/stories");
+        story.setRequestHeader("X-CSRFToken", token)
         story.onload = () => {
             var newDiv = document.createElement("div");
             newDiv.setAttribute("id", "storytime");

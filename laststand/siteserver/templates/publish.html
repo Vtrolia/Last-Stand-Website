@@ -1,40 +1,10 @@
 {% extends 'header.html' %}
+{% load static %}
 {% block title %}<title>Publish an Article</title>{% endblock %}
 {% block head %}
-<link rel= "stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css')}}">
+<link rel= "stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
 
-<script>
-    window.onkeydown = () => { 
-        if (document.getElementById("title").value && document.getElementById("content").value) {
-            if (document.getElementById("file").value) {
-                if (document.getElementById("credit").value) {
-                    document.getElementById("subber").disabled = false;
-                }
-                else {
-                    document.getElementById("subber").disabled = true;
-                }
-            }
-            
-            document.getElementById("subber").disabled = false;
-        }
-    }
-    
-    function falser() {
-        document.getElementById("subber").disabled = true;
-    }
-    
-    function displayModal() {
-        var modal = document.getElementById("style-guide-box");
-        modal.style.display = 'block';
-        document.addEventListener("click", (e) => {
-            if (e.target.getAttribute("id") === "style-guide-box") {
-                modal.style.display = "none";
-            }
-        });
-    }
-    
-    
-</script>
+<script src="{% static 'scripts/publish.js' %}" async></script>
 {% endblock %}
 {% block body %}
 <div id="style-guide-box">
@@ -69,22 +39,23 @@
 <p>I am a believer in the spirit of free speech, and that sentiment will always be the law of the land on this website. I will always publish articles as long as there is no misinformation or incomplete information present in your article. Me not publishing an article because of your opinion or the facts you present is a direct violation of the website's publishing agreement on my end. The only rule I have content-wise is to keep it all about general tech (it doesn't have to be about cloud computing) and keep out the names of modern political figures. Politics is OK, just make sure it's about tech and no mentioning of current Sentors, Governors or the President at least in the last 10 years. Literally everything else is okay. <strong style="font-size: 1.1em;">But, If there is factual evidence of misinformation, this is grounds for deletion!</strong> I will give you a chance to revise your article before I delete it, so there will always be communication when there are errors. <br><em style="color: rgb(108, 107, 107)">  (also, blatant grammar/spelling errors will result in me sending the article back to you, so proofread before you post! I recommend writing in a word processor then copy/pasting)</em> </p>
 <p>Now that all of the formal stuff is out of the way, thank you so much for being a contributor for Last Stand and helping the platform grow! I look forward to reading your articles</p>
 {% if message %}
-<div class="alert alert-{{ message[0]}}" role="alert" id="publish-alert">
-    {% if message[0] == "danger" %}
+<div class="alert alert-{{ message.0}}" role="alert" id="publish-alert">
+    {% if message.0 == "danger" %}
         <strong>Error!</strong>
     {% else %}
         <strong>Success!</strong>
     {% endif %}
-    {{ message[1] }}
+    {{ message.1 }}
 </div>
 {% else %}
     <div></div>
 {% endif %}
-<form id="article-post" action="{{ url_for('post_article') }}" enctype="multipart/form-data" method="post">
+<form id="article-post" action="{% url 'submit_article' %}" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
 <input type=text id="title" name="title" placeholder="Give your article a Title...">
 <div>
     <input type=text id="credit" name="credit" title="Who took this picture? (name or organization.) If you want to use Last Stand's logo, just enter <logo>. If it's your image, this can be a title for the image with <self> before the title." placeholder="Author Credit">
-    <input id="file" name="file" type=file accept=".jpg, .jpeg, .gif" title="Select an Image(.jpg, .jpeg, only)" onclick="falser()">
+    <input id="file" name="file" type=file accept=".jpeg" title="Select an Image(.jpg, .jpeg, only)" onclick="falser()">
 </div>
 <textarea rows="20" cols="97" id="content" name="content" placeholder="Enter your story's text here">
 </textarea>

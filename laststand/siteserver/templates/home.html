@@ -5,7 +5,8 @@
 <link rel= "stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
 <meta name="description" content="Last Stand is a home cloud solution that allows you to access it away from home like it was made by one of the tech giants. Take back control of your data and your privacy"/>
 <script>var articleImageSrc = "{% static 'article_images' %}"</script>
-<script src="{% static 'scripts/home.js' %}"></script>
+<script>const token = "{{ csrf_token }}"</script>
+<script src="{% static 'scripts/home.js' %}" async></script>
 {% endblock %}
 {% block body %}
     <div id="home-content">

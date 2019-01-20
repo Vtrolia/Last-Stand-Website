@@ -1,17 +1,26 @@
+# necessary Django imports to run the websites
 from django.shortcuts import render, redirect
+from django.http import HttpResponseNotFound, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.views.decorators.http import require_http_methods
-import hashlib as h
+from siteserver.models import PublisherUsers, Articles
+
+# other imports that are useful
+import helpers as h
+import datetime as dt
+import json as j
 
 
-# Create your views here.
+
+# Basic page display views
 def index(request):
-    return return_as_wanted(request, "home.html")
+    request.session["offset"] = 0
+    return h.return_as_wanted(request, "home.html")
 
 
 def rates(request):
-    return return_as_wanted(request, "rates.html")
+    return h.return_as_wanted(request, "rates.html")
 
 
 def login_page(request):
@@ -28,29 +37,49 @@ def register_page(request):
         return render(request, "signup.html")
 
 
+def publish_page(request):
+    # display not found error if they are anonymous user
+    if not request.user.is_authenticated:
+        return HttpResponseNotFound(render(request, "error.html"))
+
+    # take them to a home page if they are signed in, but not a publisher
+    user = PublisherUsers.objects.filter(base_user=request.user.id)
+    """if not user:
+        return redirect("/")
+    else:"""
+    return h.return_as_wanted(request, "publish.html")
+
+
+# either just log out user, or take them to login to switch to another account
+def relog_page(request):
+    logout(request)
+    return redirect("/login")
+
+
 def logout_user(request):
     logout(request)
-    return return_as_wanted(request, "home.html")
+    return redirect("/")
 
 
+# form submission pages for either a login. registration, or an article(publishers only)
 @require_http_methods(["POST"])
 def submit_login(request):
     username = request.POST["user"]
-    password = sha256_hash(request.POST["password"])
+    password = h.sha256_hash(request.POST["password"])
     user = authenticate(request, username=username, password=password)
 
     if user:
         login(request, user)
-        return return_as_wanted(request, "home.html")
+        return redirect("/")
     else:
-        return return_as_wanted(request, "login.html", message=["ERROR!", " Username and password combo does not exist!"])
+        return h.return_as_wanted(request, "login.html", message=["ERROR!", " Username and password combo does not exist!"])
 
 
 @require_http_methods(["POST"])
 def submit_register(request):
     email = request.POST["email"]
     username = request.POST["user"]
-    password = sha256_hash(request.POST["password"])
+    password = h.sha256_hash(request.POST["password"])
 
     if not authenticate(request, username=username, password=password):
         user = User.objects.create_user(username, email, password)
@@ -58,14 +87,59 @@ def submit_register(request):
         login(request, user)
         return redirect("/more-info")
     else:
-        return return_as_wanted(request, "register", message=["Error!", "Username or email is already registered!"])
+        return h.return_as_wanted(request, "register", message=["Error!", "Username or email is already registered!"])
 
 
+@require_http_methods(["POST"])
+def submit_article(request):
+    try:
+        title = request.POST["title"]
+        credit = request.POST["credit"]
+
+        # use this to make sure a file was sent
+        file = request.FILES
+        content = request.POST["content"]
+
+        if "file" in file.keys():
+            # if it was, now make the 'file' variable into the actual file
+            file = file["file"]
+
+            # for any image, they have to at least leave some author credit
+            if not len(credit > 1):
+                return h.return_as_wanted(request, "publish.html", message=["danger", "Your article was not accepted, you need to"
+                                                                                    " supply an author credit to your image"])
+
+            # write the file to the article_images static directory. WAAAY easier than the Flask version
+            with open( "./static/article_images" + file.name, "wb+") as f:
+                for chunk in file.chunks():
+                    f.write(chunk)
+
+            # give the user a success message, and save their article
+            new_article = Articles.objects.create(title=title, author=request.user.get_full_name(), image_title=credit,
+                                                  date=dt.datetime.now().strftime("%m/%d/%y"), image_src=file.name, text=content)
+            new_article.save()
+            return h.return_as_wanted(request, "publish.html", message=["success", "Your article was published successfully!"])
+
+        else:
+            # publishers don't have to put an image in their article
+            new_article = Articles.objects.create(date=dt.datetime.now().strftime("%m/%d/%y"), author=request.user.get_full_name(),
+                                                  title=title, text=content)
+            new_article.save()
+
+            return h.return_as_wanted(request, "publish.html",
+                                    message=["success", "Your article was published successfully!"])
+    except:
+        #if anything for any reason goes wrong, tell the user
+        return h.return_as_wanted(request, "publish.html", message=["danger", "Something went wrong, and your article was not"
+                                                                            " published!"])
+
+
+# other forms or requests to send data
 def more_info(request):
     if not request.user.is_authenticated:
         return redirect("/")
     else:
-        return return_as_wanted(request, "user_details.html")
+        return h.return_as_wanted(request, "user_details.html")
 
 
 @require_http_methods(["POST"])
@@ -73,6 +147,7 @@ def add_name(request):
     first = request.POST["firstName"]
     last = request.POST["lastName"]
 
+    # let users add their first and last name, or skip it if they don't
     user = User.objects.get(username=request.user.get_username())
     user.first_name = first
     user.last_name = last
@@ -80,30 +155,24 @@ def add_name(request):
     return redirect("/")
 
 
-# not a view, this function is a helper so that the user can constantly be assured that they are still logged in
-def return_as_wanted(request, template, message=None):
-    if request.user.is_authenticated:
-        if request.user.get_short_name():
-            try:
-                if len(request.user.get_short_name()) > 14:
-                    name = request.user.get_short_name()[:11] + "..."
-                else:
-                    name = request.user.get_short_name()
-            except:
-                pass
-            return render(request, template, context={"name": "Welcome Back, " + str(name) + "!",
-                                             "message": message})
+@require_http_methods(["POST"])
+def story(request):
+    with open("./siteserver/templates/ourstory.html") as f:
+        content = f.read()
+    return HttpResponse(content)
 
-        if len(request.user.get_username()) > 14:
-            greeting = request.user.get_username()[:11] + "..."
-        else:
-            greeting = request.user.get_username()
-        return render(request, template, context={"name": "Welcome Back, " + str(greeting) + "!", "message": message})
+def load_articles(request):
+    if not "offset" in request.session.keys():
+        request.session["offset"] = 0
 
-    return render(request, template, context={"message": message})
+    article = Articles.objects.order_by("-id")[request.session["offset"]: request.session["offset"] + 5]
+    articles = {}
+    request.session["offset"] += 5
+    i = 0
+    for art in article:
+        articles[str(i)] = art.asJSON()
+    print(articles)
+    if not articles:
+        return HttpResponse("")
+    return HttpResponse(j.dumps(articles))
 
-
-# helper function to more neatly create the SHA256 hash of the password. I know Django says that they have encryption
-# built into their password validation, but I was able to see the plaintext password when I looked at the user object
-def sha256_hash(password):
-    return h.sha256(password.encode()).hexdigest()

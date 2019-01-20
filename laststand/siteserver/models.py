@@ -10,12 +10,23 @@ class Articles(models.Model):
     image_src = models.CharField(max_length=50)
     image_title = models.CharField(max_length=200)
     text = models.TextField()
+    confirmed = models.BooleanField(default=False)
+
+    def asJSON(self):
+        return {
+            "date": self.date,
+            "author": self.author,
+            "title": self.title,
+            "image_src": self.image_src,
+            "image_title": self.image_title,
+            "content": self.text
+        }
 
 
 # optimizes searching for a publisher by only querying for the logged in user in this database instead of querying
 # the entire BaseUsers database for whether or not they are allowed to publish
 class PublisherUsers(models.Model):
-    user_id = models.IntegerField()
+    base_user = models.IntegerField()
 
 
 # data needed to be stored in order to allow clouds to be remote accessed and secure
