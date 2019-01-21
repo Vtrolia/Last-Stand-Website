@@ -17,25 +17,6 @@ pre {
     margin-left: 2em;
 }
 
-@media only screen and (max-width: 850px) {
-    img {
-        display: none;
-    }
-    #greeting {
-        display: none;
-    }
-}
-
-@media only screen and (max-width: 768px) { 
-    #home-content, #article-page, #updates {
-        margin-left: 0;
-        margin-right: 0;
-        min-width: 95%;
-    }
-    #home-content h3 {
-        font-size: 12px;
-    }
-}
 
 @keyframes fade {
   0% { opacity: 0; bottom: 20%; left: 10%; }
@@ -267,6 +248,10 @@ h2 {
 
 textarea {
     margin-bottom: 1.5em;
+    resize: none;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #credit {
@@ -343,4 +328,42 @@ code {
 
 #selectButton {
     width: 100%;
+}
+
+@media only screen and (max-width: 1200px) {
+    #article-page, #issues {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    img {
+        display: none;
+    }
+    #greeting {
+        display: none;
+    }
+    
+    #article-page, #issues {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 768px) { 
+    #home-content, #article-page, #updates, #issues {
+        margin-left: auto;
+        margin-right: auto;
+        min-width: 95%;
+    }
+    #home-content h3 {
+        font-size: 12px;
+    }
+    
+    input {
+        max-width: 35vw;
+    }
+    
+    #content {
+        width: 100%;
+    }
 }
