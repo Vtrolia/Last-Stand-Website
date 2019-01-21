@@ -4,14 +4,13 @@ from django.http import HttpResponseNotFound, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.views.decorators.http import require_http_methods
-from siteserver.models import PublisherUsers, Articles
+from .models import PublisherUsers, Articles
 from django.core.mail import send_mail, BadHeaderError
 
 # other imports that are useful
 import helpers as h
 import datetime as dt
 import json as j
-
 
 
 # Basic page display views
@@ -49,6 +48,7 @@ def publish_page(request):
         return redirect("/")
     else:
         return h.return_as_wanted(request, "publish.html")
+
 
 def issue_page(request):
     if not request.user.is_authenticated:
