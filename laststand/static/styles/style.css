@@ -350,16 +350,22 @@ code {
 }
 
 @media only screen and (max-width: 768px) { 
-    #home-content, #article-page, #updates, #issues {
+     #article-page, #issues {
         margin-left: auto;
         margin-right: auto;
         min-width: 95%;
+    }
+    
+    #home-content, #updates {
+        margin-left: 10;
+        margin-right: 10;
+        min-width: 80%;
     }
     #home-content h3 {
         font-size: 12px;
     }
     
-    input {
+    #article-page input, #issues input {
         max-width: 35vw;
     }
     
