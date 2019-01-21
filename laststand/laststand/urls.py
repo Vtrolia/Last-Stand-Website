@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from siteserver import views as sv
 
 urlpatterns = [
@@ -34,6 +34,7 @@ urlpatterns = [
     path("logout", sv.logout_user, name="logout_user"),
     path("relog", sv.relog_page, name="relog"),
     path("stories", sv.story, name="our_story"),
-    path("get-articles", sv.load_articles, name="load_articles")
+    path("get-articles", sv.load_articles, name="load_articles"),
+    path("api/", include("api.urls"))
 
 ]

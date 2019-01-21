@@ -29,13 +29,7 @@ class PublisherUsers(models.Model):
     base_user = models.ForeignKey(User, on_delete=models.CASCADE, to_field="id")
 
 
-# data needed to be stored in order to allow clouds to be remote accessed and secure
-class Cloud(models.Model):
-    id = models.TextField(primary_key=True, unique=True)
-    ip_address = models.CharField(max_length=20)
-    ssl_cert = models.TextField()
-    users = models.ManyToManyField(User, related_name="users_allowed")
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="owner")
+
 
 
 

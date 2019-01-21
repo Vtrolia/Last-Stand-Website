@@ -1,7 +1,6 @@
 from django.contrib import admin
-from siteserver import models
+from . import models
 
 # Register your models here.
-admin.site.register(models.Articles)
-admin.site.register(models.Cloud)
-admin.site.register(models.PublisherUsers)
+admin.register(models.PublisherUsers)
+admin.register(models.Articles)
