@@ -78,7 +78,8 @@
             
             var final_text;
             final_text = text.replace(/\\\\r\\\\n/g, "<br>");
-            final_text = final_text.replace(/#sq#/g, "'")
+            final_text = final_text.replace(/</g, "&lt;");
+            final_text = final_text.replace(/>/g, "&gt;");
             var iterator = Object.keys(staticVals);
             for (let prop in iterator) {
                 final_text = final_text.split(iterator[prop]).join(staticVals[iterator[prop]]);

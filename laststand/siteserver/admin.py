@@ -2,5 +2,5 @@ from django.contrib import admin
 from . import models
 
 # Register your models here.
-admin.register(models.PublisherUsers)
-admin.register(models.Articles)
+admin.site.register(models.PublisherUsers)
+admin.site.register(models.Articles)

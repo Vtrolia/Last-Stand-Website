@@ -71,8 +71,9 @@ def logout_user(request):
 @require_http_methods(["POST"])
 def submit_login(request):
     username = request.POST["user"]
-    password = h.sha256_hash(request.POST["password"])
+    password = request.POST["password"]
     user = authenticate(request, username=username, password=password)
+    print(user, "ass")
 
     if user:
         login(request, user)
