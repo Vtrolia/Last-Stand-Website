@@ -2,5 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("update-server/<id>", views.set_info, name="update_server")
+    path("update-server/<name>", views.set_info, name="update_server"),
+    path("forward-to-server/<name>", views.get_address, name="forward_to_server"),
+    path("get-certificate/<name>", views.get_ssl_cert, name="get_ssl_cert")
 ]
