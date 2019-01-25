@@ -21,7 +21,7 @@ def set_info(request, name):
         cloud = Cloud.objects.get(id=name)
         cloud.ip_address = request.META["HTTP_HOST"]
 
-        # while updating, if the ssl certificate is now expired, delete it. 
+        # while updating, if the ssl certificate is now expired, delete it.
         if dt.datetime.now() >= cloud.ssl_cert.date_expires:
             cloud.ssl_cert.delete()
 

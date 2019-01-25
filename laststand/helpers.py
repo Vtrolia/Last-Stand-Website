@@ -1,6 +1,9 @@
 #helper functions to be used in each app to simplify many of the basic functions of the website
 
 import hashlib as h
+from OpenSSL import crypto as c
+import os
+
 from django.shortcuts import render
 from django.contrib.auth import authenticate
 
@@ -43,3 +46,35 @@ def api_user_check(request):
 
     is_user = authenticate(request, username=user, password=password)
     return is_user
+
+
+def generate_new_cert(ownername, ownerpass, name, key=None):
+    # create a key if this is a new cloud, otherwise load what is stored if this is just a server renewing itself
+    if not key:
+        key = c.PKey()
+        key.generate_key(c.TYPE_RSA, 1024)
+        with open("./static/certs/" + name + ".pem", "wb") as pk:
+            pk.write(c.dump_privatekey(c.FILETYPE_PEM, key, passphrase=ownername + ownerpass))
+    else:
+        key = c.load_privatekey(c.FILETYPE_PEM, "./static/certs/" + name + ".pem", passphrase=ownername + ownerpass)
+
+    # get laststand's key
+    laststand_key =c.load_privatekey(c.FILETYPE_PEM, "privkey.pem", passphrase=os.environ.get("LASTSTAND_PRIVKEY"))
+
+    # create the new certificate, fill it with Last Stand Cloud's information, then sign it with our private key
+    new_cert = c.X509()
+    new_cert.get_subject().C = "USA"
+    new_cert.get_subject().ST = "Illinois"
+    new_cert.get_subject().L = "Joliet"
+    new_cert.get_subject().O = "Last Stand Cloud Software"
+    new_cert.get_subject().CN = "Last Stand Cloud"
+    new_cert.set_issuer(new_cert.get_subject())
+    new_cert.set_pubkey(key)
+    new_cert.sign(laststand_key, "sha256")
+
+    # dump the new cert so it can be kept until it expires, sort of like the gold in Fort Knox backing up the dollar
+    with open("./static/certs/" + name + ".cacert", "wb") as cert:
+        cert.write(c.dump_certificate(c.FILETYPE_PEM, new_cert))
+
+    return new_cert, key
+
