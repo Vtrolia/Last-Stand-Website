@@ -22,6 +22,7 @@ urlpatterns = [
     path("", sv.index, name="index"),
     path("rates", sv.rates, name="rates"),
     path("login", sv.login_page, name="login_page"),
+    path("download", sv.downloads, name="first_download_page"),
     path("signup", sv.register_page, name="register_page"),
     path("publish", sv.publish_page, name="publish_page"),
     path("issues", sv.issue_page, name="issue_page"),

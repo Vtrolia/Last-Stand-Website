@@ -5,6 +5,7 @@ from .models import Cloud, SSL
 
 import helpers as h
 import datetime as dt
+from dateutil import relativedelta
 
 # Create your views here.
 def index(request):
@@ -59,6 +60,37 @@ def get_ssl_cert(request, name):
         cert.delete()
         return HttpResponse("")
 
+@csrf_exempt
+@require_http_methods(["POST"])
+def renew_cert(request, name):
+    owner = h.api_user_check(request)
+
+    if owner:
+        cert = Cloud.objects.get(id=name)
+        privkey = cert.ssl_cert.privkey
+        print(h.generate_new_cert(ownername=owner.username, ownerpass=owner.password, name=name, privkey=privkey))
+    else:
+        return HttpResponse("")
 
 
+@require_http_methods(["POST"])
+def submit_cloud(request):
+    created = dt.datetime.now()
+    expires = created + relativedelta(months = 6)
 
+    if not request.user.is_authenticated:
+        return HttpResponse("")
+    else:
+        owner = request.user
+        name = h.troliAlgoritm(owner.username, owner.password)
+        auth_info = h.generate_new_cert(owner.username, owner.password, name)
+        ssl = SSL.objects.create(cacert=auth_info[0], privkey=auth_info[1], date_created=created, date_expires=expires,
+                                 created_by=owner, owned_by=owner)
+        ssl.save()
+        given_name = request.POST['name']
+        ip_address = request.POST['ip']
+        status = 0
+        cloud = Cloud.objects.create(id=name, name=given_name, ip_address=ip_address, ssl_cert=ssl, users=[owner],
+                                     owner=owner, status=0)
+        cloud.save()
+        return HttpResponse(auth_info)
