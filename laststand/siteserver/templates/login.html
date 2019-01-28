@@ -9,9 +9,15 @@
 <div id="login">
 <h2 align=center>Login <img src="{% static 'source_images/Lock.png' %}" width=20em height=25em/></h2> 
 {% if message %}
-<div class="alert alert-danger" role="alert" id="alerts">
-  <strong>{{ message.0 }}</strong>{{ message.1 }}
+<div class="alert alert-{{ message.0 }}" role="alert" id="alerts">
+{% if message.0 != "danger" %}
+       <strong> {{ message.0 }}! </strong>
+{% else %}
+        <strong>Error!</strong>
+{% endif %}
+    {{ message.1 }}
 </div>
+
 {% else %}
     <div></div>
 {% endif %}

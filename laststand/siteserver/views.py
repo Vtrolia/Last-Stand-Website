@@ -60,7 +60,7 @@ def downloads(request):
     if not request.user.is_authenticated:
         return h.return_as_wanted(request, "login.html", message=["warning", "You must sign in or sign up to download the cloud"])
     else:
-        return h.return_as_wanted(request, "downloads.html")
+        return h.return_as_wanted(request, "download.html")
 
 # either just log out user, or take them to login to switch to another account
 def relog_page(request):
@@ -79,13 +79,12 @@ def submit_login(request):
     username = request.POST["user"]
     password = request.POST["password"]
     user = authenticate(request, username=username, password=password)
-    print(user, "ass")
 
     if user:
         login(request, user)
         return redirect("/")
     else:
-        return h.return_as_wanted(request, "login.html", message=["ERROR!", " Username and password combo does not exist!"])
+        return h.return_as_wanted(request, "login.html", message=["danger", " Username and password combo does not exist!"])
 
 
 @require_http_methods(["POST"])
