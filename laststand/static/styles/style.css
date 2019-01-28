@@ -1,4 +1,4 @@
-#table, #login {
+#table, #login, #first-downloads-page {
     background-color:rgb(40, 40, 54);
     font-family: serif New Century Schoolbook;
     padding-top: 6em;
@@ -328,6 +328,43 @@ code {
 
 #selectButton {
     width: 100%;
+}
+
+
+#first-downloads-page {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1em;
+    bottom: 100%;
+    background-color: whitesmoke;
+    color: black;
+    width: 60%;
+    border-radius: 0.3em;
+    height: 100%;
+}
+#download-buttons {
+    position: relative;
+    left: 0;
+    width: 100%;
+   
+}
+
+.bordered-download {
+    border: 1.5px dashed black;
+    color: black;
+    width: 50%;
+    margin: 0;
+}
+
+#first-downloads-page button {
+    color: whitesmoke;
+    background-color: black;
+    width: 10em;
+    
+}
+
+#first-downloads-page img {
+    margin-left: .6em;
 }
 
 @media only screen and (max-width: 1200px) {
