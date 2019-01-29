@@ -35,17 +35,18 @@
     <div id="first-downloads-page">
         <h2 align=center>Downloads</h2>
         <p>It's official! Last Stand has entered its first public alpha testing phase and is ready for you to download it! Of course, only those who are signed up on our website are allowed to download, and signing up for an account will always be free! If you take a look at the <a href="{% url 'rates' %}">rates page</a>, you may notice that you aren't quite allowed to buy a plan yet. All alpha and beta tests of Last Stand Cloud will never cost anything to use, and we don't want to charge for any version of software that isn't fully working yet(don't ever preorder, folks). We're still developing the business/unlimited version, and don't want to make promises we may not be able to keep. No early access here!</p>
-        <p>If you want to install the alpha version, there are a few options for you below. There should be automatic OS detection for the correct version, but you can install the server and client version to setup a cloud, or just the client version to access your cloud. </p>
+        <p>If you want to install the alpha version, there are a few options for you below. There should be automatic OS detection for the correct version, but you can install the server and client version to setup a cloud, or just the client version to access your cloud.</p>
         
-        <form id="download-buttons">
-            <input type=hidden id="os-type">
+        <form id="download-buttons" method="post" action="{% url 'submit_download' %}">
+            {% csrf_token %}
+            <input type=hidden id="os-type" name="os-type">
             <div class="bordered-download" style="position:relative; float: left;">
             <label for="both">Download the Server/Client for</label>
             <button type=submit name="both" id="client-server-download">
                 Download <img src="{% static 'source_images/download.png' %}" width=25px>
             </button>
             </div>
-            <div class="bordered-download" style="position: relative; left: 50%">
+            <div class="bordered-download" style="position: relative; float: right;">
                 <label for="client-only">Download the Client for</label>
                 <button type=submit name="client-only" id="client-server-download">
                 Download <img src="{% static 'source_images/download.png' %}" width=25px>

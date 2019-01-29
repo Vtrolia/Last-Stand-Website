@@ -332,27 +332,28 @@ code {
 
 
 #first-downloads-page {
+    position: relative;
     margin-left: auto;
     margin-right: auto;
     padding-left: 1em;
-    bottom: 100%;
+    bottom: 0%;
     background-color: whitesmoke;
     color: black;
     width: 60%;
     border-radius: 0.3em;
-    height: 100%;
+    height: 40em;
 }
 #download-buttons {
     position: relative;
     left: 0;
-    width: 100%;
    
 }
 
 .bordered-download {
-    border: 1.5px dashed black;
+    border: 1.5px solid black;
     color: black;
     width: 50%;
+    padding-left: 1em;
     margin: 0;
 }
 

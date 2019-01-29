@@ -30,6 +30,7 @@ urlpatterns = [
     path("submit-register", sv.submit_register, name="submit_register"),
     path("submit-article", sv.submit_article, name="submit_article"),
     path("submit-issue", sv.submit_issue, name="submit_issue"),
+    path("submit-download", sv.submit_download, name="submit_download"),
     path("more-info", sv.more_info, name="more_info"),
     path("add-name", sv.add_name, name="add_name"),
     path("logout", sv.logout_user, name="logout_user"),

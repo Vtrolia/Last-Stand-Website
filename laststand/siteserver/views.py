@@ -4,8 +4,10 @@ from django.http import HttpResponseNotFound, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.views.decorators.http import require_http_methods
-from .models import PublisherUsers, Articles
 from django.core.mail import send_mail, BadHeaderError
+from django.utils.encoding import smart_str
+from .models import PublisherUsers, Articles
+
 
 # other imports that are useful
 import helpers as h
@@ -161,6 +163,19 @@ def submit_issue(request):
         return h.return_as_wanted(request, "issue.html", ["danger"], "Something went wrong, your email was not sent!")
     else:
         return h.return_as_wanted(request, "issue.html", ["success", "Your message was successfully delivered!"])
+
+
+def submit_download(request):
+    response = HttpResponse()
+    if "both" in request    .POST:
+        response_name = "LaststandCLI_" + request.POST["os-type"] + ".zip"
+    else:
+        response_name = "LaststandCLI_client - " + request.POST["os-type"]
+
+    response["Content-Disposition"] = "attachment; filename='" + response_name +"'"
+    response["X-Sendfile"] = smart_str("./static/downloads/" + response_name)
+    return response
+
 
 
 # other forms or requests to send data
