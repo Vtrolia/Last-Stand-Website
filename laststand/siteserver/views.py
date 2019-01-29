@@ -166,14 +166,16 @@ def submit_issue(request):
 
 
 def submit_download(request):
-    response = HttpResponse()
-    if "both" in request    .POST:
-        response_name = "LaststandCLI_" + request.POST["os-type"] + ".zip"
+    if "both" in request.POST:
+        response_name = "LaststandCLI.zip"
     else:
-        response_name = "LaststandCLI_client - " + request.POST["os-type"]
+        response_name = "laststand_client.zip"
+
+    with open("./static/downloads/" + request.POST["os-type"] + "/" + response_name, "rb") as f:
+        response = HttpResponse(f.read())
 
     response["Content-Disposition"] = "attachment; filename='" + response_name +"'"
-    response["X-Sendfile"] = smart_str("./static/downloads/" + response_name)
+    response["X-Sendfile"] = smart_str("./static/downloads/" + request.POST["os-type"] + "/" + response_name)
     return response
 
 
