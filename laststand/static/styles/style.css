@@ -336,12 +336,12 @@ code {
     margin-left: auto;
     margin-right: auto;
     padding-left: 1em;
-    bottom: 0%;
+    padding-top: 6em;
     background-color: whitesmoke;
     color: black;
     width: 60%;
     border-radius: 0.3em;
-    height: 40em;
+    height: 56em;
 }
 #download-buttons {
     position: relative;

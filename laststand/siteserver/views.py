@@ -166,14 +166,17 @@ def submit_issue(request):
 
 
 def submit_download(request):
+    # either send them back the full software suite or just the client
     if "both" in request.POST:
         response_name = "LaststandCLI.zip"
     else:
         response_name = "laststand_client.zip"
 
+    # read the file as the contents of the message
     with open("./static/downloads/" + request.POST["os-type"] + "/" + response_name, "rb") as f:
         response = HttpResponse(f.read())
 
+    # these headers are needed so that the client understands the file being sent to them
     response["Content-Disposition"] = "attachment; filename='" + response_name +"'"
     response["X-Sendfile"] = smart_str("./static/downloads/" + request.POST["os-type"] + "/" + response_name)
     return response
