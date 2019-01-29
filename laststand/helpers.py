@@ -53,17 +53,19 @@ def generate_new_cert(ownername, ownerpass, name, key=None):
     if not key:
         key = c.PKey()
         key.generate_key(c.TYPE_RSA, 1024)
-        with open("./static/certs/" + name + ".pem", "wb") as pk:
-            pk.write(c.dump_privatekey(c.FILETYPE_PEM, key, passphrase=ownername + ownerpass))
+        with open("./static/certs/" + ownername + "-" + name + "-pri.pem", "wb") as pk:
+            pk.write(c.dump_privatekey(c.FILETYPE_PEM, key, passphrase=(str(ownername) + str(ownerpass)).encode()))
     else:
-        key = c.load_privatekey(c.FILETYPE_PEM, "./static/certs/" + name + ".pem", passphrase=ownername + ownerpass)
+        key = c.load_privatekey(c.FILETYPE_PEM, "./static/certs/" + ownername + "-" + name + "-pri.pem",
+                                passphrase=(str(ownername) + str(ownerpass)).encode())
 
     # get laststand's key
-    laststand_key =c.load_privatekey(c.FILETYPE_PEM, "privkey.pem", passphrase=os.environ.get("LASTSTAND_PRIVKEY"))
+    with open("./static/certs/ls/privkey.pem", 'rb') as f:
+        laststand_key = c.load_privatekey(c.FILETYPE_PEM, f.read())
 
     # create the new certificate, fill it with Last Stand Cloud's information, then sign it with our private key
     new_cert = c.X509()
-    new_cert.get_subject().C = "USA"
+    new_cert.get_subject().C = "US"
     new_cert.get_subject().ST = "Illinois"
     new_cert.get_subject().L = "Joliet"
     new_cert.get_subject().O = "Last Stand Cloud Software"
@@ -73,7 +75,7 @@ def generate_new_cert(ownername, ownerpass, name, key=None):
     new_cert.sign(laststand_key, "sha256")
 
     # dump the new cert so it can be kept until it expires, sort of like the gold in Fort Knox backing up the dollar
-    with open("./static/certs/" + name + ".cacert", "wb") as cert:
+    with open("./static/certs/" + ownername + "-" + name + "-cert.pem", "wb") as cert:
         cert.write(c.dump_certificate(c.FILETYPE_PEM, new_cert))
 
     return new_cert, key
