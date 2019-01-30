@@ -83,7 +83,6 @@ def submit_cloud(request):
         owner = request.user
         name = h.troliAlgoritm(owner.username, owner.password)
         auth_info = h.generate_new_cert(owner.username, owner.password, name)
-        print(auth_info)
         ssl = SSL.objects.create(cacert=auth_info[0], privkey=auth_info[1], date_created=created, date_expires=expires,
                                  created_by=owner, owned_by=owner)
         ssl.save()
@@ -93,4 +92,4 @@ def submit_cloud(request):
         cloud = Cloud.objects.create(id=name, name=given_name, ip_address=ip_address, ssl_cert=ssl, users=[owner],
                                      owner=owner, status=0)
         cloud.save()
-        return HttpResponse(auth_info)
+        return HttpResponse("sanity check")
