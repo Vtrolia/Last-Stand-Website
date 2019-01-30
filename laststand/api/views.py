@@ -78,18 +78,16 @@ def submit_cloud(request):
     created = dt.datetime.now()
     expires = created + relativedelta(month = 6)
     if not request.user.is_authenticated:
-        return HttpResponse("")
+        return HttpResponse("sanity check")
     else:
         owner = request.user
-        name = h.troliAlgoritm(owner.username, owner.password)
+        name = h.troliAlgorithm(owner.username, owner.password)
         auth_info = h.generate_new_cert(owner.username, owner.password, name)
         ssl = SSL.objects.create(cacert=auth_info[0], privkey=auth_info[1], date_created=created, date_expires=expires,
                                  created_by=owner, owned_by=owner)
         ssl.save()
         given_name = request.POST['name']
         ip_address = request.POST['ip']
-        status = 0
-        cloud = Cloud.objects.create(id=name, name=given_name, ip_address=ip_address, ssl_cert=ssl, users=[owner],
-                                     owner=owner, status=0)
+        cloud = Cloud.objects.create(id=name, name=given_name, ip_address=ip_address, ssl_cert=ssl, owner=owner, status=0)
         cloud.save()
-        return HttpResponse("sanity check")
+        return HttpResponse(auth_info)

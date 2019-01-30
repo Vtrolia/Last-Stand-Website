@@ -83,7 +83,7 @@ def generate_new_cert(ownername, ownerpass, name, key=None):
 
 # the second usage of my old password generator program, is being revived as the function that created the ids of
 # the clouds. Good ol' TroliAlgorithm. Presented in its original, horribly designed form
-def TroliAlgorithm(word1, word2):
+def troliAlgorithm(word1, word2):
     """Takes in two words, word 1 and word 2. If the words provided are
        not empty, it puts them through the algorithm and returns a pseudo-
        random string of characters that are dependant on the words entered.

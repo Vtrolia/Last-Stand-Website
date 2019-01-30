@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from helpers import generate_new_cert
 from .models import SSL, Cloud
 import datetime as dt
+import re
 
 # Create your tests here.
 class CreateCert(TestCase):
@@ -31,9 +32,12 @@ class CreateCert(TestCase):
 
     def test_3(self):
         c = Client()
+        c.force_login(user=self.user)
         response = c.post("/api/submit-cloud/", {"name": "test2", "ip": "1.2.2.2"})
-        print(response)
-        assert response.status_code < 400 and len(response.content) > 0
+        response_text = response.content.decode('utf-8').split("-----END CERTIFICATE-----")
+        response_text[0] += "-----END CERTIFICATE-----"
+        print(response_text)
+        assert response.status_code < 400 and len(response_text) == 2
 
 
 class GetterTest(TestCase):

@@ -3,7 +3,7 @@
 {% block title %}<title>Downloads</title>{% endblock %}
 {% block head %}
 <link rel= "stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
-<script>
+<script src="{% static 'scripts/download.js %}" async>
     window.onload = () => {
         var os = navigator.appVersion.split(/[()]+/)[1];
         os = os.split(" ")[0];
