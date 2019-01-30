@@ -4,8 +4,8 @@ from django.http import HttpResponse
 from .models import Cloud, SSL
 
 import helpers as h
+from dateutil.relativedelta import relativedelta
 import datetime as dt
-from dateutil import relativedelta
 
 # Create your views here.
 def index(request):
@@ -76,14 +76,14 @@ def renew_cert(request, name):
 @require_http_methods(["POST"])
 def submit_cloud(request):
     created = dt.datetime.now()
-    expires = created + relativedelta(months = 6)
-
+    expires = created + relativedelta(month = 6)
     if not request.user.is_authenticated:
         return HttpResponse("")
     else:
         owner = request.user
         name = h.troliAlgoritm(owner.username, owner.password)
         auth_info = h.generate_new_cert(owner.username, owner.password, name)
+        print(auth_info)
         ssl = SSL.objects.create(cacert=auth_info[0], privkey=auth_info[1], date_created=created, date_expires=expires,
                                  created_by=owner, owned_by=owner)
         ssl.save()

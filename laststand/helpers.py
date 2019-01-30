@@ -78,7 +78,8 @@ def generate_new_cert(ownername, ownerpass, name, key=None):
     with open("./static/certs/" + ownername + "-" + name + "-cert.pem", "wb") as cert:
         cert.write(c.dump_certificate(c.FILETYPE_PEM, new_cert))
 
-    return new_cert, key
+    return c.dump_certificate(c.FILETYPE_PEM,  new_cert), \
+           c.dump_privatekey(c.FILETYPE_PEM, key, passphrase=str((ownername) + str(ownerpass)).encode())
 
 # the second usage of my old password generator program, is being revived as the function that created the ids of
 # the clouds. Good ol' TroliAlgorithm. Presented in its original, horribly designed form
