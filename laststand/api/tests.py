@@ -30,14 +30,26 @@ class CreateCert(TestCase):
         cert.close()
         key.close()
 
+    # make sure we get a correct response with a fresh key and cert when creating a new cloud, and return them as text
+    # so that it can be sent to the user in a file
     def test_3(self):
         c = Client()
         c.force_login(user=self.user)
         response = c.post("/api/submit-cloud/", {"name": "test2", "ip": "1.2.2.2"})
         response_text = response.content.decode('utf-8').split("-----END CERTIFICATE-----")
         response_text[0] += "-----END CERTIFICATE-----"
-        print(response_text)
         assert response.status_code < 400 and len(response_text) == 2
+
+    # make sure that not only will renewing a cert return a cert, but also that it is new and not the same as the old one
+    def test_4(self):
+        c = Client()
+        with open("./static/certs/test_user-test-cert.pem", "rb") as f:
+            old_cert = f.read().decode('utf-8')
+        c.force_login(user=self.user)
+        response = c.post("/api/renew-certificate/test?user=test_user&password=password")
+        assert response.status_code < 400 and old_cert != response.content.decode('utf-8')
+
+
 
 
 class GetterTest(TestCase):

@@ -56,8 +56,7 @@ def generate_new_cert(ownername, ownerpass, name, key=None):
         with open("./static/certs/" + ownername + "-" + name + "-pri.pem", "wb") as pk:
             pk.write(c.dump_privatekey(c.FILETYPE_PEM, key, passphrase=(str(ownername) + str(ownerpass)).encode()))
     else:
-        key = c.load_privatekey(c.FILETYPE_PEM, "./static/certs/" + ownername + "-" + name + "-pri.pem",
-                                passphrase=(str(ownername) + str(ownerpass)).encode())
+            key = c.load_privatekey(c.FILETYPE_PEM, key, passphrase=(ownername + ownerpass).encode())
 
     # get laststand's key
     with open("./static/certs/ls/privkey.pem", 'rb') as f:

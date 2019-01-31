@@ -68,7 +68,7 @@ def renew_cert(request, name):
     if owner:
         cert = Cloud.objects.get(id=name)
         privkey = cert.ssl_cert.privkey
-        print(h.generate_new_cert(ownername=owner.username, ownerpass=owner.password, name=name, privkey=privkey))
+        return HttpResponse(h.generate_new_cert(ownername=owner.username, ownerpass=owner.password, name=name, key=privkey)[0])
     else:
         return HttpResponse("")
 
