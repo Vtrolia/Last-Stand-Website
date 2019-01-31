@@ -23,7 +23,7 @@ def set_info(request, name):
         cloud.ip_address = request.META["HTTP_HOST"]
 
         # while updating, if the ssl certificate is now expired, delete it.
-        if dt.datetime.now() >= cloud.ssl_cert.date_expires:
+        if dt.date.today() >= cloud.ssl_cert.date_expires:
             cloud.ssl_cert.delete()
 
         cloud.save()
@@ -54,7 +54,7 @@ def get_address(request, name):
 @csrf_exempt
 def get_ssl_cert(request, name):
     cert = Cloud.objects.get(id=name).ssl_cert
-    if cert.date_expires > dt.datetime.now():
+    if cert.date_expires > dt.date.today():
         return HttpResponse(cert.cacert)
     else:
         cert.delete()
@@ -68,7 +68,11 @@ def renew_cert(request, name):
     if owner:
         cert = Cloud.objects.get(id=name)
         privkey = cert.ssl_cert.privkey
-        return HttpResponse(h.generate_new_cert(ownername=owner.username, ownerpass=owner.password, name=name, key=privkey)[0])
+        new_cert = h.generate_new_cert(ownername=owner.username, ownerpass=owner.password, name=name, key=privkey)[0]
+        cert.ssl_cert.cacert = new_cert
+        cert.ssl_cert.date_created = dt.datetime.now()
+        cert.ssl_cert.date_expires = dt.datetime.now() + relativedelta(month=6)
+        return HttpResponse(new_cert)
     else:
         return HttpResponse("")
 

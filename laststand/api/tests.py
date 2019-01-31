@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from helpers import generate_new_cert
 from .models import SSL, Cloud
 import datetime as dt
-import re
+import os
 
 # Create your tests here.
 class CreateCert(TestCase):
@@ -11,7 +11,7 @@ class CreateCert(TestCase):
         self.user = User.objects.create_user(username="test_user", password="password")
         self.client.login()
 
-        test_auth = generate_new_cert("test", "test", "testCloud")
+        test_auth = generate_new_cert("test_user", "password", "testCloud")
         ssl = SSL.objects.create(privkey=test_auth[1], cacert=test_auth[0], date_created=dt.datetime.now(),
                            date_expires=dt.datetime.now() + dt.timedelta(days=1), created_by=self.user, owned_by=self.user)
         Cloud.objects.create(id="test", ip_address="1.1.1.1", ssl_cert=ssl, owner=self.user)
@@ -29,6 +29,8 @@ class CreateCert(TestCase):
         assert cert.read() == auth[0] and key.read() == auth[1]
         cert.close()
         key.close()
+        os.remove(cert.name)
+        os.remove(key.name)
 
     # make sure we get a correct response with a fresh key and cert when creating a new cloud, and return them as text
     # so that it can be sent to the user in a file
@@ -54,14 +56,34 @@ class CreateCert(TestCase):
 
 class GetterTest(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username="test_user", password="password")
-        self.client.login(self.user)
+        self.user = User.objects.create_user(username="test1", password="password")
+        self.client.login()
 
-        test_auth = generate_new_cert("test", "test", "testCloud")
+        test_auth = generate_new_cert("test1", "password", "testCloud1")
         ssl = SSL.objects.create(privkey=test_auth[1], cacert=test_auth[0], date_created=dt.datetime.now(),
                                  date_expires=dt.datetime.now() + dt.timedelta(days=1), created_by=self.user, owned_by=self.user)
         Cloud.objects.create(id="test", ip_address="1.1.1.1", ssl_cert=ssl, owner=self.user)
 
+    def test_1(self):
+        c = Client()
+        c.force_login(user=self.user)
+        response = c.post("/api/forward-to-server/test?user=test1&password=password")
+        assert response.content == b'content: 1.1.1.1\r\n'
 
+    def test_2(self):
+        c = Client()
+        c.force_login(user=self.user)
 
+        response = c.post("/api/get-certificate/test")
 
+        with open("./static/certs/test1-testCloud1-cert.pem", "rb") as f:
+            cert = f.read()
+
+        assert cert == response.content
+        assert Cloud.objects.get(id="test").ssl_cert.cacert == cert.decode('utf-8')
+
+    def test_3(self):
+        c = Client()
+        c.force_login(user=self.user)
+
+        response = c.post("/api/")
