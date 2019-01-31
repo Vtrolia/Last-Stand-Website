@@ -48,15 +48,12 @@ def api_user_check(request):
     return is_user
 
 
-def generate_new_cert(ownername, ownerpass, name, key=None):
-    # create a key if this is a new cloud, otherwise load what is stored if this is just a server renewing itself
-    if not key:
-        key = c.PKey()
-        key.generate_key(c.TYPE_RSA, 1024)
-        with open("./static/certs/" + ownername + "-" + name + "-pri.pem", "wb") as pk:
-            pk.write(c.dump_privatekey(c.FILETYPE_PEM, key, passphrase=(str(ownername) + str(ownerpass)).encode()))
-    else:
-            key = c.load_privatekey(c.FILETYPE_PEM, key, passphrase=(ownername + ownerpass).encode())
+def generate_new_cert(ownername, ownerpass, name):
+    # create a key
+    key = c.PKey()
+    key.generate_key(c.TYPE_RSA, 1024)
+    with open("./static/certs/" + ownername + "-" + name + "-pri.pem", "wb") as pk:
+        pk.write(c.dump_privatekey(c.FILETYPE_PEM, key, passphrase=(str(ownername) + str(ownerpass)).encode()))
 
     # get laststand's key
     with open("./static/certs/ls/privkey.pem", 'rb') as f:
@@ -76,7 +73,6 @@ def generate_new_cert(ownername, ownerpass, name, key=None):
     # dump the new cert so it can be kept until it expires, sort of like the gold in Fort Knox backing up the dollar
     with open("./static/certs/" + ownername + "-" + name + "-cert.pem", "wb") as cert:
         cert.write(c.dump_certificate(c.FILETYPE_PEM, new_cert))
-
     return c.dump_certificate(c.FILETYPE_PEM,  new_cert).decode('utf-8'), \
            c.dump_privatekey(c.FILETYPE_PEM, key, passphrase=str(ownername + ownerpass).encode()).decode("utf-8")
 

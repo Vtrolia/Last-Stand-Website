@@ -64,12 +64,14 @@ class GetterTest(TestCase):
                                  date_expires=dt.datetime.now() + dt.timedelta(days=1), created_by=self.user, owned_by=self.user)
         Cloud.objects.create(id="test", ip_address="1.1.1.1", ssl_cert=ssl, owner=self.user)
 
+    # make sure right address is returned to user
     def test_1(self):
         c = Client()
         c.force_login(user=self.user)
         response = c.post("/api/forward-to-server/test?user=test1&password=password")
         assert response.content == b'content: 1.1.1.1\r\n'
 
+    # make sure correct cert is sent to user
     def test_2(self):
         c = Client()
         c.force_login(user=self.user)
@@ -82,8 +84,18 @@ class GetterTest(TestCase):
         assert cert == response.content
         assert Cloud.objects.get(id="test").ssl_cert.cacert == cert.decode('utf-8')
 
+    # make sure new cert is generated and saved by server, and that new cert is sent to user.
     def test_3(self):
         c = Client()
         c.force_login(user=self.user)
 
-        response = c.post("/api/")
+        old_cert = Cloud.objects.get(id="test").ssl_cert
+        print(old_cert.cacert)
+        response = c.post("/api/renew-certificate/test?user=test1&password=password")
+        cert = Cloud.objects.get(id="test").ssl_cert
+        print(cert.cacert)
+        print(response.content.decode('utf-8'))
+        assert cert.date_created == dt.date.today() and cert.date_expires > dt.date.today()
+        assert old_cert.cacert != response.content.decode("utf-8")
+
+        assert cert.cacert == response.content.decode('utf-8')

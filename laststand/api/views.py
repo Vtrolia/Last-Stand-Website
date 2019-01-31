@@ -66,12 +66,13 @@ def renew_cert(request, name):
     owner = h.api_user_check(request)
 
     if owner:
-        cert = Cloud.objects.get(id=name)
-        privkey = cert.ssl_cert.privkey
-        new_cert = h.generate_new_cert(ownername=owner.username, ownerpass=owner.password, name=name, key=privkey)[0]
-        cert.ssl_cert.cacert = new_cert
-        cert.ssl_cert.date_created = dt.datetime.now()
-        cert.ssl_cert.date_expires = dt.datetime.now() + relativedelta(month=6)
+        cert = Cloud.objects.get(id=name).ssl_cert
+        new_cert = h.generate_new_cert(ownername=owner.username, ownerpass=owner.password, name=name)
+        cert.cacert = new_cert[0]
+        cert.privkey = new_cert[1]
+        cert.date_created = dt.datetime.now()
+        cert.date_expires = dt.datetime.now() + relativedelta(month=6)
+        cert.save()
         return HttpResponse(new_cert)
     else:
         return HttpResponse("")
