@@ -50,7 +50,7 @@ def get_user_info(request):
         clouds = Cloud.objects.filter(owner=request.user)
         response["clouds_owned"] = clouds.count()
         response["clouds"] = []
-        
+
         if not clouds.count():
             response["clouds"] = ["You haven't created a Cloud yet!"]
             return HttpResponse(j.dumps(response))

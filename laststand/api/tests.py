@@ -4,6 +4,7 @@ from helpers import generate_new_cert
 from .models import SSL, Cloud
 import datetime as dt
 import os
+import json as j
 
 # Create your tests here.
 class CreateCert(TestCase):
@@ -90,12 +91,20 @@ class GetterTest(TestCase):
         c.force_login(user=self.user)
 
         old_cert = Cloud.objects.get(id="test").ssl_cert
-        print(old_cert.cacert)
         response = c.post("/api/renew-certificate/test?user=test1&password=password")
         cert = Cloud.objects.get(id="test").ssl_cert
-        print(cert.cacert)
-        print(response.content.decode('utf-8'))
         assert cert.date_created == dt.date.today() and cert.date_expires > dt.date.today()
         assert old_cert.cacert != response.content.decode("utf-8")
 
         assert cert.cacert == response.content.decode('utf-8')
+
+    def test_4(self):
+        c = Client()
+        c.force_login(user=self.user)
+
+        response = c.post("/api/get-user-cloud-info")
+        response = j.loads(response.content)
+        assert response['status'] == "Basic"
+        assert response['clouds_owned'] == Cloud.objects.filter(owner=self.user).count()
+
+
