@@ -30,11 +30,24 @@
                     let cloud = document.createElement("li")
                     cloud.textContent = response['clouds'][i];
                     cloud.className = "cloud-option";
+                    cloud.setAttribute("data-name", cloud.textContent)
+                    cloud.setAttribute("onclick", "displayCloudOptions(this)")
                     cloudList.appendChild(cloud);
                 }
             }
             request.send();
             
+        }
+        
+        function displayCloudOptions(cloud) {
+            var request = new XMLHttpRequest();
+            request.open("GET", "/cloud-options-page");
+            request.onload = () => {
+                let display = document.getElementById("settings-display");
+                display.innerHTML = request.responseText;
+                document.getElementById("settings-title").textContent = "Settings for " + cloud.getAttribute("data-name");
+            }
+            request.send(cloud.getAttribute("data-name"));
         }
     </script>
 {% endblock %}
@@ -47,6 +60,10 @@
                 {% else %}
                 <img src="{% static 'source_images/user.png' %}">
                 {% endif %}
+            </div>
+            <div id="identification">
+                <strong>{{ message.username }}</strong>
+                You joined on <strong>{{ message.date_joined }}</strong>
             </div>
             <div id="account-status"></div>
             <div id="clouds"></div>

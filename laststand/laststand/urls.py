@@ -38,6 +38,7 @@ urlpatterns = [
     path("relog", sv.relog_page, name="relog"),
     path("stories", sv.story, name="our_story"),
     path("get-articles", sv.load_articles, name="load_articles"),
+    path("cloud-options-page", sv.load_cloud_options, name="load_cloud_options"),
     path("api/", include("api.urls"))
 
 ]

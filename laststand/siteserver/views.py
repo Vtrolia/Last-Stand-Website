@@ -60,7 +60,7 @@ def issue_page(request):
 def account_page(request):
     if not request.user.is_authenticated:
         return HttpResponseNotFound(render(request, "error.html"))
-    return h.return_as_wanted(request, "account_page.html")
+    return h.return_as_wanted(request, "account_page.html", message={"username": request.user.get_username(), "date_joined": request.user.date_joined })
 
 
 def downloads(request):
@@ -235,3 +235,6 @@ def load_articles(request):
         return HttpResponse("")
     return HttpResponse(j.dumps(articles))
 
+
+def load_cloud_options(request):
+    return render(request, "cloud-placeholder.html")
