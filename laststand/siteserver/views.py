@@ -57,6 +57,11 @@ def issue_page(request):
         return HttpResponseNotFound(render(request, "error.html"))
     return h.return_as_wanted(request, "issue.html")
 
+def account_page(request):
+    if not request.user.is_authenticated:
+        return HttpResponseNotFound(render(request, "error.html"))
+    return h.return_as_wanted(request, "account_page.html")
+
 
 def downloads(request):
     if not request.user.is_authenticated:

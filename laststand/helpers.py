@@ -2,7 +2,7 @@
 
 import hashlib as h
 from OpenSSL import crypto as c
-import os, random, time
+import random, time
 
 from django.shortcuts import render
 from django.contrib.auth import authenticate

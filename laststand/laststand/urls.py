@@ -26,6 +26,7 @@ urlpatterns = [
     path("signup", sv.register_page, name="register_page"),
     path("publish", sv.publish_page, name="publish_page"),
     path("issues", sv.issue_page, name="issue_page"),
+    path("account-settings", sv.account_page, name="account_page"),
     path("submit-login", sv.submit_login, name="submit_login"),
     path("submit-register", sv.submit_register, name="submit_register"),
     path("submit-article", sv.submit_article, name="submit_article"),

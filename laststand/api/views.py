@@ -6,6 +6,7 @@ from .models import Cloud, SSL
 import helpers as h
 from dateutil.relativedelta import relativedelta
 import datetime as dt
+import json as j
 
 # Create your views here.
 def index(request):
@@ -35,6 +36,31 @@ def set_info(request, name):
         return HttpResponse(content)
     else:
         return HttpResponse("contents: none failure" + "\r\n")
+
+
+@require_http_methods(["POST"])
+def get_user_info(request):
+    if not request.user.is_authenticated:
+        return HttpResponse("")
+    else:
+        response = dict()
+
+        response["status"] = "Basic"
+
+        clouds = Cloud.objects.filter(owner=request.user)
+        response["clouds_owned"] = clouds.count()
+        response["clouds"] = []
+        
+        if not clouds.count():
+            response["clouds"] = ["You haven't created a Cloud yet!"]
+            return HttpResponse(j.dumps(response))
+
+        for cloud in clouds:
+            response['clouds'].append(cloud.name)
+
+        return HttpResponse(j.dumps(response))
+
+
 
 
 

@@ -1,0 +1,72 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block title %}<title>Your Account</title>{% endblock %}
+{% block head %}
+    <link rel= "stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+    <script>const token = "{{ csrf_token }}"</script>
+    <script>
+        window.onload = () => {
+            var request = new XMLHttpRequest();
+            request.open("POST", "/api/get-user-cloud-info");
+            request.setRequestHeader("X-CSRFToken", token);
+            request.onload = () => {
+                let response = JSON.parse(request.responseText);
+                
+                let bold = document.createElement("strong");
+                bold.textContent = response['status'];
+                let status = document.getElementById("account-status");
+                status.textContent = "You are a subscriber of the "
+                status.appendChild(bold);
+                status.innerHTML += " plan"
+                
+                let cloudCount = document.getElementById("clouds");
+                cloudCount.textContent = "clouds owned: ";
+                let count = document.createElement("strong");
+                count.textContent = response['clouds_owned'];
+                cloudCount.appendChild(count);
+                
+                let cloudList = document.getElementById("cloud-options");
+                for (let i = 0; i < response['clouds'].length; i++) {
+                    let cloud = document.createElement("li")
+                    cloud.textContent = response['clouds'][i];
+                    cloud.className = "cloud-option";
+                    cloudList.appendChild(cloud);
+                }
+            }
+            request.send();
+            
+        }
+    </script>
+{% endblock %}
+{% block body %}
+    <div id="account-page" class="jumbotron">
+        <div id="account-details">
+            <div id="account-picture">
+                {% if account_picture %}
+                <img src="{{ account_picture }}">
+                {% else %}
+                <img src="{% static 'source_images/user.png' %}">
+                {% endif %}
+            </div>
+            <div id="account-status"></div>
+            <div id="clouds"></div>
+            <div id="cloud-list">
+                <ul id="cloud-options">
+                </ul>
+            </div>
+        </div>
+        <div id="settings-display">
+            <h4 id="settings-title">General Account Settings</h4>
+            <label onclick="planChange()">Change your plan
+            <input type="radio"></label>
+            <label onclick="passwordReset()">Reset your password
+            <input type="radio"></label>
+            <label onclick="changeDetails()">Change account details
+            <input type="radio"></label>
+            <label href="" onclick="deleteAccount()">Delete your account
+            <input type="radio"></label>
+            <label href="" onclick="becomePublisher()">Request to become a Publisher
+            <input type="radio"></label>
+        </div>
+    </div>
+{% endblock %}
