@@ -39,6 +39,7 @@ urlpatterns = [
     path("stories", sv.story, name="our_story"),
     path("get-articles", sv.load_articles, name="load_articles"),
     path("cloud-options-page", sv.load_cloud_options, name="load_cloud_options"),
+    path("base-options-page", sv.load_base_options, name="load_base_options"),
     path("api/", include("api.urls"))
 
 ]

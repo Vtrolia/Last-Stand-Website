@@ -5,9 +5,6 @@
     <link rel= "stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
     <script>const token = "{{ csrf_token }}"</script>
     <script>
-        const baseSettings = 
-            "<h4 id=\"settings-title\">General Account Settings</h4> <label onclick=\"planChange()\">Change your plan<input type=\"radio\"></label> <label onclick=\"passwordReset()\">Reset your password<input type=\"radio\"></label> <label onclick=\"changeDetails()\">Change account details <input type=\"radio\"></label><label onclick=\"deleteAccount()\"> Delete your account <input type=\"radio\"></label> <label onclick=\"becomePublisher()\">Request to become a Publisher <input type=\"radio\"></label>";
-
         window.onload = () => {
             var request = new XMLHttpRequest();
             request.open("POST", "/api/get-user-cloud-info");
@@ -39,7 +36,7 @@
                 }
             }
             request.send();
-            document.getElementById("settings-display").innerHTML = baseSettings;
+            getBaseSettings();
         }
         
         function displayCloudOptions(cloud) {
@@ -53,8 +50,14 @@
             request.send(cloud.getAttribute("data-name"));
         }
         
-        function RTB() {
-            document.getElementById("settings-display").innerHTML = baseSettings;
+        function getBaseSettings() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "base-options-page");
+            request.onload = () => {
+                document.getElementById("settings-display").innerHTML = request.responseText;
+            }
+            request.send();
+            
         }
         
         
@@ -65,9 +68,9 @@
         <div id="account-details">
             <div id="account-picture">
                 {% if account_picture %}
-                <img src="{{ account_picture }}" width=64>
+                <img src="{{ account_picture }}" width=128>
                 {% else %}
-                <img src="{% static 'source_images/user.png' %}" width=64>
+                <img src="{% static 'source_images/user.png' %}" width=128>
                 {% endif %}
             </div>
             <div id="identification">
@@ -82,6 +85,7 @@
             </div>
         </div>
         <div id="settings-display"></div>
-        <button  style="background-color: transparent; outline: none; border: 0;" onclick="RTB()"><img src="{% static 'source_images/back.png' %}" width=32></button>
+        <hr>
+        <button  style=" position: relative; left: 29%; bottom: 0%%;background-color: transparent; outline: none; border: 0;" onclick="getBaseSettings()"><img src="{% static 'source_images/back.png' %}" width=48></button>
     </div>
 {% endblock %}
