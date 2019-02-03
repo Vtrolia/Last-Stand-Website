@@ -241,3 +241,6 @@ def load_cloud_options(request):
 
 def load_base_options(request):
     return render(request, "base_settings_page.html")
+
+def load_change_plan(request):
+    return render(request, "cloud-placeholder.html")

@@ -385,7 +385,7 @@ code {
     position: absolute;
     top: 4.4em;
     left: 0;
-    min-height: 91%;
+    min-height: 92.3%;
     min-width: 30%;
     background-color: #dbdbdb;
     border-bottom-right-radius: 1em;
@@ -397,7 +397,7 @@ code {
 #settings-display{
     position: relative;
     top: 0%;
-    min-height: 100%;
+    min-height: 95%;
     width: 68%;
     left: 31%;
 }

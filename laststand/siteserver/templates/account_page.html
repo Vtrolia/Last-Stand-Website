@@ -60,6 +60,20 @@
             
         }
         
+        function planChange() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "change-plan-page");
+            request.onload = () => {
+                document.getElementById("settings-display").innerHTML = request.responseText;
+                document.getElementById("settings-title").textContent = "Change your plan";
+            }
+            request.send();
+        }
+        
+        function passwordReset() {
+            return;
+        }
+        
         
     </script>
 {% endblock %}
@@ -85,7 +99,9 @@
             </div>
         </div>
         <div id="settings-display"></div>
-        <hr>
-        <button  style=" position: relative; left: 29%; bottom: 0%;background-color: transparent; outline: none; border: 0;" onclick="getBaseSettings()"><img src="{% static 'source_images/back.png' %}" width=48></button>
+        <div id="settings-bottom">
+        <hr style="margin-bottom: 0;">
+        <span  style=" position: relative; left: 30%; bottom: 5%;background-color: transparent; outline: none; cursor: pointer" onclick="getBaseSettings()"><img src="{% static 'source_images/back.png' %}" width=48></span>
+        </div>
     </div>
 {% endblock %}
