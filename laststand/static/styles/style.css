@@ -369,6 +369,17 @@ code {
     margin-left: .6em;
 }
 
+#account-page {
+    padding-top: 6em;
+    position: relative;
+    left: 0;
+    min-width: 80%;
+}
+
+#account-details {
+    
+}
+
 @media only screen and (max-width: 1200px) {
     #article-page, #issues {
         width: 80%;
