@@ -4,6 +4,7 @@ window.oninput = () => {
         var oldTip = document.getElementById("newPassword");
         var NewTip = document.getElementById("passRepeat");
         closeToolTip(NewTip);
+       
         
         if (password.value === document.getElementById("old").value) {
             password.style.backgroundColor = "#f72626";
@@ -28,7 +29,7 @@ window.oninput = () => {
         var lower = /[a-z]/.test(password.value);
         var number = /[0-9]/.test(password.value);
         
-        if (upper && lower && number) {
+        if (upper && lower && number && password.value.length >= 8) {
             closeToolTip(oldTip);
             button.disabled = false;
             return;
@@ -37,7 +38,8 @@ window.oninput = () => {
         else if (password.value.length > 0 && 
             password.value.length < 8) {
             displayToolTip(oldTip, "Your password is missing either: <ul><li>An uppercase letter</li><li>A lowercase letter</li><li>Or a number</li></ul> Or it is not at least 8 characters long");
-            oldTip.style.top = "31.5%";
+            oldTip.style.top = "30%";
+            return;
         }
 }
 

@@ -84,7 +84,7 @@ def logout_user(request):
 def license_page(request):
     return h.return_as_wanted(request, "legal_docs.html")
 
-@login_required
+
 def password_page(request):
     return h.return_as_wanted(request, "password-page.html")
 
@@ -195,7 +195,7 @@ def submit_download(request):
     response["X-Sendfile"] = smart_str("./static/downloads/" + request.POST["os-type"] + "/" + response_name)
     return response
 
-@login_required
+
 def submit_password_change(request):
     old, new = request.body.decode("utf-8").split("&")
     if authenticate(request, username=request.user.get_username(), password=old):
@@ -255,14 +255,14 @@ def load_articles(request):
         return HttpResponse("")
     return HttpResponse(j.dumps(articles))
 
-@login_required
+
 def load_cloud_options(request):
     return render(request, "cloud-placeholder.html")
 
-@login_required
+
 def load_base_options(request):
     return render(request, "base_settings_page.html")
 
-@login_required
+
 def load_change_plan(request):
     return render(request, "cloud-placeholder.html")
