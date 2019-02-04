@@ -433,10 +433,38 @@ code {
     padding-bottom: 1em;
 }
 
-#account-page input {
+#account-page input, #account-page button {
     width: auto;
     height: auto;
-    margin-bottom: auto;
+    margin: .5em;
+}
+
+.toolTip {
+    opacity: 0;
+    transition: .5s;
+    visibility: hidden;
+    display: inline-block;
+    width: auto;
+    background-color: rgb(40, 40, 54);
+    padding: .3em;
+    color: whitesmoke;
+    text-align: center;
+    border-radius: .5em;
+    position: absolute;
+    top: 20.5%;
+    left: -5%;
+}
+    
+ div .toolTip::after {
+    content: " ";
+    display: inline-block;
+    position: absolute;
+    top: 100%; 
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgb(40, 40, 54) transparent transparent transparent;
 }
 
 @media only screen and (max-width: 1200px) {
