@@ -77,9 +77,13 @@
                 document.getElementById("settings-display").innerHTML = request.responseText;
             }
             request.send();
-            var passjs = document.createElement("script");
-            passjs.setAttribute("src", "{% static 'scripts/password.js' %}");
-            document.querySelector("head").append(passjs);
+            
+            if (!document.getElementById("passjs")) {
+                var passjs = document.createElement("script");
+                passjs.setAttribute("id", "passjs");
+                passjs.setAttribute("src", "{% static 'scripts/password.js' %}");
+                document.querySelector("head").append(passjs);
+            }
         }
         
         

@@ -451,20 +451,28 @@ code {
     text-align: center;
     border-radius: .5em;
     position: absolute;
-    top: 20.5%;
-    left: -5%;
+    top: 37.5%;
+    left: 23%;
 }
     
  div .toolTip::after {
     content: " ";
     display: inline-block;
     position: absolute;
-    top: 100%; 
-    left: 50%;
-    margin-left: -5px;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: rgb(40, 40, 54) transparent transparent transparent;
+    border-color: transparent rgb(40, 40, 54) transparent transparent;
+}
+
+#passRepeat {
+    top: 43.5%;
+}
+
+.toolTip li {
+    text-align: left;
 }
 
 @media only screen and (max-width: 1200px) {

@@ -194,6 +194,17 @@ def submit_download(request):
     return response
 
 
+def submit_password_change(request):
+    old, new = request.body.decode("utf-8").split("&")
+    if authenticate(request, username=request.user.get_username(), password=old):
+        request.user.set_password(new)
+        request.user.save()
+        return HttpResponse("<div class=\"alert alert-success\" role=\"alert\" id=\"alerts\"><strong>Success!</strong> " +
+                            " Your password was successfully changed!</div>")
+    else:
+        return HttpResponse("<div class=\"alert alert-danger\" role=\"alert\" id=\"alerts\"><strong>Error! </strong>" +
+                            " Your old password was not correct!</div>")
+
 
 # other forms or requests to send data
 def more_info(request):

@@ -8,12 +8,12 @@ window.oninput = () => {
         if (password.value === document.getElementById("old").value) {
             password.style.backgroundColor = "#f72626";
             displayToolTip(oldTip, "Your new password cannot be the same as the old one");
+            oldTip.style.top = "37.5%";
             button.disabled = true;
             return;
         }
         
-        else if (password.value != document.getElementById("new-repeat").value || 
-            password.length < 8) {
+        else if (password.value != document.getElementById("new-repeat").value) {
             closeToolTip(oldTip);
             displayToolTip(NewTip, "Password and confirmation do not match!");
             password.style.backgroundColor = "white";
@@ -34,11 +34,13 @@ window.oninput = () => {
             return;
         }
         
-        else if (password.value.length > 0) {
-            displayToolTip(oldTip, "Your password is missing either: <ul><li>An uppercase letter</li><li>A lowercase letter</li><li>Or a number</li></u>");
+        else if (password.value.length > 0 && 
+            password.value.length < 8) {
+            displayToolTip(oldTip, "Your password is missing either: <ul><li>An uppercase letter</li><li>A lowercase letter</li><li>Or a number</li></ul> Or it is not at least 8 characters long");
+            oldTip.style.top = "31.5%";
         }
 }
-    
+
 function sameTest() {
     var pass = document.getElementById("new").value;
     var passRepeat = document.getElementById("new-repeat");
@@ -60,4 +62,27 @@ function displayToolTip(tip, message) {
     tip.innerHTML = message;
     tip.style.visibility = "visible";
     tip.style.opacity = 1;
+}
+
+function submit() {
+    let alerts = document.getElementById("alerts");
+    try{
+        alerts.parentElement.removeChild(alerts);
+    }
+    catch{}
+    
+    var form = {
+        "old_password": document.getElementById("old").value,
+        "new_password": document.getElementById("new").value
+    };
+    
+    var request = new XMLHttpRequest();
+    request.open("POST", "submit-password-change");
+    request.setRequestHeader("X-CSRFToken", token);
+    request.onload = () => {
+        let inputs = document.getElementById("inputs");
+        inputs.innerHTML += request.responseText;
+    }
+    request.send(form['old_password'] + "&" + form["new_password"]);
+    
 }
