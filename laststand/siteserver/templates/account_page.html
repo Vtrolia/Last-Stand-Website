@@ -71,7 +71,12 @@
         }
         
         function passwordReset() {
-            return;
+            var request = new XMLHttpRequest();
+            request.open("GET", "password-reset-page");
+            request.onload = () => {
+                document.getElementById("settings-display").innerHTML = request.responseText;
+            }
+            request.send();
         }
         
         
@@ -101,7 +106,7 @@
         <div id="settings-display"></div>
         <div id="settings-bottom">
         <hr style="margin-bottom: 0;">
-        <span  style=" position: relative; left: 30%; bottom: 5%;background-color: transparent; outline: none; cursor: pointer" onclick="getBaseSettings()"><img src="{% static 'source_images/back.png' %}" width=48></span>
+        <span  style=" position: relative; left: 30%; bottom: 5%;background-color: transparent; outline: none; cursor: pointer" onclick="getBaseSettings()"><img id="backButton" src="{% static 'source_images/back.png' %}" width=48></span>
         </div>
     </div>
 {% endblock %}

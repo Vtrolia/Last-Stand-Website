@@ -80,6 +80,13 @@ def logout_user(request):
     return redirect("/")
 
 
+def license_page(request):
+    return h.return_as_wanted(request, "legal_docs.html")
+
+def password_page(request):
+    return h.return_as_wanted(request, "password-page.html")
+
+
 # form submission pages for either a login. registration, or an article(publishers only)
 @require_http_methods(["POST"])
 def submit_login(request):

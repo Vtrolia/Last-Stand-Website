@@ -1,4 +1,4 @@
-#table, #login, #first-downloads-page {
+#table, #login, #first-downloads-page, #legal-info {
     background-color:rgb(40, 40, 54);
     font-family: serif New Century Schoolbook;
     padding-top: 6em;
@@ -389,6 +389,7 @@ code {
     min-width: 30%;
     background-color: #dbdbdb;
     border-bottom-right-radius: 1em;
+    border-bottom-left-radius: 1em;
     border-top-right-radius: 1em;
     border: 1px solid black;
     padding: .5em;
@@ -417,6 +418,25 @@ code {
     background-color: #a39f9f;
     cursor: pointer;
     
+}
+
+#backButton:hover {
+    width: 52px;
+}
+
+#legal-info {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#legal-info h2 {
+    padding-bottom: 1em;
+}
+
+#account-page input {
+    width: auto;
+    height: auto;
+    margin-bottom: auto;
 }
 
 @media only screen and (max-width: 1200px) {

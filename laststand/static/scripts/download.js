@@ -28,3 +28,10 @@
         
         document.getElementById("os-type").value = os;
     }
+ 
+function allow() {
+     var buttons = document.querySelectorAll("button");
+     for (let i = 0; i < buttons.length; i++){
+         buttons.item(i).disabled = false;    
+    }
+ }
