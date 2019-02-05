@@ -38,7 +38,7 @@ window.oninput = () => {
         else if (password.value.length > 0 && 
             password.value.length < 8) {
             displayToolTip(oldTip, "Your password is missing either: <ul><li>An uppercase letter</li><li>A lowercase letter</li><li>Or a number</li></ul> Or it is not at least 8 characters long");
-            oldTip.style.top = "30%";
+            oldTip.style.top = "35%";
             return;
         }
 }
@@ -87,4 +87,34 @@ function submit() {
     }
     request.send(form['old_password'] + "&" + form["new_password"]);
     
+}
+
+function switcher() {
+    var eyes = document.getElementById("reveal-hide");
+    var inputs = document.querySelectorAll("input");
+    
+    if (eyes.getAttribute("data-name") === "reveal") {
+        eyes.title = "hide your passwords";
+        eyes.setAttribute("data-name", "hide");
+        let image = eyes.querySelector("img");
+        image.src = hide;
+        
+        
+        for (let i = 0; i < inputs.length; i++) {
+            console.log(inputs.item(i).type);
+            inputs.item(i).type = "text";
+        }
+        
+    }
+    
+    else {
+        eyes.title = "reveal your passwords";
+        eyes.setAttribute("data-name", "reveal");
+        let image = eyes.querySelector("img");
+        image.src = reveal;
+        
+        for (let i = 0; i < inputs.length; i++) {
+            inputs.item(i).type = "password";
+        }
+    }
 }

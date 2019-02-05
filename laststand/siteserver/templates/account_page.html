@@ -4,6 +4,8 @@
 {% block head %}
     <link rel= "stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
     <script>const token = "{{ csrf_token }}"</script>
+    <script>const reveal = "{% static 'source_images/reveal.png' %}"</script>
+    <script>const hide = "{% static 'source_images/hide.png' %}"</script>
     <script>
         window.onload = () => {
             var request = new XMLHttpRequest();
