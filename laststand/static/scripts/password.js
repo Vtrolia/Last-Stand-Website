@@ -31,6 +31,13 @@ window.oninput = () => {
         
         if (upper && lower && number && password.value.length >= 8) {
             closeToolTip(oldTip);
+            
+            document.onkeypress = (e) => {
+                if (e.keyCode === 13) {
+                    submit();
+                }
+            }
+            
             button.disabled = false;
             return;
         }
@@ -67,7 +74,9 @@ function displayToolTip(tip, message) {
 }
 
 function submit() {
+    document.onkeypress = undefined;
     let alerts = document.getElementById("alerts");
+    
     try{
         alerts.parentElement.removeChild(alerts);
     }
