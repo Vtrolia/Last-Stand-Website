@@ -443,16 +443,16 @@ code {
     opacity: 0;
     transition: .5s;
     visibility: hidden;
-    display: inline-block;
+    display: inline;
     width: auto;
     background-color: rgb(40, 40, 54);
     padding: .3em;
     color: whitesmoke;
     text-align: center;
     border-radius: .5em;
-    position: absolute;
+    position: relative;
     top: 37.5%;
-    left: 23%;
+    left: 2%;
 }
     
  div .toolTip::after {
@@ -468,7 +468,7 @@ code {
 }
 
 #passRepeat {
-    top: 43.5%;
+    top: 48%;
 }
 
 .toolTip li {

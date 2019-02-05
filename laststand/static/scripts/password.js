@@ -8,8 +8,8 @@ window.oninput = () => {
         
         if (password.value === document.getElementById("old").value) {
             password.style.backgroundColor = "#f72626";
-            displayToolTip(oldTip, "Your new password cannot be the same as the old one");
-            oldTip.style.top = "37.5%";
+            displayToolTip(oldTip, "Your new password cannot be the same as the old one!");
+            oldTip.style.top = "42%";
             button.disabled = true;
             return;
         }
@@ -44,7 +44,7 @@ window.oninput = () => {
         
         else if (password.value.length > 0 && 
             password.value.length < 8) {
-            displayToolTip(oldTip, "Your password is missing either: <ul><li>An uppercase letter</li><li>A lowercase letter</li><li>Or a number</li></ul> Or it is not at least 8 characters long");
+            displayToolTip(oldTip, "Your password is not complex enough or long enough!");
             oldTip.style.top = "35%";
             return;
         }
