@@ -106,7 +106,7 @@ function switcher() {
         eyes.title = "hide your passwords";
         eyes.setAttribute("data-name", "hide");
         let image = eyes.querySelector("img");
-        image.src = hide;
+        image.src = reveal;
         
         
         for (let i = 0; i < inputs.length; i++) {
@@ -120,7 +120,7 @@ function switcher() {
         eyes.title = "reveal your passwords";
         eyes.setAttribute("data-name", "reveal");
         let image = eyes.querySelector("img");
-        image.src = reveal;
+        image.src = hide;
         
         for (let i = 0; i < inputs.length; i++) {
             inputs.item(i).type = "password";
