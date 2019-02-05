@@ -475,6 +475,18 @@ code {
     text-align: left;
 }
 
+#passwordForm button:disabled {
+    background-color: gray;
+    color: black;
+    opacity: .75;
+}
+
+#passwordForm #alerts {
+   margin-top: 10em;
+   min-width: 60%;
+   left: 20%;
+}
+
 @media only screen and (max-width: 1200px) {
     #article-page, #issues {
         width: 80%;
