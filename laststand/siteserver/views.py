@@ -207,6 +207,10 @@ def submit_password_change(request):
         return HttpResponse("<div class=\"alert alert-danger\" role=\"alert\" id=\"alerts\"><strong>Error! </strong>" +
                             " Your old password was not correct!</div>")
 
+def submit_delete_account(request):
+    print(request.POST)
+    return HttpResponse("")
+
 
 # other forms or requests to send data
 def more_info(request):

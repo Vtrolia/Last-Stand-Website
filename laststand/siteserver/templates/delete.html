@@ -2,11 +2,14 @@
     <h4 id="settings-title">Delete Your Account</h4>
     <hr>
     <p><strong>Warning!</strong> This will, as the name suggests, permamently <strong>Delete</strong> your account. After this, all your information as well as all of your home clouds will be deleted. This means that the server you have at home will stop working as intended. It <strong><em>may</em></strong> continue to work as a cloud on your local network, but you will no longer be able to access it from outside of your home. If you are a business or organizational user, deleting this account means that you <strong>must</strong> uninstall all copies of Last Stand Cloud from your site or anywhere official business is performed.</p>
-    <input type="radio"  style="display: inline; margin-bottom: 2em; max-width: 5% float:left" id="confirm-delete">
+    <input type="radio"  style="display: inline; margin-bottom: 2em; max-width: 4% float:left" id="confirm-delete">
     <div style="float: right; width: 95%;">Clicking this box means you understand all of this and will not hold Last Stand Cloud Software liable for anything that happens once I click "Delete Account"</div>
+    <form  style="display: inline; border:0; margin: 0; padding: 0; left: 0%; color: #bc1010;" action="{% url 'submit_delete_account' %}" method="post">
+    {% csrf_token %}
     <div style="margin-top: 5%">
         <label> For security reasons, please enter your password:</label>
         <input style="display: block; margin: 0;" type="password" name="password" id="deletePassword">
     </div>
-    <div style="margin-top: 5%; padding: 0;"><button style="color: whitesmoke; background-color:rgb(40, 40, 54); width:19%; margin: 0;" id="delete" onclick="deleteAccount()" disabled>Delete Account</button></div>
+    <div style="margin-top: 5%; padding: 0;"><button type="submit" style="color: whitesmoke; background-color:rgb(40, 40, 54); width:19%; margin: 0;" id="delete"  disabled>Delete Account</button></div>
+    </form>
 </div>

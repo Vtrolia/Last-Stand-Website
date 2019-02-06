@@ -95,6 +95,13 @@
                 document.getElementById("settings-display").innerHTML = request.responseText;
             }
             request.send();
+            
+            if (!document.getElementById("deletejs")) {
+                var passjs = document.createElement("script");
+                passjs.setAttribute("id", "deletejs");
+                passjs.setAttribute("src", "{% static 'scripts/delete.js' %}");
+                document.querySelector("head").append(passjs);
+            }
         }
         
         
