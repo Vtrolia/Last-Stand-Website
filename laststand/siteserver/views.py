@@ -266,3 +266,6 @@ def load_base_options(request):
 
 def load_change_plan(request):
     return render(request, "cloud-placeholder.html")
+
+def load_delete_page(request):
+    return render(request, "delete.html")

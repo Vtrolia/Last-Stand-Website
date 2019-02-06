@@ -475,7 +475,7 @@ code {
     text-align: left;
 }
 
-#passwordForm button:disabled {
+#passwordForm button:disabled, #deleteAccount button:disabled {
     background-color: gray;
     color: black;
     opacity: .75;

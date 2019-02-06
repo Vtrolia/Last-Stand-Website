@@ -88,6 +88,15 @@
             }
         }
         
+        function deleteAccount() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "delete-account");
+            request.onload = () => {
+                document.getElementById("settings-display").innerHTML = request.responseText;
+            }
+            request.send();
+        }
+        
         
     </script>
 {% endblock %}
