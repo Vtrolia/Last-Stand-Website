@@ -60,6 +60,11 @@
             }
             request.send();
             
+            var addOnJS = document.querySelectorAll(".addOn");
+            for (let i = 0; i < addOnJS.length; i++) {
+                addOnJS.item(i).parentElement.removeChild(addOnJS.item(i));
+            }
+            
         }
         
         function planChange() {
@@ -82,6 +87,7 @@
             
             if (!document.getElementById("passjs")) {
                 var passjs = document.createElement("script");
+                passjs.setAttribute("class", 'addOn');
                 passjs.setAttribute("id", "passjs");
                 passjs.setAttribute("src", "{% static 'scripts/password.js' %}");
                 document.querySelector("head").append(passjs);
@@ -97,10 +103,11 @@
             request.send();
             
             if (!document.getElementById("deletejs")) {
-                var passjs = document.createElement("script");
-                passjs.setAttribute("id", "deletejs");
-                passjs.setAttribute("src", "{% static 'scripts/delete.js' %}");
-                document.querySelector("head").append(passjs);
+                var deletejs = document.createElement("script");
+                deletejs.setAttribute("id", "deletejs");
+                deletejs.setAttribute("class", 'addOn');
+                deletejs.setAttribute("src", "{% static 'scripts/delete.js' %}");
+                document.querySelector("head").append(deletejs);
             }
         }
         
@@ -113,10 +120,11 @@
             request.send();
             
             if (!document.getElementById("becomejs")) {
-                var passjs = document.createElement("script");
-                passjs.setAttribute("id", "becomejs");
-                passjs.setAttribute("src", "{% static 'scripts/become.js' %}");
-                document.querySelector("head").append(passjs);
+                var becomejs = document.createElement("script");
+                becomejs.setAttribute("id", "becomejs");
+                becomejs.className = "addOn";
+                becomejs.setAttribute("src", "{% static 'scripts/become.js' %}");
+                document.querySelector("head").append(becomejs);
             }
         }
         
