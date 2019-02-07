@@ -46,6 +46,7 @@ urlpatterns = [
     path("base-options-page", sv.load_base_options, name="load_base_options"),
     path("change-plan-page", sv.load_change_plan, name="load_plan_page"),
     path("delete-account", sv.load_delete_page, name="delete_account"),
+    path("become-publisher", sv.load_request_publisher, name="request_publisher"),
     path("api/", include("api.urls"))
 
 ]

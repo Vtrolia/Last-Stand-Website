@@ -281,3 +281,6 @@ def load_change_plan(request):
 
 def load_delete_page(request):
     return render(request, "delete.html")
+
+def load_request_publisher(request):
+    return render(request, "become_publisher.html")
