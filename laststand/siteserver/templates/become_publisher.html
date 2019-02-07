@@ -1,4 +1,4 @@
-<div id="becomePublisher" style="font-size: .95em;">
+<div id="becomePublisher" style="font-size: {{ font_size }}">
     <h4 id="settings-title">Apply to become a Publisher</h4>
     <hr>
     <p>Here at Last Stand Cloud Software, there is a chance for a user to become a Publisher, someone who can write articles that are posted to the front page of the website. Our publishers have a chance to get their voice heard and also become part of the inner workings of Last Stand and Last Stand Cloud. These articles will be top of the home page whenever you are published, of course after passing an approval from me.</p>
@@ -6,6 +6,17 @@
     <p>I, Giorno Giovanna, have a dream that our news section can grow and be an independant part of the site itself, supported with ad revenue and sponsorships some day. With this, we'd have the ability to create full page articles with a paid writing staff, but for now small articles on the homepage have to do, so keep them short, (less than 500 words)</p>
     <h6>In order to be considered for publishing priveleges, you are to provide an example of your writing(attach it as .docx, .pdf or .rtf) and a brief explanation of why, what and when you would post articles for us (aka introduce yourself, nice to meet you)</h6>
     <form method="post" action="{% url 'submit_publisher' %}" align=left style=" margin-bottom: 0; color:black; left: 0%; border: 0; margin: 0; padding: 0;" enctype="multipart/form-data">
+        {% if not name %}
+        <div style="padding-bottom: 0; margin-bottom: 0;">
+            <strong>Because we don't have any information on your real name, you must provide it in your application:</strong> 
+        <label style="margin:0; padding-bottom: 0;">Your first name:
+            <input type="text" name="firstName" id="first-name" placeholder="e.x. John">
+        </label>
+        <label style="margin:0; padding-bottom: 0">Your last name:
+            <input type="text" name="lastName" id="last-name" placeholder="e.x. Smith">
+        </label>
+        </div>
+        {% endif %}
         {% csrf_token %}
         <textarea style="margin-top: 1em;" cols="90" rows="10" name="introduction" placeholder="introduce yourself....">
         </textarea>

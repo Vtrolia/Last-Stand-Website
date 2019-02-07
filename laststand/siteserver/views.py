@@ -296,4 +296,8 @@ def load_delete_page(request):
     return render(request, "delete.html")
 
 def load_request_publisher(request):
-    return render(request, "become_publisher.html")
+    if request.user.first_name:
+        return render(request, "become_publisher.html", context={"font_size": "1em", "name": request.user.first_name})
+    else:
+        return render(request, "become_publisher.html", context={"font_size": ".91em"})
+
