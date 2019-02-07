@@ -4,7 +4,7 @@ from django.http import HttpResponseNotFound, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.views.decorators.http import require_http_methods
-from django.core.mail import send_mail, BadHeaderError
+from django.core.mail import send_mail, BadHeaderError, EmailMessage
 from django.utils.encoding import smart_str
 from .models import PublisherUsers, Articles
 from django.contrib.auth.decorators import login_required
@@ -218,6 +218,19 @@ def submit_delete_account(request):
         return h.return_as_wanted(request, "login.html", message=["warning", " Your account has successfully been deleted!"])
     else:
         return redirect("/")
+
+
+def submit_application(request):
+    file = request.FILES['example']
+
+    mail = EmailMessage(request.user.get_username() + " wants to become a Publisher!",
+                        "This is what they had to say:\n\n" + request.POST['introduction'],
+                        "laststandnoreply@protonmail.com",
+                        ["laststand@protonmail.com"])
+    mail.attach(file.name, file.read(), "application/octet-stream")
+    mail.send()
+    return redirect("/account-settings")
+
 
 
 # other forms or requests to send data

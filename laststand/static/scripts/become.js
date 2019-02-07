@@ -6,3 +6,7 @@ window.oninput = () => {
         document.getElementById("submit-publisher").disabled = false;
     }
 }
+
+window.addEventListener("submit", () => {
+    alert("Your application was successfully received!");
+})
