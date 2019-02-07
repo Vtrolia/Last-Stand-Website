@@ -195,7 +195,7 @@ def submit_download(request):
     response["X-Sendfile"] = smart_str("./static/downloads/" + request.POST["os-type"] + "/" + response_name)
     return response
 
-
+@require_http_methods(["POST"])
 def submit_password_change(request):
     old, new = request.body.decode("utf-8").split("&")
     if authenticate(request, username=request.user.get_username(), password=old):
@@ -207,9 +207,17 @@ def submit_password_change(request):
         return HttpResponse("<div class=\"alert alert-danger\" role=\"alert\" id=\"alerts\"><strong>Error! </strong>" +
                             " Your old password was not correct!</div>")
 
+
+@require_http_methods(["POST"])
 def submit_delete_account(request):
-    print(request.POST)
-    return HttpResponse("")
+    password = request.POST['password']
+
+    if authenticate(request, username=request.user.get_username(), password=password):
+        request.user.delete()
+        logout(request)
+        return h.return_as_wanted(request, "login.html", message=["warning", " Your account has successfully been deleted!"])
+    else:
+        return redirect("/")
 
 
 # other forms or requests to send data
