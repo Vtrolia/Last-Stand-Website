@@ -5,8 +5,3 @@ window.oninput = () => {
     }
 }
 
-function deleteAccount() {
-    var request = new XMLHttpRequest();
-    request.open("POST", "submit-delete-account");
-    request.send("{\"password\": " + document.getElementById("deletePassword").value + ";}")
-}
