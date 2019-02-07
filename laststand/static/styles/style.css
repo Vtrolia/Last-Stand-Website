@@ -389,7 +389,6 @@ code {
     min-width: 30%;
     background-color: #dbdbdb;
     border-bottom-right-radius: 1em;
-    border-bottom-left-radius: 1em;
     border-top-right-radius: 1em;
     border: 1px solid black;
     padding: .5em;
@@ -475,7 +474,7 @@ code {
     text-align: left;
 }
 
-#passwordForm button:disabled, #deleteAccount button:disabled {
+#passwordForm button:disabled, #deleteAccount button:disabled, #becomePublisher button:disabled {
     background-color: gray;
     color: black;
     opacity: .75;
