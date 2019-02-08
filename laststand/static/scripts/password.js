@@ -1,4 +1,7 @@
 window.oninput = () => {
+        if (!document.getElementById("passwordForm")) {
+            return false;
+        }
         var password = document.getElementById("new");
         var button = document.querySelector("button");
         var oldTip = document.getElementById("newPassword");
@@ -110,7 +113,6 @@ function switcher() {
         
         
         for (let i = 0; i < inputs.length; i++) {
-            console.log(inputs.item(i).type);
             inputs.item(i).type = "text";
         }
         
