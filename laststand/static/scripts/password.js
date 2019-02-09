@@ -1,4 +1,4 @@
-window.oninput = () => {
+window.onkeyup = () => {
         if (!document.getElementById("passwordForm")) {
             return false;
         }

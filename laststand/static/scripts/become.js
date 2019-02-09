@@ -11,6 +11,8 @@ window.oninput = () => {
     }
 }
 
-document.getElementById("submit-publisher").addEventListener("submit", () => {
-    alert("Your application was successfully received!");
-})
+window.addEventListener("submit", () => {
+    if (document.getElementById("becomePublisher")) {
+        alert("Your application was successfully received!");
+    }
+});

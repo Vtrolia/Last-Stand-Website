@@ -3,13 +3,13 @@
     <hr>
     <div id="new-username">
         <label>Change your username: 
-        <input type="text" oninput="verify(\'username\')" placeholder="Your new username..." id="newName">
+        <input type="text" onkeyup="verify('username', this.value)" placeholder="Your new username..." id="newusername">
         <button onclick="newName()" disabled>Change</button></label>
     </div>
     <div id="new-email">
-        <label>Change your password:
-        <input type="email" oninput="verify(\'email\')" placeholder="new@example.com" id="newEmail">
-        <button onclick="newEmail()" disabled>Change</button> 
+        <label>Change your email:
+        <input type="email" onkeyup='verify("email", this.value)' placeholder="new@example.com" id="newEmail">
+        <button onclick="newemail()" disabled>Change</button> 
         </label>
     </div>
     <div id="new-first">
