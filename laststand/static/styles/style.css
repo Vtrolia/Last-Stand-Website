@@ -119,6 +119,14 @@ button {
     margin-bottom: 3em;
     align-self: center;
     vertical-align: middle;
+    color: whitesmoke;
+    background-color: rgb(40, 40, 54);
+}
+
+button:disabled {
+    background-color: gray;
+    color: black;
+    opacity: .75;
 }
 
 h2 {
