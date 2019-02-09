@@ -284,10 +284,8 @@ def load_articles(request):
 def load_cloud_options(request):
     return render(request, "cloud-placeholder.html")
 
-
 def load_base_options(request):
     return render(request, "base_settings_page.html")
-
 
 def load_change_plan(request):
     return render(request, "cloud-placeholder.html")
@@ -300,4 +298,7 @@ def load_request_publisher(request):
         return render(request, "become_publisher.html", context={"font_size": "1em", "name": request.user.first_name})
     else:
         return render(request, "become_publisher.html", context={"font_size": ".91em"})
+
+def load_change_details(request):
+    return render(request, "change-details.html")
 

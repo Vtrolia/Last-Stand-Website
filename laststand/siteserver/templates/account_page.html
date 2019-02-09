@@ -128,6 +128,15 @@
             }
         }
         
+        function changeDetails() {
+            var request = new XMLHttpRequest();
+            request.open("GET", "change-details");
+            request.onload = () => {
+                document.getElementById("settings-display").innerHTML = request.responseText;
+            }
+            request.send();
+        }
+        
         
     </script>
 {% endblock %}
