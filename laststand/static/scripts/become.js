@@ -1,8 +1,4 @@
-window.oninput = () => {
-    if (!document.getElementById("becomePublisher")) {
-        return false;
-    }
-    
+function textStroke() {
     var text = document.querySelector("textarea");
     var ex = document.getElementById("example");
     

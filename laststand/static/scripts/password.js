@@ -1,7 +1,4 @@
-window.onkeyup = () => {
-        if (!document.getElementById("passwordForm")) {
-            return false;
-        }
+function passwordEntered() {
         var password = document.getElementById("new");
         var button = document.querySelector("button");
         var oldTip = document.getElementById("newPassword");
@@ -35,7 +32,7 @@ window.onkeyup = () => {
         if (upper && lower && number && password.value.length >= 8) {
             closeToolTip(oldTip);
             
-            document.onkeypress = (e) => {
+            document.getElementById("passwordForm").onkeypress = (e) => {
                 if (e.keyCode === 13) {
                     submit();
                 }
