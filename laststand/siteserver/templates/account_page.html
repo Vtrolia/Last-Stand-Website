@@ -135,6 +135,14 @@
                 document.getElementById("settings-display").innerHTML = request.responseText;
             }
             request.send();
+            
+            if (!document.getElementById("detailsjs")) {
+                var detailsjs = document.createElement("script");
+                detailsjs.setAttribute("id", "detailsjs");
+                detailsjs.className = "addOn";
+                detailsjs.setAttribute("src", "{% static 'scripts/details.js' %}");
+                document.querySelector("head").append(detailsjs);
+            }
         }
         
         
