@@ -8,6 +8,6 @@ urlpatterns = [
     path("get-certificate/<name>", views.get_ssl_cert, name="get_ssl_cert"),
     path("get-user-cloud-info", views.get_user_info, name="user_cloud_info"),
     path("renew-certificate/<name>", views.renew_cert, name="renew_cert"),
-    path("submit-cloud/", views.submit_cloud, name="submit_cloud"),
-    path("verify/<type>", views.verify, name="verify")
+    path("submit-cloud", views.submit_cloud, name="submit_cloud"),
+    path("verify", views.verify, name="verify")
 ]

@@ -1,5 +1,5 @@
 from django.views.decorators.http import require_http_methods
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from .models import Cloud, SSL
@@ -151,15 +151,13 @@ def submit_cloud(request):
         cloud.save()
         return HttpResponse(auth_info)
 
-
-def verify(request, type):
+@csrf_protect
+def verify(request):
     users = User.objects.all()
-    usernames = {type: []}
+    usernames = {"username": [], "email": []}
 
     for user in users:
-        if type == "username":
-            usernames[type].append(user.username)
-        else:
-            usernames[type].append(user.email)
-            
+        usernames["username"].append(user.username)
+        usernames["email"].append(user.email)
+
     return HttpResponse(j.dumps(usernames))

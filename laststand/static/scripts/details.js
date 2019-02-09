@@ -1,3 +1,16 @@
+var users = {};
+
+function getUsers() {
+    var request = new XMLHttpRequest();
+    request.open("GET", "api/verify");
+    request.setRequestHeader("X-CSRFToken", token);
+    request.onload = () => {
+        users = JSON.parse(request.responseText);
+    }
+    request.send();
+}
+getUsers();
+
 function enableButtons() {
     var password = document.getElementById("enter-password");
     if (password.value.length > 7) {
@@ -11,11 +24,7 @@ function enableButtons() {
 }
 
 function verify(which, toVerify) {
-    var request = new XMLHttpRequest();
-    request.open("GET", "api/verify/" + which);
-    request.onload = () => {
-        var usernames = JSON.parse(request.responseText);
-        usernames = Array.from(usernames[which]);
+        usernames = Array.from(users[which]);
         if (usernames.includes(toVerify)) {
             var tip = document.createElement("div");
             tip.setAttribute("class", "toolTip");
@@ -26,6 +35,7 @@ function verify(which, toVerify) {
             let user = document.getElementById("new-" + which);
             user.append(tip);
         }
+    
         else {
             let del = document.getElementById("userTip");
             if (del) {
@@ -33,5 +43,3 @@ function verify(which, toVerify) {
             }
         }
     }
-    request.send();
-}
