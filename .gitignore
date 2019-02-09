@@ -3,3 +3,7 @@ flask_session/*
 .idea
 __pycache__/*
 ../.DS_Store
+*.pyc
+*.png
+*.jpg
+*.jpeg
