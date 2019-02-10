@@ -37,6 +37,7 @@ urlpatterns = [
     path("submit-password-change", sv.submit_password_change, name="submit_password_change"),
     path("submit-delete-account", sv.submit_delete_account, name="submit_delete_account"),
     path("submit-application", sv.submit_application, name="submit_publisher"),
+    path("submit-details", sv.submit_change, name="submit_change"),
     path("more-info", sv.more_info, name="more_info"),
     path("add-name", sv.add_name, name="add_name"),
     path("logout", sv.logout_user, name="logout_user"),

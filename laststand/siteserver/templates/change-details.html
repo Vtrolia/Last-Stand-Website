@@ -3,25 +3,26 @@
     <hr>
     <div id="new-username">
         <label>Change your username: 
-        <input type="text" onkeyup="verify('username', this.value)" placeholder="Your new username..." id="newUsername">
-        <button onclick="newName()" disabled>Change</button></label>
+        <input type="text" onkeyup="verify('username', this.value)" placeholder="Your new username..." id="newusername">
+        <button onclick="change('username')" disabled>Change</button></label>
     </div>
     <div id="new-email">
         <label>Change your email:
-        <input type="email" onkeyup='verify("email", this.value)' placeholder="new@example.com" id="newEmail">
-        <button onclick="newEmail()" disabled>Change</button> 
+        <input type="email" onkeyup='verify("email", this.value)' placeholder="new@example.com" id="newemail">
+        <button onclick="change('email')" disabled>Change</button> 
         </label>
     </div>
     <div id="new-first">
         <label>Change your first name:
-        <input type="text" placeholder="Your new first name..." id="newFirst">
-        <button onclick="newFirst()" disabled>Change</button></label>
+        <input type="text" placeholder="Your new first name..." id="newfirst_name">
+        <button onclick="change('first_name')" disabled>Change</button></label>
     </div>
     <div id="newLast">
         <label>Change your last name:
-        <input type="text" placeholder="New last name..." id="newLast">
-        <button onclick="newLast()" disabled>Change</button></label>
+        <input type="text" placeholder="New last name..." id="newlast_name">
+        <button onclick="change('last_name')" disabled>Change</button></label>
     </div>
     <p>In order for you to change any of these account details, for security reasons we must ask you to input your password: </p>
     <input type="password" oninput="enableButtons()" id="enter-password" placeholder="password please...">
+</div>
     

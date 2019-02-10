@@ -4,6 +4,7 @@ from django.http import HttpResponseNotFound, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.views.decorators.http import require_http_methods
+from django.views.decorators.csrf import csrf_protect
 from django.core.mail import send_mail, BadHeaderError, EmailMessage
 from django.utils.encoding import smart_str
 from .models import PublisherUsers, Articles
@@ -230,6 +231,38 @@ def submit_application(request):
     mail.attach(file.name, file.read(), "application/octet-stream")
     mail.send()
     return redirect("/account-settings")
+
+@csrf_protect
+def submit_change(request):
+    to_change = j.loads(request.body)
+    result = {"flag": "", "body": ""}
+    if authenticate(request, username=request.user.get_username(), password=to_change['password']):
+        if len(to_change['new']) > 1 and to_change['change'] != "username":
+            request.user.__dict__['_wrapped'].__dict__[to_change['change']] = to_change['new']
+            request.user.save()
+            result['flag'] = 'success'
+            result['body'] = "<strong>Success! </strong> Your information was successfully updated!"
+
+        elif to_change['change'] == "username":
+            try:
+                User.objects.get(username=to_change['new'])
+                result['flag'] = "danger"
+                result['body'] = "<strong>Error! </strong> username already exists!"
+                
+            except:
+                request.user.__dict__['_wrapped'].__dict__[to_change['change']] = to_change['new']
+                request.user.save()
+                result['flag'] = "success"
+                result['body'] = "<strong>Success! </strong> Your username was successfully changed"
+
+        else:
+            result['flag'] = "warning"
+            result['body'] = "<strong>Warning! </strong> You tried to enter a blank value!"
+    else:
+        result['flag'] = "danger"
+        result['body'] = "<strong>Error! </strong> Your password was incorrect!"
+
+    return HttpResponse(j.dumps(result))
 
 
 
