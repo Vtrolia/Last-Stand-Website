@@ -68,14 +68,7 @@ def get_user_info(request):
 @csrf_exempt
 @require_http_methods(["POST"])
 def get_address(request, name):
-    accessor = h.api_user_check(request)
-
-    # you have to be an allowed user to get a cloud's IP address from the server
-    if accessor:
-        resp = HttpResponse("content: " + Cloud.objects.get(id=name).ip_address + "\r\n")
-    else:
-        resp = HttpResponse("content: \r\n")
-
+    resp = HttpResponse("content: " + Cloud.objects.get(id=name).ip_address + "\r\n")
     return resp
 
 
