@@ -248,7 +248,7 @@ def submit_change(request):
                 User.objects.get(username=to_change['new'])
                 result['flag'] = "danger"
                 result['body'] = "<strong>Error! </strong> username already exists!"
-                
+
             except:
                 request.user.__dict__['_wrapped'].__dict__[to_change['change']] = to_change['new']
                 request.user.save()
