@@ -69,37 +69,13 @@ function planChange() {
 }
 
 function passwordReset() {
-    var request = new XMLHttpRequest();
-    request.open("GET", "password-reset-page");
-    request.onload = () => {
-        document.getElementById("settings-display").innerHTML = request.responseText;
-    }
-    request.send();
-
-    if (!document.getElementById("passjs")) {
-        var passjs = document.createElement("script");
-        passjs.setAttribute("class", 'addOn');
-        passjs.setAttribute("id", "passjs");
-        passjs.setAttribute("src", static + "/password.js");
-        document.querySelector("head").append(passjs);
-    }
+    loadTemplate("password-page");
+    loadScript("password");
 }
 
 function deleteAccount() {
-    var request = new XMLHttpRequest();
-    request.open("GET", "delete-account");
-    request.onload = () => {
-        document.getElementById("settings-display").innerHTML = request.responseText;
-    }
-    request.send();
-
-    if (!document.getElementById("deletejs")) {
-        var deletejs = document.createElement("script");
-        deletejs.setAttribute("id", "deletejs");
-        deletejs.setAttribute("class", 'addOn');
-        deletejs.setAttribute("src", static + "/delete.js");
-        document.querySelector("head").append(deletejs);
-    }
+    loadTemplate("delete");
+    loadScript("delete");
 }
 
 function becomePublisher() {
@@ -109,29 +85,31 @@ function becomePublisher() {
         document.getElementById("settings-display").innerHTML = request.responseText;
     }
     request.send();
-
-    if (!document.getElementById("becomejs")) {
-        var becomejs = document.createElement("script");
-        becomejs.setAttribute("id", "becomejs");
-        becomejs.className = "addOn";
-        becomejs.setAttribute("src", static + "/become.js");
-        document.querySelector("head").append(becomejs);
-    }
+    loadScript("become");
 }
 
 function changeDetails() {
+    loadTemplate("change-details");
+    loadScript("details");
+}
+
+function loadTemplate(template) {
     var request = new XMLHttpRequest();
-    request.open("GET", "change-details");
+    request.open("GET", "load/" + template);
+    request.setRequestHeader("X-CSRFToken", token);
     request.onload = () => {
+        console.log(request.responseText);
         document.getElementById("settings-display").innerHTML = request.responseText;
     }
     request.send();
+}
 
-    if (!document.getElementById("detailsjs")) {
-        var detailsjs = document.createElement("script");
-        detailsjs.setAttribute("id", "detailsjs");
-        detailsjs.className = "addOn";
-        detailsjs.setAttribute("src", static + "/details.js");
-        document.querySelector("head").append(detailsjs);
+function loadScript(name) {
+    if (!document.getElementById(name + "js")) {
+        var jsfile = document.createElement("script");
+        jsfile.setAttribute("id", name + "js");
+        jsfile.className = "addOn";
+        jsfile.setAttribute("src", static + "/" + name + ".js");
+        document.querySelector("head").append(jsfile);
     }
 }

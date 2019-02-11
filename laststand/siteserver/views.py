@@ -332,5 +332,7 @@ def load_change_details(request):
     return render(request, "change-details.html")
 
 def password_page(request):
-    return h.return_as_wanted(request, "password-page.html")
+    return render(request, "password-page.html")
 
+def load(request, template):
+    return render(request, template + ".html")

@@ -50,6 +50,7 @@ urlpatterns = [
     path("delete-account", sv.load_delete_page, name="delete_account"),
     path("become-publisher", sv.load_request_publisher, name="request_publisher"),
     path("change-details", sv.load_change_details, name="change_details"),
-    path("api/", include("api.urls"))
+    path("api/", include("api.urls")),
+    path("load/<template>", sv.load, name="load_template")
 
 ]
