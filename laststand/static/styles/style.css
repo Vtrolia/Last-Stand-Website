@@ -515,6 +515,25 @@ code {
    left: 20%;
 }
 
+.detail-option {
+    border: 2px solid rgb(40, 40, 54);
+    margin-bottom: 1.5em;
+    width: 40%;
+}
+
+.detail-option label {
+    padding-left: .5em;
+    font-size: 1.2em;
+}
+
+.detail-inputs {
+    position: relative;
+    left: 8%;
+    margin-bottom: .8em !important;
+    height: 2em !important;
+    width: 30% !important;
+}
+
 @media only screen and (max-width: 1200px) {
     #article-page, #issues {
         width: 80%;

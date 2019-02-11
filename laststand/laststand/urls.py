@@ -27,7 +27,6 @@ urlpatterns = [
     path("publish", sv.publish_page, name="publish_page"),
     path("issues", sv.issue_page, name="issue_page"),
     path("license", sv.license_page, name="license_page"),
-    path("password-reset-page", sv.password_page, name="password_page"),
     path("account-settings", sv.account_page, name="account_page"),
     path("submit-login", sv.submit_login, name="submit_login"),
     path("submit-register", sv.submit_register, name="submit_register"),
@@ -47,9 +46,6 @@ urlpatterns = [
     path("cloud-options-page", sv.load_cloud_options, name="load_cloud_options"),
     path("base-options-page", sv.load_base_options, name="load_base_options"),
     path("change-plan-page", sv.load_change_plan, name="load_plan_page"),
-    path("delete-account", sv.load_delete_page, name="delete_account"),
-    path("become-publisher", sv.load_request_publisher, name="request_publisher"),
-    path("change-details", sv.load_change_details, name="change_details"),
     path("api/", include("api.urls")),
     path("load/<template>", sv.load, name="load_template")
 
