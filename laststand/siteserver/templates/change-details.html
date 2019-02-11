@@ -1,6 +1,7 @@
 <div id="changeDetails">
     <h4 id="settings-title">Change Account Details</h4>
     <hr>
+    <div id="detail-settings">
     <div id="new-username" class="detail-option">
         <label>Change your username: </label>
         <div>
@@ -29,7 +30,10 @@
             <button class="detail-inputs" onclick="change('last_name')" disabled>Change</button>
         </div>
     </div>
-    <p>In order for you to change any of these account details, for security reasons we must ask you to input your password: </p>
-    <input type="password" oninput="enableButtons()" id="enter-password" placeholder="password please...">
+    </div>
+    <div id="detail-aside">
+        <p>In order for you to change any of these account details, for security reasons we must ask you to input your password: </p>
+        <input type="password" style="margin-left: 0;" oninput="enableButtons()" id="enter-password" placeholder="password please...">
+    </div>
 </div>
     

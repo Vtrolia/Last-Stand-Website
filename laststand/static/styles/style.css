@@ -515,10 +515,14 @@ code {
    left: 20%;
 }
 
+#detail-settings { 
+float: left;
+    width: 45%;
+}
+
 .detail-option {
     border: 2px solid rgb(40, 40, 54);
     margin-bottom: 1.5em;
-    width: 40%;
 }
 
 .detail-option label {
@@ -532,6 +536,14 @@ code {
     margin-bottom: .8em !important;
     height: 2em !important;
     width: 30% !important;
+}
+
+#detail-aside {
+    width: 50%;
+    position: relative;
+    float: right;
+    top: 100%;
+    left: 0%;
 }
 
 @media only screen and (max-width: 1200px) {
