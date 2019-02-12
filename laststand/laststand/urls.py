@@ -46,6 +46,7 @@ urlpatterns = [
     path("cloud-options-page", sv.load_cloud_options, name="load_cloud_options"),
     path("base-options-page", sv.load_base_options, name="load_base_options"),
     path("change-plan-page", sv.load_change_plan, name="load_plan_page"),
+    path("become-publisher", sv.load_request_publisher, name="request_publisher"),
     path("api/", include("api.urls")),
     path("load/<template>", sv.load, name="load_template")
 

@@ -3,6 +3,7 @@
 {% block title %}<title>Your Account</title>{% endblock %}
 {% block head %}
     <link rel= "stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>const token = "{{ csrf_token }}"</script>
     <script>const reveal = "{% static 'source_images/reveal.png' %}"</script>
     <script>const hide = "{% static 'source_images/hide.png' %}"</script>
@@ -33,7 +34,7 @@
         <div id="settings-display"></div>
         <div id="settings-bottom">
         <hr style="margin-bottom: 0;">
-        <span  style=" position: relative; left: 28%; bottom: 5%;background-color: transparent; outline: none; cursor: pointer" onclick="getBaseSettings()"><img id="backButton" src="{% static 'source_images/back.png' %}" width=48></span>
+        <span  style=" position: relative; left: 27.5%; bottom: 5%;background-color: transparent; outline: none; cursor: pointer" onclick="getBaseSettings()"><img id="backButton" src="{% static 'source_images/back.png' %}" width=48></span>
         </div>
     </div>
 {% endblock %}
