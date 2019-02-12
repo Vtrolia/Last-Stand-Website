@@ -542,9 +542,15 @@ float: left;
     width: 50%;
     position: relative;
     float: right;
-    top: 100%;
     left: 0%;
 }
+
+#changeDetails #alerts {
+    position: absolute;
+    top: 85%;
+    width: 40em;
+}
+
 
 @media only screen and (max-width: 1200px) {
     #article-page, #issues {
