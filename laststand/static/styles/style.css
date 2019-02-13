@@ -553,6 +553,10 @@ float: left;
     width: 40em;
 }
 
+#becomePublisher {
+    font-size: .95vw !important;
+}
+
 
 @media only screen and (max-width: 1200px) {
     #article-page, #issues {
@@ -561,6 +565,7 @@ float: left;
     
     #account-details {
         top: 3.9em;
+        height: 93.2%;
     }
 }
 
@@ -578,17 +583,21 @@ float: left;
     
     #account-page {
         height: 70%;
+        min-width: 100%;
         padding-top: 4em;
     }
     
     #settings-display {
         font-size: .8em;
+        
     }
     
     #account-details {
-        min-height: 62.7vh;
+        min-height: 92.5% !important;
         font-size: .8em;
         top: 3.8em;
+        width: 27%;
+        height: 92.5%;
     }
     #account-page h4 {
         font-size: 1.5em;
@@ -607,6 +616,9 @@ float: left;
         font-size: .5em;
     }
     
+    #backButton:hover {
+        width: 40px;
+    }
 }
 
 @media only screen and (max-width: 768px) { 
@@ -635,5 +647,6 @@ float: left;
     
     #account-details {
         top: 3.7em;
+        width: 27%;
     }
 }

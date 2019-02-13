@@ -28,6 +28,7 @@ window.onload = () => {
             cloudList.appendChild(cloud);
         }
     }
+    
     request.send();
     getBaseSettings();
 }
