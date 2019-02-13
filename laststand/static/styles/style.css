@@ -406,7 +406,7 @@ code {
     position: absolute;
     left: 0;
     min-width: 80%;
-    min-height: 100%;
+    min-height: 56.3em;
     
 }
 
@@ -415,7 +415,7 @@ code {
     position: absolute;
     top: 4.4em;
     left: 0;
-    min-height: 92.5%;
+    min-height: 92.3%;
     width: 21vw;
     background-color: #dbdbdb;
     border-bottom-right-radius: 1em;
@@ -591,8 +591,7 @@ float: left;
     
     #account-page {
         min-width: 100%;
-        min-height: 100vh;
-        height: 100vh;
+        min-height: 56em;
         padding-top: 4em;
     }
     

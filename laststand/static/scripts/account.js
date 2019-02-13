@@ -99,7 +99,6 @@ function loadTemplate(template) {
     request.open("GET", "load/" + template);
     request.setRequestHeader("X-CSRFToken", token);
     request.onload = () => {
-        console.log(request.responseText);
         document.getElementById("settings-display").innerHTML = request.responseText;
     }
     request.send();
