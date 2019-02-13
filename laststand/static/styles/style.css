@@ -428,6 +428,7 @@ code {
     position: relative;
     top: 0%;
     min-height: 95%;
+    max-height: 95%;
     padding-left: 1%;
     padding-right: 1%;
     width: 73%;
@@ -533,12 +534,16 @@ float: left;
     font-size: 1.2em;
 }
 
+.detail-option input {
+    width: 50% !important;
+}
+
 .detail-inputs {
     position: relative;
-    left: 8%;
+    left: 1vw;
     margin-bottom: .8em !important;
     height: 2em !important;
-    width: 30% !important;
+    min-width: 30% !important;
 }
 
 #detail-aside {
@@ -554,10 +559,6 @@ float: left;
     width: 40em;
 }
 
-#becomePublisher {
-    font-size: .95vw !important;
-}
-
 #settings-bottom {
     position: absolute;
     bottom: 0%;
@@ -566,6 +567,15 @@ float: left;
     height: 8%;
 }
 
+@media only screen and (max-width: 1700px) {
+    #becomePublisher h6 {
+        font-size: .85vw !important;
+    }
+    #becomePublisher {
+        font-size: .95vw !important;
+    }
+
+}
 
 @media only screen and (max-width: 1200px) {
     #article-page, #issues {
@@ -575,6 +585,18 @@ float: left;
     #account-details {
         top: 3.9em;
     }
+    
+    .detail-option label {
+        font-size: 90%;
+    }
+    
+    #becomePublisher h6 {
+        font-size: 1.5vw !important;
+    }
+    #becomePublisher {
+        font-size: 1vw !important;
+    }
+
 }
 
 @media only screen and (max-width: 850px) {
@@ -623,11 +645,11 @@ float: left;
         left: 27.5%;
     }
     #becomePublisher {
-        font-size: .5em !important;
+        font-size: 1.5vw !important;
     }
     
     #becomePublisher h6 {
-        font-size: 1.2em;
+        font-size: 2vw;
     }
 }
 
