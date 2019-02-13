@@ -15,11 +15,11 @@
         <div id="account-details">
             <div id="account-picture">
                 {% if account_picture %}
-                <img src="{{ account_picture }}" style="display: inline-block; clear:both; float: left;" width=128>
+                <img src="{{ account_picture }}" style="display: inline-block;  margin-bottom: .2em;" width=128>
                 {% else %}
                 <img style="display:inline-block; margin-bottom: .2em;" src="{% static 'source_images/user.png' %}" width=128>
                 {% endif %}
-                <span style="float: right;">Profile pictures will be available for you to set soon!</span>
+                <div style="width:100%">Profile pictures will be available for you to set soon!</div>
             </div>
             <hr>
             <div id="identification">
