@@ -352,6 +352,7 @@ code {
 #select-plan {
     position:absolute;
     top: 40%;
+    width: 10em;
     left: 70%;
 }
 
@@ -365,7 +366,7 @@ code {
     margin-left: auto;
     margin-right: auto;
     padding-left: 1em;
-    padding-right: .6em;
+    padding-right: 1em;
     padding-top: 6em;
     background-color: whitesmoke;
     color: black;
@@ -376,13 +377,15 @@ code {
 #download-buttons {
     position: relative;
     left: 0;
-   
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
 }
 
 .bordered-download {
     border: 1.5px solid black;
     color: black;
-    width: 50%;
+    max-width: 50%;
     padding-left: 1em;
     margin: 0;
 }
@@ -636,6 +639,15 @@ float: left;
     #becomePublisher {
         font-size: 1vw !important;
     }
+    
+    #tabs {
+        max-width: 70vw;
+        min-height: 40vw;
+    }
+    
+    #download-buttons {
+        font-size: .7em;
+    }
 
 }
 
@@ -687,9 +699,25 @@ float: left;
     #becomePublisher {
         font-size: 1.5vw !important;
     }
-    
     #becomePublisher h6 {
         font-size: 2vw;
+    }
+    
+    #tabs td li {
+        font-size: 2vw;
+    }
+    
+    #select-plan {
+        top: 35%;
+        font-size: .7em;
+    }
+    
+    #first-downloads-page {
+        width: 90%;
+    }
+    
+    #download-buttons {
+        font-size: 100%;
     }
 }
 
@@ -720,5 +748,14 @@ float: left;
     #account-details {
         top: 3.7em;
         width: 27%;
+    }
+    #download-buttons {
+        font-size: 2vw;
+    }
+}
+
+@media only screen and (max-width: 768px) { 
+    #first-downloads-page {
+        font-size: .9em;
     }
 }

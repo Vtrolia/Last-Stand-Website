@@ -16,17 +16,19 @@
         <form id="download-buttons" method="post" action="{% url 'submit_download' %}">
             {% csrf_token %}
             <input type=hidden id="os-type" name="os-type">
-            <div class="bordered-download" style="position:relative; float: left;">
+            <div style="overflow: hidden;">
+            <div class="bordered-download" style="float:left">
             <label for="both">Download the Server/Client for</label>
             <button type=submit name="both" id="client-server-download" disabled>
                 Download <img src="{% static 'source_images/download.png' %}" width=25px>
             </button>
             </div>
-            <div class="bordered-download" style="position: relative; float: right;">
+            <div class="bordered-download" style="float:right">
                 <label for="client-only">Download the Client for</label>
                 <button type=submit name="client-only" id="client-server-download" disabled>
                 Download <img src="{% static 'source_images/download.png' %}" width=25px>
             </button>
+            </div>
             </div>
             
         </form>
