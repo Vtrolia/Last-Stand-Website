@@ -402,6 +402,7 @@ code {
     padding-top: 5em;
     padding-left: .1em;
     padding-right: 0;
+    padding-bottom: 0;
     position: absolute;
     left: 0;
     min-width: 80%;
@@ -562,6 +563,7 @@ float: left;
     bottom: 0%;
     width: 74%;
     left: 26.3%;
+    height: 8%;
 }
 
 
@@ -589,6 +591,8 @@ float: left;
     
     #account-page {
         min-width: 100%;
+        min-height: 100vh;
+        height: 100vh;
         padding-top: 4em;
     }
     
@@ -612,16 +616,19 @@ float: left;
         width: 32px;
     }
     
+    #settings-bottom img {
+        width: 48px;
+    }
+    
+    #settings-bottom {
+        left: 27.5%;
+    }
     #becomePublisher {
         font-size: .5em !important;
     }
     
     #becomePublisher h6 {
         font-size: 1.2em;
-    }
-    
-    #backButton:hover {
-        width: 40px;
     }
 }
 
