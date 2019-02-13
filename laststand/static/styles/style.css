@@ -415,7 +415,7 @@ code {
     top: 4.4em;
     left: 0;
     min-height: 92.5vh;
-    min-width: 27%;
+    width: 21vw;
     background-color: #dbdbdb;
     border-bottom-right-radius: 1em;
     border-top-right-radius: 1em;
@@ -558,6 +558,10 @@ float: left;
     #article-page, #issues {
         width: 80%;
     }
+    
+    #account-details {
+        top: 3.9em;
+    }
 }
 
 @media only screen and (max-width: 850px) {
@@ -571,6 +575,38 @@ float: left;
     #article-page, #issues {
         width: 80%;
     }
+    
+    #account-page {
+        height: 70%;
+        padding-top: 4em;
+    }
+    
+    #settings-display {
+        font-size: .8em;
+    }
+    
+    #account-details {
+        min-height: 62.7vh;
+        font-size: .8em;
+        top: 3.8em;
+    }
+    #account-page h4 {
+        font-size: 1.5em;
+    }
+    #account-page img {
+        display: inline-block;
+        width: 32px;
+        margin-left: 1vw;
+    }
+    
+    #becomePublisher {
+        font-size: .5em !important;
+    }
+    
+    #becomePublisher h6 {
+        font-size: .5em;
+    }
+    
 }
 
 @media only screen and (max-width: 768px) { 
@@ -595,5 +631,9 @@ float: left;
     
     #content {
         width: 100%;
+    }
+    
+    #account-details {
+        top: 3.7em;
     }
 }
