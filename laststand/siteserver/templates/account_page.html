@@ -15,17 +15,21 @@
         <div id="account-details">
             <div id="account-picture">
                 {% if account_picture %}
-                <img src="{{ account_picture }}" width=128>
+                <img src="{{ account_picture }}" style="display: inline-block; clear:both; float: left;" width=128>
                 {% else %}
-                <img src="{% static 'source_images/user.png' %}" width=128>
+                <img style="display:inline-block; margin-bottom: .2em;" src="{% static 'source_images/user.png' %}" width=128>
                 {% endif %}
+                <span style="float: right;">Profile pictures will be available for you to set soon!</span>
             </div>
+            <hr>
             <div id="identification">
-                <strong>{{ message.username }}</strong>
+                <strong style="font-size: 1.3em">{{ message.username }}</strong><br>
                 You joined on <strong>{{ message.date_joined }}</strong>
             </div>
+            <hr>
             <div id="account-status"></div>
-            <div id="clouds"></div>
+            <hr>
+            <div id="clouds" style="margin-bottom: 1em;"></div>
             <div id="cloud-list">
                 <ul id="cloud-options">
                 </ul>

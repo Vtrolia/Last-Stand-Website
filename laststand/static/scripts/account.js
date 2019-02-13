@@ -13,7 +13,7 @@ window.onload = () => {
         status.innerHTML += " plan"
 
         let cloudCount = document.getElementById("clouds");
-        cloudCount.textContent = "clouds owned: ";
+        cloudCount.textContent = "Clouds owned: ";
         let count = document.createElement("strong");
         count.textContent = response['clouds_owned'];
         cloudCount.appendChild(count);
