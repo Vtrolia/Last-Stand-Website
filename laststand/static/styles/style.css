@@ -379,6 +379,7 @@ code {
     left: 0;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 10%;
     padding: 0;
 }
 
@@ -754,8 +755,15 @@ float: left;
     }
 }
 
-@media only screen and (max-width: 768px) { 
+@media only screen and (max-width: 550px) { 
     #first-downloads-page {
-        font-size: .9em;
+        font-size: 2.5vw;
+    }
+    
+    #select-plan {
+        position: relative;
+        left: 22%;
+        top 100%;
+        margin-top: 2em;
     }
 }
