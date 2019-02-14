@@ -1,0 +1,817 @@
+#table, #login, #first-downloads-page, #legal-info, #register {
+    background-color:rgb(40, 40, 54);
+    font-family: serif New Century Schoolbook;
+    padding-top: 6em;
+    position: relative;
+    height: 100%;
+    color:whitesmoke;
+}
+
+pre {
+    background-color: whitesmoke;
+    border-radius: 4px;
+    padding: 1em;
+}
+
+#table {
+    margin-left: 2em;
+}
+
+#login, #register {
+    margin-left: auto;
+    margin-right: auto;
+    width: auto !important;
+}
+
+#login-form, #register-form {
+    margin-left: 1%;
+}
+
+#login-form input, #register-form input {
+    width: 85%;
+}
+
+
+@keyframes fade {
+  0% { opacity: 0; bottom: 20%; left: 10%; }
+    50%: {opacity: 0;}
+  100% { opacity: 1; bottom: 00%; left: 0%;}
+}
+
+@keyframes movein {
+    0% {left: 100%; opacity: 0;}
+    100%{ opacity: 1; left: 10%; animation-play-state: paused;}
+}
+
+#tabs {
+    border: .1vw solid whitesmoke;
+    border-color: whitesmoke;
+    max-width: 50vw;
+    font-size: 1.75em;
+}
+
+#tabs tr {
+    max-width: 50vw;
+}
+
+#tabs:hover {
+    box-shadow:  5px 5px 5px #888888;
+}
+
+.price:hover {
+    background-color: rgb(69, 67, 67);
+}
+
+#tabs th, #tabs td{
+    max-width: 20vw;
+    height: 7.vh;
+    overflow-x: hidden;
+    padding: 1.5vw;
+    border-left: .1vw dashed whitesmoke;
+    
+}
+
+#tabs td li {
+    padding: .5em;
+    font-size: 1.3vw;
+}
+
+#tabs th {
+   margin-top: 10vw;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+   font-size: 1.5vw;
+   align-content: center;
+   border: .05vw double whitesmoke; 
+    
+}
+
+#tabs ul {
+    padding-left: 1.4vw;
+}
+
+.radio_button {
+    width: auto;
+    height: auto;
+    margin: 0;
+    margin-left: 1em;
+    padding: 0;
+}
+
+form {
+    border: 2px solid whitesmoke;
+    color: whitesmoke;
+    max-width: 50vw;
+    padding-left: 4.5vw;
+    position:relative;
+    left:26%;
+}
+
+@keyframes movein1 {
+    0% {left: 50%; opacity: 0;}
+    80% {opacity: .5}
+    100%{ opacity: 1; left: 25%; animation-play-state: paused;}
+}
+
+@keyframes movein2 {
+    0% {left: 50%; opacity: 0;}
+    80% {opacity: .5}
+    100%{ opacity: 1; left: 0%; animation-play-state: paused;}
+}
+
+
+#alerts, #regalert {
+    animation: movein1;
+    animation-duration: 1s;
+    max-width: 50vw;
+    position: relative;
+    left: 27%;
+}
+
+#publish-alert {
+    animation: movein2;
+    animation-duration: 1s;
+    max-width: 100%;
+    position: relative;
+    left: 0%;
+}
+
+.form-text {
+    font-size: 3em;
+    padding-bottom: .5em;
+}
+
+input {
+    width: 40em;
+    height: 3em;
+    margin-bottom: 3em;
+}
+
+button {
+    height: 2em;
+    width: 6em;
+    margin-bottom: 3em;
+    align-self: center;
+    vertical-align: middle;
+    color: whitesmoke;
+    background-color: rgb(40, 40, 54);
+}
+
+button:disabled {
+    background-color: gray;
+    color: black;
+    opacity: .75;
+}
+
+h2 {
+    font-size: 3em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#intro {
+  margin: 1em;
+}
+
+
+#home-content, #article-page {
+    position: relative;
+    top: 10%;
+    background-color:rgb(40, 40, 54);
+    font-family: serif New Century Schoolbook;
+    color:whitesmoke;
+    display: flex;
+    flex-direction: column;
+    width: 60vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5em;
+    font-size: 1.07em;
+    
+}
+
+#issues, #table-info {
+    position: relative;
+    padding-top: 6em;
+    width: 60%;
+    background-color:rgb(40, 40, 54);
+    font-family: serif New Century Schoolbook;
+    font-size: 1.07em;
+    margin-left: auto;
+    color:whitesmoke;
+    margin-right: auto;
+}
+
+#issueForm {
+    position: relative;
+    min-width: 100%;
+    left: 0%;
+    padding: 1em;
+}
+
+#home-content {
+    padding-top: 6em;
+}
+
+#intro img {
+    float:right;
+}
+
+
+#home-content h3 {
+    font-size: 1.4em;
+    margin-bottom: 1em;
+    border-bottom: 1px dashed whitesmoke;
+}
+
+#updates {
+    margin: 1em;
+   
+}
+
+.update {
+    padding: 2em;
+    animation: movein;
+    position: relative;
+    animation-duration: .5s;
+    border: 2px double snow;
+    margin: 0;
+    margin-bottom: 1em;
+}
+
+.update img {
+    border: 1px solid rgb(28, 28, 255);
+    max-width: 50vw;
+    max-height: 20em;
+    margin-bottom: 1em;
+}
+
+
+.jumbotron {
+    color: black;
+    background-color: snow;
+    max-width: 40em;
+    padding: 2em;
+    margin: 0;
+}
+
+#storytime {
+    animation: fade;
+    position: relative;
+    animation-play-state: paused;
+    animation-duration: 1.5s;
+}
+
+#skip {
+    float: right;
+}
+
+#more {
+    position: fixed;
+    top: 10%;
+    padding-right:5em;
+}
+
+#article-post {
+    position: relative;
+    padding: 2em;
+    left: 0;
+    min-width: 100%;
+}
+
+#article-post input, #issueForm input {
+    height: 2em;
+    width: 30em;
+}
+
+#issueForm input {
+    margin-bottom: 2em;
+}
+
+textarea {
+    margin-bottom: 1.5em;
+    resize: none;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#credit {
+    margin-right: 1em;
+}
+
+#file {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    max-width: 300px;
+}
+
+#article-page {
+    width: 58%;
+    padding-top: 6em;
+}
+
+#article-page a:link, #article-page a:visited {
+    color: black;
+}
+
+#style-guide-box {
+    display: none;
+    position: fixed;
+    background-color: rgba(0, 0, 0, .4);
+    left: 0;
+    top: 8%;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    
+}
+
+code {
+    font-size: .8em;
+    background-color: white;
+    color: black;
+    padding: .5em;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+#style-guide {
+    padding: 1em;
+    background-color: #e6e6e6;
+    position: relative;
+    border-radius: 10px;
+    height: 60%;
+    overflow-y: scroll;
+    top: 10%;
+    left: 20%;
+    width: 60%;
+}
+
+.issue-text {
+    display: inline;
+    font-size: 1.5em;
+}
+
+#license-warning {
+    padding-top: 2em;
+    max-width: 80%;
+}
+
+#select-plan {
+    position:absolute;
+    top: 40%;
+    width: 10em;
+    left: 70%;
+}
+
+#selectButton {
+    width: 100%;
+}
+
+
+#first-downloads-page {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 6em;
+    background-color: whitesmoke;
+    color: black;
+    width: 60%;
+    border-radius: 0.3em;
+    height: 56em;
+}
+#download-buttons {
+    position: relative;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    padding: 0;
+}
+
+.bordered-download {
+    border: 1.5px solid black;
+    border-collapse: collapse;
+    color: black;
+    max-width: 50%;
+    min-width: 50%;
+    min-height: 7em;
+    max-height: 7em;
+    padding-left: 1em;
+    margin: 0;
+}
+
+#first-downloads-page button {
+    color: whitesmoke;
+    background-color: black;
+    width: 10em;
+    
+}
+
+#first-downloads-page img {
+    margin-left: .6em;
+}
+
+#account-page {
+    padding-top: 5em;
+    padding-left: .1em;
+    padding-right: 0;
+    padding-bottom: 0;
+    position: absolute;
+    left: 0;
+    min-width: 80%;
+    min-height: 56.3em;
+    
+}
+
+#account-details {
+    display: inline-block;
+    position: absolute;
+    top: 4.4em;
+    left: 0;
+    min-height: 92.3%;
+    width: 21vw;
+    background-color: #dbdbdb;
+    border-bottom-right-radius: 1em;
+    border-top-right-radius: 1em;
+    border: 1px solid black;
+}
+
+#settings-display{
+    position: relative;
+    top: 0%;
+    min-height: 95%;
+    max-height: 95%;
+    padding-left: 1%;
+    padding-right: 1%;
+    width: 73%;
+    left: 27%;
+}
+
+.option {
+    font-weight: bold;
+    padding: .7em;
+    padding-left: 0;
+    font-size: 1.2em;
+}
+
+.option img {
+    margin-left: 1em;
+}
+
+.option:hover {
+    background-color: #a39f9f;
+    cursor: pointer;
+    
+}
+
+#backButton:hover {
+    width: 52px;
+}
+
+#legal-info {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#legal-info h2 {
+    padding-bottom: 1em;
+}
+
+#account-page input, #account-page button {
+    width: auto;
+    height: auto;
+    margin: .5em;
+}
+
+.toolTip {
+    opacity: 0;
+    transition: .5s;
+    visibility: hidden;
+    display: inline;
+    width: auto;
+    background-color: rgb(40, 40, 54);
+    padding: .3em;
+    color: whitesmoke;
+    text-align: center;
+    border-radius: .5em;
+    position: relative;
+    top: 37.5%;
+    left: 2%;
+}
+    
+ div .toolTip::after {
+    content: " ";
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent rgb(40, 40, 54) transparent transparent;
+}
+
+#passRepeat {
+    top: 48%;
+}
+
+.toolTip li {
+    text-align: left;
+}
+
+#passwordForm button:disabled, #deleteAccount button:disabled, #becomePublisher button:disabled {
+    background-color: gray;
+    color: black;
+    opacity: .75;
+}
+
+#passwordForm #alerts {
+   margin-top: 10em;
+   max-width: 60%;
+   left: 20%;
+}
+
+#detail-settings { 
+float: left;
+    width: 45%;
+}
+
+.detail-option {
+    border: 2px solid rgb(40, 40, 54);
+    margin-bottom: 1.5em;
+}
+
+.detail-option label {
+    padding-left: .5em;
+    font-size: 1.2em;
+}
+
+.detail-option input {
+    width: 50% !important;
+}
+
+.detail-inputs {
+    position: relative;
+    left: 1vw;
+    margin-bottom: .8em !important;
+    height: 2em !important;
+    min-width: 30% !important;
+}
+
+#detail-aside {
+    width: 50%;
+    position: relative;
+    float: right;
+    left: 0%;
+}
+
+#changeDetails #alerts {
+    position: relative;
+    float: right;
+    margin-top: 5vw;
+    left: -1vw;
+    width: 40em;
+}
+
+#settings-bottom {
+    position: absolute;
+    bottom: 0%;
+    width: 74%;
+    left: 26.3%;
+    height: 8%;
+}
+
+#account-details ul {
+    padding: 0;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+#cloud-list {
+    border: 2px solid black;
+}
+
+#cloud-list {
+    max-height: 25em;
+    overflow-y: scroll;
+}
+
+#account-details li {
+    border-top: 1px solid black;
+    padding: 1em;
+    margin: 0;
+    font-size: 1.2em;
+    
+}
+
+#account-details li:hover {
+    background-color: #a39f9f;
+    cursor: pointer;
+}
+
+#account-picture {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+#identification, #account-picture, #account-status, #clouds {
+    padding-left: .5em;
+}
+
+#account-status {
+    margin-bottom: 0em;
+}
+
+@media only screen and (max-width: 1700px) {
+    #becomePublisher h6 {
+        font-size: .85vw !important;
+    }
+    #becomePublisher {
+        font-size: .95vw !important;
+    }
+
+}
+
+@media only screen and (max-width: 1200px) {
+    #article-page, #issues {
+        width: 80%;
+    }
+    
+    #account-details {
+        top: 3.9em;
+    }
+    
+    .detail-option label {
+        font-size: 90%;
+    }
+    
+    #becomePublisher h6 {
+        font-size: 1.5vw !important;
+    }
+    #becomePublisher {
+        font-size: 1vw !important;
+    }
+    
+    #tabs {
+        max-width: 70vw;
+        min-height: 40vw;
+    }
+    
+    #download-buttons {
+        font-size: .7em;
+    }
+    
+    #register {
+        font-size: .7em;
+    }
+    
+    #first-downloads-page {
+        font-size: 1.5vw;
+    }
+
+}
+
+@media only screen and (max-width: 850px) {
+    img {
+        display: none;
+    }
+    #greeting {
+        display: none;
+    }
+    
+    #article-page, #issues {
+        width: 80%;
+    }
+    
+    #account-page {
+        min-width: 100%;
+        min-height: 56em;
+        padding-top: 4em;
+    }
+    
+    #settings-display {
+        font-size: .8em;
+        
+    }
+    
+    #account-details {
+        min-height: 92.5% !important;
+        font-size: .8em;
+        top: 3.8em;
+        width: 27%;
+        height: 92.5%;
+    }
+    #account-page h4 {
+        font-size: 1.5em;
+    }
+    #account-page img {
+        display: inline-block;
+        width: 32px;
+    }
+    
+    #settings-bottom img {
+        width: 48px;
+    }
+    
+    #settings-bottom {
+        left: 27.5%;
+    }
+    #becomePublisher {
+        font-size: 1.5vw !important;
+    }
+    #becomePublisher h6 {
+        font-size: 2vw;
+    }
+    
+    #tabs td li {
+        font-size: 2vw;
+    }
+    
+    #select-plan {
+        top: 35%;
+        font-size: .7em;
+    }
+    
+    #first-downloads-page {
+        width: 90%;
+    }
+    
+    #download-buttons {
+        font-size: 100%;
+    }
+    
+    #login, #register {
+        width: 100%;
+        font-size: .7em;
+    }
+    
+    #login-form {
+        align-self: center;
+    }
+    
+    #register-form {
+        align-content: center;
+        font-size: .6em;
+    }
+    
+    #licenser-agreement {
+        font-size: 1vw !important;
+    }
+    
+}
+
+@media only screen and (max-width: 768px) { 
+     #article-page, #issues {
+        margin-left: auto;
+        margin-right: auto;
+        min-width: 95%;
+    }
+    
+    #home-content, #updates {
+        margin-left: 10;
+        margin-right: 10;
+        min-width: 80%;
+    }
+    #home-content h3 {
+        font-size: 12px;
+    }
+    
+    #article-page input, #issues input {
+        max-width: 35vw;
+    }
+    
+    #content {
+        width: 100%;
+    }
+    
+    #account-details {
+        top: 3.7em;
+        width: 27%;
+    }
+    #download-buttons {
+        font-size: 1.4vw;
+    }
+}
+
+@media only screen and (max-width: 550px) { 
+    #first-downloads-page {
+        font-size: 2.5vw;
+    }
+    
+    #select-plan {
+        position: relative;
+        left: 22%;
+        top 100%;
+        margin-top: 2em;
+    }
+    
+}

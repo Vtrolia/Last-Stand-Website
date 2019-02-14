@@ -1,0 +1,190 @@
+@media only screen and (max-width: 1500px) {
+    #greeting {
+        display: none;
+    }
+    
+    #navbar img {
+        width: 3em;
+        height: 1.5em;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    header {
+        font-size: .9em;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    header {
+        font-size: .7em;
+    }
+    #modal {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    header {
+        font-size: .55em;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    body {
+        font-size: .85em;
+    }
+}
+
+@keyframes hamburgerAnimation{
+    0% {
+        width: 0%;
+    }
+    
+    100% {
+        width: 20%;
+    }
+}
+
+#navbar{
+    background-color: rgb(31, 31, 42);
+    color: whitesmoke;
+    font-size: 1.5em;
+    font-family: "OCR A Std, monospace";
+    position: fixed;
+    left: 0%;
+    width: 100%;
+    z-index: 1;
+}
+
+body {
+     background-color:rgb(40, 40, 54);
+}
+
+.row {
+    padding-left: 5.5vw;
+}
+
+.col {
+    padding: .7em;
+}
+            
+.col-3 {
+    padding-left: 1.4em;
+}
+            
+.col:hover {
+    background-color: whitesmoke;
+    color: rgb(40, 40, 54);
+}
+            
+a:link, a:visited {
+    color: whitesmoke;
+}
+            
+a:hover {
+    color: black;
+}
+
+#greeting {
+    float: left;
+    padding-top: .7em;
+    width: auto;
+    position: fixed;
+    left: 0;
+}
+            
+#softname {
+    padding-left: 2.25em;
+    padding-top: .7em;
+    padding-right: 0;
+}
+            
+#options {
+    float: right;
+    position: fixed;
+    right: 0%;
+    padding-top: .7em;
+    padding-bottom: .5em;
+    border-radius: 0.3em;
+    border-bottom-left-radius: 0em;
+    border-bottom-right-radius: 0em;
+}
+            
+#options:hover {
+    background-color: whitesmoke;
+    cursor: pointer;
+}
+
+#hamburgerMenu {
+    display: none;
+    z-index: 1;
+    background-color: rgb(31, 31, 42);
+    color: whitesmoke;
+    position: fixed;
+    padding-top: 0em;
+    right: 0%;
+    top: 2.9em;
+    width: 20%;
+    height: 100%;
+}
+
+.aside {
+    padding-left: 1em;
+    color: whitesmoke;
+    font-size: 1.04em;
+    border-bottom: 1px solid black;
+}
+
+.aside:hover {
+    background-color: rgb(69, 67, 67);
+    cursor: pointer;
+}
+
+.aside td {
+    padding-left: .7em;
+    max-width: 15%;
+    padding-bottom: .3em;
+    padding-top: .3em;
+}
+
+.left {
+    width: 85%;
+}
+
+.aside img {
+    margin-left: 0em;
+    margin-right: .8em;
+}
+
+#modal {
+    position: fixed;
+    left: 0;
+    top: 2.9em;
+    display: none;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.animated {
+    animation-name: hamburgerAnimation;
+    animation-duration: .4s;
+}
+
+@keyframes reanimate {
+    0% {
+        width: 20%;
+    }
+    
+    100% {
+        width: 0%;
+    }
+}
+.reanimated {
+    animation-name: reanimate;
+    animation-duration: .4s;
+    animation-fill-mode: forwards;
+}
+

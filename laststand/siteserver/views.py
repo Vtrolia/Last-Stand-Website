@@ -327,3 +327,14 @@ def load_request_publisher(request):
 
 def load(request, template):
     return render(request, template + ".html")
+
+
+# error handlers
+def not_found(request, exception):
+    return render(request, "error.html", {"type": "404 Not Found"})
+
+def forbidden(request, exception):
+    return render(request, "error.html", {"type": "403 Forbidden"})
+
+def server_error(request, exception):
+    return render(request, "error.html", {"type": "500 Internal Server Error"})

@@ -102,7 +102,7 @@ pre {
 form {
     border: 2px solid whitesmoke;
     color: whitesmoke;
-    max-width: 50vw;
+    max-width: 45vw;
     padding-left: 4.5vw;
     position:relative;
     left:26%;
@@ -124,7 +124,7 @@ form {
 #alerts, #regalert {
     animation: movein1;
     animation-duration: 1s;
-    max-width: 50vw;
+    max-width: 45vw;
     position: relative;
     left: 27%;
 }
@@ -812,6 +812,10 @@ float: left;
         left: 22%;
         top 100%;
         margin-top: 2em;
+    }
+    
+    #register, #login {
+        font-size: .3em;
     }
     
 }

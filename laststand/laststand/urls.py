@@ -51,3 +51,7 @@ urlpatterns = [
     path("load/<template>", sv.load, name="load_template")
 
 ]
+
+handler404 = "siteserver.views.not_found"
+handler403 = "siteserver.views.forbidden"
+handler500 = "siteserver.views.server_error"
