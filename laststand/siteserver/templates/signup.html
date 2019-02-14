@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block body %}
-<div id="login">
+<div id="register">
 <h2 align=center>Sign Up <img src="{% static 'source_images/Lock.png' %}" width=20em height=25em/></h2> 
     
 {% if message %}
@@ -17,7 +17,7 @@
 {% else %}
     <div></div>
 {% endif %}
-<form action="{% url 'submit_register' %}" method="post">
+<form id ="register-form" action="{% url 'submit_register' %}" method="post">
     {% csrf_token %}
     <div class="form-text">Email:</div>
     <input type=email name="email" placeholder="example@email.com">
@@ -26,8 +26,8 @@
     <div class="form-text">Password:</div>
     <input type=password name="password" placeholder="Password...">
     
-    <div>
-        <input style="width: 1em; padding: 0; margin-right: .5em; height: 1em;" type="checkbox" name="agree" id="agree" onclick="enabler()">
+    <div id="licenser-agreement" style="font-size: .9em">
+        <input style="width: auto; padding: 0; margin-right: 2em; height: auto;" type="checkbox" name="agree" id="agree" onclick="enabler()">
         By checking this box, you agree to our user licensing agreement, <a href="#">here</a>.
         
     </div>

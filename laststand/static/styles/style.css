@@ -1,4 +1,4 @@
-#table, #login, #first-downloads-page, #legal-info {
+#table, #login, #first-downloads-page, #legal-info, #register {
     background-color:rgb(40, 40, 54);
     font-family: serif New Century Schoolbook;
     padding-top: 6em;
@@ -15,6 +15,21 @@ pre {
 
 #table {
     margin-left: 2em;
+}
+
+#login, #register {
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+}
+
+#login-form, #register-form {
+    width: 50vw;
+    align-content: center;
+}
+
+#login-form input, #register-form input {
+    width: 37vw;
 }
 
 
@@ -649,6 +664,10 @@ float: left;
     #download-buttons {
         font-size: .7em;
     }
+    
+    #register {
+        font-size: .7em;
+    }
 
 }
 
@@ -720,6 +739,25 @@ float: left;
     #download-buttons {
         font-size: 100%;
     }
+    
+    #login, #register {
+        width: 100%;
+        font-size: .7em;
+    }
+    
+    #login-form {
+        align-self: center;
+    }
+    
+    #register-form {
+        align-content: center;
+        font-size: .6em;
+    }
+    
+    #licenser-agreement {
+        font-size: 1vw !important;
+    }
+    
 }
 
 @media only screen and (max-width: 768px) { 
@@ -766,4 +804,5 @@ float: left;
         top 100%;
         margin-top: 2em;
     }
+    
 }
