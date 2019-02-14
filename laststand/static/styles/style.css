@@ -20,16 +20,15 @@ pre {
 #login, #register {
     margin-left: auto;
     margin-right: auto;
-    width: auto;
+    width: auto !important;
 }
 
 #login-form, #register-form {
-    width: 50vw;
-    align-content: center;
+    margin-left: 1%;
 }
 
 #login-form input, #register-form input {
-    width: 37vw;
+    width: 85%;
 }
 
 
@@ -103,7 +102,7 @@ pre {
 form {
     border: 2px solid whitesmoke;
     color: whitesmoke;
-    max-width: 50em;
+    max-width: 50vw;
     padding-left: 4.5vw;
     position:relative;
     left:26%;
@@ -125,9 +124,9 @@ form {
 #alerts, #regalert {
     animation: movein1;
     animation-duration: 1s;
-    max-width: 50%;
+    max-width: 50vw;
     position: relative;
-    left: 25%;
+    left: 27%;
 }
 
 #publish-alert {
@@ -533,7 +532,7 @@ code {
 
 #passwordForm #alerts {
    margin-top: 10em;
-   min-width: 60%;
+   max-width: 60%;
    left: 20%;
 }
 
@@ -572,8 +571,10 @@ float: left;
 }
 
 #changeDetails #alerts {
-    position: absolute;
-    top: 85%;
+    position: relative;
+    float: right;
+    margin-top: 5vw;
+    left: -1vw;
     width: 40em;
 }
 
