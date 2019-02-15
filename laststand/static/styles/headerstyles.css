@@ -13,6 +13,10 @@
     header {
         font-size: .9em;
     }
+    
+    #modal {
+        top: 6.9% !important;
+    }
 }
 
 @media only screen and (max-width: 992px) {
@@ -20,7 +24,7 @@
         font-size: 1.15em !important;
     }
     #modal {
-        display: none;
+        top: 5.2% !important;
     }
 }
 
@@ -35,6 +39,9 @@
     #navbar {
         font-size: 1.8vw !important;
     }
+    #modal {
+        top: 4.5vw !important;
+    }
 }
 
 @media only screen and (max-width: 550px) {
@@ -48,6 +55,20 @@
     #navbar img {
         width: 2em;
         height: 1em;
+    }
+    
+    #modal {
+        top: 6.3vw !important;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    #navbar {
+        font-size: 2.4vw !important;
+    }
+    
+    #modal {
+        top: 6.1vw !important;
     }
 }
 
@@ -69,7 +90,7 @@
     position: fixed;
     left: 0%;
     width: 100%;
-    max-height: 8%;
+    max-height: 8vw;
     z-index: 1;
 }
 
@@ -141,7 +162,7 @@ a:hover {
     position: fixed;
     padding-top: 0em;
     right: 0%;
-    top: 2.9em;
+    top: 4vw;
     width: 20%;
     height: 100%;
 }
@@ -177,7 +198,7 @@ a:hover {
 #modal {
     position: fixed;
     left: 0;
-    top: 2.9em;
+    top: 7.8%;
     display: none;
     height: 100%;
     width: 100%;
