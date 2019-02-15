@@ -2,18 +2,18 @@
 {% load static %}
 {% block title %}<title>More Details</title>{% endblock %}
 {% block head %}
-        <meta charset="utf-8" lang="en"/>
-        <link type="text/css" rel="stylesheet" href="{% static 'styles/style.css' %}"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script>
-            window.onkeypress =  () => {
-                var f = document.getElementById("firstName");
-                var l = document.getElementById("lastName");
-                if (l.value && f.value) {
-                    document.getElementById("databutton").disabled = false;
-                }
+    <meta charset="utf-8" lang="en"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'styles/style.css' %}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        window.onkeypress =  () => {
+            var f = document.getElementById("firstName");
+            var l = document.getElementById("lastName");
+            if (l.value && f.value) {
+                document.getElementById("databutton").disabled = false;
             }
-        </script>
+        }
+    </script>
 {% endblock %}
 {% block body %}
     <form action="{% url 'add_name' %}" method="post" id="more">
@@ -29,5 +29,4 @@
             <a href="{% url 'index' %}" id="skip">Click Here to skip for now</a>
         </div>
     </form>
-    
 {% endblock %}

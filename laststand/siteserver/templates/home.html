@@ -2,28 +2,25 @@
 {% load static %}
 {% block title %}<title>Last Stand Cloud</title>{% endblock %}
 {% block head %}
-<link rel= "stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
-<meta name="description" content="Last Stand is a home cloud solution that allows you to access it away from home like it was made by one of the tech giants. Take back control of your data and your privacy"/>
-<script>var articleImageSrc = "{% static 'article_images' %}"</script>
-<script>const token = "{{ csrf_token }}"</script>
-<script src="{% static 'scripts/home.js' %}" async></script>
+    <link rel= "stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+    <meta name="description" content="Last Stand is a home cloud solution that allows you to access it away from home like it was made by one of the tech giants. Take back control of your data and your privacy"/>
+    <script>var articleImageSrc = "{% static 'article_images' %}"</script>
+    <script>const token = "{{ csrf_token }}"</script>
+    <script src="{% static 'scripts/home.js' %}" async></script>
 {% endblock %}
 {% block body %}
     <div id="home-content">
         <div id="intro">
-        <h3>Welcome to Last Stand Cloud!</h3>
-        <nav style="max-width: 27em; float: left;">This is the home site of the Last Stand Cloud software suite. Here,
-        we make emphasis on the portability and usability of cloud software. Last Stand is currently going through private Alpha testing, so check back soon for more news. No downloads for the public are available yet! Scroll down for more info about our software.
-        </nav>
+            <h3>Welcome to Last Stand Cloud!</h3>
+            <nav style="max-width: 27em; float: left;">This is the home site of the Last Stand Cloud software suite. Here,
+            we make emphasis on the portability and usability of cloud software. Last Stand is currently going through private Alpha testing, so check back soon for more news. No downloads for the public are available yet! Scroll down for more info about our software.</nav>
             <img src='{% static "source_images/cloud-image.jpeg" %}' title="cloud computing, hopefully for all" style="float: right;" width=450px height=250px>
         </div>
-        
-        
         <article id="updates">
             <nav class="update">
-            <h3>Hello, World! - 12/6/2018 by V. Trolia</h3>
-            <img src="article_images/intro.png" title="Our logo">
-            <p>Last Stand Cloud is a personal cloud software. While there are plenty 
+                <h3>Hello, World! - 12/6/2018 by V. Trolia</h3>
+                <img src="article_images/intro.png" title="Our logo">
+                <p>Last Stand Cloud is a personal cloud software. While there are plenty 
                 of personal cloud hardware/software, there seems to be a distinct lack of cloud software for ordinary people to have their own cloud accessible from anywhere. Last Stand hopes to change that. Though still in Alpha, the core idea of this software is hopefully going to release publicly soon. Here, you can have as many clouds as you like, with however much storage as you'd like. This never affects your price. In practice, you never have to pay us for anything.
                 </p>
                 <p>The way that we intend to give our users a cloud accessible from anywhere, much like a large corporate cloud service, is much like many other, peer-to-peer software. Your cloud communicates to us, where it is and its storage capabilities, and when you connect to it we send you to a new connection to where your server says it is. The communications between us and your server and you are of course done over HTTPS, secure and encrypted. The communication between you and your server is all secured using Reliable Cloud Protocol. Much like a VPN service, all that is public is the fact that you connected to our web site.

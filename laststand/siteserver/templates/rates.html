@@ -8,13 +8,12 @@
         <script src="{% static 'scripts/rates.js' %}"></script>
 {% endblock %}
 {% block body %}
-
-<div id="table-info">
-    <h2 align=center>Our Rates</h2>
-    <p>This is the page that displays the purchasable plans for Last Stand. A basic account with unlimited servers and size will always be available for individuals and we promise to never charge you for this. Also, for each plan, there is always an unlimited number of servers with unlimited storage size. The only difference between the plans is the number of <em>accounts</em> allowed to access a server.</p>
-    <p>Currently, the unlimited plan is not ready for release and is still in development so that option is unavailable.</p>
-</div>
-<div id="table">
+    <div id="table-info">
+        <h2 align=center>Our Rates</h2>
+        <p>This is the page that displays the purchasable plans for Last Stand. A basic account with unlimited servers and size will always be available for individuals and we promise to never charge you for this. Also, for each plan, there is always an unlimited number of servers with unlimited storage size. The only difference between the plans is the number of <em>accounts</em> allowed to access a server.</p>
+        <p>Currently, the unlimited plan is not ready for release and is still in development so that option is unavailable.</p>
+    </div>
+    <div id="table">
         <table id="tabs" style="color: whitesmoke;">
             <tr>
                 <th>Basic</th>
@@ -46,19 +45,22 @@
             </tr>
             <tr>
                 <th class="price" onclick="findSelected(this)">
-                    0.00$/m<input data-name="basic" class="radio_button" type="radio"></th>
+                    0.00$/m<input data-name="basic" class="radio_button" type="radio">
+                </th>
                 <th class="price"  onclick="findSelected(this)">
-                    3.00$/m<input data-name="family" class="radio_button" type="radio"></th>
+                    3.00$/m<input data-name="family" class="radio_button" type="radio">
+                </th>
                 <th class="price" onclick="findSelected(this)">
-                    30.00$/m<input data-name="unlimited" class="radio_button" type="radio"></th>
+                    30.00$/m<input data-name="unlimited" class="radio_button" type="radio">
+                </th>
             </tr>
         </table>
         <div id="select-plan">
             <button id="selectButton" onclick="selectPlan()" disabled>Select this plan</button>
         </div>
-        
-        <div id="license-warning"><strong>**Warning, </strong> while we will never charge for any individual or family/group to use Last Stand, this does not mean that it is free to use for business purposes. Check our licensing agreement <a href="">Here</a> for the full rules. For official organizational use or corporate use (any group operating for profit or nonprofit purposes) A business/unlimited account is required to be purchase else you will be subject to legal action. <p>Normal users can pay for an upgraded account, but note that this is only to allow multiple accounts to log on to the same server. There is unlimited users on the same account allowed to access a server at the same time. If you want to donate to Last Stand either buy the Family plan. Other ways to donate will be added if demand is high enough.</p>
+        <div id="license-warning">
+            <strong>**Warning, </strong> while we will never charge for any individual or family/group to use Last Stand, this does not mean that it is free to use for business purposes. Check our licensing agreement <a href="">Here</a> for the full rules. For official organizational use or corporate use (any group operating for profit or nonprofit purposes) A business/unlimited account is required to be purchase else you will be subject to legal action. <p>Normal users can pay for an upgraded account, but note that this is only to allow multiple accounts to log on to the same server. There is unlimited users on the same account allowed to access a server at the same time. If you want to donate to Last Stand either buy the Family plan. Other ways to donate will be added if demand is high enough.</p>
             <p>Also, another way to support Last Stand is to go to <a href="https://www.youtube.com/channel/UC-lHJZR3Gqxm24_Vd_AJ5Yw?sub_confirmation=1" style="color: black">this</a> link and support </p>
         </div>
-</div>
+    </div>
 {% endblock %}

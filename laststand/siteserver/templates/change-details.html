@@ -2,34 +2,34 @@
     <h4 id="settings-title">Change Account Details</h4>
     <hr class="bordered">
     <div id="detail-settings">
-    <div id="new-username" class="detail-option">
-        <label>Change your username: </label>
-        <div>
-            <input type="text" onkeyup="verify('username', this.value)" placeholder="Your new username..." id="newusername">
-            <button class="detail-inputs" onclick="change('username')" disabled>Change</button>
+        <div id="new-username" class="detail-option">
+            <label>Change your username: </label>
+            <div>
+                <input type="text" onkeyup="verify('username', this.value)" placeholder="Your new username..." id="newusername">
+                <button class="detail-inputs" onclick="change('username')" disabled>Change</button>
+            </div>
         </div>
-    </div>
-    <div id="new-email" class="detail-option">
-        <label>Change your email:</label>
-        <div>
-            <input type="email" onkeyup='verify("email", this.value)' placeholder="new@example.com" id="newemail">
-            <button class="detail-inputs" onclick="change('email')" disabled>Change</button> 
+        <div id="new-email" class="detail-option">
+            <label>Change your email:</label>
+            <div>
+                <input type="email" onkeyup='verify("email", this.value)' placeholder="new@example.com" id="newemail">
+                <button class="detail-inputs" onclick="change('email')" disabled>Change</button> 
+            </div>
         </div>
-    </div>
-    <div id="new-first" class="detail-option">
-        <label>Change your first name:</label>
-        <div>
-            <input type="text" placeholder="Your new first name..." id="newfirst_name">
-            <button class="detail-inputs" onclick="change('first_name')" disabled>Change</button>
+        <div id="new-first" class="detail-option">
+            <label>Change your first name:</label>
+            <div>
+                <input type="text" placeholder="Your new first name..." id="newfirst_name">
+                <button class="detail-inputs" onclick="change('first_name')" disabled>Change</button>
+            </div>
         </div>
-    </div>
-    <div id="newLast" class="detail-option">
-        <label>Change your last name:</label>
-        <div>
-            <input type="text" placeholder="New last name..." id="newlast_name">
-            <button class="detail-inputs" onclick="change('last_name')" disabled>Change</button>
+        <div id="newLast" class="detail-option">
+            <label>Change your last name:</label>
+            <div>
+                <input type="text" placeholder="New last name..." id="newlast_name">
+                <button class="detail-inputs" onclick="change('last_name')" disabled>Change</button>
+            </div>
         </div>
-    </div>
     </div>
     <div id="detail-aside">
         <p>In order for you to change any of these account details, for security reasons we must ask you to input your password: </p>

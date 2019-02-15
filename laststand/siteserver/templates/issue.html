@@ -2,72 +2,72 @@
 {% load static %}
 {% block title %}<title>Report an Issue</title>{% endblock %}
 {% block head %}
-<link rel= "stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
-<script>
-    window.oninput = () => {
-        var inputs = document.querySelectorAll(".issueBox");
-        let click = document.getElementById("subButton");
-        for (let i = 0; i < inputs.length; i++) {
-            if (inputs.item(i).value === "") {
-                
+    <link rel= "stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+    <script>
+        window.oninput = () => {
+            var inputs = document.querySelectorAll(".issueBox");
+            let click = document.getElementById("subButton");
+            for (let i = 0; i < inputs.length; i++) {
+                if (inputs.item(i).value === "") {
+
+                    click.disabled = true;
+                    return true;
+                }
+            }
+
+            let text = document.querySelector("textarea").value;
+            if (text.split(" ").length < 40) {
                 click.disabled = true;
                 return true;
             }
+            document.getElementById("subButton").disabled = false;
         }
-        
-        let text = document.querySelector("textarea").value;
-        if (text.split(" ").length < 40) {
-            click.disabled = true;
-            return true;
-        }
-        document.getElementById("subButton").disabled = false;
-    }
-</script>
+    </script>
 {% endblock %}
 {% block body %}
-<div id="issues">
-    <h2 align=center>Submit an Issue</h2>
-    <p>Welcome to the Last Stand Issues page. Here you can contact us with any issue you have for any of Last Stand's products. From the parts of our website to our home software servers and clients. As of now, there is a bug bounty for any bugs found with Last Stand's server and client applications. The reward is a free upgrade to an unlimited account when that service is available. Sorry, we are unable to award financial incentives for our bounties at this time, but keep checking in as this may change soon.</p>
-    <p style="padding-bottom: 1em;">If you haven't heard from us in 3 days, it may be because I have been busy and didn't get to your message. Send it again, and it will be marked with a priority header so that it's the first thing I see when I check my emails.</p>
-{% if message %}
-    <div class="alert alert-{{ message.0 }}" role="alert" id="publish-alert">
-{% if message.0 == "danger" %}
-        <strong>Error!</strong>
-    {% else %}
-        <strong>Success!</strong>
-    {% endif %}
-    {{ message.1 }}
-</div>
-{% else %}
-    <div></div>
-{% endif %}
-<form id="issueForm" method="post" action="{% url 'submit_issue' %}">
-    {% csrf_token %}
-    <div style="margin-top: 1em;">
-        <p class="issue-text" style="padding-right: 1em;">Your Name:</p>
-        <input class="issueBox" align=center type=text id="your-name" name="your-name">
+    <div id="issues">
+        <h2 align=center>Submit an Issue</h2>
+        <p>Welcome to the Last Stand Issues page. Here you can contact us with any issue you have for any of Last Stand's products. From the parts of our website to our home software servers and clients. As of now, there is a bug bounty for any bugs found with Last Stand's server and client applications. The reward is a free upgrade to an unlimited account when that service is available. Sorry, we are unable to award financial incentives for our bounties at this time, but keep checking in as this may change soon.</p>
+        <p style="padding-bottom: 1em;">If you haven't heard from us in 3 days, it may be because I have been busy and didn't get to your message. Send it again, and it will be marked with a priority header so that it's the first thing I see when I check my emails.</p>
+        {% if message %}
+            <div class="alert alert-{{ message.0 }}" role="alert" id="publish-alert">
+                {% if message.0 == "danger" %}
+                    <strong>Error!</strong>
+                {% else %}
+                    <strong>Success!</strong>
+                {% endif %}
+                {{ message.1 }}
+            </div>
+        {% else %}
+        {% endif %}
+        <form id="issueForm" method="post" action="{% url 'submit_issue' %}">
+            {% csrf_token %}
+            <div style="margin-top: 1em;">
+                <p class="issue-text" style="padding-right: 1em;">Your Name:</p>
+                <input class="issueBox" align=center type=text id="your-name" name="your-name">
+            </div>
+            <div style="margin-top: 1em;">
+                <p class="issue-text" style="padding-right: 1.25em;">Your Email:</p>
+                <input class="issueBox" align=center type=email id="your-email" name="your-email">
+            </div>
+            <div style="padding-bottom: 2em; padding-top: 1em;">
+                What is the issue with? 
+                <select class="issueBox" style="margin-left: 1em;" id="issue" name="issue" title="please tell us what type of issue you are having">
+                    <option value=''>Please select an option</option>
+                    <option value="server">Last Stand Server end</option>
+                    <option value="linux">Last Stand Client end(Linux)</option>
+                    <option value="macOS">Last Stand Client end(macOS)</option>
+                    <option value="windows">Last Stand Client end(Window)</option>
+                    <option value="security">You found a vulnerability</option>
+                    <option value="articles">A problem with an article on our site</option>
+                    <option value="dashboard">Something is wrong with your Dashboard</option>
+                    <option value="account">There is an issue with your account</option>
+                    <option value="website">Something is wrong with the website</option>
+                    <option value="other">Other issue</option>
+                </select>
+            </div>
+            <textarea class="issueBox" title="please use 100 words or more" style="margin-left: .1em;" rows="20" cols="105.5" id="issue-text" name="issue-text" placeholder="describe your issue in full detail here..."></textarea>
+            <button id="subButton" type="submit" disabled>Submit</button>
+        </form>
     </div>
-    <div style="margin-top: 1em;">
-        <p class="issue-text" style="padding-right: 1.25em;">Your Email:</p>
-        <input class="issueBox" align=center type=email id="your-email" name="your-email">
-    </div>
-    <div style="padding-bottom: 2em; padding-top: 1em;">What is the issue with? 
-    <select class="issueBox" style="margin-left: 1em;" id="issue" name="issue" title="please tell us what type of issue you are having">
-        <option value=''>Please select an option</option>
-        <option value="server">Last Stand Server end</option>
-        <option value="linux">Last Stand Client end(Linux)</option>
-        <option value="macOS">Last Stand Client end(macOS)</option>
-        <option value="windows">Last Stand Client end(Window)</option>
-        <option value="security">You found a vulnerability</option>
-        <option value="articles">A problem with an article on our site</option>
-        <option value="dashboard">Something is wrong with your Dashboard</option>
-        <option value="account">There is an issue with your account</option>
-        <option value="website">Something is wrong with the website</option>
-        <option value="other">Other issue</option>
-    </select>
-    </div>
-    <textarea class="issueBox" title="please use 100 words or more" style="margin-left: .1em;" rows="20" cols="105.5" id="issue-text" name="issue-text" placeholder="describe your issue in full detail here..."></textarea>
-    <button id="subButton" type="submit" disabled>Submit</button>
-</form>
-</div>
 {% endblock %}

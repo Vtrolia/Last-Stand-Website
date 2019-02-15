@@ -1,153 +1,3 @@
-#table, #login, #first-downloads-page, #legal-info, #register {
-    background-color:rgb(40, 40, 54);
-    font-family: serif New Century Schoolbook;
-    padding-top: 6em;
-    position: relative;
-    height: 100%;
-    color:whitesmoke;
-}
-
-pre {
-    background-color: whitesmoke;
-    border-radius: 4px;
-    padding: 1em;
-}
-
-#table {
-    margin-left: 2em;
-}
-
-#login, #register {
-    margin-left: auto;
-    margin-right: auto;
-    width: auto !important;
-}
-
-#login-form, #register-form {
-    margin-left: 1%;
-}
-
-#login-form input, #register-form input {
-    width: 85%;
-}
-
-
-@keyframes fade {
-  0% { opacity: 0; bottom: 20%; left: 10%; }
-    50%: {opacity: 0;}
-  100% { opacity: 1; bottom: 00%; left: 0%;}
-}
-
-@keyframes movein {
-    0% {left: 100%; opacity: 0;}
-    100%{ opacity: 1; left: 10%; animation-play-state: paused;}
-}
-
-#tabs {
-    border: .1vw solid whitesmoke;
-    border-color: whitesmoke;
-    max-width: 50vw;
-    font-size: 1.75em;
-}
-
-#tabs tr {
-    max-width: 50vw;
-}
-
-#tabs:hover {
-    box-shadow:  5px 5px 5px #888888;
-}
-
-.price:hover {
-    background-color: rgb(69, 67, 67);
-}
-
-#tabs th, #tabs td{
-    max-width: 20vw;
-    height: 7.vh;
-    overflow-x: hidden;
-    padding: 1.5vw;
-    border-left: .1vw dashed whitesmoke;
-    
-}
-
-#tabs td li {
-    padding: .5em;
-    font-size: 1.3vw;
-}
-
-#tabs th {
-   margin-top: 10vw;
-    margin-left: auto;
-    margin-right: auto;
-    width: auto;
-   font-size: 1.5vw;
-   align-content: center;
-   border: .05vw double whitesmoke; 
-    
-}
-
-#tabs ul {
-    padding-left: 1.4vw;
-}
-
-.radio_button {
-    width: auto;
-    height: auto;
-    margin: 0;
-    margin-left: 1em;
-    padding: 0;
-}
-
-form {
-    border: 2px solid whitesmoke;
-    color: whitesmoke;
-    max-width: 45vw;
-    padding-left: 4.5vw;
-    position:relative;
-    left:26%;
-}
-
-@keyframes movein1 {
-    0% {left: 50%; opacity: 0;}
-    80% {opacity: .5}
-    100%{ opacity: 1; left: 25%; animation-play-state: paused;}
-}
-
-@keyframes movein2 {
-    0% {left: 50%; opacity: 0;}
-    80% {opacity: .5}
-    100%{ opacity: 1; left: 0%; animation-play-state: paused;}
-}
-
-
-#alerts, #regalert {
-    animation: movein1;
-    animation-duration: 1s;
-    max-width: 45vw;
-    position: relative;
-    left: 27%;
-}
-
-#publish-alert {
-    animation: movein2;
-    animation-duration: 1s;
-    max-width: 100%;
-    position: relative;
-    left: 0%;
-}
-
-.form-text {
-    font-size: 3em;
-    padding-bottom: .5em;
-}
-
-input {
-    width: 40em;
-    height: 3em;
-    margin-bottom: 3em;
-}
-
 button {
     height: 2em;
     width: 6em;
@@ -164,16 +14,353 @@ button:disabled {
     opacity: .75;
 }
 
+code {
+    font-size: .8em;
+    background-color: white;
+    color: black;
+    padding: .5em;
+}
+
+form {
+    border: 2px solid whitesmoke;
+    color: whitesmoke;
+    max-width: 45vw;
+    padding-left: 4.5vw;
+    position:relative;
+    left:26%;
+}
+
 h2 {
     font-size: 3em;
     margin-left: auto;
     margin-right: auto;
 }
 
-#intro {
-  margin: 1em;
+input {
+    width: 40em;
+    height: 3em;
+    margin-bottom: 3em;
 }
 
+pre {
+    background-color: whitesmoke;
+    border-radius: 4px;
+    padding: 1em;
+}
+
+textarea {
+    margin-bottom: 1.5em;
+    resize: none;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bordered {
+    margin-left: -1.1vw;   
+}
+
+.bordered-download {
+    border: 1.5px solid black;
+    border-collapse: collapse;
+    color: black;
+    max-width: 50%;
+    min-width: 50%;
+    min-height: 7em;
+    max-height: 7em;
+    padding-left: 1em;
+    margin: 0;
+}
+
+.detail-inputs {
+    position: relative;
+    left: 1vw;
+    margin-bottom: .8em !important;
+    height: 2em !important;
+    min-width: 30% !important;
+}
+
+.detail-option {
+    border: 2px solid rgb(40, 40, 54);
+    margin-bottom: 1.5em;
+}
+
+.detail-option input {
+    width: 50% !important;
+}
+
+.detail-option label {
+    padding-left: .5em;
+    font-size: 1.2em;
+}
+
+.form-text {
+    font-size: 3em;
+    padding-bottom: .5em;
+}
+
+.issue-text {
+    display: inline;
+    font-size: 1.5em;
+}
+
+.jumbotron {
+    color: black;
+    background-color: snow;
+    max-width: 40em;
+    padding: 2em;
+    margin: 0;
+}
+
+.option {
+    font-weight: bold;
+    padding: .7em;
+    padding-left: 0;
+    font-size: 1.2em;
+}
+
+.option img {
+    margin-left: 1em;
+}
+
+.option:hover {
+    background-color: #a39f9f;
+    cursor: pointer;
+    
+}
+
+.price:hover {
+    background-color: rgb(69, 67, 67);
+}
+
+.radio_button {
+    width: auto;
+    height: auto;
+    margin: 0;
+    margin-left: 1em;
+    padding: 0;
+}
+
+.toolTip {
+    opacity: 0;
+    transition: .5s;
+    visibility: hidden;
+    display: inline;
+    width: auto;
+    background-color: rgb(40, 40, 54);
+    padding: .3em;
+    color: whitesmoke;
+    text-align: center;
+    border-radius: .5em;
+    position: relative;
+    top: 37.5%;
+    left: 2%;
+}
+    
+div .toolTip::after {
+    content: " ";
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent rgb(40, 40, 54) transparent transparent;
+}
+
+.toolTip li {
+    text-align: left;
+}
+
+.update {
+    padding: 2em;
+    animation: movein;
+    position: relative;
+    animation-duration: .5s;
+    border: 2px double snow;
+    margin: 0;
+    margin-bottom: 1em;
+}
+
+.update img {
+    border: 1px solid rgb(28, 28, 255);
+    max-width: 50vw;
+    max-height: 20em;
+    margin-bottom: 1em;
+}
+
+#account-details {
+    display: inline-block;
+    position: absolute;
+    padding-top: 6vw;
+    margin-top: -6em;
+    left: 0;
+    min-height: 57.4em;
+    width: 21vw;
+    background-color: #dbdbdb;
+    border-bottom-right-radius: 1em;
+    border-top-right-radius: 1em;
+    border: 1px solid black;
+}
+
+#account-details li {
+    border-top: 1px solid black;
+    padding: 1em;
+    margin: 0;
+    font-size: 1.2em;
+}
+
+#account-details li:hover {
+    background-color: #a39f9f;
+    cursor: pointer;
+}
+
+#account-details ul {
+    padding: 0;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+#account-page {
+    padding-top: 5em;
+    padding-left: .1em;
+    padding-right: 0;
+    padding-bottom: 0;
+    position: absolute;
+    left: 0;
+    min-width: 80%;
+    min-height: 56.3em;
+}
+
+#account-page input, #account-page button {
+    width: auto;
+    height: auto;
+    margin: .5em;
+}
+
+#account-picture {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+#account-status {
+    margin-bottom: 0em;
+}
+
+#alerts, #regalert {
+    animation: movein1;
+    animation-duration: 1s;
+    max-width: 45vw;
+    position: relative;
+    left: 27%;
+}
+
+#article-page {
+    width: 58%;
+    padding-top: 6em;
+}
+
+#article-page a:link, #article-page a:visited {
+    color: black;
+}
+
+#article-post {
+    position: relative;
+    padding: 2em;
+    left: 0;
+    min-width: 100%;
+}
+
+#article-post input, #issueForm input {
+    height: 2em;
+    width: 30em;
+}
+
+#backButton:hover {
+    width: 52px;
+}
+
+#changeDetails #alerts {
+    position: relative;
+    float: right;
+    margin-top: 5vw;
+    left: -1vw;
+    width: 40em;
+}
+
+#cloud-list {
+    border: 2px solid black;
+    max-height: 25em;
+    overflow-y: scroll;
+}
+
+#credit {
+    margin-right: 1em;
+}
+
+#detail-aside {
+    width: 50%;
+    position: relative;
+    float: right;
+    left: 0%;
+}
+
+#detail-settings { 
+    float: left;
+    width: 45%;
+}
+
+#download-buttons {
+    position: relative;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    padding: 0;
+}
+
+#file {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    max-width: 300px;
+}
+
+#first-downloads-page {
+    position: relative !important;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 6em !important;
+    background-color: whitesmoke !important;
+    color: black !important;
+    width: 60%;
+    border-radius: 0.3em;
+    height: 56em !important;
+}
+
+#first-downloads-page button {
+    color: whitesmoke;
+    background-color: black;
+    width: 10em;
+    
+}
+
+#first-downloads-page img {
+    margin-left: .6em;
+}
+
+#home-content {
+    padding-top: 6em;
+}
+
+#home-content h3 {
+    font-size: 1.4em;
+    margin-bottom: 1em;
+    border-bottom: 1px dashed whitesmoke;
+}
 
 #home-content, #article-page {
     position: relative;
@@ -189,6 +376,18 @@ h2 {
     margin-bottom: 5em;
     font-size: 1.07em;
     
+}
+
+#identification, #account-picture, #account-status, #clouds {
+    padding-left: .5em;
+}
+
+#intro {
+    margin: 1em;
+}
+
+#intro img {
+    float:right;
 }
 
 #issues, #table-info {
@@ -210,61 +409,36 @@ h2 {
     padding: 1em;
 }
 
-#home-content {
-    padding-top: 6em;
+#issueForm input {
+    margin-bottom: 2em;
 }
 
-#intro img {
-    float:right;
+#legal-info {
+    margin-left: auto;
+    margin-right: auto;
 }
 
-
-#home-content h3 {
-    font-size: 1.4em;
-    margin-bottom: 1em;
-    border-bottom: 1px dashed whitesmoke;
+#legal-info h2 {
+    padding-bottom: 1em;
 }
 
-#updates {
-    margin: 1em;
-   
+#license-warning {
+    padding-top: 2em;
+    max-width: 80%;
 }
 
-.update {
-    padding: 2em;
-    animation: movein;
-    position: relative;
-    animation-duration: .5s;
-    border: 2px double snow;
-    margin: 0;
-    margin-bottom: 1em;
+#login, #register {
+    margin-left: auto;
+    margin-right: auto;
+    width: auto !important;
 }
 
-.update img {
-    border: 1px solid rgb(28, 28, 255);
-    max-width: 50vw;
-    max-height: 20em;
-    margin-bottom: 1em;
+#login-form, #register-form {
+    margin-left: 1%;
 }
 
-
-.jumbotron {
-    color: black;
-    background-color: snow;
-    max-width: 40em;
-    padding: 2em;
-    margin: 0;
-}
-
-#storytime {
-    animation: fade;
-    position: relative;
-    animation-play-state: paused;
-    animation-duration: 1.5s;
-}
-
-#skip {
-    float: right;
+#login-form input, #register-form input {
+    width: 85%;
 }
 
 #more {
@@ -273,72 +447,69 @@ h2 {
     padding-right:5em;
 }
 
-#article-post {
+#passwordForm button:disabled, #deleteAccount button:disabled, #becomePublisher button:disabled {
+    background-color: gray;
+    color: black;
+    opacity: .75;
+}
+
+#passwordForm #alerts {
+    margin-top: 10em;
+    max-width: 60%;
+    left: 20%;
+}
+
+#passRepeat {
+    top: 48%;
+}
+
+#publish-alert {
+    animation: movein2;
+    animation-duration: 1s;
+    max-width: 100%;
     position: relative;
-    padding: 2em;
-    left: 0;
-    min-width: 100%;
+    left: 0%;
 }
 
-#article-post input, #issueForm input {
-    height: 2em;
-    width: 30em;
-}
-
-#issueForm input {
-    margin-bottom: 2em;
-}
-
-textarea {
-    margin-bottom: 1.5em;
-    resize: none;
+#selectButton {
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
 }
 
-#credit {
-    margin-right: 1em;
+#select-plan {
+    position:absolute;
+    top: 40%;
+    width: 10em;
+    left: 70%;
 }
 
-#file {
-    margin: 0;
-    border: 0;
-    padding: 0;
-    max-width: 300px;
+#settings-bottom {
+    position: absolute;
+    bottom: 0%;
+    width: 74%;
+    left: 22.1vw;
+    height: 8%;
 }
 
-#article-page {
-    width: 58%;
-    padding-top: 6em;
+#settings-display{
+    position: relative;
+    top: 0%;
+    min-height: 95%;
+    max-height: 95%;
+    padding-left: .5vw;
+    padding-right: 1vw;
+    width: 59vw;
+    left: 21.5vw;
 }
 
-#article-page a:link, #article-page a:visited {
-    color: black;
+#skip {
+    float: right;
 }
 
-#style-guide-box {
-    display: none;
-    position: fixed;
-    background-color: rgba(0, 0, 0, .4);
-    left: 0;
-    top: 8%;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    
-}
-
-code {
-    font-size: .8em;
-    background-color: white;
-    color: black;
-    padding: .5em;
-}
-
-::-webkit-scrollbar {
-    width: 0px;
-    background: transparent;
+#storytime {
+    animation: fade;
+    position: relative;
+    animation-play-state: paused;
+    animation-duration: 1.5s;
 }
 
 #style-guide {
@@ -353,288 +524,78 @@ code {
     width: 60%;
 }
 
-.issue-text {
-    display: inline;
-    font-size: 1.5em;
-}
-
-#license-warning {
-    padding-top: 2em;
-    max-width: 80%;
-}
-
-#select-plan {
-    position:absolute;
-    top: 40%;
-    width: 10em;
-    left: 70%;
-}
-
-#selectButton {
+#style-guide-box {
+    display: none;
+    position: fixed;
+    background-color: rgba(0, 0, 0, .4);
+    left: 0;
+    top: 8%;
     width: 100%;
+    height: 100%;
+    z-index: 1;
+    
 }
 
+#tabs {
+    border: .1vw solid whitesmoke;
+    border-color: whitesmoke;
+    max-width: 50vw;
+    font-size: 1.75em;
+}
 
-#first-downloads-page {
-    position: relative;
+#tabs tr {
+    max-width: 50vw;
+}
+
+#tabs th {
+    margin-top: 10vw;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1em;
-    padding-right: 1em;
+    width: auto;
+    font-size: 1.5vw;
+    align-content: center;
+    border: .05vw double whitesmoke;  
+}
+
+#tabs th, #tabs td{
+    max-width: 20vw;
+    height: 7.vh;
+    overflow-x: hidden;
+    padding: 1.5vw;
+    border-left: .1vw dashed whitesmoke;
+    
+}
+
+#tabs td li {
+    padding: .5em;
+    font-size: 1.3vw;
+}
+
+
+#tabs ul {
+    padding-left: 1.4vw;
+}
+
+
+#tabs:hover {
+    box-shadow:  5px 5px 5px #888888;
+}
+
+#table, #login, #first-downloads-page, #legal-info, #register {
+    background-color:rgb(40, 40, 54);
+    font-family: serif New Century Schoolbook;
     padding-top: 6em;
-    background-color: whitesmoke;
-    color: black;
-    width: 60%;
-    border-radius: 0.3em;
-    height: 56em;
-}
-#download-buttons {
     position: relative;
-    left: 0;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10%;
-    padding: 0;
+    height: 100%;
+    color:whitesmoke;
 }
 
-.bordered-download {
-    border: 1.5px solid black;
-    border-collapse: collapse;
-    color: black;
-    max-width: 50%;
-    min-width: 50%;
-    min-height: 7em;
-    max-height: 7em;
-    padding-left: 1em;
-    margin: 0;
+#table {
+    margin-left: 2em;
 }
 
-#first-downloads-page button {
-    color: whitesmoke;
-    background-color: black;
-    width: 10em;
-    
-}
-
-#first-downloads-page img {
-    margin-left: .6em;
-}
-
-#account-page {
-    padding-top: 5em;
-    padding-left: .1em;
-    padding-right: 0;
-    padding-bottom: 0;
-    position: absolute;
-    left: 0;
-    min-width: 80%;
-    min-height: 56.3em;
-    
-}
-
-#account-details {
-    display: inline-block;
-    position: absolute;
-    padding-top: 6vw;
-    margin-top: -6em;
-    left: 0;
-    min-height: 57.4em;
-    width: 21vw;
-    background-color: #dbdbdb;
-    border-bottom-right-radius: 1em;
-    border-top-right-radius: 1em;
-    border: 1px solid black;
-}
-
-#settings-display{
-    position: relative;
-    top: 0%;
-    min-height: 95%;
-    max-height: 95%;
-    padding-left: .5vw;
-    padding-right: 1vw;
-    width: 59vw;
-    left: 21.5vw;
-}
-
-.option {
-    font-weight: bold;
-    padding: .7em;
-    padding-left: 0;
-    font-size: 1.2em;
-}
-
-.option img {
-    margin-left: 1em;
-}
-
-.option:hover {
-    background-color: #a39f9f;
-    cursor: pointer;
-    
-}
-
-#backButton:hover {
-    width: 52px;
-}
-
-#legal-info {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#legal-info h2 {
-    padding-bottom: 1em;
-}
-
-#account-page input, #account-page button {
-    width: auto;
-    height: auto;
-    margin: .5em;
-}
-
-.toolTip {
-    opacity: 0;
-    transition: .5s;
-    visibility: hidden;
-    display: inline;
-    width: auto;
-    background-color: rgb(40, 40, 54);
-    padding: .3em;
-    color: whitesmoke;
-    text-align: center;
-    border-radius: .5em;
-    position: relative;
-    top: 37.5%;
-    left: 2%;
-}
-    
- div .toolTip::after {
-    content: " ";
-    display: inline-block;
-    position: absolute;
-    top: 50%;
-    right: 100%;
-    margin-top: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent rgb(40, 40, 54) transparent transparent;
-}
-
-#passRepeat {
-    top: 48%;
-}
-
-.toolTip li {
-    text-align: left;
-}
-
-#passwordForm button:disabled, #deleteAccount button:disabled, #becomePublisher button:disabled {
-    background-color: gray;
-    color: black;
-    opacity: .75;
-}
-
-#passwordForm #alerts {
-   margin-top: 10em;
-   max-width: 60%;
-   left: 20%;
-}
-
-#detail-settings { 
-float: left;
-    width: 45%;
-}
-
-.detail-option {
-    border: 2px solid rgb(40, 40, 54);
-    margin-bottom: 1.5em;
-}
-
-.detail-option label {
-    padding-left: .5em;
-    font-size: 1.2em;
-}
-
-.detail-option input {
-    width: 50% !important;
-}
-
-.detail-inputs {
-    position: relative;
-    left: 1vw;
-    margin-bottom: .8em !important;
-    height: 2em !important;
-    min-width: 30% !important;
-}
-
-#detail-aside {
-    width: 50%;
-    position: relative;
-    float: right;
-    left: 0%;
-}
-
-#changeDetails #alerts {
-    position: relative;
-    float: right;
-    margin-top: 5vw;
-    left: -1vw;
-    width: 40em;
-}
-
-#settings-bottom {
-    position: absolute;
-    bottom: 0%;
-    width: 74%;
-    left: 22.1vw;
-    height: 8%;
-}
-
-#account-details ul {
-    padding: 0;
-    width: 100%;
-    margin-bottom: 0;
-}
-
-#cloud-list {
-    border: 2px solid black;
-}
-
-#cloud-list {
-    max-height: 25em;
-    overflow-y: scroll;
-}
-
-#account-details li {
-    border-top: 1px solid black;
-    padding: 1em;
-    margin: 0;
-    font-size: 1.2em;
-    
-}
-
-#account-details li:hover {
-    background-color: #a39f9f;
-    cursor: pointer;
-}
-
-#account-picture {
-    padding-top: 1em;
-    padding-bottom: 1em;
-}
-
-#identification, #account-picture, #account-status, #clouds {
-    padding-left: .5em;
-}
-
-#account-status {
-    margin-bottom: 0em;
-}
-
-.bordered {
-    margin-left: -1.1vw;
-    
+#updates {
+    margin: 1em;
 }
 
 @media only screen and (max-width: 1700px) {
@@ -816,4 +777,32 @@ float: left;
         font-size: .3em;
     }
     
+}
+
+@keyframes fade {
+    0% { opacity: 0; bottom: 20%; left: 10%; }
+    50%: {opacity: 0;}
+    100% { opacity: 1; bottom: 00%; left: 0%;}
+}
+
+@keyframes movein {
+    0% {left: 100%; opacity: 0;}
+    100%{ opacity: 1; left: 10%; animation-play-state: paused;}
+}
+
+@keyframes movein1 {
+    0% {left: 50%; opacity: 0;}
+    80% {opacity: .5}
+    100%{ opacity: 1; left: 25%; animation-play-state: paused;}
+}
+
+@keyframes movein2 {
+    0% {left: 50%; opacity: 0;}
+    80% {opacity: .5}
+    100%{ opacity: 1; left: 0%; animation-play-state: paused;}
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
 }
