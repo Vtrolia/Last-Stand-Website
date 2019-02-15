@@ -54,4 +54,6 @@ urlpatterns = [
 
 handler404 = "siteserver.views.not_found"
 handler403 = "siteserver.views.forbidden"
+handler405 = "siteserver.views.not_allowed"
 handler500 = "siteserver.views.server_error"
+

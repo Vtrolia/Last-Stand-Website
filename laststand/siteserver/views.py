@@ -338,3 +338,6 @@ def forbidden(request, exception):
 
 def server_error(request, exception):
     return render(request, "error.html", {"type": "500 Internal Server Error"})
+
+def not_allowed(request, exception):
+    return render(request, "error.html", {"type": "403 Forbidden"})

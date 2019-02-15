@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'vvke8)j*+&)6i2v2g82ww8se%bk6=t$v2u^!lc9hjd&&1w%1(0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ADMINS = [("Vincent Trolia", "vtrolia@protonmail.com")]
 
@@ -128,6 +128,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static-folder")
+STATIC_ROOT = "/Users/vinny/Desktop/Documents/LastStand\ Website/laststand/static-folder"
 
 
