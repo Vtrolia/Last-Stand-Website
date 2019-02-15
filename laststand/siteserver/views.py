@@ -85,6 +85,9 @@ def logout_user(request):
 def license_page(request):
     return h.return_as_wanted(request, "legal_docs.html")
 
+def settings(request):
+    return h.return_as_wanted(request, "construction.html")
+
 
 # form submission pages for either a login. registration, or an article(publishers only)
 @require_http_methods(["POST"])
@@ -336,7 +339,7 @@ def not_found(request, exception):
 def forbidden(request, exception):
     return render(request, "error.html", {"type": "403 Forbidden"})
 
-def server_error(request, exception):
+def server_error(request):
     return render(request, "error.html", {"type": "500 Internal Server Error"})
 
 def not_allowed(request, exception):

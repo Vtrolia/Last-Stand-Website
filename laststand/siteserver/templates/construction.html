@@ -1,0 +1,21 @@
+{% extends 'header.html' %}
+{% block title %}<title>Settings</title>{% endblock %}
+{% block head %}
+<style>
+    #construction-page img {
+        width: 800px;
+    }
+    
+    @media only screen and (max-width: 768px) {
+        #construction-page img {
+            width: 400px;
+        }
+    }
+</style>{% endblock %}
+{% block body %}
+<div id="construction-page" align=center style="color: whitesmoke; padding-top: 6em;">
+    <h1>Under Construction</h1>
+    <img style="margin: 1em" src="https://c1.staticflickr.com/6/5510/12365964585_7fcd18318c_b.jpg" title="Photo courtesy of the U.S. Army">
+    <p>Hello, this page is still under construction. While in its first public alpha, the settings intended for this page are not yet available. Check back later to see if this page has gone live!</p>
+</div>
+{% endblock %}
