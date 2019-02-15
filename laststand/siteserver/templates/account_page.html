@@ -21,7 +21,7 @@
                 {% endif %}
                 <div style="width:100%">Profile pictures will be available for you to set soon!</div>
             </div>
-            <hr>
+            <hr class="bordered">
             <div id="identification">
                 <strong style="font-size: 1.3em">{{ message.username }}</strong><br>
                 You joined on <strong>{{ message.date_joined }}</strong>
@@ -37,7 +37,7 @@
         </div>
         <div id="settings-display"></div>
         <div id="settings-bottom">
-        <hr style="margin-bottom: 0; width:100%">
+        <hr style="margin-bottom: 0; width:100%" class="bordered">
         <span style="background-color: transparent; outline: none; cursor: pointer" onclick="getBaseSettings()"><img id="backButton" src="{% static 'source_images/back.png' %}" width=48></span>
         </div>
     </div>

@@ -13,13 +13,6 @@ document.addEventListener("click", (e) => {
     }
 });
 
-window.onresize = () => {
-    if (window.innerWidth <= 1000) {
-        document.getElementById("hamburgerMenu").style.display = "none";
-    }
-}
-
-
 function redirect(selected) {
     let link = selected.getAttribute("data-link");
     console.log(link)

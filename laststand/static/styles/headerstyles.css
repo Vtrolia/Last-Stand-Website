@@ -3,7 +3,7 @@
         display: none;
     }
     
-    #navbar img {
+    .container img {
         width: 3em;
         height: 1.5em;
     }
@@ -22,7 +22,7 @@
 }
 
 @media only screen and (max-width: 850px) {
-    #navbar img {
+    .container img {
         display: inline-block;
         width: 4em;
     }
@@ -42,9 +42,14 @@
         font-size: .85em;
     }
     
-    #navbar img {
+    .container img {
         width: 2em;
         height: 1em;
+    }
+    
+    #hamburgerMenu img {
+        width: 16px;
+        height: 16px;
     }
 }
 
@@ -90,6 +95,13 @@ body {
             
 .col-3 {
     padding-left: 1.4em;
+}
+
+#hamburgerMenu img {
+    display: inline-block !important;
+}
+
+ img {
 }
             
 .col:hover {
@@ -144,7 +156,6 @@ a:hover {
     position: fixed;
     padding-top: 0em;
     right: 0%;
-    top: 4vw;
     width: 20%;
     height: 100%;
 }

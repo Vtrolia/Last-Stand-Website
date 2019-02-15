@@ -435,9 +435,10 @@ code {
 #account-details {
     display: inline-block;
     position: absolute;
-    top: 4.4em;
+    padding-top: 6vw;
+    margin-top: -6em;
     left: 0;
-    min-height: 92.3%;
+    min-height: 57.4em;
     width: 21vw;
     background-color: #dbdbdb;
     border-bottom-right-radius: 1em;
@@ -450,10 +451,10 @@ code {
     top: 0%;
     min-height: 95%;
     max-height: 95%;
-    padding-left: 1%;
-    padding-right: 1%;
-    width: 73%;
-    left: 27%;
+    padding-left: .5vw;
+    padding-right: 1vw;
+    width: 59vw;
+    left: 21.5vw;
 }
 
 .option {
@@ -586,7 +587,7 @@ float: left;
     position: absolute;
     bottom: 0%;
     width: 74%;
-    left: 26.3%;
+    left: 22.1vw;
     height: 8%;
 }
 
@@ -631,6 +632,11 @@ float: left;
     margin-bottom: 0em;
 }
 
+.bordered {
+    margin-left: -1.1vw;
+    
+}
+
 @media only screen and (max-width: 1700px) {
     #becomePublisher h6 {
         font-size: .85vw !important;
@@ -644,10 +650,6 @@ float: left;
 @media only screen and (max-width: 1200px) {
     #article-page, #issues {
         width: 80%;
-    }
-    
-    #account-details {
-        top: 3.9em;
     }
     
     .detail-option label {
@@ -700,15 +702,13 @@ float: left;
     
     #settings-display {
         font-size: .8em;
+        width: 75vw;
         
     }
     
     #account-details {
-        min-height: 92.5% !important;
         font-size: .8em;
-        top: 3.8em;
-        width: 27%;
-        height: 92.5%;
+        min-height: 71.1em;
     }
     #account-page h4 {
         font-size: 1.5em;
@@ -722,9 +722,6 @@ float: left;
         width: 48px;
     }
     
-    #settings-bottom {
-        left: 27.5%;
-    }
     #becomePublisher {
         font-size: 1.5vw !important;
     }
@@ -767,6 +764,11 @@ float: left;
         font-size: 1vw !important;
     }
     
+    .bordered {
+        width: 107.1% !important;
+        
+    }
+    
 }
 
 @media only screen and (max-width: 768px) { 
@@ -792,11 +794,7 @@ float: left;
     #content {
         width: 100%;
     }
-    
-    #account-details {
-        top: 3.7em;
-        width: 27%;
-    }
+
     #download-buttons {
         font-size: 1.4vw;
     }
