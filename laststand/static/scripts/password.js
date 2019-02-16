@@ -1,12 +1,12 @@
 function passwordEntered() {
-        var password = document.getElementById("new");
+        var password = document.getElementById("new-password");
         var button = document.querySelector("button");
-        var oldTip = document.getElementById("newPassword");
-        var NewTip = document.getElementById("passRepeat");
+        var oldTip = document.getElementById("new-tip");
+        var NewTip = document.getElementById("repeat-tip");
         closeToolTip(NewTip);
        
         
-        if (password.value === document.getElementById("old").value) {
+        if (password.value === document.getElementById("old-password").value) {
             password.style.backgroundColor = "#f72626";
             displayToolTip(oldTip, "Your new password cannot be the same as the old one!");
             oldTip.style.top = "42%";
@@ -51,7 +51,7 @@ function passwordEntered() {
 }
 
 function sameTest() {
-    var pass = document.getElementById("new").value;
+    var pass = document.getElementById("new-password").value;
     var passRepeat = document.getElementById("new-repeat");
 
     if (passRepeat.value != pass) {
@@ -83,8 +83,8 @@ function submit() {
     catch{}
     
     var form = {
-        "old_password": document.getElementById("old").value,
-        "new_password": document.getElementById("new").value
+        "old_password": document.getElementById("old-password").value,
+        "new_password": document.getElementById("new-password").value
     };
     
     var request = new XMLHttpRequest();

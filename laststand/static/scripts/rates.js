@@ -1,5 +1,5 @@
 function findSelected(pressed) {
-    document.getElementById("selectButton").disabled = false;
+    document.getElementById("select-button").disabled = false;
     var buttons = document.querySelectorAll(".radio-button");
     var current = pressed.querySelector("input");
 
@@ -33,7 +33,6 @@ function selectPlan() {
         if (request.responseText === "register") {
             alert("You have to sign in or create an account to purchase a plan!");
         }
-        console.log(request.responseText);
         window.location.replace("/" + request.responseText);
     }
 

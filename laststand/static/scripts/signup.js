@@ -1,5 +1,5 @@
 function enabler() {
-        var button = document.getElementById("registerbutton");
+        var button = document.getElementById("register-button");
         var entries = document.querySelectorAll("input");
         var box = document.getElementById("agree");
         

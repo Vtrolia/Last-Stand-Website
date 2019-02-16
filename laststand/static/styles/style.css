@@ -179,6 +179,11 @@ textarea {
     background-color: rgb(69, 67, 67);
 }
 
+.profile-pic {
+    display:inline-block; 
+    margin-bottom: .2em;
+}
+
 .radio-button {
     height: auto;
     margin: 0;
@@ -469,7 +474,7 @@ textarea {
     max-width: 60%;
 }
 
-#passRepeat {
+#new-repeat {
     top: 48%;
 }
 
@@ -481,7 +486,7 @@ textarea {
     position: relative;
 }
 
-#selectButton {
+#select-button {
     width: 100%;
 }
 
@@ -543,7 +548,23 @@ textarea {
     top: 8%;
     width: 100%;
     z-index: 1;
-    
+}
+
+#submit-publisher {
+    float: right; 
+    width:15%;
+    margin: 0;
+    color: whitesmoke; 
+    background-color:rgb(40, 40, 54);
+}
+
+#submit-publisher-form {
+    margin-bottom: 0; 
+    color:black;
+    left: 0%; 
+    border: 0; 
+    margin: 0; 
+    padding: 0;
 }
 
 #tabs {
