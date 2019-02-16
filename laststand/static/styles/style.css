@@ -1,11 +1,11 @@
 button {
-    height: 2em;
-    width: 6em;
-    margin-bottom: 3em;
     align-self: center;
-    vertical-align: middle;
-    color: whitesmoke;
     background-color: rgb(40, 40, 54);
+    color: whitesmoke;
+    height: 2em;
+    margin-bottom: 3em;
+    vertical-align: middle;
+    width: 6em;
 }
 
 button:disabled {
@@ -15,19 +15,19 @@ button:disabled {
 }
 
 code {
-    font-size: .8em;
     background-color: white;
     color: black;
+    font-size: .8em;
     padding: .5em;
 }
 
 form {
     border: 2px solid whitesmoke;
     color: whitesmoke;
+    left:26%;
     max-width: 45vw;
     padding-left: 4.5vw;
     position:relative;
-    left:26%;
 }
 
 h2 {
@@ -37,9 +37,9 @@ h2 {
 }
 
 input {
-    width: 40em;
     height: 3em;
     margin-bottom: 3em;
+    width: 40em;
 }
 
 pre {
@@ -50,10 +50,10 @@ pre {
 
 textarea {
     margin-bottom: 1.5em;
-    resize: none;
-    width: 100%;
     margin-left: auto;
     margin-right: auto;
+    resize: none;
+    width: 100%;
 }
 
 .bordered {
@@ -64,20 +64,20 @@ textarea {
     border: 1.5px solid black;
     border-collapse: collapse;
     color: black;
+    margin: 0;
     max-width: 50%;
     min-width: 50%;
-    min-height: 7em;
     max-height: 7em;
+    min-height: 7em;
     padding-left: 1em;
-    margin: 0;
 }
 
 .detail-inputs {
-    position: relative;
-    left: 1vw;
-    margin-bottom: .8em !important;
     height: 2em !important;
+    left: 1vw;
     min-width: 30% !important;
+    margin-bottom: .8em !important;
+    position: relative;
 }
 
 .detail-option {
@@ -90,8 +90,8 @@ textarea {
 }
 
 .detail-option label {
-    padding-left: .5em;
     font-size: 1.2em;
+    padding-left: .5em;
 }
 
 .form-text {
@@ -107,16 +107,16 @@ textarea {
 .jumbotron {
     color: black;
     background-color: snow;
+    margin: 0;
     max-width: 40em;
     padding: 2em;
-    margin: 0;
 }
 
 .option {
+    font-size: 1.2em;
     font-weight: bold;
     padding: .7em;
     padding-left: 0;
-    font-size: 1.2em;
 }
 
 .option img {
@@ -134,39 +134,39 @@ textarea {
 }
 
 .radio_button {
-    width: auto;
     height: auto;
     margin: 0;
     margin-left: 1em;
     padding: 0;
+    width: auto;
 }
 
 .toolTip {
+    background-color: rgb(40, 40, 54);
+    border-radius: .5em;
+    color: whitesmoke;
+    display: inline;
+    left: 2%;
     opacity: 0;
+    padding: .3em;
+    position: relative;
+    text-align: center;
+    top: 37.5%;
     transition: .5s;
     visibility: hidden;
-    display: inline;
     width: auto;
-    background-color: rgb(40, 40, 54);
-    padding: .3em;
-    color: whitesmoke;
-    text-align: center;
-    border-radius: .5em;
-    position: relative;
-    top: 37.5%;
-    left: 2%;
 }
     
 div .toolTip::after {
+    border-color: transparent rgb(40, 40, 54) transparent transparent;
+    border-style: solid;
+    border-width: 5px;
     content: " ";
     display: inline-block;
-    position: absolute;
-    top: 50%;
-    right: 100%;
     margin-top: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent rgb(40, 40, 54) transparent transparent;
+    position: absolute;
+    right: 100%;
+    top: 50%;
 }
 
 .toolTip li {
@@ -174,41 +174,41 @@ div .toolTip::after {
 }
 
 .update {
-    padding: 2em;
     animation: movein;
-    position: relative;
     animation-duration: .5s;
     border: 2px double snow;
     margin: 0;
     margin-bottom: 1em;
+    padding: 2em;
+    position: relative;
 }
 
 .update img {
     border: 1px solid rgb(28, 28, 255);
+    margin-bottom: 1em;
     max-width: 50vw;
     max-height: 20em;
-    margin-bottom: 1em;
 }
 
 #account-details {
-    display: inline-block;
-    position: absolute;
-    padding-top: 6vw;
-    margin-top: -6em;
-    left: 0;
-    min-height: 57.4em;
-    width: 21vw;
     background-color: #dbdbdb;
     border-bottom-right-radius: 1em;
     border-top-right-radius: 1em;
     border: 1px solid black;
+    display: inline-block;
+    left: 0;
+    margin-top: -6em;
+    min-height: 57.4em;
+    padding-top: 6vw;
+    position: absolute;
+    width: 21vw;
 }
 
 #account-details li {
     border-top: 1px solid black;
-    padding: 1em;
-    margin: 0;
     font-size: 1.2em;
+    margin: 0;
+    padding: 1em;
 }
 
 #account-details li:hover {
@@ -217,31 +217,31 @@ div .toolTip::after {
 }
 
 #account-details ul {
+    margin-bottom: 0;
     padding: 0;
     width: 100%;
-    margin-bottom: 0;
 }
 
 #account-page {
+    left: 0;
+    min-width: 80%;
+    min-height: 56.3em;
     padding-top: 5em;
     padding-left: .1em;
     padding-right: 0;
     padding-bottom: 0;
     position: absolute;
-    left: 0;
-    min-width: 80%;
-    min-height: 56.3em;
 }
 
 #account-page input, #account-page button {
-    width: auto;
     height: auto;
     margin: .5em;
+    width: auto;
 }
 
 #account-picture {
-    padding-top: 1em;
     padding-bottom: 1em;
+    padding-top: 1em;
 }
 
 #account-status {
@@ -251,14 +251,14 @@ div .toolTip::after {
 #alerts, #regalert {
     animation: movein1;
     animation-duration: 1s;
+    left: 27%;
     max-width: 45vw;
     position: relative;
-    left: 27%;
 }
 
 #article-page {
-    width: 58%;
     padding-top: 6em;
+    width: 58%;
 }
 
 #article-page a:link, #article-page a:visited {
@@ -266,10 +266,10 @@ div .toolTip::after {
 }
 
 #article-post {
-    position: relative;
-    padding: 2em;
     left: 0;
     min-width: 100%;
+    padding: 2em;
+    position: relative;
 }
 
 #article-post input, #issueForm input {
@@ -282,10 +282,10 @@ div .toolTip::after {
 }
 
 #changeDetails #alerts {
-    position: relative;
     float: right;
-    margin-top: 5vw;
     left: -1vw;
+    margin-top: 5vw;
+    position: relative;
     width: 40em;
 }
 
@@ -300,10 +300,10 @@ div .toolTip::after {
 }
 
 #detail-aside {
-    width: 50%;
-    position: relative;
     float: right;
     left: 0%;
+    position: relative;
+    width: 50%;
 }
 
 #detail-settings { 
@@ -312,38 +312,38 @@ div .toolTip::after {
 }
 
 #download-buttons {
-    position: relative;
     left: 0;
     margin-left: auto;
     margin-right: auto;
     margin-top: 10%;
     padding: 0;
+    position: relative;
 }
 
 #file {
-    margin: 0;
     border: 0;
-    padding: 0;
+    margin: 0;
     max-width: 300px;
+    padding: 0;
 }
 
 #first-downloads-page {
-    position: relative !important;
+    background-color: whitesmoke !important;
+    border-radius: 0.3em;
+    color: black !important;
+    height: 56em !important;
     margin-left: auto;
     margin-right: auto;
     padding-left: 1em;
     padding-right: 1em;
     padding-top: 6em !important;
-    background-color: whitesmoke !important;
-    color: black !important;
+    position: relative !important;
     width: 60%;
-    border-radius: 0.3em;
-    height: 56em !important;
 }
 
 #first-downloads-page button {
-    color: whitesmoke;
     background-color: black;
+    color: whitesmoke;
     width: 10em;
     
 }
@@ -357,25 +357,24 @@ div .toolTip::after {
 }
 
 #home-content h3 {
+    border-bottom: 1px dashed whitesmoke;
     font-size: 1.4em;
     margin-bottom: 1em;
-    border-bottom: 1px dashed whitesmoke;
 }
 
 #home-content, #article-page {
-    position: relative;
-    top: 10%;
     background-color:rgb(40, 40, 54);
-    font-family: serif New Century Schoolbook;
     color:whitesmoke;
     display: flex;
     flex-direction: column;
-    width: 60vw;
+    font-family: serif New Century Schoolbook;
+    font-size: 1.07em;
+    margin-bottom: 5em;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 5em;
-    font-size: 1.07em;
-    
+    position: relative;
+    top: 10%;
+    width: 60vw;
 }
 
 #identification, #account-picture, #account-status, #clouds {
@@ -391,22 +390,22 @@ div .toolTip::after {
 }
 
 #issues, #table-info {
-    position: relative;
-    padding-top: 6em;
-    width: 60%;
     background-color:rgb(40, 40, 54);
+    color:whitesmoke;
     font-family: serif New Century Schoolbook;
     font-size: 1.07em;
     margin-left: auto;
-    color:whitesmoke;
     margin-right: auto;
+    padding-top: 6em;
+    position: relative;
+    width: 60%;
 }
 
 #issueForm {
-    position: relative;
-    min-width: 100%;
     left: 0%;
+    min-width: 100%;
     padding: 1em;
+    position: relative;
 }
 
 #issueForm input {
@@ -423,8 +422,8 @@ div .toolTip::after {
 }
 
 #license-warning {
-    padding-top: 2em;
     max-width: 80%;
+    padding-top: 2em;
 }
 
 #login, #register {
@@ -442,9 +441,9 @@ div .toolTip::after {
 }
 
 #more {
+    padding-right:5em;
     position: fixed;
     top: 10%;
-    padding-right:5em;
 }
 
 #passwordForm button:disabled, #deleteAccount button:disabled, #becomePublisher button:disabled {
@@ -454,9 +453,9 @@ div .toolTip::after {
 }
 
 #passwordForm #alerts {
+    left: 20%;
     margin-top: 10em;
     max-width: 60%;
-    left: 20%;
 }
 
 #passRepeat {
@@ -466,9 +465,9 @@ div .toolTip::after {
 #publish-alert {
     animation: movein2;
     animation-duration: 1s;
+    left: 0%;
     max-width: 100%;
     position: relative;
-    left: 0%;
 }
 
 #selectButton {
@@ -476,10 +475,10 @@ div .toolTip::after {
 }
 
 #select-plan {
+    left: 70%;
     position:absolute;
     top: 40%;
     width: 10em;
-    left: 70%;
 }
 
 #settings-bottom {
@@ -491,14 +490,14 @@ div .toolTip::after {
 }
 
 #settings-display{
-    position: relative;
-    top: 0%;
-    min-height: 95%;
+    left: 21.5vw;
     max-height: 95%;
+    min-height: 95%;
     padding-left: .5vw;
     padding-right: 1vw;
+    position: relative;
+    top: 0%;
     width: 59vw;
-    left: 21.5vw;
 }
 
 #skip {
@@ -507,31 +506,31 @@ div .toolTip::after {
 
 #storytime {
     animation: fade;
-    position: relative;
-    animation-play-state: paused;
     animation-duration: 1.5s;
+    animation-play-state: paused;
+    position: relative;
 }
 
 #style-guide {
-    padding: 1em;
     background-color: #e6e6e6;
-    position: relative;
     border-radius: 10px;
     height: 60%;
-    overflow-y: scroll;
-    top: 10%;
     left: 20%;
+    overflow-y: scroll;
+    padding: 1em;
+    position: relative;
+    top: 10%;
     width: 60%;
 }
 
 #style-guide-box {
-    display: none;
-    position: fixed;
     background-color: rgba(0, 0, 0, .4);
+    display: none;
+    height: 100%;
     left: 0;
+    position: fixed;
     top: 8%;
     width: 100%;
-    height: 100%;
     z-index: 1;
     
 }
@@ -539,8 +538,8 @@ div .toolTip::after {
 #tabs {
     border: .1vw solid whitesmoke;
     border-color: whitesmoke;
-    max-width: 50vw;
     font-size: 1.75em;
+    max-width: 50vw;
 }
 
 #tabs tr {
@@ -548,27 +547,26 @@ div .toolTip::after {
 }
 
 #tabs th {
-    margin-top: 10vw;
-    margin-left: auto;
-    margin-right: auto;
-    width: auto;
-    font-size: 1.5vw;
     align-content: center;
     border: .05vw double whitesmoke;  
+    font-size: 1.5vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10vw;
+    width: auto;
 }
 
-#tabs th, #tabs td{
-    max-width: 20vw;
-    height: 7.vh;
-    overflow-x: hidden;
-    padding: 1.5vw;
+#tabs th, #tabs td {
     border-left: .1vw dashed whitesmoke;
-    
+    height: 7.vh;
+    max-width: 20vw;
+    overflow-x: hidden;
+    padding: 1.5vw;   
 }
 
 #tabs td li {
-    padding: .5em;
     font-size: 1.3vw;
+    padding: .5em;
 }
 
 
@@ -583,11 +581,11 @@ div .toolTip::after {
 
 #table, #login, #first-downloads-page, #legal-info, #register {
     background-color:rgb(40, 40, 54);
+    color:whitesmoke;
     font-family: serif New Century Schoolbook;
+    height: 100%;
     padding-top: 6em;
     position: relative;
-    height: 100%;
-    color:whitesmoke;
 }
 
 #table {
@@ -664,16 +662,17 @@ div .toolTip::after {
     #settings-display {
         font-size: .8em;
         width: 75vw;
-        
     }
     
     #account-details {
         font-size: .8em;
         min-height: 71.1em;
     }
+    
     #account-page h4 {
         font-size: 1.5em;
     }
+    
     #account-page img {
         display: inline-block;
         width: 32px;
@@ -686,6 +685,7 @@ div .toolTip::after {
     #becomePublisher {
         font-size: 1.5vw !important;
     }
+    
     #becomePublisher h6 {
         font-size: 2vw;
     }
@@ -695,8 +695,8 @@ div .toolTip::after {
     }
     
     #select-plan {
-        top: 35%;
         font-size: .7em;
+        top: 35%;
     }
     
     #first-downloads-page {
@@ -708,8 +708,8 @@ div .toolTip::after {
     }
     
     #login, #register {
-        width: 100%;
         font-size: .7em;
+        width: 100%;
     }
     
     #login-form {
@@ -734,9 +734,9 @@ div .toolTip::after {
 
 @media only screen and (max-width: 768px) { 
      #article-page, #issues {
-        margin-left: auto;
-        margin-right: auto;
-        min-width: 95%;
+         margin-left: auto;
+         margin-right: auto;
+         min-width: 95%;
     }
     
     #home-content, #updates {
