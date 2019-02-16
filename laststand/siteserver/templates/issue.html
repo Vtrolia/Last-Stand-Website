@@ -40,7 +40,7 @@
             </div>
         {% else %}
         {% endif %}
-        <form id="issueForm" method="post" action="{% url 'submit_issue' %}">
+        <form id="issue-form" method="post" action="{% url 'submit_issue' %}">
             {% csrf_token %}
             <div style="margin-top: 1em;">
                 <p class="issue-text" style="padding-right: 1em;">Your Name:</p>

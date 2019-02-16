@@ -1,6 +1,6 @@
 function findSelected(pressed) {
     document.getElementById("selectButton").disabled = false;
-    var buttons = document.querySelectorAll(".radio_button");
+    var buttons = document.querySelectorAll(".radio-button");
     var current = pressed.querySelector("input");
 
     for (let i = 0; i < buttons.length; i++) {
@@ -17,7 +17,7 @@ function selectPlan() {
     var items = {
         "plan": undefined,
     }
-    var options = document.querySelectorAll(".radio_button");
+    var options = document.querySelectorAll(".radio-button");
     for (let i = 0; i < options.length; i++) {
         if (options.item(i).checked = true) {
             items["plan"] = options.item(i).getAttribute("data-name");

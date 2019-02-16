@@ -9,7 +9,7 @@
     <div id="register">
         <h2 align=center>Sign Up <img src="{% static 'source_images/Lock.png' %}" width=20em height=25em/></h2> 
         {% if message %}
-            <div class="alert alert-danger" role="regalert" id="alerts">
+            <div class="alert alert-danger" role="alert" id="alerts">
                 <strong>{{ message.0 }}</strong>{{ message.1 }}
             </div>
         {% else %}

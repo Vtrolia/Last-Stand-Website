@@ -32,7 +32,7 @@ function passwordEntered() {
         if (upper && lower && number && password.value.length >= 8) {
             closeToolTip(oldTip);
             
-            document.getElementById("passwordForm").onkeypress = (e) => {
+            document.getElementById("password-form").onkeypress = (e) => {
                 if (e.keyCode === 13) {
                     submit();
                 }

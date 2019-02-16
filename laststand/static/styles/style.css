@@ -133,7 +133,7 @@ textarea {
     background-color: rgb(69, 67, 67);
 }
 
-.radio_button {
+.radio-button {
     height: auto;
     margin: 0;
     margin-left: 1em;
@@ -141,7 +141,7 @@ textarea {
     width: auto;
 }
 
-.toolTip {
+.tool-tip {
     background-color: rgb(40, 40, 54);
     border-radius: .5em;
     color: whitesmoke;
@@ -157,7 +157,7 @@ textarea {
     width: auto;
 }
     
-div .toolTip::after {
+.password-tip::after {
     border-color: transparent rgb(40, 40, 54) transparent transparent;
     border-style: solid;
     border-width: 5px;
@@ -169,8 +169,16 @@ div .toolTip::after {
     top: 50%;
 }
 
-.toolTip li {
-    text-align: left;
+.detail-tip::after {
+    border-color: transparent transparent rgb(40, 40, 54) transparent;
+    border-style: solid;
+    border-width: 5px;
+    bottom: 100%;
+    content: " ";
+    display: inline-block;
+    left: 50%;
+    margin-left: -5px;
+    position: absolute;
 }
 
 .update {
@@ -248,7 +256,7 @@ div .toolTip::after {
     margin-bottom: 0em;
 }
 
-#alerts, #regalert {
+#alerts {
     animation: movein1;
     animation-duration: 1s;
     left: 27%;
@@ -272,16 +280,16 @@ div .toolTip::after {
     position: relative;
 }
 
-#article-post input, #issueForm input {
+#article-post input, #issue-form input {
     height: 2em;
     width: 30em;
 }
 
-#backButton:hover {
+#back-button:hover {
     width: 52px;
 }
 
-#changeDetails #alerts {
+#change-details #alerts {
     float: right;
     left: -1vw;
     margin-top: 5vw;
@@ -401,14 +409,14 @@ div .toolTip::after {
     width: 60%;
 }
 
-#issueForm {
+#issue-form {
     left: 0%;
     min-width: 100%;
     padding: 1em;
     position: relative;
 }
 
-#issueForm input {
+#issue-form input {
     margin-bottom: 2em;
 }
 
@@ -446,13 +454,13 @@ div .toolTip::after {
     top: 10%;
 }
 
-#passwordForm button:disabled, #deleteAccount button:disabled, #becomePublisher button:disabled {
+#password-form button:disabled, #delete-account button:disabled, #become-publisher button:disabled {
     background-color: gray;
     color: black;
     opacity: .75;
 }
 
-#passwordForm #alerts {
+#password-form #alerts {
     left: 20%;
     margin-top: 10em;
     max-width: 60%;
@@ -597,10 +605,10 @@ div .toolTip::after {
 }
 
 @media only screen and (max-width: 1700px) {
-    #becomePublisher h6 {
+    #become-publisher h6 {
         font-size: .85vw !important;
     }
-    #becomePublisher {
+    #become-publisher {
         font-size: .95vw !important;
     }
 
@@ -615,10 +623,10 @@ div .toolTip::after {
         font-size: 90%;
     }
     
-    #becomePublisher h6 {
+    #become-publisher h6 {
         font-size: 1.5vw !important;
     }
-    #becomePublisher {
+    #become-publisher {
         font-size: 1vw !important;
     }
     
@@ -682,11 +690,11 @@ div .toolTip::after {
         width: 48px;
     }
     
-    #becomePublisher {
+    #become-publisher {
         font-size: 1.5vw !important;
     }
     
-    #becomePublisher h6 {
+    #become-publisher h6 {
         font-size: 2vw;
     }
     
@@ -803,6 +811,6 @@ div .toolTip::after {
 }
 
 ::-webkit-scrollbar {
-    width: 0px;
     background: transparent;
+    width: 0px;
 }

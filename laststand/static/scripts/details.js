@@ -27,7 +27,7 @@ function verify(which, toVerify) {
     usernames = Array.from(users[which]);
     if (usernames.includes(toVerify)) {
         var tip = document.createElement("div");
-        tip.setAttribute("class", "toolTip");
+        tip.setAttribute("class", "tool-tip detail-tip");
         tip.setAttribute("id", "userTip");
         tip.style.visibility = "visible";
         tip.style.opacity = "1";
@@ -68,7 +68,7 @@ function change(type) {
         alert.setAttribute("class", "alert alert-" + response["flag"]);
         alert.innerHTML = response["body"];
         
-        document.getElementById("changeDetails").append(alert);
+        document.getElementById("change-details").append(alert);
         
     }
     request.send(JSON.stringify(toChange));

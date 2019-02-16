@@ -8,7 +8,7 @@ function textStroke() {
 }
 
 window.addEventListener("submit", () => {
-    if (document.getElementById("becomePublisher")) {
+    if (document.getElementById("become-publisher")) {
         alert("Your application was successfully received!");
         window.removeEventListener("submit", () => {});
     }
