@@ -56,6 +56,14 @@ textarea {
     width: 100%;
 }
 
+.auth-form {
+    margin-left: 1%;
+}
+
+.auth-form input {
+    width: 85%;
+}
+
 .bordered {
     margin-left: -1.1vw;   
 }
@@ -70,6 +78,11 @@ textarea {
     max-height: 7em;
     min-height: 7em;
     padding-left: 1em;
+}
+
+.box-input {
+    height: 2em;
+    width: 30em;
 }
 
 .detail-inputs {
@@ -92,6 +105,18 @@ textarea {
 .detail-option label {
     font-size: 1.2em;
     padding-left: .5em;
+}
+
+.detail-tip::after {
+    border-color: transparent transparent rgb(40, 40, 54) transparent;
+    border-style: solid;
+    border-width: 5px;
+    bottom: 100%;
+    content: " ";
+    display: inline-block;
+    left: 50%;
+    margin-left: -5px;
+    position: absolute;
 }
 
 .form-text {
@@ -129,6 +154,27 @@ textarea {
     
 }
 
+.page {
+    background-color:rgb(40, 40, 54);
+    color:whitesmoke;
+    font-family: serif New Century Schoolbook;
+    height: 100%;
+    padding-top: 6em;
+    position: relative;
+}
+    
+.password-tip::after {
+    border-color: transparent rgb(40, 40, 54) transparent transparent;
+    border-style: solid;
+    border-width: 5px;
+    content: " ";
+    display: inline-block;
+    margin-top: -5px;
+    position: absolute;
+    right: 100%;
+    top: 50%;
+}
+
 .price:hover {
     background-color: rgb(69, 67, 67);
 }
@@ -139,6 +185,10 @@ textarea {
     margin-left: 1em;
     padding: 0;
     width: auto;
+}
+
+.splash-display {
+    padding-left: .5em;
 }
 
 .tool-tip {
@@ -156,30 +206,6 @@ textarea {
     visibility: hidden;
     width: auto;
 }
-    
-.password-tip::after {
-    border-color: transparent rgb(40, 40, 54) transparent transparent;
-    border-style: solid;
-    border-width: 5px;
-    content: " ";
-    display: inline-block;
-    margin-top: -5px;
-    position: absolute;
-    right: 100%;
-    top: 50%;
-}
-
-.detail-tip::after {
-    border-color: transparent transparent rgb(40, 40, 54) transparent;
-    border-style: solid;
-    border-width: 5px;
-    bottom: 100%;
-    content: " ";
-    display: inline-block;
-    left: 50%;
-    margin-left: -5px;
-    position: absolute;
-}
 
 .update {
     animation: movein;
@@ -196,6 +222,12 @@ textarea {
     margin-bottom: 1em;
     max-width: 50vw;
     max-height: 20em;
+}
+
+.user-auth {
+    margin-left: auto;
+    margin-right: auto;
+    width: auto !important;
 }
 
 #account-details {
@@ -278,11 +310,6 @@ textarea {
     min-width: 100%;
     padding: 2em;
     position: relative;
-}
-
-#article-post input, #issue-form input {
-    height: 2em;
-    width: 30em;
 }
 
 #back-button:hover {
@@ -385,10 +412,6 @@ textarea {
     width: 60vw;
 }
 
-#identification, #account-picture, #account-status, #clouds {
-    padding-left: .5em;
-}
-
 #intro {
     margin: 1em;
 }
@@ -434,30 +457,10 @@ textarea {
     padding-top: 2em;
 }
 
-#login, #register {
-    margin-left: auto;
-    margin-right: auto;
-    width: auto !important;
-}
-
-#login-form, #register-form {
-    margin-left: 1%;
-}
-
-#login-form input, #register-form input {
-    width: 85%;
-}
-
 #more {
     padding-right:5em;
     position: fixed;
     top: 10%;
-}
-
-#password-form button:disabled, #delete-account button:disabled, #become-publisher button:disabled {
-    background-color: gray;
-    color: black;
-    opacity: .75;
 }
 
 #password-form #alerts {
@@ -587,15 +590,6 @@ textarea {
     box-shadow:  5px 5px 5px #888888;
 }
 
-#table, #login, #first-downloads-page, #legal-info, #register {
-    background-color:rgb(40, 40, 54);
-    color:whitesmoke;
-    font-family: serif New Century Schoolbook;
-    height: 100%;
-    padding-top: 6em;
-    position: relative;
-}
-
 #table {
     margin-left: 2em;
 }
@@ -605,71 +599,67 @@ textarea {
 }
 
 @media only screen and (max-width: 1700px) {
-    #become-publisher h6 {
-        font-size: .85vw !important;
-    }
     #become-publisher {
         font-size: .95vw !important;
+    }
+    
+    #become-publisher h6 {
+        font-size: .85vw !important;
     }
 
 }
 
 @media only screen and (max-width: 1200px) {
-    #article-page, #issues {
-        width: 80%;
-    }
-    
     .detail-option label {
         font-size: 90%;
+    }
+    
+    #article-page, #issues {
+        width: 80%;
     }
     
     #become-publisher h6 {
         font-size: 1.5vw !important;
     }
+    
     #become-publisher {
         font-size: 1vw !important;
-    }
-    
-    #tabs {
-        max-width: 70vw;
-        min-height: 40vw;
     }
     
     #download-buttons {
         font-size: .7em;
     }
     
+    #first-downloads-page {
+        font-size: 1.5vw;
+    }
+    
     #register {
         font-size: .7em;
     }
     
-    #first-downloads-page {
-        font-size: 1.5vw;
+    #tabs {
+        max-width: 70vw;
+        min-height: 40vw;
     }
-
 }
 
 @media only screen and (max-width: 850px) {
     img {
         display: none;
     }
-    #greeting {
-        display: none;
+    
+    .auth-form {
+        align-self: center;
     }
     
-    #article-page, #issues {
-        width: 80%;
+    .bordered {
+        width: 107.1% !important;
     }
     
-    #account-page {
-        min-width: 100%;
-        min-height: 56em;
-        padding-top: 4em;
-    }
-    
-    #settings-display {
-        font-size: .8em;
-        width: 75vw;
+    .user-auth {
+        font-size: .7em;
+        width: 100%;
     }
     
     #account-details {
@@ -677,6 +667,12 @@ textarea {
         min-height: 71.1em;
     }
     
+    #account-page {
+        min-width: 100%;
+        min-height: 56em;
+        padding-top: 4em;
+    }
+
     #account-page h4 {
         font-size: 1.5em;
     }
@@ -686,8 +682,8 @@ textarea {
         width: 32px;
     }
     
-    #settings-bottom img {
-        width: 48px;
+    #article-page, #issues {
+        width: 80%;
     }
     
     #become-publisher {
@@ -698,8 +694,24 @@ textarea {
         font-size: 2vw;
     }
     
-    #tabs td li {
-        font-size: 2vw;
+    #download-buttons {
+        font-size: 100%;
+    }
+    
+    #first-downloads-page {
+        width: 90%;
+    }
+    
+    #greeting {
+        display: none;
+    }
+    
+    #licenser-agreement {
+        font-size: 1vw !important;
+    }
+    
+    #register-form {
+        font-size: .6em;
     }
     
     #select-plan {
@@ -707,44 +719,41 @@ textarea {
         top: 35%;
     }
     
-    #first-downloads-page {
-        width: 90%;
+    #settings-display {
+        font-size: .8em;
+        width: 75vw;
     }
     
-    #download-buttons {
-        font-size: 100%;
+    #settings-bottom img {
+        width: 48px;
     }
     
-    #login, #register {
-        font-size: .7em;
-        width: 100%;
+    #tabs td li {
+        font-size: 2vw;
     }
-    
-    #login-form {
-        align-self: center;
-    }
-    
-    #register-form {
-        align-content: center;
-        font-size: .6em;
-    }
-    
-    #licenser-agreement {
-        font-size: 1vw !important;
-    }
-    
-    .bordered {
-        width: 107.1% !important;
-        
-    }
-    
 }
 
 @media only screen and (max-width: 768px) { 
-     #article-page, #issues {
+    .box-input {
+        max-width: 35vw;
+    } 
+    
+    #article-page, #issues {
          margin-left: auto;
          margin-right: auto;
          min-width: 95%;
+    }
+    
+    #content {
+        width: 100%;
+    }
+    
+    #download-buttons {
+        font-size: 1.4vw;
+    }
+    
+    #home-content h3 {
+        font-size: 12px;
     }
     
     #home-content, #updates {
@@ -752,24 +761,13 @@ textarea {
         margin-right: 10;
         min-width: 80%;
     }
-    #home-content h3 {
-        font-size: 12px;
-    }
-    
-    #article-page input, #issues input {
-        max-width: 35vw;
-    }
-    
-    #content {
-        width: 100%;
-    }
-
-    #download-buttons {
-        font-size: 1.4vw;
-    }
 }
 
 @media only screen and (max-width: 550px) { 
+    .user-auth {
+        font-size: .3em;
+    }
+    
     #first-downloads-page {
         font-size: 2.5vw;
     }
@@ -780,11 +778,6 @@ textarea {
         top 100%;
         margin-top: 2em;
     }
-    
-    #register, #login {
-        font-size: .3em;
-    }
-    
 }
 
 @keyframes fade {

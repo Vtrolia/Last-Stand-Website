@@ -5,8 +5,8 @@
     <link rel= "stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
     <script>
         window.oninput = () => {
-            var inputs = document.querySelectorAll(".issueBox");
-            let click = document.getElementById("subButton");
+            var inputs = document.querySelectorAll(".issue-box");
+            let click = document.getElementById("sub-button");
             for (let i = 0; i < inputs.length; i++) {
                 if (inputs.item(i).value === "") {
 
@@ -44,15 +44,15 @@
             {% csrf_token %}
             <div style="margin-top: 1em;">
                 <p class="issue-text" style="padding-right: 1em;">Your Name:</p>
-                <input class="issueBox" align=center type=text id="your-name" name="your-name">
+                <input class="issue-box box-input" align=center type=text id="your-name" name="your-name">
             </div>
             <div style="margin-top: 1em;">
                 <p class="issue-text" style="padding-right: 1.25em;">Your Email:</p>
-                <input class="issueBox" align=center type=email id="your-email" name="your-email">
+                <input class="issue-box box-input" align=center type=email id="your-email" name="your-email">
             </div>
             <div style="padding-bottom: 2em; padding-top: 1em;">
                 What is the issue with? 
-                <select class="issueBox" style="margin-left: 1em;" id="issue" name="issue" title="please tell us what type of issue you are having">
+                <select class="issue-box" style="margin-left: 1em;" id="issue" name="issue" title="please tell us what type of issue you are having">
                     <option value=''>Please select an option</option>
                     <option value="server">Last Stand Server end</option>
                     <option value="linux">Last Stand Client end(Linux)</option>
@@ -66,8 +66,8 @@
                     <option value="other">Other issue</option>
                 </select>
             </div>
-            <textarea class="issueBox" title="please use 100 words or more" style="margin-left: .1em;" rows="20" cols="105.5" id="issue-text" name="issue-text" placeholder="describe your issue in full detail here..."></textarea>
-            <button id="subButton" type="submit" disabled>Submit</button>
+            <textarea class="issue-box" title="please use 100 words or more" style="margin-left: .1em;" rows="20" cols="105.5" id="issue-text" name="issue-text" placeholder="describe your issue in full detail here..."></textarea>
+            <button id="sub-button" type="submit" disabled>Submit</button>
         </form>
     </div>
 {% endblock %}

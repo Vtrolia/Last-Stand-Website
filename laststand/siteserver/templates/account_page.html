@@ -13,7 +13,7 @@
 {% block body %}
     <div id="account-page" class="jumbotron">
         <div id="account-details">
-            <div id="account-picture">
+            <div id="account-picture" class="splash-display">
                 {% if account_picture %}
                 <img src="{{ account_picture }}" style="display: inline-block;  margin-bottom: .2em;" width=128>
                 {% else %}
@@ -22,14 +22,14 @@
                 <div style="width:100%">Profile pictures will be available for you to set soon!</div>
             </div>
             <hr class="bordered">
-            <div id="identification">
+            <div id="identification" class="splash-display">
                 <strong style="font-size: 1.3em">{{ message.username }}</strong><br>
                 You joined on <strong>{{ message.date_joined }}</strong>
             </div>
             <hr>
-            <div id="account-status"></div>
+            <div id="account-status" class="splash-display"></div>
             <hr>
-            <div id="clouds" style="margin-bottom: 1em;"></div>
+            <div id="clouds" class="splash-display" style="margin-bottom: 1em;"></div>
             <div id="cloud-list">
                 <ul id="cloud-options">
                 </ul>

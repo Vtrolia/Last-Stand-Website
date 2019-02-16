@@ -50,10 +50,10 @@
         {% endif %}
         <form id="article-post" action="{% url 'submit_article' %}" enctype="multipart/form-data" method="post">
             {% csrf_token %}
-            <input type=text id="title" name="title" placeholder="Give your article a Title...">
+            <input type=text id="title" class="box-input" name="title" placeholder="Give your article a Title...">
             <div>
-                <input type=text id="credit" name="credit" title="Who took this picture? (name or organization.) If you want to use Last Stand's logo, just enter <logo>. If it's your image, this can be a title for the image with <self> before the title." placeholder="Author Credit">
-                <input id="file" name="file" type=file accept=".jpeg" title="Select an Image(.jpg, .jpeg, only)" onclick="falser()">
+                <input type=text id="credit" class="box-input" name="credit" title="Who took this picture? (name or organization.) If you want to use Last Stand's logo, just enter <logo>. If it's your image, this can be a title for the image with <self> before the title." placeholder="Author Credit">
+                <input id="file" class="box-input" name="file" type=file accept=".jpeg" title="Select an Image(.jpg, .jpeg, only)" onclick="falser()">
             </div>
             <textarea rows="20" cols="97" id="content" name="content" placeholder="Enter your story's text here"></textarea>
             <div>

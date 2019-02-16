@@ -6,7 +6,7 @@
     <link type="text/css" rel="stylesheet" href="{% static 'styles/style.css' %}"/>
 {% endblock %}
 {% block body %}
-    <div id="register">
+    <div id="register" class="page user-auth">
         <h2 align=center>Sign Up <img src="{% static 'source_images/Lock.png' %}" width=20em height=25em/></h2> 
         {% if message %}
             <div class="alert alert-danger" role="alert" id="alerts">
@@ -14,7 +14,7 @@
             </div>
         {% else %}
         {% endif %}
-        <form id ="register-form" action="{% url 'submit_register' %}" method="post">
+        <form id ="register-form" class="auth-form" action="{% url 'submit_register' %}" method="post">
             {% csrf_token %}
             <div class="form-text">Email:</div>
             <input type=email name="email" placeholder="example@email.com">
