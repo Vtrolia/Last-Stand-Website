@@ -1,3 +1,7 @@
+/*
+ * each time one of the radio buttons is pressed, the other buttons must not be checked,
+ * also, this means that the user can submit to buy this plan
+ */
 function findSelected(pressed) {
     document.getElementById("select-button").disabled = false;
     var buttons = document.querySelectorAll(".radio-button");
@@ -12,11 +16,14 @@ function findSelected(pressed) {
         }
     }
 }
-            
+ 
+// does nothing yet!
 function selectPlan() {
     var items = {
         "plan": undefined,
     }
+    return;
+    
     var options = document.querySelectorAll(".radio-button");
     for (let i = 0; i < options.length; i++) {
         if (options.item(i).checked = true) {

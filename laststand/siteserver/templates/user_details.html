@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
         window.onkeypress =  () => {
-            var f = document.getElementById("firstName");
-            var l = document.getElementById("lastName");
+            var f = document.getElementById("more-first");
+            var l = document.getElementById("more-last");
             if (l.value && f.value) {
-                document.getElementById("databutton").disabled = false;
+                document.getElementById("data-button").disabled = false;
             }
         }
     </script>
@@ -25,7 +25,7 @@
         <div class="form-text">Last Name:</div>
         <input type="text" name="lastName" id="more-last" placeholder="Family name... (eg)Smith">
         <div id="button">
-            <button type=submit id="databutton" disabled>Register</button>
+            <button type=submit id="data-button" disabled>Register</button>
             <a href="{% url 'index' %}" id="skip">Click Here to skip for now</a>
         </div>
     </form>

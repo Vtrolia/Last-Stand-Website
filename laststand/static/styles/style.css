@@ -201,6 +201,7 @@ textarea {
     border-radius: .5em;
     color: whitesmoke;
     display: inline;
+    font-size: 1vw;
     left: 2%;
     opacity: 0;
     padding: .3em;
@@ -678,6 +679,10 @@ textarea {
         width: 107.1% !important;
     }
     
+    .tool-tip {
+        font-size: 1.4vw;
+    }
+    
     .user-auth {
         font-size: .7em;
         width: 100%;
@@ -785,6 +790,10 @@ textarea {
 }
 
 @media only screen and (max-width: 550px) { 
+    .tool-tip {
+        font-size: 1.3vw !important;
+    }
+    
     .user-auth {
         font-size: .3em;
     }

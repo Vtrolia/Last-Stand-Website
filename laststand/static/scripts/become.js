@@ -1,3 +1,4 @@
+// make sure both inputs have a value
 function textStroke() {
     var text = document.querySelector("textarea");
     var ex = document.getElementById("example");
@@ -7,6 +8,7 @@ function textStroke() {
     }
 }
 
+// give feedback to the user if all went well
 window.addEventListener("submit", () => {
     if (document.getElementById("become-publisher")) {
         alert("Your application was successfully received!");
