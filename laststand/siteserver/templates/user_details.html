@@ -16,17 +16,23 @@
     </script>
 {% endblock %}
 {% block body %}
-    <form action="{% url 'add_name' %}" method="post" id="more">
-        {% csrf_token %}
-        <div align=center style="padding-top: .5em;" class="form-text">Tell us more about you...</div>
-        <hr style="background-color: whitesmoke">
-        <div class="form-text">First Name:</div>
-        <input type="text" name="firstName" id="more-first" placeholder="Your name... (eg)John">
-        <div class="form-text">Last Name:</div>
-        <input type="text" name="lastName" id="more-last" placeholder="Family name... (eg)Smith">
-        <div id="button">
-            <button type=submit id="data-button" disabled>Register</button>
-            <a href="{% url 'index' %}" id="skip">Click Here to skip for now</a>
-        </div>
-    </form>
+    <div class="page user-auth" id="more-page">
+        <form action="{% url 'add_name' %}" method="post" id="more" class="auth-form">
+            {% csrf_token %}
+            <div align=center style="padding-top: .5em; padding-bottom: 1vw" class="form-text">
+                <span>Tell us more about you...</span>
+            </div>
+            <div style="margin-left: 5%; margin-right: 5%">
+                <hr style="background-color: whitesmoke; width: 95%; margin-left: 0">
+                <div class="form-text">First Name:</div>
+                <input type="text" name="firstName" id="more-first" placeholder="Your name... (eg)John">
+                <div class="form-text">Last Name:</div>
+                <input type="text" name="lastName" id="more-last" placeholder="Family name... (eg)Smith">
+                <div id="button">
+                    <button type=submit id="data-button" disabled>Register</button>
+                    <a href="{% url 'index' %}" id="skip">Click Here to skip for now</a>
+                </div>
+            </div>
+        </form>
+    </div>
 {% endblock %}

@@ -120,7 +120,7 @@ textarea {
 }
 
 .form-text {
-    font-size: 3em;
+    font-size: 3vw;
     padding-bottom: .5em;
 }
 
@@ -464,19 +464,22 @@ textarea {
 }
 
 #more {
-    padding-right:5em;
-    position: fixed;
-    top: 10%;
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+#more-page input {
+    width: 95%;
+}
+
+#new-repeat {
+    top: 48%;
 }
 
 #password-form #alerts {
     left: 20%;
     margin-top: 10em;
     max-width: 60%;
-}
-
-#new-repeat {
-    top: 48%;
 }
 
 #publish-alert {
@@ -518,7 +521,10 @@ textarea {
 }
 
 #skip {
+    display: inline-block;
     float: right;
+    margin-right: 5%;
+    font-size: 1vw;
 }
 
 #storytime {
@@ -754,6 +760,10 @@ textarea {
         width: 48px;
     }
     
+    #skip {
+        font-size: 1.3vw;
+    }
+    
     #tabs td li {
         font-size: 2vw;
     }
@@ -807,6 +817,10 @@ textarea {
         left: 22%;
         top 100%;
         margin-top: 2em;
+    }
+    
+    #skip {
+        font-size: 1.5vw;
     }
 }
 
