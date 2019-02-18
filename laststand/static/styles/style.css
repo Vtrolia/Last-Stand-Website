@@ -466,6 +466,9 @@ textarea {
 #more {
     padding-left: 1vw;
     padding-right: 1vw;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #more-page input {

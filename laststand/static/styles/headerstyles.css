@@ -1,3 +1,145 @@
+/* elements */
+
+a:hover {
+    color: black;
+}
+
+a:link, a:visited {
+    color: whitesmoke;
+}
+
+body {
+     background-color:rgb(40, 40, 54);
+}
+
+/* classes */
+
+.animated {
+    animation-name: hamburgerAnimation;
+    animation-duration: .4s;
+}
+
+.aside {
+    border-bottom: 1px solid black;
+    color: whitesmoke;
+    font-size: 1.04em;
+    padding-left: 1em;
+}
+
+.aside:hover {
+    background-color: rgb(69, 67, 67);
+    cursor: pointer;
+}
+
+.aside img {
+    margin-left: 0em;
+    margin-right: .8em;
+}
+
+.aside td {
+    max-width: 15%;
+    padding-bottom: .3em;
+    padding-left: .7em;
+    padding-top: .3em;
+}
+
+.col {
+    padding: .7em;
+}
+
+.col:hover {
+    background-color: whitesmoke;
+    color: rgb(40, 40, 54);
+}
+
+.col-3 {
+    padding-left: 1.4em;
+}
+
+.left {
+    width: 85%;
+}
+
+.reanimated {
+    animation-duration: .4s;
+    animation-name: reanimate;
+    animation-fill-mode: forwards;
+}
+
+.row {
+    padding-left: 5.5vw;
+}
+
+/* ids */
+            
+#greeting {
+    float: left;
+    padding-top: .7em;
+    width: auto;
+    position: fixed;
+    left: 0;
+}
+
+#hamburgerMenu {
+    display: none;
+    z-index: 1;
+    background-color: rgb(31, 31, 42);
+    color: whitesmoke;
+    position: fixed;
+    padding-top: 0em;
+    right: 0%;
+    width: 20%;
+    height: 100%;
+}
+
+#hamburgerMenu img {
+    display: inline-block !important;
+}
+
+#modal {
+    position: fixed;
+    left: 0;
+    top: auto;
+    display: none;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+#navbar {
+    background-color: rgb(31, 31, 42);
+    color: whitesmoke;
+    font-size: 1.5em;
+    font-family: "OCR A Std, monospace";
+    position: fixed;
+    left: 0%;
+    width: 100%;
+    max-height: 8vw;
+    z-index: 1;
+}
+
+#options {
+    float: right;
+    position: fixed;
+    right: 0%;
+    padding-top: .7em;
+    padding-bottom: .5em;
+    border-radius: 0.3em;
+    border-bottom-left-radius: 0em;
+    border-bottom-right-radius: 0em;
+}
+
+#options:hover {
+    background-color: whitesmoke;
+    cursor: pointer;
+}
+            
+#softname {
+    margin-top: .8em;
+    align-content: center;
+}
+
 @media only screen and (max-width: 1500px) {
     #greeting {
         display: none;
@@ -59,163 +201,14 @@
     }
 }
 
-@keyframes hamburgerAnimation{
-    0% {
-        width: 0%;
-    }
+@keyframes hamburgerAnimation {
+    0% {width: 0%;}
     
-    100% {
-        width: 20%;
-    }
-}
-
-#navbar{
-    background-color: rgb(31, 31, 42);
-    color: whitesmoke;
-    font-size: 1.5em;
-    font-family: "OCR A Std, monospace";
-    position: fixed;
-    left: 0%;
-    width: 100%;
-    max-height: 8vw;
-    z-index: 1;
-}
-
-body {
-     background-color:rgb(40, 40, 54);
-}
-
-.row {
-    padding-left: 5.5vw;
-}
-
-.col {
-    padding: .7em;
-}
-            
-.col-3 {
-    padding-left: 1.4em;
-}
-
-#hamburgerMenu img {
-    display: inline-block !important;
-}
-
- img {
-}
-            
-.col:hover {
-    background-color: whitesmoke;
-    color: rgb(40, 40, 54);
-}
-            
-a:link, a:visited {
-    color: whitesmoke;
-}
-            
-a:hover {
-    color: black;
-}
-
-#greeting {
-    float: left;
-    padding-top: .7em;
-    width: auto;
-    position: fixed;
-    left: 0;
-}
-            
-#softname {
-    margin-left: .5vw;
-    margin-right: .5vw;
-    margin-top: .8em;
-    align-content: center;
-}
-            
-#options {
-    float: right;
-    position: fixed;
-    right: 0%;
-    padding-top: .7em;
-    padding-bottom: .5em;
-    border-radius: 0.3em;
-    border-bottom-left-radius: 0em;
-    border-bottom-right-radius: 0em;
-}
-            
-#options:hover {
-    background-color: whitesmoke;
-    cursor: pointer;
-}
-
-#hamburgerMenu {
-    display: none;
-    z-index: 1;
-    background-color: rgb(31, 31, 42);
-    color: whitesmoke;
-    position: fixed;
-    padding-top: 0em;
-    right: 0%;
-    width: 20%;
-    height: 100%;
-}
-
-.aside {
-    padding-left: 1em;
-    color: whitesmoke;
-    font-size: 1.04em;
-    border-bottom: 1px solid black;
-}
-
-.aside:hover {
-    background-color: rgb(69, 67, 67);
-    cursor: pointer;
-}
-
-.aside td {
-    padding-left: .7em;
-    max-width: 15%;
-    padding-bottom: .3em;
-    padding-top: .3em;
-}
-
-.left {
-    width: 85%;
-}
-
-.aside img {
-    margin-left: 0em;
-    margin-right: .8em;
-}
-
-#modal {
-    position: fixed;
-    left: 0;
-    top: auto;
-    display: none;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
-}
-
-.animated {
-    animation-name: hamburgerAnimation;
-    animation-duration: .4s;
+    100% {width: 20%;}
 }
 
 @keyframes reanimate {
-    0% {
-        width: 20%;
-    }
+    0% {width: 20%;}
     
-    100% {
-        width: 0%;
-    }
+    100% {width: 0%;}
 }
-.reanimated {
-    animation-name: reanimate;
-    animation-duration: .4s;
-    animation-fill-mode: forwards;
-}
-
