@@ -40,8 +40,8 @@ class articlePost {
         let h3 = document.createElement("h3");
         h3.textContent = this.title + " - " + this.date + " by " + this.author;
         html.append(h3);
-
-        if(this.imageTitle != "") {
+        console.log(this.imageTitle);
+        if(this.imageTitle != "n") {
             let img = document.createElement("img");
             img.setAttribute("src", articleImageSrc + "/" + this.imageURL);
             img.setAttribute("title", this.imageTitle);
@@ -83,13 +83,14 @@ class articlePost {
     // change all the Last Stand Markdown into HTML
     static parse(text) {
 
-        var final_text;
-        // display newlines correctly
-        final_text = text.replace(/\\\\r\\\\n/g, "<br>");
+        var final_text = text;
         
         // prevent XSS
         final_text = final_text.replace(/</g, "&lt;");
         final_text = final_text.replace(/>/g, "&gt;");
+        
+        // display newlines correctly
+        final_text = text.replace(/\\\\r\\\\n/g, "<br>");
         
         // change each one by one
         var iterator = Object.keys(staticVals);
@@ -108,8 +109,8 @@ class articlePost {
     }
 }
 
-// get more articles when the user scrolls to the bottom of the page
-window.onscroll = () => {
+// this will be done when the page first loads, as well as when the user scrolls
+function stories() {
     if ((window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight) {
         var request = new XMLHttpRequest();
         request.open("GET", "/get-articles");
@@ -136,6 +137,9 @@ window.onscroll = () => {
     }
 }
 
+// get more articles when the user scrolls to the bottom of the page
+window.onscroll = stories;
+
 // once the articles are all loaded, load the story at the bottom
 function loadStory() {
     var story = new XMLHttpRequest();
@@ -157,3 +161,5 @@ function loadStory() {
     // don't listen for any more scrolling
     window.onscroll = undefined;
 }
+
+window.onload = stories;

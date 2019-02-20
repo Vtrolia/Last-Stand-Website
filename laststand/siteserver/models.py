@@ -7,8 +7,8 @@ class Articles(models.Model):
     date = models.CharField(max_length=40)
     author = models.CharField(max_length=100)
     title = models.CharField(max_length=100)
-    image_src = models.CharField(max_length=50)
-    image_title = models.CharField(max_length=200)
+    image_src = models.CharField(max_length=50, null=True, blank=True)
+    image_title = models.CharField(max_length=200, null=True, blank=True)
     text = models.TextField()
     confirmed = models.BooleanField(default=False)
 
