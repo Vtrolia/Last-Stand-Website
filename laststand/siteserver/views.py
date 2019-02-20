@@ -66,21 +66,19 @@ def account_page(request):
 
 
 def downloads(request):
-    if not request.user.is_authenticated:
-        return h.return_as_wanted(request, "login.html", message=["warning", "You must sign in or sign up to download the cloud"])
-    else:
-        return h.return_as_wanted(request, "download.html")
+    #if not request.user.is_authenticated:
+    #    return h.return_as_wanted(request, "login.html", message=["warning", "You must sign in or sign up to download the cloud"])
+    #else:
+    return h.return_as_wanted(request, "download.html")
 
 # either just log out user, or take them to login to switch to another account
 def relog_page(request):
     logout(request)
     return redirect("/login")
 
-
 def logout_user(request):
     logout(request)
     return redirect("/")
-
 
 def license_page(request):
     return h.return_as_wanted(request, "legal_docs.html")

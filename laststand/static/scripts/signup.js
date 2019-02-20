@@ -6,9 +6,16 @@ function enabler() {
     var button = document.getElementById("register-button");
     var entries = document.querySelectorAll("input");
     var box = document.getElementById("agree");
+    var password = document.getElementById("signup-password");
+    
+    if (password.value.length < 8)
+    {
+         button.disabled = true;
+        return false   
+    }
 
     for (let i = 0; i < entries.length; i++) {
-        if (entries.item(i).value == "") {
+        if (!entries.item(i).value) {
             button.disabled = true;
             return false;
         }
