@@ -1,0 +1,38 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block title %}<title>More Details</title>{% endblock %}
+{% block head %}
+    <meta charset="utf-8" lang="en"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'styles/style.css' %}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        window.onkeypress =  () => {
+            var f = document.getElementById("more-first");
+            var l = document.getElementById("more-last");
+            if (l.value && f.value) {
+                document.getElementById("data-button").disabled = false;
+            }
+        }
+    </script>
+{% endblock %}
+{% block body %}
+    <div class="page user-auth" id="more-page">
+        <form action="{% url 'add_name' %}" method="post" id="more" class="auth-form">
+            {% csrf_token %}
+            <div align=center style="padding-top: .5em; padding-bottom: 1vw" class="form-text">
+                <span>Tell us more about you...</span>
+            </div>
+            <div style="margin-left: 5%; margin-right: 5%">
+                <hr style="background-color: whitesmoke; width: 95%; margin-left: 0">
+                <div class="form-text">First Name:</div>
+                <input type="text" name="firstName" id="more-first" placeholder="Your name... (eg)John">
+                <div class="form-text">Last Name:</div>
+                <input type="text" name="lastName" id="more-last" placeholder="Family name... (eg)Smith">
+                <div id="button">
+                    <button type=submit id="data-button" disabled>Register</button>
+                    <a href="{% url 'index' %}" id="skip">Click Here to skip for now</a>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

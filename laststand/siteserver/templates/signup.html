@@ -1,0 +1,35 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block title %}<title>Sign Up</title>{% endblock %}
+{% block head %}
+    <meta name="description" content="Create a new account">
+    <script src="{% static 'scripts/signup.js' %}" async></script>
+    <link type="text/css" rel="stylesheet" href="{% static 'styles/style.css' %}"/>
+{% endblock %}
+{% block body %}
+    <div id="register" class="page user-auth">
+        <h2 align=center>Sign Up <img alt="security lock" src="{% static 'source_images/Lock.png' %}" width=20em height=25em/></h2> 
+        {% if message %}
+            <div class="alert alert-danger" role="alert" id="alerts">
+                <strong>{{ message.0 }}</strong>{{ message.1 }}
+            </div>
+        {% else %}
+        {% endif %}
+        <form id ="register-form" class="auth-form" action="{% url 'submit_register' %}" method="post">
+            {% csrf_token %}
+            <div class="form-text">Email:</div>
+            <input type=email name="email" placeholder="example@email.com">
+            <div class="form-text">Username:</div>
+            <input type=text name="user" placeholder="Username...">
+            <div class="form-text">Password:</div>
+            <input type=password id="signup-password" name="password" placeholder="Password...">
+            <div id="licenser-agreement" style="font-size: .9em">
+                <input style="width: auto; padding: 0; margin-right: 2em; height: auto;" type="checkbox" name="agree" id="agree" onclick="enabler()">
+                By checking this box, you agree to our website's Terms and Conditions <a href="#">here</a>.
+            </div>
+            <div id="button">
+                <button type=submit id="register-button" disabled>Register</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8" lang="en"/>
+        <meta name="keywords" content="Cloud, software, backup, reliable, privacy, security, remote, network, private cloud"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" type="image/png" href="{% static 'source_images/favicon.ico' %}" sizes="32x32">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script>var dark_burger = "{% static 'source_images/hamburger_dark.png' %}";
+        var light_burger =  "{% static 'source_images/hamburger.png' %}"</script>
+        <script src="{% static 'scripts/header.js' %}" async></script>
+        <link rel=stylesheet type="text/css" href="{% static 'styles/headerstyles.css' %}">
+        {% block title %}{% endblock %}
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <div id="navbar" align=center>
+            <div class="container" align=left>
+                <div class="col-4" id="greeting">{{ name }}</div>
+                <header class="row">
+                    <a href="{% url 'index' %}"><div class="col">Home</div></a>
+                    <a href="{% url 'rates' %}"><div class="col">Rates</div></a>
+                    <a href="{% url 'first_download_page' %}">
+                        <div class="col">Downloads</div>
+                    </a>
+                    <div id="softname" align=center class="col-4">Last Stand Cloud Software</div>
+                    {% if name %}
+                        <a href="{% url 'logout_user' %}">
+                            <div class="col">Log Out</div>
+                        </a>
+                        <a href="dashboard.html">
+                            <div class="col">Dashboard</div>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'login_page' %}">
+                            <div class="col">Login</div>
+                        </a>
+                        <a href="{% url 'register_page' %}">
+                            <div class="col">Sign Up</div>
+                        </a>
+                    {% endif %}
+                    <div id="options">
+                        {% if name %}
+                            <img onmouseover="changeSource(this)" alt="click here for user pages" onclick="displayMenu()" 
+                            onmouseout="changeBack(this)" src="{% static 'source_images/hamburger.png' %}", width=80em, height=40em;>
+                        {% else %}
+                            <img onmouseover="changeSource(this)" alt="click here for user pages"
+                            onmouseout="changeBack(this)" src="{% static  'source_images/hamburger.png' %}", width=80em, height=40em;>
+                        {% endif %}
+                    </div>
+                </header>
+            </div>
+            <div id="modal"></div>
+            <aside id="hamburgerMenu">
+                <table id="hambugerOptions">
+                    <tr class="aside" data-link="account-settings">
+                        <td class="left">Account</td>
+                        <td>
+                            <img alt="account"src="{% static 'source_images/user.png' %}" width=32 height=32>
+                        </td>
+                    </tr>
+                    <tr class="aside" data-link="license">
+                        <td class="left">Licenses and T&#38;C</td>
+                        <td>
+                            <img alt="Licenses and T&C" src="{% static 'source_images/tc.png' %}" width=32 height=32>
+                        </td>
+                    </tr>
+                    <tr class="aside" data-link="issues">
+                        <td class="left">Report an Issue</td>
+                        <td>
+                            <img alt="Report an Issue" src="{% static 'source_images/issue.png' %}" width=32 height=32>
+                        </td>
+                    </tr>
+                    <tr class="aside" data-link="relog">
+                        <td class="left">Switch Accounts</td>
+                        <td>
+                            <img alt="Switch Accounts" src="{% static 'source_images/switch.png' %}" width=32 height=32>
+                        </td>
+                    </tr>
+                    <tr class="aside" data-link="settings">
+                        <td class="left">Settings</td>
+                        <td>
+                            <img alt="Settings" src="{% static 'source_images/settings.png' %}" width=32 height=32>
+                        </td>
+                    </tr>
+                </table>
+            </aside>
+        </div>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

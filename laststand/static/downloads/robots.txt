@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /api/
+Disallow: /account-settings
+Disallow: /publish
+Disallow: /dashboard
+Disallow: /admin/

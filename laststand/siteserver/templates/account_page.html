@@ -1,0 +1,46 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block title %}<title>Your Account</title>{% endblock %}
+{% block head %}
+    <link rel= "stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>const token = "{{ csrf_token }}"</script>
+    <script>const reveal = "{% static 'source_images/reveal.png' %}"</script>
+    <script>const hide = "{% static 'source_images/hide.png' %}"</script>
+    <script>const static = "{% static 'scripts' %}"</script>
+    <script src="{% static 'scripts/account.js' %}"></script>
+{% endblock %}
+{% block body %}
+    <div id="account-page" class="jumbotron">
+        <div id="account-details">
+            <div id="account-picture" class="splash-display">
+                {% if account_picture %}
+                <img src="{{ account_picture }}" class="profile-pic" width=128>
+                {% else %}
+                <img class="profile-pic" src="{% static 'source_images/user.png' %}" width=128>
+                {% endif %}
+                <div style="width:100%">Profile pictures will be available for you to set soon!</div>
+            </div>
+            <hr class="bordered">
+            <div id="identification" class="splash-display">
+                <strong style="font-size: 1.3em">{{ message.username }}</strong><br>
+                You joined on <strong>{{ message.date_joined }}</strong>
+            </div>
+            <hr>
+            <div id="account-status" class="splash-display"></div>
+            <hr>
+            <div id="clouds" class="splash-display" style="margin-bottom: 1em;"></div>
+            <div id="cloud-list">
+                <ul id="cloud-options">
+                </ul>
+            </div>
+        </div>
+        <div id="settings-display"></div>
+        <div id="settings-bottom">
+            <hr style="margin-bottom: 0; width:100%" class="bordered">
+            <span style="background-color: transparent; outline: none; cursor: pointer" onclick="getBaseSettings()">
+                    <img id="back-button" src="{% static 'source_images/back.png' %}" width=48>
+            </span>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block title %}<title>Downloads</title>{% endblock %}
+{% block head %}
+    <meta name="description" content="Download either the full suite or just the client version of Last Stand Cloud">
+    <link rel= "stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+    <script src="{% static 'scripts/download.js' %}" async></script>
+{% endblock %}
+{% block body %}
+    <div id="first-downloads-page" class="page">
+        <h2 align=center>Downloads</h2>
+        <p>It's official! Last Stand Cloud has entered its first public alpha testing phase and is ready for you to download it! If you take a look at the <a href="{% url 'rates' %}" style="color: black">rates page</a>, you may notice that you aren't quite allowed to buy a plan yet. All alpha and beta tests of Last Stand Cloud will never cost anything to use, and we don't want to charge for any version of software that isn't fully working yet(don't ever preorder, folks). We're still developing the business/unlimited version, and don't want to make promises we may not be able to keep. No early access here!</p>
+        <p>If you want to install the alpha version, there are a few options for you below. There should be automatic OS detection for the correct version, but you can install the server and client version to setup a cloud, or just the client version to access your cloud.</p>
+        <p>If you want to report an issue but don't have an account, you can submit it <a href="{% url 'issue_page'%}" style="color: black;"> here</a></p>
+        <p>By downloading this software, you agree to the terms of Last Stand's End User License Agreement, outlined in this document <a  style="color: #6066ff" href="{% static 'downloads/Last Stand Cloud - End user License Agreement(EULA).pdf' %}">Here</a> </p>
+        <div style="padding-bottom: 1em;">
+            <input type="radio"  style="width: auto; height: auto; margin: 0; padding: 1em;" id="agreement-check" onclick="allow()"> By checking this button, you are officially stating that you have read the licensing agreement and legally agree to be bound by the terms within (i.e. downloading this software also means you agree to this agreement, so best to read it first either way)
+        </div>
+        
+        <form id="download-buttons" method="post" action="{% url 'submit_download' %}">
+            {% csrf_token %}
+            <input type=hidden id="os-type" name="os-type">
+            <div style="overflow: hidden;">
+                <div class="bordered-download" style="float:left">
+                    <label for="both">Download the Server/Client for</label>
+                    <button type=submit name="both" id="client-server-download" disabled>
+                        Download 
+                        <img ealt="download image" src="{% static 'source_images/download.png' %}" width=25px>
+                    </button>
+                </div>
+                <div class="bordered-download" style="float:right">
+                    <label for="client-only">Download only the Client for</label>
+                    <button name="client-only" id="client-server-download" disabled>
+                        Download 
+                        <img alt="download image" src="{% static 'source_images/download.png' %}" width=25px>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

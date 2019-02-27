@@ -1,0 +1,35 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path("", views.index, name="index"),
+    path("rates", views.rates, name="rates"),
+    path("login", views.login_page, name="login_page"),
+    path("download", views.downloads, name="first_download_page"),
+    path("signup", views.register_page, name="register_page"),
+    path("publish", views.publish_page, name="publish_page"),
+    path("issues", views.issue_page, name="issue_page"),
+    path("license", views.license_page, name="license_page"),
+    path("settings", views.settings, name="settings"),
+    path("account-settings", views.account_page, name="account_page"),
+    path("submit-login", views.submit_login, name="submit_login"),
+    path("submit-register", views.submit_register, name="submit_register"),
+    path("submit-article", views.submit_article, name="submit_article"),
+    path("submit-issue", views.submit_issue, name="submit_issue"),
+    path("submit-download", views.submit_download, name="submit_download"),
+    path("submit-password-change", views.submit_password_change, name="submit_password_change"),
+    path("submit-delete-account", views.submit_delete_account, name="submit_delete_account"),
+    path("submit-application", views.submit_application, name="submit_publisher"),
+    path("submit-details", views.submit_change, name="submit_change"),
+    path("more-info", views.more_info, name="more_info"),
+    path("add-name", views.add_name, name="add_name"),
+    path("logout", views.logout_user, name="logout_user"),
+    path("relog", views.relog_page, name="relog"),
+    path("stories", views.story, name="our_story"),
+    path("get-articles", views.load_articles, name="load_articles"),
+    path("cloud-options-page", views.load_cloud_options, name="load_cloud_options"),
+    path("base-options-page", views.load_base_options, name="load_base_options"),
+    path("change-plan-page", views.load_change_plan, name="load_plan_page"),
+    path("become-publisher", views.load_request_publisher, name="request_publisher"),
+    path("load/<template>", views.load, name="load_template")
+]

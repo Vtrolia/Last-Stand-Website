@@ -1,0 +1,65 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block title %}<title>Publish an Article</title>{% endblock %}
+{% block head %}
+    <link rel= "stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+    <script src="{% static 'scripts/publish.js' %}" async></script>
+{% endblock %}
+{% block body %}
+    <div id="style-guide-box">
+        <div id="style-guide">
+            <h3>Last Stand Markdown style rules:</h3>
+            <h4>Supported tags(regular HTML or markdown is not supported):</h4>
+            <ul>
+                <li>#b b#: <strong>For bold text</strong></li>
+                <li>#it it#: <em>For italicized text</em></li>
+                <li>#lt lt#: <s>For strikethrough text</s></li>
+                <li>#sh sh#: <h4 style="display: inline">For section header text</h4></li>
+                <li>&lt;j&gt;(at the beginning): Justify all text</li>
+                <li>#j j#: <span style="text-align: justify">For justifying a section</span></li>
+                <li>#hl hl#: <a href="">For a link</a></li>
+                <li>#c c#: <code>this.forSourceCode()</code></li>
+                <li>#bl bl#: for bulletted list</li>
+                <li>#nl nl#: for numbered list</li>
+                <li>#- --#: for list elements, like these ones!</li>
+            </ul>
+            <h4>Suggested guides for article content: </h4>
+            <ul>
+                <li>With SEO, using keywords is important but we don’t want to abuse them. Try to mention at least one of these terms once, but no more than 3 times in your article <p>-  Cloud, tech, technology, home cloud, security, cybersecurity, privacy, internet, network, encryption, Reliable Cloud Protocol, Last Stand, backup, remote storage, data, data security,
+                remote cloud, data redundancy, etc. </p></li>
+                <li> Use these or any other terms you can think of that would help us appear at the forefront of user searches on Google and draw more people to not only our platform, but your content</li>
+                <li>Try to post links that lead to other parts of the website. If there’s something that you think hasn’t been properly linked to (or in the future if we have a news section and you want to link to another article) let us know and then post a link to it in your article. The more links to our site, the better we do.</li>
+            </ul>
+        </div>
+    </div>
+    <div id="article-page">
+        <h2>Publish an Article</h2>
+        <p>Welcome to the article publisher page! You're here because I invited you to become an author and you now have permission to publish an article to Last Stand's home page. Each article will be reviewed by me, and then put right at home. The newest articles are always loaded first. Eventually, there may also be a news section of the website where you can interact with users as well as have more intricately detailed articles coming in the future. For right now, this is all we need. Articles do not support HTML or Markdown input, but we do have our own styling format: highlight or click the text <a href="#" onclick='displayModal()'>Here for the style guide</a> Make sure to give the author credit if you are going to add an image to your article. Other than that, there's pretty much no restrictions as to what you are allowed to publish here.</p>
+<p><strong>First things first, there is a zero-tolerance policy when it comes to plagarism! If you are caught plagarizing your publisher status will be revoked, your account will be permanently deleted and you will no longer be allowed to have any interaction with Last Stand Cloud Software. We will report your theft to the original author of the work and you accept responsibility for all legal consequences that become of your crime. Either cite your sources or come up with original ideas.</strong></p> 
+        <p>I am a believer in the spirit of free speech, and that sentiment will always be the law of the land on this website. I will always publish articles as long as there is no misinformation or incomplete information present in your article. Me not publishing an article because of your opinion or the facts you present is a direct violation of the website's publishing agreement on my end. The only rule I have content-wise is to keep it all about general tech (it doesn't have to be about cloud computing) and keep out the names of modern political figures. Politics is OK, just make sure it's about tech and no mentioning of current Sentors, Governors or the President at least in the last 10 years. Literally everything else is okay. <strong style="font-size: 1.1em;">But, If there is factual evidence of misinformation, this is grounds for deletion!</strong> I will give you a chance to revise your article before I delete it, so there will always be communication when there are errors. <br><em style="color: rgb(108, 107, 107)">  (also, blatant grammar/spelling errors will result in me sending the article back to you, so proofread before you post! I recommend writing in a word processor then copy/pasting)</em> </p>
+        <p>Now that all of the formal stuff is out of the way, thank you so much for being a contributor for Last Stand and helping the platform grow! I look forward to reading your articles</p>
+        {% if message %}
+        <div class="alert alert-{{ message.0}}" role="alert" id="publish-alert">
+            {% if message.0 == "danger" %}
+                <strong>Error!</strong>
+            {% else %}
+                <strong>Success!</strong>
+            {% endif %}
+            {{ message.1 }}
+        </div>
+        {% else %}
+        {% endif %}
+        <form id="article-post" action="{% url 'submit_article' %}" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            <input type=text id="title" class="box-input" name="title" placeholder="Give your article a Title...">
+            <div>
+                <input type=text id="credit" class="box-input" name="credit" title="Who took this picture? (name or organization.) If you want to use Last Stand's logo, just enter <logo>. If it's your image, this can be a title for the image with <self> before the title." placeholder="Author Credit">
+                <input id="file" class="box-input" name="file" type=file accept=".jpeg" title="Select an Image(.jpg, .jpeg, only)" onclick="falser()">
+            </div>
+            <textarea rows="20" cols="97" id="content" name="content" placeholder="Enter your story's text here"></textarea>
+            <div>
+                <button type=submit id="subber" disabled>Submit</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
