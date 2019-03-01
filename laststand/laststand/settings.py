@@ -13,18 +13,17 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = ""
 
-with open('/home/vinny/Documents/Last-Stand-Website/laststand/secret_key.txt', "r") as f:
+with open('secret_key.txt', "r") as f:
     SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 ADMINS = [("Vincent Trolia", "vtrolia@protonmail.com")]
 
 ALLOWED_HOSTS = ['*']
@@ -135,7 +134,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-STATIC_ROOT = '/home/vinny/Documents/Last-Stand-Website/laststand/static-folder'
+STATIC_ROOT = 'static-folder'
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -152,6 +151,7 @@ CACHES = {
 }
 
 # HTTPS
+"""
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 X_FRAME_OPTIONS = "DENY"
@@ -162,3 +162,4 @@ SECURE_SSL_REDIRECT = True
 SESSION_SAVE_EVERY_REQUEST = True
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_COOKIE_AGE = 60 * 120
+"""

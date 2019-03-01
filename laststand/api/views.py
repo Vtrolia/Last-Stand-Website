@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from .models import Cloud, SSL
 
 import helpers as h
-# from dateutil.relativedelta import relativedelta
+from dateutil.relativedelta import relativedelta
 import datetime as dt
 import json as j
 
@@ -22,7 +22,7 @@ def set_info(request, name):
     # if the owner is not the correct one, something is wrong, and nothing will be updated for security reasons
     if owner == Cloud.objects.get(id=name).owner:
         cloud = Cloud.objects.get(id=name)
-        cloud.ip_address = request.META["HTTP_HOST"]
+        cloud.ip_address = request.META["REMOTE_ADDR"]
 
         # while updating, if the ssl certificate is now expired, delete it.
         if dt.date.today() >= cloud.ssl_cert.date_expires:
@@ -110,9 +110,9 @@ def renew_cert(request, name):
         cert.cacert = new_cert[0]
         cert.privkey = new_cert[1]
         cert.date_created = dt.datetime.now()
-        #cert.date_expires = dt.datetime.now() + relativedelta(month=6)
+        cert.date_expires = dt.datetime.now() + relativedelta(month=6)
         cert.save()
-        return HttpResponse(new_cert)
+        return HttpResponse(new_cert[0])
     else:
         return HttpResponse("")
 
@@ -121,11 +121,12 @@ def renew_cert(request, name):
 def submit_cloud(request):
     # this is the initial creation of a cloud, so set the date
     created = dt.datetime.now()
-    #expires = created + relativedelta(month = 6)
+    expires = created + relativedelta(month = 6)
     if not request.user.is_authenticated:
+        print("fail")
         return HttpResponse("")
     else:
-
+        print("6s")
         # has to be an authenticated user to create a cloud
         owner = request.user
 

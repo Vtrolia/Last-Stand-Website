@@ -6,6 +6,7 @@ import datetime as dt
 import os
 import json as j
 
+
 # Create your tests here.
 class CreateCert(TestCase):
     def setUp(self):
@@ -38,15 +39,16 @@ class CreateCert(TestCase):
     def test_3(self):
         c = Client()
         c.force_login(user=self.user)
-        response = c.post("/api/submit-cloud/", {"name": "test2", "ip": "1.2.2.2"})
+        response = c.post("/api/submit-cloud", {"name": "test2", "ip": "1.2.2.2"})
         response_text = response.content.decode('utf-8').split("-----END CERTIFICATE-----")
         response_text[0] += "-----END CERTIFICATE-----"
         assert response.status_code < 400 and len(response_text) == 2
 
+
     # make sure that not only will renewing a cert return a cert, but also that it is new and not the same as the old one
     def test_4(self):
         c = Client()
-        with open("./static/certs/test_user-test-cert.pem", "rb") as f:
+        with open("./static/certs/test_user-testCloud-cert.pem", "rb") as f:
             old_cert = f.read().decode('utf-8')
         c.force_login(user=self.user)
         response = c.post("/api/renew-certificate/test?user=test_user&password=password")
@@ -95,7 +97,6 @@ class GetterTest(TestCase):
         cert = Cloud.objects.get(id="test").ssl_cert
         assert cert.date_created == dt.date.today() and cert.date_expires > dt.date.today()
         assert old_cert.cacert != response.content.decode("utf-8")
-
         assert cert.cacert == response.content.decode('utf-8')
 
     def test_4(self):
