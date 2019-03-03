@@ -33,7 +33,7 @@ def set_info(request, name):
 
         # formatting the credentials like this made it easy to parse on the cloud end
         for user in cloud.users.all():
-            content += "content: " + user.username + " " + user.password + "\r\n"
+            content += "content: " + user.username + " " + user.password.split("$")[2] + "\r\n"
         return HttpResponse(content)
     else:
         return HttpResponse("contents: none failure" + "\r\n")
