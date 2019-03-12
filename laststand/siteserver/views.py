@@ -63,7 +63,7 @@ def account_page(request):
     return h.return_as_wanted(request, "account_page.html", message={"username": request.user.get_username(), "date_joined": request.user.date_joined })
 
 
-def downloads(request):
+def create_cloud(request):
     if not request.user.is_authenticated:
         return h.return_as_wanted(request, "login.html", message=["warning", "You must sign in or sign up to download the cloud"])
     else:

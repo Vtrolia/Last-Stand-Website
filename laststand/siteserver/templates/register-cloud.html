@@ -1,0 +1,14 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block title %}<title>Create and Register a new Cloud</title>{% endblock %}
+{% block body %}
+    <h3>Register a New Cloud</h3>
+    <p>Choose the operating system this cloud will run on:</p>
+    <div id="cloud-form">
+        <ul>
+            <li class="os-option">Linux</li>
+            <li class="os-option">macOS</li>
+            <li class="os-option">FreeBSD</li>
+        </ul>
+    </div>
+{% endblock %}
