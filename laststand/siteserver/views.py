@@ -16,7 +16,8 @@ import helpers as h
 import datetime as dt
 import json as j
 
-# Basic page display views
+# Basic
+# page display views
 def index(request):
     request.session["offset"] = 0
     return h.return_as_wanted(request, "home.html")
@@ -63,19 +64,22 @@ def account_page(request):
 
 
 def downloads(request):
-    #if not request.user.is_authenticated:
-    #    return h.return_as_wanted(request, "login.html", message=["warning", "You must sign in or sign up to download the cloud"])
-    #else:
-    return h.return_as_wanted(request, "download.html")
+    if not request.user.is_authenticated:
+        return h.return_as_wanted(request, "login.html", message=["warning", "You must sign in or sign up to download the cloud"])
+    else:
+        return h.return_as_wanted(request, "download.html")
+
 
 # either just log out user, or take them to login to switch to another account
 def relog_page(request):
     logout(request)
     return redirect("/login")
 
+
 def logout_user(request):
     logout(request)
     return redirect("/")
+
 
 def license_page(request):
     return h.return_as_wanted(request, "legal_docs.html")

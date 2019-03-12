@@ -79,10 +79,11 @@ def get_ssl_cert(request, name):
 
     # delete an invalid cert
     if cert.date_expires > dt.date.today():
-        return HttpResponse(cert.cacert)
+        cleaned_cert = "".join(cert.cacert.split('\r'))
+        return HttpResponse("content: " + cleaned_cert)
     else:
         cert.delete()
-        return HttpResponse("")
+        return HttpResponse("content: none")
 
 
 @csrf_exempt
