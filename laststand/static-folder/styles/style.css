@@ -85,6 +85,10 @@ textarea {
     width: 30em;
 }
 
+.cloud-form-div {
+    width: 30%;
+}
+
 .detail-inputs {
     height: 2em !important;
     left: 1vw;
@@ -334,6 +338,13 @@ textarea {
     border: 2px solid black;
     max-height: 25em;
     overflow-y: scroll;
+}
+
+#cloud-form {
+    border: 2px solid whitesmoke;
+    margin-right: auto; 
+    margin-left: auto;
+    width: 100%;
 }
 
 #credit {

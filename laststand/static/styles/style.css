@@ -85,6 +85,11 @@ textarea {
     width: 30em;
 }
 
+.cloud-form-div {
+    display: none;
+    margin-left: 3em;
+}
+
 .detail-inputs {
     height: 2em !important;
     left: 1vw;
@@ -151,7 +156,20 @@ textarea {
 .option:hover {
     background-color: #a39f9f;
     cursor: pointer;
-    
+}
+
+.os-option {
+    border-top: 1px solid whitesmoke;
+    font-size: 1.5em;
+    list-style: none;
+    padding: 1em;
+    width: 40%;
+}
+
+.os-option:hover {
+    background-color: rgb(69, 67, 67);
+    color: black;
+    cursor: pointer;
 }
 
 .page {
@@ -336,6 +354,13 @@ textarea {
     overflow-y: scroll;
 }
 
+#cloud-form {
+    border: 2px solid whitesmoke;
+    margin-right: auto; 
+    margin-left: auto;
+    width: 60%;
+}
+
 #credit {
     margin-right: 1em;
 }
@@ -391,6 +416,10 @@ textarea {
 
 #first-downloads-page img {
     margin-left: .6em;
+}
+
+#first-options {
+    display: inherit;
 }
 
 #home-content {
@@ -578,7 +607,7 @@ textarea {
 }
 
 #tabs {
-    border: .1vw solid whitesmoke;
+    border: 1px solid whitesmoke;
     border-color: whitesmoke;
     font-size: 1.75em;
     max-width: 50vw;
@@ -590,7 +619,7 @@ textarea {
 
 #tabs th {
     align-content: center;
-    border: .05vw double whitesmoke;  
+    border: .5px double whitesmoke;  
     font-size: 1.5vw;
     margin-left: auto;
     margin-right: auto;
@@ -599,7 +628,7 @@ textarea {
 }
 
 #tabs th, #tabs td {
-    border-left: .1vw dashed whitesmoke;
+    border-left: 1px dashed whitesmoke;
     height: 7.vh;
     max-width: 20vw;
     overflow-x: hidden;
@@ -812,7 +841,7 @@ textarea {
     }
     
     #first-downloads-page {
-        font-size: 2.5vw;
+        font-size: 2vw;
     }
     
     #select-plan {

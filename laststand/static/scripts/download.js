@@ -5,8 +5,7 @@
 window.onload = () => {
     // userAgent stores the user's operating system details
     var os = navigator.userAgent.split(/[()]+/)[1];
-    os = os.split(" ")[0];
-
+	console.log(os);
     // for Mac users
     if (os.includes("Mac")) {
         os = "macOS"
@@ -25,8 +24,22 @@ window.onload = () => {
     }
 
     // else display the linux download
-    else {
+    else if (os.includes("Linux")){
         os = "Linux";
+    }
+
+    else if (os.includes("BSD")) {
+	os = "FreeBSD";
+    }
+
+    else {
+	let buttons =  document.getElementById("download-buttons");
+        buttons.parentElement.removeChild(buttons);
+
+        let h3 = document.createElement("h3");
+        h3.innerHTML = "Sorry! Your platform is not currently supported!";
+        document.getElementById("first-downloads-page").appendChild(h3);
+        return false;
     }
 
     // when the form is sent to the server, make sure it is for the correct OS
@@ -35,7 +48,7 @@ window.onload = () => {
         labels.item(i).innerHTML += ": " + os;
     }
 
-   
+    document.getElementById("os-type").value = os;
 }
 
 // when user has agreed to the licensing agreement, they can download the software

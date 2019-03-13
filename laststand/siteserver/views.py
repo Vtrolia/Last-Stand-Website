@@ -67,7 +67,7 @@ def create_cloud(request):
     if not request.user.is_authenticated:
         return h.return_as_wanted(request, "login.html", message=["warning", "You must sign in or sign up to download the cloud"])
     else:
-        return h.return_as_wanted(request, "download.html")
+        return h.return_as_wanted(request, "register-cloud.html")
 
 
 # either just log out user, or take them to login to switch to another account

@@ -1,14 +1,44 @@
 {% extends 'header.html' %}
 {% load static %}
 {% block title %}<title>Create and Register a new Cloud</title>{% endblock %}
+{% block head %}
+    <script>
+        var os;
+        var name;
+        
+        function makeName(option) {
+            os = option.getAttribute("data-os");
+            document.getElementById("first-options").style.display = "none";
+            document.getElementById("cloud-name").style.display = "inherit";
+        }
+        
+        
+    </script>
+    <link rel= "stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+{% endblock %}
 {% block body %}
-    <h3>Register a New Cloud</h3>
-    <p>Choose the operating system this cloud will run on:</p>
-    <div id="cloud-form">
-        <ul>
-            <li class="os-option">Linux</li>
-            <li class="os-option">macOS</li>
-            <li class="os-option">FreeBSD</li>
-        </ul>
+    <div class="page">
+        <div id="cloud-form">
+            <h1 align=center style="margin-top: 1em">Register a New Cloud</h1>
+            <hr style="background-color: whitesmoke; width: 90%;">
+            <div id="first-options" class="cloud-form-div">
+                <h3>Choose the operating system this cloud will run on:</h3>
+                <ul style="padding: 0; margin-top: 3em; margin-bottom: 3em">
+                    <li data-os="Linux" onclick="makeName(this)" class="os-option">Linux</li>
+                    <li data-os="macOS" onclick="makeName(this)" class="os-option">macOS</li>
+                    <li data-os="FreeBSD" onclick="makeName(this)" class="os-option" style="border-bottom: 1px solid whitesmoke">FreeBSD</li>
+                </ul>
+            </div>
+            <div id="cloud-name" class="cloud-form-div">
+                <h3>Give your cloud a name:</h3>
+                <label>
+                    Name: <input type="text" placeholder="My Cloud..." name="name" id="cloud-name">
+                </label>
+                <button onclick="createCloud()">Create</button>
+            </div>
+            <div id="cloud-download" class="cloud-form-div">
+                <h4>Your download should begin shortly, if not, click <a href="#">Here.</a></h4>
+            </div>
+        </div>
     </div>
 {% endblock %}
