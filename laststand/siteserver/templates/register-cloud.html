@@ -4,12 +4,13 @@
 {% block head %}
     <script>
         var os;
-        var name;
         
         function makeName(option) {
             os = option.getAttribute("data-os");
             document.getElementById("first-options").style.display = "none";
             document.getElementById("cloud-name").style.display = "inherit";
+            document.getElementById("os-type").setAttribute("value", os);
+            
         }
         
         
@@ -31,10 +32,14 @@
             </div>
             <div id="cloud-name" class="cloud-form-div">
                 <h3>Give your cloud a name:</h3>
-                <label>
-                    Name: <input type="text" placeholder="My Cloud..." name="name" id="cloud-name">
-                </label>
-                <button onclick="createCloud()">Create</button>
+                <form style="margin: 2em; margin-left: 0; left: 0; min-width: 54vw; padding-left: 2em;">
+                    <input type="hidden" id="os-type">
+                    <label>
+                        <span style="font-size:1.7em">Name: </span> <input type="text" placeholder="My Cloud..." name="name" id="cloud-name">
+                    </label>
+                    <div style="margin-left: auto; margin-right: auto; max-width: 20%">        <button type="submit">Create</button>
+                    </div>
+                </form>
             </div>
             <div id="cloud-download" class="cloud-form-div">
                 <h4>Your download should begin shortly, if not, click <a href="#">Here.</a></h4>

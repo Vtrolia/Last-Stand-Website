@@ -361,6 +361,11 @@ textarea {
     width: 60%;
 }
 
+#cloud-name {
+    margin-top: 2.5em;
+    width: 44vw;
+}
+
 #credit {
     margin-right: 1em;
 }

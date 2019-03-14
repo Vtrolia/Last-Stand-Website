@@ -124,10 +124,8 @@ def submit_cloud(request):
     created = dt.datetime.now()
     expires = created + relativedelta(month = 6)
     if not request.user.is_authenticated:
-        print("fail")
         return HttpResponse("")
     else:
-        print("6s")
         # has to be an authenticated user to create a cloud
         owner = request.user
 
@@ -141,7 +139,7 @@ def submit_cloud(request):
         # once the cert is saved, now connect it to the cloud being created. The user can give it a custom name, but
         # its id is generated
         given_name = request.POST['name']
-        ip_address = request.POST['ip']
+        ip_address = request.META["REMOTE_ADDR"]
         cloud = Cloud.objects.create(id=name, name=given_name, ip_address=ip_address, ssl_cert=ssl, owner=owner, status=0)
         cloud.save()
         return HttpResponse(auth_info)
