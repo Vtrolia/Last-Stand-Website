@@ -18,6 +18,11 @@
             document.getElementById("cloud-download").style.display = "inherit";
         }
         
+        function backToStart(div) {
+            document.getElementById(div).style.display = "none";
+            document.getElementById("first-options").style.display = "inherit";
+        }
+        
     </script>
     <link rel= "stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
 {% endblock %}
@@ -45,9 +50,11 @@
                     <div style="margin-left: auto; margin-right: auto; max-width: 20%">        <button type="submit" onclick="userMessage()">Create</button>
                     </div>
                 </form>
+                <img id="create-cloud-back" style="cursor: pointer" onclick="backToStart('cloud-name')" src="{% static 'source_images/back.png' %}" width=64>
             </div>
             <div id="cloud-download" class="cloud-form-div">
                 <h4>Your download should begin shortly, if not, click <a href="#">Here.</a></h4>
+                <img id="cloud-download-back" style="cursor: pointer" onclick="backToStart('cloud-name')" src="{% static 'source_images/back.png' %}" width=64>
             </div>
         </div>
     </div>
