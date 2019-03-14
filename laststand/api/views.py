@@ -149,34 +149,40 @@ def submit_cloud(request):
         cloud.save()
 
         archive = zip.ZipFile("laststand.zip", "w")
-        archive.write("/Users/vinny/Desktop/Documents/Last-Stand-Website/laststand/static-folder/downloads/Last Stand Cloud - "
-                      "End user License Agreement(EULA).pdf")
+        with archive.open("Last Stand Cloud - End user License Agreement(EULA).pdf", "w") as ls:
+
+            with open("/Users/vinny/Desktop/Documents/Last-Stand-Website/laststand/static-folder/downloads/Last Stand Cloud - "
+                      "End user License Agreement(EULA).pdf", "rb") as f:
+                ls.write(f.read())
 
         # read the file as the contents of the message
         with archive.open("laststandserver", "w") as ls:
 
-            with open("/home/vinny/Documents/Last-Stand-Website/laststand/static-folder/downloads/" +
-                      request.POST["os-type"] + "/" + "laststandserver", "rb") as f:
+            with open("/Users/vinny/Desktop/Documents/Last-Stand-Website/laststand/static-folder/downloads/" +
+                      request.POST["os-type"] + "/laststandserver", "rb") as f:
                 ls.write(f.read())
 
         with archive.open("laststand", "w") as ls:
-            with open("/home/vinny/Documents/Last-Stand-Website/laststand/static-folder/downloads/" +
+            with open("/Users/vinny/Desktop/Documents/Last-Stand-Website/laststand/static-folder/downloads/" +
                       request.POST["os-type"] + "/" + "laststand", "rb") as f:
                 ls.write(f.read())
 
         with archive.open("cacert.pem", "w") as ls:
-            ls.write(h[0])
+            ls.write(auth_info[0].encode('utf-8'))
 
         with archive.open("privkey.pem", "w") as ls:
-            ls.write(h[1])
+            ls.write(auth_info[1].encode('utf-8'))
+
+        with archive.open("server_id", "w") as ls:
+            ls.write(cloud.id.encode('utf-8'))
 
         archive.close()
 
-        with open("laststand.zip", "r") as f:
+        with open("laststand.zip", "rb") as f:
             response = HttpResponse(f.read())
 
         # these headers are needed so that the client understands the file being sent to them
-        response["Content-Disposition"] = "attachment; filename='laststand.zip'"
+        response["Content-Disposition"] = "attachment; filename=laststand.zip"
         response["X-Sendfile"] = smart_str("/home/vinny/Documents/Last-Stand-Website/laststand/static-folder/downloads/" +
                                            request.POST["os-type"] + "/laststand.zip")
         return response
