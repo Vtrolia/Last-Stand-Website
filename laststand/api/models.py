@@ -20,7 +20,7 @@ class Cloud(models.Model):
     id = models.TextField(primary_key=True, unique=True)
     name = models.CharField(max_length=40, default=id)
     ip_address = models.CharField(max_length=30)
-    ssl_cert = models.ForeignKey(SSL, on_delete=models.CASCADE)
+    ssl_cert = models.ForeignKey(SSL, on_delete=models.DO_NOTHING)
     users = models.ManyToManyField(User, related_name="users_allowed")
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="owner")
     status = models.IntegerField(choices=((0, "Basic"), (1, "Family"), (2, "Business")), default=0)
