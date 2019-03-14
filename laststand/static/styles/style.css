@@ -366,6 +366,14 @@ textarea {
     width: 44vw;
 }
 
+#cloud-name-form {
+    left: 0;
+    margin: 2em; 
+    margin-left: 0;
+    min-width: 54vw; 
+    padding-left: 2em;
+}
+
 #credit {
     margin-right: 1em;
 }

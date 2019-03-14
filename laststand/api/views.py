@@ -9,6 +9,7 @@ from dateutil.relativedelta import relativedelta
 import datetime as dt
 import json as j
 
+
 # Create your views here.
 def index(request):
     pass
@@ -143,6 +144,7 @@ def submit_cloud(request):
         cloud = Cloud.objects.create(id=name, name=given_name, ip_address=ip_address, ssl_cert=ssl, owner=owner, status=0)
         cloud.save()
         return HttpResponse(auth_info)
+
 
 @csrf_protect
 def verify(request):
