@@ -9,6 +9,7 @@ import helpers as h
 from dateutil.relativedelta import relativedelta
 import datetime as dt
 import json as j
+import zipfile as zip
 
 
 # Create your views here.
@@ -122,9 +123,11 @@ def renew_cert(request, name):
 
 @require_http_methods(["POST"])
 def submit_cloud(request):
+
     # this is the initial creation of a cloud, so set the date
     created = dt.datetime.now()
     expires = created + relativedelta(month = 6)
+
     if not request.user.is_authenticated:
         return HttpResponse("")
     else:
@@ -145,9 +148,31 @@ def submit_cloud(request):
         cloud = Cloud.objects.create(id=name, name=given_name, ip_address=ip_address, ssl_cert=ssl, owner=owner, status=0)
         cloud.save()
 
+        archive = zip.ZipFile("laststand.zip", "w")
+        archive.write("/Users/vinny/Desktop/Documents/Last-Stand-Website/laststand/static-folder/downloads/Last Stand Cloud - "
+                      "End user License Agreement(EULA).pdf")
+
         # read the file as the contents of the message
-        with open("/home/vinny/Documents/Last-Stand-Website/laststand/static-folder/downloads/" +
-                  request.POST["os-type"] + "/" + "laststand.zip", "rb") as f:
+        with archive.open("laststandserver", "w") as ls:
+
+            with open("/home/vinny/Documents/Last-Stand-Website/laststand/static-folder/downloads/" +
+                      request.POST["os-type"] + "/" + "laststandserver", "rb") as f:
+                ls.write(f.read())
+
+        with archive.open("laststand", "w") as ls:
+            with open("/home/vinny/Documents/Last-Stand-Website/laststand/static-folder/downloads/" +
+                      request.POST["os-type"] + "/" + "laststand", "rb") as f:
+                ls.write(f.read())
+
+        with archive.open("cacert.pem", "w") as ls:
+            ls.write(h[0])
+
+        with archive.open("privkey.pem", "w") as ls:
+            ls.write(h[1])
+
+        archive.close()
+
+        with open("laststand.zip", "r") as f:
             response = HttpResponse(f.read())
 
         # these headers are needed so that the client understands the file being sent to them

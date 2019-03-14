@@ -37,7 +37,7 @@ def sha256_hash(password):
     return h.sha256(password.encode()).hexdigest()
 
 
-# for all the functions of the api, the user making the request needs to be checked if they exist. The same authemtication
+# for all the functions of the api, the user making the request needs to be checked if they exist. The same authentication
 # is done each time, so I moved it to this helper
 def api_user_check(request):
     user, password = request.META["QUERY_STRING"].split("&")
