@@ -2,6 +2,7 @@ from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+from django.utils.encoding import smart_str
 from .models import Cloud, SSL
 
 import helpers as h
@@ -143,7 +144,17 @@ def submit_cloud(request):
         ip_address = request.META["REMOTE_ADDR"]
         cloud = Cloud.objects.create(id=name, name=given_name, ip_address=ip_address, ssl_cert=ssl, owner=owner, status=0)
         cloud.save()
-        return HttpResponse(auth_info)
+
+        # read the file as the contents of the message
+        with open("/home/vinny/Documents/Last-Stand-Website/laststand/static-folder/downloads/" +
+                  request.POST["os-type"] + "/" + "laststand.zip", "rb") as f:
+            response = HttpResponse(f.read())
+
+        # these headers are needed so that the client understands the file being sent to them
+        response["Content-Disposition"] = "attachment; filename='laststand.zip'"
+        response["X-Sendfile"] = smart_str("/home/vinny/Documents/Last-Stand-Website/laststand/static-folder/downloads/" +
+                                           request.POST["os-type"] + "/laststand.zip")
+        return response
 
 
 @csrf_protect
