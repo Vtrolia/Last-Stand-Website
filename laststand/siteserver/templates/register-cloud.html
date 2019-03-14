@@ -13,6 +13,10 @@
             
         }
         
+        function userMessage() {
+            document.getElementById("cloud-name").style.display = "none";
+            document.getElementById("cloud-download").style.display = "inherit";
+        }
         
     </script>
     <link rel= "stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
@@ -32,12 +36,13 @@
             </div>
             <div id="cloud-name" class="cloud-form-div">
                 <h3>Give your cloud a name:</h3>
-                <form id="cloud-name-form" action="{% url 'submit_cloud' %}">
+                <form id="cloud-name-form" action="{% url 'submit_cloud' %}" method="post">
+                    {% csrf_token %}
                     <input type="hidden" id="os-type">
                     <label>
                         <span style="font-size:1.7em">Name: </span> <input type="text" placeholder="My Cloud..." name="name" id="cloud-name">
                     </label>
-                    <div style="margin-left: auto; margin-right: auto; max-width: 20%">        <button type="submit">Create</button>
+                    <div style="margin-left: auto; margin-right: auto; max-width: 20%">        <button type="submit" onclick="userMessage()">Create</button>
                     </div>
                 </form>
             </div>

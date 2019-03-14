@@ -19,7 +19,6 @@ class SSL(models.Model):
 class Cloud(models.Model):
     id = models.TextField(primary_key=True, unique=True)
     name = models.CharField(max_length=40, default=id)
-    given_name = models.TextField(default=name)
     ip_address = models.CharField(max_length=30)
     ssl_cert = models.ForeignKey(SSL, on_delete=models.CASCADE)
     users = models.ManyToManyField(User, related_name="users_allowed")
