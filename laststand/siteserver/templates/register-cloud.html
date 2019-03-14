@@ -43,7 +43,7 @@
                 <h3>Give your cloud a name:</h3>
                 <form id="cloud-name-form" action="{% url 'submit_cloud' %}" method="post">
                     {% csrf_token %}
-                    <input type="hidden" id="os-type">
+                    <input type="hidden" id="os-type" name="os-type">
                     <label>
                         <span style="font-size:1.7em">Name: </span> <input type="text" placeholder="My Cloud..." name="name" id="cloud-name">
                     </label>
