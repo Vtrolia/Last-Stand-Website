@@ -116,7 +116,6 @@ function stories() {
         request.open("GET", "/get-articles");
         request.onload = () => {
             if (!request.responseText) {
-                window.onscroll = undefined;
                 return loadStory();
 
             }
@@ -142,6 +141,7 @@ window.onscroll = stories;
 
 // once the articles are all loaded, load the story at the bottom
 function loadStory() {
+    window.onscroll = undefined;
     var story = new XMLHttpRequest();
     if (document.getElementById("storytime")) {
         return false;
@@ -157,9 +157,6 @@ function loadStory() {
         document.getElementById("storytime").style.animationPlayState = "running";
     }
     story.send();
-    
-    // don't listen for any more scrolling
-    window.onscroll = undefined;
 }
 
 window.onload = stories;
