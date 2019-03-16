@@ -136,8 +136,10 @@ body {
 }
             
 #softname {
-    margin-top: .8em;
     align-content: center;
+    margin-top: .8em;
+    padding: 0;
+    width: auto;
 }
 
 @media only screen and (max-width: 1500px) {
@@ -171,12 +173,23 @@ body {
 }
 
 @media only screen and (max-width: 768px) {
+    
     #navbar {
-        font-size: 1.8vw !important;
+        font-size: .9em !important;
+    }
+}
+
+@media only screen and (max-width: 660px) {
+    .container {
+        margin-right: 10vw;
     }
 }
 
 @media only screen and (max-width: 550px) {
+    .container {
+        margin-right: auto;
+    }
+    
     #navbar {
         font-size: 2.5vw !important;
     }

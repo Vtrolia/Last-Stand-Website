@@ -683,6 +683,10 @@ textarea {
 }
 
 @media only screen and (max-width: 1200px) {
+    .cloud-form-title {
+        font-size: 1.25rem;
+    }
+    
     .detail-option label {
         font-size: 90%;
     }
@@ -697,6 +701,10 @@ textarea {
     
     #become-publisher {
         font-size: 1vw !important;
+    }
+    
+    #cloud-form {
+        font-size: .8rem;
     }
     
     #download-buttons {
@@ -728,6 +736,10 @@ textarea {
     
     .bordered {
         width: 107.1% !important;
+    }
+    
+    .cloud-form-title {
+        font-size: 1rem;
     }
     
     .tool-tip {
@@ -769,6 +781,10 @@ textarea {
     
     #become-publisher h6 {
         font-size: 2vw;
+    }
+    
+    #cloud-form {
+        font-size: .5rem;
     }
     
     #download-buttons {
@@ -819,10 +835,22 @@ textarea {
         max-width: 35vw;
     } 
     
+    .cloud-form-title {
+        font-size: .8rem;
+    }
+    
     #article-page, #issues {
          margin-left: auto;
          margin-right: auto;
          min-width: 95%;
+    }
+    
+    #cloud-form {
+        font-size: .3rem;
+    }
+    
+    #cloud-form h1 {
+        font-size: 1.5rem;
     }
     
     #content {
@@ -842,6 +870,17 @@ textarea {
         margin-right: 10;
         min-width: 80%;
     }
+}
+
+@media only screen and (max-width: 580px) { 
+    .cloud-form-title {
+        font-size: .5rem;
+    }
+    
+    #cloud-form {
+        font-size: .1rem;
+    }
+    
 }
 
 @media only screen and (max-width: 550px) { 

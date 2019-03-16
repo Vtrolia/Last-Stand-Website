@@ -40,7 +40,6 @@ class articlePost {
         let h3 = document.createElement("h3");
         h3.textContent = this.title + " - " + this.date + " by " + this.author;
         html.append(h3);
-        console.log(this.imageTitle);
         if(this.imageTitle != null && this.imageTitle != "") {
             let img = document.createElement("img");
             img.setAttribute("src", articleImageSrc + "/" + this.imageURL);

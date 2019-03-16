@@ -32,7 +32,7 @@
             <h1 align=center style="margin-top: 1em">Register a New Cloud</h1>
             <hr style="background-color: whitesmoke; width: 90%;">
             <div id="first-options" class="cloud-form-div">
-                <h3>Choose the operating system this cloud will run on:</h3>
+                <h3 class="cloud-form-title">Choose the operating system this cloud will run on:</h3>
                 <ul style="padding: 0; margin-top: 3em; margin-bottom: 3em">
                     <li data-os="Linux" onclick="makeName(this)" class="os-option">Linux</li>
                     <li data-os="macOS" onclick="makeName(this)" class="os-option">macOS</li>
@@ -40,7 +40,7 @@
                 </ul>
             </div>
             <div id="cloud-name" class="cloud-form-div">
-                <h3>Give your cloud a name:</h3>
+                <h3 class="cloud-form-title">Give your cloud a name:</h3>
                 <form id="cloud-name-form" action="{% url 'submit_cloud' %}" method="post">
                     {% csrf_token %}
                     <input type="hidden" id="os-type" name="os-type">
@@ -53,7 +53,7 @@
                 <img id="create-cloud-back" style="cursor: pointer" onclick="backToStart('cloud-name')" src="{% static 'source_images/back.png' %}" width=64>
             </div>
             <div id="cloud-download" class="cloud-form-div">
-                <h4>Your download should begin shortly, if not, click <a href="#">Here.</a></h4>
+                <h4 class="cloud-form-title">Your download should begin shortly, if not, click <a href="#">Here.</a></h4>
                 <img id="cloud-download-back" style="cursor: pointer" onclick="backToStart('cloud-download')" src="{% static 'source_images/back.png' %}" width=64>
             </div>
         </div>
