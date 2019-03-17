@@ -6,6 +6,7 @@ from django.utils.encoding import smart_str
 from .models import Cloud, SSL
 
 import helpers as h
+import os
 from dateutil.relativedelta import relativedelta
 import datetime as dt
 import json as j
@@ -185,6 +186,7 @@ def submit_cloud(request):
         response["Content-Disposition"] = "attachment; filename=laststand.zip"
         response["X-Sendfile"] = smart_str("/home/vinny/Documents/Last-Stand-Website/laststand/static-folder/downloads/" +
                                            request.POST["os-type"] + "/laststand.zip")
+        os.remove("laststand.zip")
         return response
 
 
