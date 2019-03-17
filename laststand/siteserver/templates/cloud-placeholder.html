@@ -1,7 +1,18 @@
 {% load static %}
 <h4 id="settings-title"></h4>
-<hr>
-<div align=center>
-    <img src="{% static 'source_images/warning_splash.png' %}" width=60% align=center>
-    <h5 align=center>Sorry, this feature isn't available yet! Check back later!</h5>
+<hr class="bordered">
+<div id="cloud-page">
+    <form id="download-client-form" action="" method="post">
+        {% csrf_token %}
+        <label>
+            <div id="cloud-page-prompt">
+                Click here to download the client for this cloud:
+            </div>
+            <hr>
+            <div align=center>
+                <button style="font-size: 1em;" type="submit">Download <img alt="download image" src="{% static 'source_images/download.png' %}" width=25px></button>
+            </div>
+            
+        </label>
+    </form>
 </div>
