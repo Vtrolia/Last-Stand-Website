@@ -10,9 +10,24 @@
             </div>
             <hr>
             <div align=center>
-                <button style="font-size: 1em;" type="submit">Download <img alt="download image" src="{% static 'source_images/download.png' %}" width=25px></button>
+                <button style="font-size: .8em;" type="submit">Download <img alt="download image" src="{% static 'source_images/download.png' %}" width=25px></button>
             </div>
-            
         </label>
     </form>
+    <div id="delete-cloud-div">
+        <label>
+            <div id="delete-cloud-prompt">
+                Delete this cloud?
+            </div>
+            <hr>
+        	<input type="radio" onclick="displayPasswordPrompt()">
+            <span id="delete-cloud-confirmation">
+                Are you sure? Please enter your password first:
+                <input type="password" placeholder="your password" name="password" id="delete-cloud-password">
+                <button disabled>
+                    Enter
+                </button>
+            </span>
+        </label>
+    </div>
 </div>
