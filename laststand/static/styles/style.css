@@ -422,6 +422,12 @@ textarea {
     padding: 0;
 }
 
+#enter-delete-cloud {
+    height: 1.8em !important;
+    margin-bottom: .9em !important;
+    width: 5em !important; 
+}
+
 #file {
     border: 0;
     margin: 0;
@@ -753,6 +759,12 @@ textarea {
     }
 }
 
+@media only screen and (max-width: 900px) {
+    #cloud-page {
+        font-size: .8em;
+    }
+}
+
 @media only screen and (max-width: 850px) {
     img {
         display: none;
@@ -813,6 +825,14 @@ textarea {
     
     #cloud-form {
         font-size: .5rem;
+    }
+    
+    #cloud-page {
+        font-size: .9em;
+    }
+    
+    #cloud-page img {
+        width: 20px;
     }
     
     #download-buttons {
@@ -881,6 +901,10 @@ textarea {
         font-size: 1.5rem;
     }
     
+    #cloud-page {
+        font-size: .8em;
+    }
+    
     #content {
         width: 100%;
     }
@@ -909,6 +933,10 @@ textarea {
         font-size: .1rem;
     }
     
+     #cloud-page {
+        font-size: .7em;
+    }
+    
 }
 
 @media only screen and (max-width: 550px) { 
@@ -918,6 +946,10 @@ textarea {
     
     .user-auth {
         font-size: .3em;
+    }
+    
+     #cloud-page {
+        font-size: 1.8vw;
     }
     
     #first-downloads-page {
