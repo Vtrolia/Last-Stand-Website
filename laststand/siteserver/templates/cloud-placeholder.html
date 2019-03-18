@@ -2,7 +2,7 @@
 <h4 id="settings-title"></h4>
 <hr class="bordered">
 <div id="cloud-page">
-    <form id="download-client-form" action="" method="post">
+    <form id="download-client-form" action="" method="post" align=center>
         {% csrf_token %}
         <label>
             <div id="cloud-page-prompt">
@@ -20,11 +20,12 @@
                 Delete this cloud?
             </div>
             <hr>
-        	<input type="radio" onclick="displayPasswordPrompt()">
+        	<input type="radio" id="delete-cloud-radio" onclick="displayPasswordPrompt()">
+            <span id="yes-remove">Yes, remove this cloud</span>
             <span id="delete-cloud-confirmation">
                 Are you sure? Please enter your password first:
                 <input type="password" placeholder="your password" name="password" id="delete-cloud-password">
-                <button disabled>
+                <button id="enter-delete-cloud" disabled>
                     Enter
                 </button>
             </span>

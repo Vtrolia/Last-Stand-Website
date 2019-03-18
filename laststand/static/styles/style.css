@@ -378,6 +378,18 @@ textarea {
     margin-right: 1em;
 }
 
+#delete-cloud-div {
+    border-top: 1px solid black;
+    font-size: 1.2em;
+    margin-top: 4em;
+    padding-top: 2em;
+}
+
+#delete-cloud-confirmation {
+    display: inline-block;
+    margin-left: 4em;
+}
+
 #detail-aside {
     float: right;
     left: 0%;
@@ -404,6 +416,8 @@ textarea {
     color: black;
     font-size: 1.2em;
     left: 0;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 3em;
     padding: 0;
 }
@@ -678,6 +692,11 @@ textarea {
 
 #updates {
     margin: 1em;
+}
+
+#yes-remove {
+    color: gray;
+    font-size: .8em;
 }
 
 @media only screen and (max-width: 1700px) {
