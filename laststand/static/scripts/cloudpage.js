@@ -43,8 +43,16 @@ function deleteThisCloud() {
         
         document.getElementById("cloud-page").append(alert);
     }
-    
     request.send(JSON.stringify(data));
     
+    var cloud = document.getElementById("cloud-options");
+    var clouds = cloud.querySelectorAll("li");
     
+    for (let i = 0; i < clouds.length; i++)
+    {
+         if (clouds.item(i).getAttribute("data-name") === name)
+         {
+             clouds.item(i).parentNode.removeChild(clouds.item(i));        
+         }
+    }
 }
