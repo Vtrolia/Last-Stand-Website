@@ -1,0 +1,34 @@
+{% load static %}
+<h4 id="settings-title"></h4>
+<hr class="bordered">
+<div id="cloud-page">
+    <form id="download-client-form" action="" method="post" align=center>
+        {% csrf_token %}
+        <label>
+            <div id="cloud-page-prompt">
+                Click here to download the client for this cloud:
+            </div>
+            <hr>
+            <div align=center>
+                <button style="font-size: .8em;" type="submit">Download <img alt="download image" src="{% static 'source_images/download.png' %}" width=25px></button>
+            </div>
+        </label>
+    </form>
+    <div id="delete-cloud-div">
+        <label>
+            <div id="delete-cloud-prompt">
+                Delete this cloud?
+            </div>
+            <hr>
+        	<input type="radio" id="delete-cloud-radio" onclick="displayPasswordPrompt()">
+            <span id="yes-remove">Yes, remove this cloud</span>
+            <span id="delete-cloud-confirmation">
+                Are you sure? Please enter your password first:
+                <input type="password" placeholder="your password" name="password" id="delete-cloud-password">
+                <button id="enter-delete-cloud" disabled onclick="deleteThisCloud()">
+                    Enter
+                </button>
+            </span>
+        </label>
+    </div>
+</div>
