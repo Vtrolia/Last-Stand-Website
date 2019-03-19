@@ -10,5 +10,6 @@ urlpatterns = [
     path("renew-certificate/<name>", views.renew_cert, name="renew_cert"),
     path("submit-cloud", views.submit_cloud, name="submit_cloud"),
     path("download-client", views.download_client, name="download_client"),
-    path("verify", views.verify, name="verify")
+    path("verify", views.verify, name="verify"),
+    path("delete-cloud", views.delete_cloud, name="delete_cloud")
 ]

@@ -226,3 +226,26 @@ def verify(request):
         usernames["email"].append(user.email)
 
     return HttpResponse(j.dumps(usernames))
+
+
+@require_http_methods(["POST"])
+def delete_cloud(request):
+    req = j.loads(request.body.decode("utf-8"))
+    if request.user.check_password(req['password']):
+        cloud = Cloud.objects.get(owner=request.user, name=req['name'])
+        ssl = cloud.ssl_cert
+        cloud.delete()
+        ssl.delete()
+        
+        resp = {
+            "flag": "success",
+            "body": "<strong>Success!</strong> Your cloud has been deleted!" 
+            
+        }
+        return HttpResponse(j.dumps(resp))
+    else:
+        resp = {
+            "flag": "danger",
+            "body": "<strong>Error</strong> Something went wrong!"
+        }
+        return HttpResponse(j.dumps(resp))
