@@ -85,6 +85,11 @@ textarea {
     width: 30em;
 }
 
+.cloud-alert {
+    left: 0 !important;
+    margin-top: 4em;
+}
+
 .cloud-form-div {
     display: none;
     margin-left: 3em;
