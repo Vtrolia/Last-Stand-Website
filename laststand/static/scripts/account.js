@@ -49,6 +49,8 @@ function displayCloudOptions(cloud) {
         document.getElementById("settings-title").textContent = "Settings for " + cloud.getAttribute("data-name");
     }
     request.send(cloud.getAttribute("data-name"));
+    
+    loadScript("cloudpage");
 }
 
 // when user presses back-button or when the page loads for the first time, delete the 

@@ -389,7 +389,7 @@ textarea {
 }
 
 #delete-cloud-confirmation {
-    display: inline-block;
+    display: none;
     font-size: 1vw;
     margin-left: 4vw;
 }
