@@ -47,6 +47,8 @@ function displayCloudOptions(cloud) {
         let display = document.getElementById("settings-display");
         display.innerHTML = request.responseText;
         display.innerHTML += "<div id='cloud-name' style='display:hidden' data-cloud='" + cloud.getAttribute("data-name") + "'></div>"
+        let form = document.getElementById("download-client-form");
+        form.innerHTML += "<input type='hidden' value='" + cloud.getAttribute("data-name") + "' name='cloud-name' id='cloud-name-hidden'>"
         document.getElementById("settings-title").textContent = "Settings for " + cloud.getAttribute("data-name");
     }
     request.send(cloud.getAttribute("data-name"));

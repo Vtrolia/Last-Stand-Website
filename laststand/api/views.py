@@ -188,7 +188,33 @@ def submit_cloud(request):
                                            request.POST["os-type"] + "/laststand.zip")
         os.remove("laststand.zip")
         return response
+    
+@require_http_methods(["POST"]) 
+def download_client(request):
+    name = request.POST['cloud-name']
+    cloud = Cloud.objects.get(owner=request.user, name=name)
+    print(cloud.id)
+    if cloud:
+        client_only = zip.ZipFile("laststandclient.zip", "w")
+        with client_only.open("server_id", "w") as co:
+            co.write(cloud.id.encode('utf-8'))
+        
+        with client_only.open("laststand", "w") as co:
+            with open("/Users/vinny/Desktop/Documents/Last-Stand-Website/laststand/static-folder/downloads/" +
+                      request.POST["os-type"] + "/" + "laststand", "rb") as f:
+                co.write(f.read())
+        
+        client_only.close()
+        
+        with open("laststandclient.zip", "rb") as f:
+            response = HttpResponse(f.read())
 
+        # these headers are needed so that the client understands the file being sent to them
+        response["Content-Disposition"] = "attachment; filename=laststandclient.zip"
+        response["X-Sendfile"] = smart_str("/home/vinny/Documents/Last-Stand-Website/laststand/static-folder/downloads/" +
+                                           request.POST["os-type"] + "/laststandclient.zip")
+        os.remove("laststandclient.zip")
+        return response
 
 @csrf_protect
 def verify(request):

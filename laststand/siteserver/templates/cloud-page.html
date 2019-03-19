@@ -2,7 +2,7 @@
 <h4 id="settings-title"></h4>
 <hr class="bordered">
 <div id="cloud-page">
-    <form id="download-client-form" action="" method="post" align=center>
+    <form id="download-client-form" action="{% url 'download_client' %}" method="post" align=center>
         {% csrf_token %}
         <label>
             <div id="cloud-page-prompt">
