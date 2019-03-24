@@ -40,6 +40,7 @@ class articlePost {
         let h3 = document.createElement("h3");
         h3.textContent = this.title + " - " + this.date + " by " + this.author;
         html.append(h3);
+        console.log(this.imageTitle);
         if(this.imageTitle != null && this.imageTitle != "") {
             let img = document.createElement("img");
             img.setAttribute("src", articleImageSrc + "/" + this.imageURL);
@@ -115,6 +116,7 @@ function stories() {
         request.open("GET", "/get-articles");
         request.onload = () => {
             if (!request.responseText) {
+                window.onscroll = undefined;
                 return loadStory();
 
             }
@@ -140,7 +142,6 @@ window.onscroll = stories;
 
 // once the articles are all loaded, load the story at the bottom
 function loadStory() {
-    window.onscroll = undefined;
     var story = new XMLHttpRequest();
     if (document.getElementById("storytime")) {
         return false;
@@ -156,6 +157,9 @@ function loadStory() {
         document.getElementById("storytime").style.animationPlayState = "running";
     }
     story.send();
+    
+    // don't listen for any more scrolling
+    window.onscroll = undefined;
 }
 
 window.onload = stories;

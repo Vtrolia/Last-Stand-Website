@@ -85,8 +85,14 @@ textarea {
     width: 30em;
 }
 
+.cloud-alert {
+    left: 0 !important;
+    margin-top: 4em;
+}
+
 .cloud-form-div {
-    width: 30%;
+    display: none;
+    margin-left: 3em;
 }
 
 .detail-inputs {
@@ -155,7 +161,20 @@ textarea {
 .option:hover {
     background-color: #a39f9f;
     cursor: pointer;
-    
+}
+
+.os-option {
+    border-top: 1px solid whitesmoke;
+    font-size: 1.5em;
+    list-style: none;
+    padding: 1em;
+    width: 40%;
+}
+
+.os-option:hover {
+    background-color: rgb(69, 67, 67);
+    color: black;
+    cursor: pointer;
 }
 
 .page {
@@ -344,11 +363,40 @@ textarea {
     border: 2px solid whitesmoke;
     margin-right: auto; 
     margin-left: auto;
-    width: 100%;
+    width: 60%;
+}
+
+#cloud-name {
+    margin-top: 2.5em;
+    width: 44vw;
+}
+
+#cloud-name-form {
+    border-left: 0;
+    border-right: 0;
+    left: 0;
+    margin: 2em; 
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 54vw; 
+    padding-left: 2em;
 }
 
 #credit {
     margin-right: 1em;
+}
+
+#delete-cloud-div {
+    border-top: 1px solid black;
+    font-size: 1.2em;
+    margin-top: 4em;
+    padding-top: 2em;
+}
+
+#delete-cloud-confirmation {
+    display: none;
+    font-size: 1vw;
+    margin-left: 4vw;
 }
 
 #detail-aside {
@@ -370,6 +418,23 @@ textarea {
     margin-top: 10%;
     padding: 0;
     position: relative;
+}
+
+#download-client-form {
+    border: 0;
+    color: black;
+    font-size: 1.2em;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3em;
+    padding: 0;
+}
+
+#enter-delete-cloud {
+    height: 1.8em !important;
+    margin-bottom: .9em !important;
+    width: 5em !important; 
 }
 
 #file {
@@ -402,6 +467,10 @@ textarea {
 
 #first-downloads-page img {
     margin-left: .6em;
+}
+
+#first-options {
+    display: inherit;
 }
 
 #home-content {
@@ -640,6 +709,11 @@ textarea {
     margin: 1em;
 }
 
+#yes-remove {
+    color: gray;
+    font-size: .8em;
+}
+
 @media only screen and (max-width: 1700px) {
     #become-publisher {
         font-size: .95vw !important;
@@ -648,10 +722,18 @@ textarea {
     #become-publisher h6 {
         font-size: .85vw !important;
     }
+    
+    #yes-remove {
+        font-size: .6em;
+    }
 
 }
 
 @media only screen and (max-width: 1200px) {
+    .cloud-form-title {
+        font-size: 1.25rem;
+    }
+    
     .detail-option label {
         font-size: 90%;
     }
@@ -666,6 +748,14 @@ textarea {
     
     #become-publisher {
         font-size: 1vw !important;
+    }
+    
+    #cloud-form {
+        font-size: .8rem;
+    }
+    
+    #delete-cloud-confirmation {
+        font-size: .9vw;
     }
     
     #download-buttons {
@@ -686,6 +776,18 @@ textarea {
     }
 }
 
+@media only screen and (max-width: 910px) {
+    #yes-remove{
+        font-size: .58em;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    #cloud-page {
+        font-size: .8em;
+    }
+}
+
 @media only screen and (max-width: 850px) {
     img {
         display: none;
@@ -697,6 +799,10 @@ textarea {
     
     .bordered {
         width: 107.1% !important;
+    }
+    
+    .cloud-form-title {
+        font-size: 1rem;
     }
     
     .tool-tip {
@@ -740,6 +846,25 @@ textarea {
         font-size: 2vw;
     }
     
+    #cloud-form {
+        font-size: .5rem;
+    }
+    
+    #cloud-page {
+        font-size: .9em;
+    }
+    
+    #cloud-page img {
+        width: 20px;
+    }
+    
+    #delete-cloud-confirmation {
+        font-size: .8em;
+        margin-left: 0;
+        margin-top: 5em;
+        width: 100%;
+    }
+    
     #download-buttons {
         font-size: 100%;
     }
@@ -781,6 +906,12 @@ textarea {
     #tabs td li {
         font-size: 2vw;
     }
+    
+    #yes-remove{
+        font-size: 1.2vw;
+    }
+    
+    
 }
 
 @media only screen and (max-width: 768px) { 
@@ -788,10 +919,26 @@ textarea {
         max-width: 35vw;
     } 
     
+    .cloud-form-title {
+        font-size: .8rem;
+    }
+    
     #article-page, #issues {
          margin-left: auto;
          margin-right: auto;
          min-width: 95%;
+    }
+    
+    #cloud-form {
+        font-size: .3rem;
+    }
+    
+    #cloud-form h1 {
+        font-size: 1.5rem;
+    }
+    
+    #cloud-page {
+        font-size: .8em;
     }
     
     #content {
@@ -811,6 +958,26 @@ textarea {
         margin-right: 10;
         min-width: 80%;
     }
+    
+    #yes-remove {
+        font-size: 1.6vw;
+    }
+    
+}
+
+@media only screen and (max-width: 580px) { 
+    .cloud-form-title {
+        font-size: .5rem;
+    }
+    
+    #cloud-form {
+        font-size: .1rem;
+    }
+    
+     #cloud-page {
+        font-size: .7em;
+    }
+    
 }
 
 @media only screen and (max-width: 550px) { 
@@ -820,6 +987,10 @@ textarea {
     
     .user-auth {
         font-size: .3em;
+    }
+    
+     #cloud-page {
+        font-size: 1.8vw;
     }
     
     #first-downloads-page {
