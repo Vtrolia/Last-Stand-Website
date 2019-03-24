@@ -8,6 +8,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.core.mail import send_mail, BadHeaderError, EmailMessage
 from django.utils.encoding import smart_str
 from .models import PublisherUsers, Articles
+from api.models import Cloud
 from django.contrib.auth.decorators import login_required
 
 

@@ -23,6 +23,32 @@
             document.getElementById("first-options").style.display = "inherit";
         }
         
+        
+       window.onload = () => {
+           var resp;
+            var request = new XMLHttpRequest();
+            request.open("GET", "{% url 'get_user_clouds' %}");
+            request.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+            request.onload = () => {
+                resp = JSON.parse(request.responseText);
+                
+                document.getElementById("new-cloud-name").oninput= () => {
+                    var name = document.getElementById("new-cloud-name");
+
+                    for(let cloud in resp) {
+                        if (name.value === cloud) {
+                            document.querySelector("button").disabled = true;
+                            alert("More than one cloud cannot have the same name!");
+                            name.style.backgroundColor = "red";
+                            return;
+                        }
+                    }
+                    document.querySelector("button").disabled = false;
+                    name.style.backgroundColor = "white";
+                }
+            }
+            request.send()
+        }
     </script>
 	<meta name="description" content="This is the page where you will create your new cloud, and download all the needed parts">
     <link rel= "stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
@@ -46,9 +72,9 @@
                     {% csrf_token %}
                     <input type="hidden" id="os-type" name="os-type">
                     <label>
-                        <span style="font-size:1.7em">Name: </span> <input type="text" placeholder="My Cloud..." name="name" id="cloud-name">
+                        <span style="font-size:1.7em">Name: </span> <input type="text" placeholder="My Cloud..." name="name" id="new-cloud-name">
                     </label>
-                    <div style="margin-left: auto; margin-right: auto; max-width: 20%">        <button type="submit" onclick="userMessage()">Create</button>
+                    <div style="margin-left: auto; margin-right: auto; max-width: 20%">        <button type="submit" id="create-cloud-button" click="userMessage()">Create</button>
                     </div>
                 </form>
                 <img id="create-cloud-back" style="cursor: pointer" onclick="backToStart('cloud-name')" src="{% static 'source_images/back.png' %}" width=64>

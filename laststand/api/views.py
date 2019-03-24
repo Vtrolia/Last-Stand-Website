@@ -89,7 +89,19 @@ def get_ssl_cert(request, name):
         cert.delete()
         return HttpResponse("content: none")
 
-
+def get_user_clouds(request):
+    if not request.user.is_authenticated:
+        return HttpResponse({"none", "failure"})
+    else:
+        clouds = Cloud.objects.filter(owner=request.user)
+        
+        cl = {}
+        for cloud in clouds:
+            cl[cloud.name] = cloud.name
+        return HttpResponse(j.dumps(cl))
+        
+    
+    
 @csrf_exempt
 def is_cert_valid(request, name):
     # anyone can check whether or not a server has a valid ssl certificate or not
@@ -124,6 +136,11 @@ def renew_cert(request, name):
 
 @require_http_methods(["POST"])
 def submit_cloud(request):
+    
+    clouds = Cloud.objects.filter(owner=request.user)
+    for cloud in clouds:
+        if cloud.name == request.POST["name"]:
+            return HttpResponse("Nice try, but setting the button back to active with inspect element is the easiest trick in the book, pick a new cloud name please")
 
     # this is the initial creation of a cloud, so set the date
     created = dt.datetime.now()
