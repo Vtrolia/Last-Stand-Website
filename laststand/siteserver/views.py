@@ -1,20 +1,24 @@
 # necessary Django imports to run the websites
-from django.shortcuts import render, redirect
-from django.http import HttpResponseNotFound, HttpResponse
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.mail import send_mail, BadHeaderError, EmailMessage
+from django.http import HttpResponseNotFound, HttpResponse
+from django.shortcuts import render, redirect
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_protect
-from django.core.mail import send_mail, BadHeaderError, EmailMessage
 from django.utils.encoding import smart_str
-from .models import PublisherUsers, Articles
+
+
+# imports from other parts of the web site
 from api.models import Cloud
-from django.contrib.auth.decorators import login_required
+from .models import PublisherUsers, Articles
+
 
 
 # other imports that are useful
-import helpers as h
 import datetime as dt
+import helpers as h
 import json as j
 
 # Basic
@@ -24,9 +28,23 @@ def index(request):
     return h.return_as_wanted(request, "home.html")
 
 
-def rates(request):
-    return h.return_as_wanted(request, "rates.html")
+# other pages
+def account_page(request):
+    if not request.user.is_authenticated:
+        return HttpResponseNotFound(render(request, "error.html"))
+    return h.return_as_wanted(request, "account_page.html", message={"username": request.user.get_username(), "date_joined": request.user.date_joined })
 
+def create_cloud(request):
+    if not request.user.is_authenticated:
+        return h.return_as_wanted(request, "login.html", message=["warning", "You must sign in or sign up to download the cloud"])
+    else:
+        return h.return_as_wanted(request, "register-cloud.html")
+    
+def issue_page(request):
+    return h.return_as_wanted(request, "issue.html")
+
+def license_page(request):
+    return h.return_as_wanted(request, "legal_docs.html")
 
 def login_page(request):
     if request.user.is_authenticated:
@@ -34,12 +52,12 @@ def login_page(request):
     else:
         return render(request, "login.html")
 
+def logout_user(request):
+    logout(request)
+    return redirect("/")
 
-def register_page(request):
-    if request.user.is_authenticated:
-        return redirect("/")
-    else:
-        return render(request, "signup.html")
+def more_info(request):
+        return h.return_as_wanted(request, "user_details.html")
 
 @login_required
 def publish_page(request):
@@ -54,73 +72,24 @@ def publish_page(request):
     else:
         return h.return_as_wanted(request, "publish.html")
 
-
-def issue_page(request):
-    return h.return_as_wanted(request, "issue.html")
-
-def account_page(request):
-    if not request.user.is_authenticated:
-        return HttpResponseNotFound(render(request, "error.html"))
-    return h.return_as_wanted(request, "account_page.html", message={"username": request.user.get_username(), "date_joined": request.user.date_joined })
-
-
-def create_cloud(request):
-    if not request.user.is_authenticated:
-        return h.return_as_wanted(request, "login.html", message=["warning", "You must sign in or sign up to download the cloud"])
+def rates(request):
+    return h.return_as_wanted(request, "rates.html")
+    
+def register_page(request):
+    if request.user.is_authenticated:
+        return redirect("/")
     else:
-        return h.return_as_wanted(request, "register-cloud.html")
-
-
-# either just log out user, or take them to login to switch to another account
+        return render(request, "signup.html")
+    
 def relog_page(request):
     logout(request)
     return redirect("/login")
-
-
-def logout_user(request):
-    logout(request)
-    return redirect("/")
-
-
-def license_page(request):
-    return h.return_as_wanted(request, "legal_docs.html")
 
 def settings(request):
     return h.return_as_wanted(request, "construction.html")
 
 
 # form submission pages for either a login. registration, or an article(publishers only)
-@require_http_methods(["POST"])
-def submit_login(request):
-    username = request.POST["user"]
-    password = request.POST["password"]
-    user = authenticate(request, username=username, password=password)
-
-    if user:
-        login(request, user)
-        return redirect("/")
-    else:
-        return h.return_as_wanted(request, "login.html", message=["danger", " Username and password combo does not exist!"])
-
-
-@require_http_methods(["POST"])
-def submit_register(request):
-    email = request.POST["email"]
-    username = request.POST["user"]
-    password = request.POST["password"]
-    try:
-        if not authenticate(request, username=username, password=password):
-            user = User.objects.create_user(username, email)
-            user.set_password(password)
-            user.save()
-            login(request, user)
-            return redirect("/more-info")
-        else:
-            return h.return_as_wanted(request, "signup.html", message=["Error!", "Username or email is already registered!"])
-    except:
-        return h.return_as_wanted(request, "signup.html", message=["Error!", "Username or email is already registered!"])
-
-
 @require_http_methods(["POST"])
 def submit_article(request):
 
@@ -145,7 +114,7 @@ def submit_article(request):
                 credit = credit.replace("<self>", "")
 
             # write the file to the article_images static directory. WAAAY easier than the Flask version
-            with open( "/home/vinny/Documents/Last-Stand-Website/laststand/static-folder/article_images/" + file.name, "wb+") as f:
+            with open("/home/vinny/Documents/Last-Stand-Website/laststand/static-folder/article_images/" + file.name, "wb+") as f:
                 for chunk in file.chunks():
                     f.write(chunk)
 
@@ -163,7 +132,21 @@ def submit_article(request):
 
             return h.return_as_wanted(request, "publish.html",
                                     message=["success", "Your article was published successfully!"])
+        
+        
+@require_http_methods(["POST"])
+def submit_login(request):
+    username = request.POST["user"]
+    password = request.POST["password"]
+    user = authenticate(request, username=username, password=password)
 
+    if user:
+        login(request, user)
+        return redirect("/")
+    else:
+        return h.return_as_wanted(request, "login.html", message=["danger", " Username and password combo does not exist!"])
+
+    
 @require_http_methods(["POST"])
 def submit_issue(request):
     name = request.POST["your-name"]
@@ -182,45 +165,37 @@ def submit_issue(request):
         return h.return_as_wanted(request, "issue.html", ["success", "Your message was successfully delivered!"])
 
 
-def submit_download(request):
-    # either send them back the full software suite or just the client
-    if "both" in request.POST:
-        response_name = "laststandCLI.zip"
-    else:
-        response_name = "laststand_client.zip"
-
-    # read the file as the contents of the message
-    with open("/home/vinny/Documents/Last-Stand-Website/laststand/static-folder/downloads/" + request.POST["os-type"] + "/" + response_name, "rb") as f:
-        response = HttpResponse(f.read())
-
-    # these headers are needed so that the client understands the file being sent to them
-    response["Content-Disposition"] = "attachment; filename='" + response_name +"'"
-    response["X-Sendfile"] = smart_str("/home/vinny/Documents/Last-Stand-Website/laststand/static-folder/downloads/" + request.POST["os-type"] + "/" + response_name)
-    return response
-
 @require_http_methods(["POST"])
-def submit_password_change(request):
-    old, new = request.body.decode("utf-8").split("&")
-    if authenticate(request, username=request.user.get_username(), password=old):
-        request.user.set_password(new)
-        request.user.save()
-        return HttpResponse("<div class=\"alert alert-success\" role=\"alert\" id=\"alerts\"><strong>Success!</strong> " +
-                            " Your password was successfully changed!</div>")
-    else:
-        return HttpResponse("<div class=\"alert alert-danger\" role=\"alert\" id=\"alerts\"><strong>Error! </strong>" +
-                            " Your old password was not correct!</div>")
-
-
+def submit_register(request):
+    email = request.POST["email"]
+    username = request.POST["user"]
+    password = request.POST["password"]
+    try:
+        if not authenticate(request,username=username, password=password):
+            user = User.objects.create_user(username, email)
+            user.set_password(password)
+            user.save()
+            login(request, user)
+            return redirect("/more-info")
+        else:
+            return h.return_as_wanted(request, "signup.html", message=["Error!", "Username or email is already registered!"])
+    except:
+        return h.return_as_wanted(request, "signup.html", message=["Error!", "Username or email is already registered!"])
+    
+    
+    
+# views for submissions sent in from the account page
 @require_http_methods(["POST"])
-def submit_delete_account(request):
-    password = request.POST['password']
+def add_name(request):
+    first = request.POST["firstName"]
+    last = request.POST["lastName"]
 
-    if authenticate(request, username=request.user.get_username(), password=password):
-        request.user.delete()
-        logout(request)
-        return h.return_as_wanted(request, "login.html", message=["warning", " Your account has successfully been deleted!"])
-    else:
-        return redirect("/")
+    # let users add their first and last name, or skip it if they don't
+    user = User.objects.get(username=request.user.get_username())
+    user.first_name = first
+    user.last_name = last
+    user.save()
+    return redirect("/")
 
 
 def submit_application(request):
@@ -231,6 +206,7 @@ def submit_application(request):
     mail.attach(file.name, file.read(), "application/octet-stream")
     mail.send()
     return redirect("/account-settings")
+
 
 @csrf_protect
 def submit_change(request):
@@ -265,29 +241,33 @@ def submit_change(request):
     return HttpResponse(j.dumps(result))
 
 
-
-# other forms or requests to send data
-def more_info(request):
-        return h.return_as_wanted(request, "user_details.html")
-
-
 @require_http_methods(["POST"])
-def add_name(request):
-    first = request.POST["firstName"]
-    last = request.POST["lastName"]
+def submit_delete_account(request):
+    password = request.POST['password']
 
-    # let users add their first and last name, or skip it if they don't
-    user = User.objects.get(username=request.user.get_username())
-    user.first_name = first
-    user.last_name = last
-    user.save()
-    return redirect("/")
-
-
+    if authenticate(request, username=request.user.get_username(), password=password):
+        request.user.delete()
+        logout(request)
+        return h.return_as_wanted(request, "login.html", message=["warning", " Your account has successfully been deleted!"])
+    else:
+        return redirect("/")
+    
+    
 @require_http_methods(["POST"])
-def story(request):
-    return render(request, "ourstory.html")
+def submit_password_change(request):
+    old, new = request.body.decode("utf-8").split("&")
+    if authenticate(request, username=request.user.get_username(), password=old):
+        request.user.set_password(new)
+        request.user.save()
+        return HttpResponse("<div class=\"alert alert-success\" role=\"alert\" id=\"alerts\"><strong>Success!</strong> " +
+                            " Your password was successfully changed!</div>")
+    else:
+        return HttpResponse("<div class=\"alert alert-danger\" role=\"alert\" id=\"alerts\"><strong>Error! </strong>" +
+                            " Your old password was not correct!</div>")
 
+
+
+# views for articles on the first page
 def load_articles(request):
     # keep track of the articles that have been loaded so far, so that it isn't grabbing more and more forever
     if not "offset" in request.session.keys():
@@ -307,6 +287,14 @@ def load_articles(request):
         return HttpResponse("")
     return HttpResponse(j.dumps(articles))
 
+@require_http_methods(["POST"])
+def story(request):
+    return render(request, "ourstory.html")
+
+
+# These are the views that load templates into the account page
+def load(request, template):
+    return render(request, template + ".html")
 
 def load_cloud_options(request):
     return render(request, "cloud-page.html")
@@ -323,19 +311,18 @@ def load_request_publisher(request):
     else:
         return render(request, "become_publisher.html", context={"font_size": ".91em"})
 
-def load(request, template):
-    return render(request, template + ".html")
-
 
 # error handlers
+def forbidden(request, exception):
+    return render(request, "error.html", {"type": "403 Forbidden"})
+
 def not_found(request, exception):
     return render(request, "error.html", {"type": "404 Not Found"})
 
-def forbidden(request, exception):
+def not_allowed(request, exception):
     return render(request, "error.html", {"type": "403 Forbidden"})
 
 def server_error(request):
     return render(request, "error.html", {"type": "500 Internal Server Error"})
 
-def not_allowed(request, exception):
-    return render(request, "error.html", {"type": "403 Forbidden"})
+
