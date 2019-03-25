@@ -4,14 +4,15 @@ from django.contrib.auth.models import User
 
 # articles on the home page
 class Articles(models.Model):
-    date = models.CharField(max_length=40)
     author = models.CharField(max_length=100)
-    title = models.CharField(max_length=100)
+    confirmed = models.BooleanField(default=False)
+    date = models.CharField(max_length=40)
     image_src = models.CharField(max_length=50, null=True, blank=True)
     image_title = models.CharField(max_length=200, null=True, blank=True)
     text = models.TextField()
-    confirmed = models.BooleanField(default=False)
-
+    title = models.CharField(max_length=100)
+    
+    # send articles to the front end as JSON objects
     def asJSON(self):
         return {
             "date": self.date,

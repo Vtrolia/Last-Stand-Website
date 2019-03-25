@@ -1,15 +1,19 @@
+# django imports
+from django.http import HttpResponse
+from django.contrib.auth.models import User
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
-from django.contrib.auth.models import User
-from django.http import HttpResponse
 from django.utils.encoding import smart_str
+
+# import api models
 from .models import Cloud, SSL
 
-import helpers as h
-import os
+# regular imports
 from dateutil.relativedelta import relativedelta
 import datetime as dt
+import helpers as h
 import json as j
+import os
 import zipfile as zip
 
 
@@ -17,7 +21,7 @@ import zipfile as zip
 def index(request):
     pass
 
-
+# this is where a cloud updates its own information stored on the website's databases
 @csrf_exempt
 @require_http_methods(["POST"])
 def set_info(request, name):
@@ -43,32 +47,7 @@ def set_info(request, name):
         return HttpResponse("contents: none failure" + "\r\n")
 
 
-@require_http_methods(["POST"])
-def get_user_info(request):
-    if not request.user.is_authenticated:
-        return HttpResponse("")
-    else:
-        response = dict()
-
-        response["status"] = "Basic"
-
-        clouds = Cloud.objects.filter(owner=request.user)
-        response["clouds_owned"] = clouds.count()
-        response["clouds"] = []
-
-        if not clouds.count():
-            response["clouds"] = ["You haven't created a Cloud yet!"]
-            return HttpResponse(j.dumps(response))
-
-        for cloud in clouds:
-            response['clouds'].append(cloud.name)
-
-        return HttpResponse(j.dumps(response))
-
-
-
-
-
+# api getters
 @csrf_exempt
 @require_http_methods(["POST"])
 def get_address(request, name):
@@ -99,9 +78,44 @@ def get_user_clouds(request):
         for cloud in clouds:
             cl[cloud.name] = cloud.name
         return HttpResponse(j.dumps(cl))
+
+
+@require_http_methods(["POST"])
+def get_user_info(request):
+    if not request.user.is_authenticated:
+        return HttpResponse("")
+    else:
+        response = dict()
+
+        response["status"] = "Basic"
+
+        clouds = Cloud.objects.filter(owner=request.user)
+        response["clouds_owned"] = clouds.count()
+        response["clouds"] = []
+
+        if not clouds.count():
+            response["clouds"] = ["You haven't created a Cloud yet!"]
+            return HttpResponse(j.dumps(response))
+
+        for cloud in clouds:
+            response['clouds'].append(cloud.name)
+
+        return HttpResponse(j.dumps(response))
+    
+    
+@csrf_protect
+def verify(request):
+    users = User.objects.all()
+    usernames = {"username": [], "email": []}
+
+    for user in users:
+        usernames["username"].append(user.username)
+        usernames["email"].append(user.email)
+
+    return HttpResponse(j.dumps(usernames))
         
     
-    
+# certification validation and renewal    
 @csrf_exempt
 def is_cert_valid(request, name):
     # anyone can check whether or not a server has a valid ssl certificate or not
@@ -133,7 +147,65 @@ def renew_cert(request, name):
     else:
         return HttpResponse("")
 
+    
+# Views for creating/deleting clouds
 
+# if the user wants to delete a cloud. verify who they are, then send them a message based on success or not 
+@require_http_methods(["POST"])
+def delete_cloud(request):
+    req = j.loads(request.body.decode("utf-8"))
+    if request.user.check_password(req['password']):
+        cloud = Cloud.objects.get(owner=request.user, name=req['name'])
+        ssl = cloud.ssl_cert
+        cloud.delete()
+        ssl.delete()
+        
+        resp = {
+            "flag": "success",
+            "body": "<strong>Success!</strong> Your cloud has been deleted!" 
+            
+        }
+        return HttpResponse(j.dumps(resp))
+    else:
+        resp = {
+            "flag": "danger",
+            "body": "<strong>Error</strong> Something went wrong!"
+        }
+        return HttpResponse(j.dumps(resp))
+
+    
+# much like when submitting a cloud, when the user wants to download a client only for a cloud
+# this view crafts a zip file with everything they need 
+@require_http_methods(["POST"]) 
+def download_client(request):
+    name = request.POST['cloud-name']
+    cloud = Cloud.objects.get(owner=request.user, name=name)
+    
+    # if the cloud created exists, send them the cloud id and client executable in the zip file
+    if cloud:
+        client_only = zip.ZipFile("laststandclient.zip", "w")
+        with client_only.open("server_id", "w") as co:
+            co.write(cloud.id.encode('utf-8'))
+        
+        with client_only.open("laststand", "w") as co:
+            with open("/Users/vinny/Desktop/Documents/Last-Stand-Website/laststand/static-folder/downloads/" +
+                      request.POST["os-type"] + "/" + "laststand", "rb") as f:
+                co.write(f.read())
+        
+        client_only.close()
+        
+        with open("laststandclient.zip", "rb") as f:
+            response = HttpResponse(f.read())
+
+        # these headers are needed so that the client understands the file being sent to them
+        response["Content-Disposition"] = "attachment; filename=laststandclient.zip"
+        response["X-Sendfile"] = smart_str("/home/vinny/Documents/Last-Stand-Website/laststand/static-folder/downloads/" +
+                                           request.POST["os-type"] + "/laststandclient.zip")
+        os.remove("laststandclient.zip")
+        return response
+
+
+# when a user wants to create a new cloud, this view registers it, then sends them a download for this cloud
 @require_http_methods(["POST"])
 def submit_cloud(request):
     
@@ -165,7 +237,9 @@ def submit_cloud(request):
         ip_address = request.META["REMOTE_ADDR"]
         cloud = Cloud.objects.create(id=name, name=given_name, ip_address=ip_address, ssl_cert=ssl, owner=owner, status=0)
         cloud.save()
-
+    
+        # now, the user is given a zip file containing what they need. Each of these files is stored on the server, so it is loaded
+        # up and added to the zip archive
         archive = zip.ZipFile("laststand.zip", "w")
         with archive.open("Last Stand Cloud - End user License Agreement(EULA).pdf", "w") as ls:
 
@@ -205,64 +279,3 @@ def submit_cloud(request):
                                            request.POST["os-type"] + "/laststand.zip")
         os.remove("laststand.zip")
         return response
-    
-@require_http_methods(["POST"]) 
-def download_client(request):
-    name = request.POST['cloud-name']
-    cloud = Cloud.objects.get(owner=request.user, name=name)
-    print(cloud.id)
-    if cloud:
-        client_only = zip.ZipFile("laststandclient.zip", "w")
-        with client_only.open("server_id", "w") as co:
-            co.write(cloud.id.encode('utf-8'))
-        
-        with client_only.open("laststand", "w") as co:
-            with open("/Users/vinny/Desktop/Documents/Last-Stand-Website/laststand/static-folder/downloads/" +
-                      request.POST["os-type"] + "/" + "laststand", "rb") as f:
-                co.write(f.read())
-        
-        client_only.close()
-        
-        with open("laststandclient.zip", "rb") as f:
-            response = HttpResponse(f.read())
-
-        # these headers are needed so that the client understands the file being sent to them
-        response["Content-Disposition"] = "attachment; filename=laststandclient.zip"
-        response["X-Sendfile"] = smart_str("/home/vinny/Documents/Last-Stand-Website/laststand/static-folder/downloads/" +
-                                           request.POST["os-type"] + "/laststandclient.zip")
-        os.remove("laststandclient.zip")
-        return response
-
-@csrf_protect
-def verify(request):
-    users = User.objects.all()
-    usernames = {"username": [], "email": []}
-
-    for user in users:
-        usernames["username"].append(user.username)
-        usernames["email"].append(user.email)
-
-    return HttpResponse(j.dumps(usernames))
-
-
-@require_http_methods(["POST"])
-def delete_cloud(request):
-    req = j.loads(request.body.decode("utf-8"))
-    if request.user.check_password(req['password']):
-        cloud = Cloud.objects.get(owner=request.user, name=req['name'])
-        ssl = cloud.ssl_cert
-        cloud.delete()
-        ssl.delete()
-        
-        resp = {
-            "flag": "success",
-            "body": "<strong>Success!</strong> Your cloud has been deleted!" 
-            
-        }
-        return HttpResponse(j.dumps(resp))
-    else:
-        resp = {
-            "flag": "danger",
-            "body": "<strong>Error</strong> Something went wrong!"
-        }
-        return HttpResponse(j.dumps(resp))

@@ -4,13 +4,13 @@ from . import views
 urlpatterns = [
     path("update-server/<name>", views.set_info, name="update_server"),
     path("forward-to-server/<name>", views.get_address, name="forward_to_server"),
-    path("is-valid/<name>", views.is_cert_valid, name="is_valid"),
     path("get-certificate/<name>", views.get_ssl_cert, name="get_ssl_cert"),
-    path("get-user-cloud-info", views.get_user_info, name="user_cloud_info"),
     path("get-user-clouds", views.get_user_clouds, name="get_user_clouds"),
-    path("renew-certificate/<name>", views.renew_cert, name="renew_cert"),
-    path("submit-cloud", views.submit_cloud, name="submit_cloud"),
-    path("download-client", views.download_client, name="download_client"),
+    path("get-user-cloud-info", views.get_user_info, name="user_cloud_info"),
     path("verify", views.verify, name="verify"),
-    path("delete-cloud", views.delete_cloud, name="delete_cloud")
+    path("is-valid/<name>", views.is_cert_valid, name="is_valid"),
+    path("renew-certificate/<name>", views.renew_cert, name="renew_cert"),
+    path("delete-cloud", views.delete_cloud, name="delete_cloud"),
+    path("download-client", views.download_client, name="download_client"),
+    path("submit-cloud", views.submit_cloud, name="submit_cloud")
 ]
