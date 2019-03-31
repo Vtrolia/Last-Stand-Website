@@ -23,7 +23,7 @@ with open('secret_key.txt', "r") as f:
     SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 ADMINS = [("Vincent Trolia", "vtrolia@protonmail.com")]
 
 ALLOWED_HOSTS = ['*']
@@ -156,7 +156,6 @@ CACHES = {
 }
 
 # HTTPS
-"""
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 X_FRAME_OPTIONS = "DENY"
@@ -167,4 +166,3 @@ SECURE_SSL_REDIRECT = True
 SESSION_SAVE_EVERY_REQUEST = True
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_COOKIE_AGE = 60 * 120
-"""
