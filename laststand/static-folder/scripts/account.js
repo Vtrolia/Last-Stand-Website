@@ -138,6 +138,7 @@ function loadScript(name) {
         jsfile.setAttribute("id", name + "js");
         jsfile.className = "add-on";
         jsfile.setAttribute("src", static + "/" + name + ".js");
+        jsfile.setAttribute("asnyc", true);
         document.querySelector("head").append(jsfile);
     }
 }

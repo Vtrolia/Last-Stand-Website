@@ -114,7 +114,7 @@ def submit_article(request):
                 credit = credit.replace("<self>", "")
 
             # write the file to the article_images static directory. WAAAY easier than the Flask version
-            with open("/home/vinny/Documents/Last-Stand-Website/laststand/static-folder/article_images/" + file.name, "wb+") as f:
+            with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/article_images/" + file.name, "wb+") as f:
                 for chunk in file.chunks():
                     f.write(chunk)
 
@@ -155,7 +155,7 @@ def submit_issue(request):
     issue = request.POST["issue-text"]
 
     try:
-        success = send_mail(issue_type, name + ", " + email + " -\n" + issue, to=["vinny@mail.laststandcloud.com"])
+        success = send_mail(issue_type, name + ", " + email + " -\n" + issue, "issues@laststandcloud.com" ,["root@laststandcloud"])
     except BadHeaderError:
         return h.return_as_wanted(request, "issue.html", ["danger", "Your email was unable to be sent!"])
 

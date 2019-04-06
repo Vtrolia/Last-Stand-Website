@@ -1,4 +1,37 @@
 /*
+ * gives automatic OS detection for the user's system so that they download the correct
+ * version of the software for themselves
+ */
+  function loadOS() {
+    // userAgent stores the user's operating system details
+    var os = navigator.userAgent.split(/[()]+/)[1];
+
+    // for Mac users
+    if (os.includes("Mac")) {
+        os = "macOS"
+
+    }
+
+    // else display the linux download
+    else if (os.includes("Linux")){
+        os = "Linux";
+    }
+	
+    // FreeBSD coming soon
+    else if (os.includes("BSD")) {
+	os = "FreeBSD";
+    }
+
+    else {
+	os = "none";
+    }
+
+    document.getElementById("hidden-os-type").value = os;
+}
+loadOS();
+
+
+/*
  * When a user first selects to delete a cloud, prompt them to enter their password again for security reasons. 
  * Making any changes to their account should first require reauthentication 
  */
@@ -76,7 +109,5 @@ function deleteThisCloud() {
        }
         
     }
-    request.send(JSON.stringify(data));
-    
-    
+    request.send(JSON.stringify(data));  
 }

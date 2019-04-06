@@ -4,13 +4,14 @@
 <div id="cloud-page">
     <form id="download-client-form" action="{% url 'download_client' %}" method="post" align=center>
         {% csrf_token %}
+        <input type="hidden" name="os-type" id="hidden-os-type">
         <label>
             <div id="cloud-page-prompt">
                 Click here to download the client for this cloud:
             </div>
             <hr>
             <div align=center>
-                <button style="font-size: .8em;" type="submit">Download <img alt="download image" src="{% static 'source_images/download.png' %}" width=25px></button>
+                <button onclick="loadOS()" style="font-size: .8em;" type="submit">Download <img alt="download image" src="{% static 'source_images/download.png' %}" width=25px></button>
             </div>
         </label>
     </form>

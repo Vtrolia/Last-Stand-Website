@@ -179,29 +179,30 @@ def delete_cloud(request):
 @require_http_methods(["POST"]) 
 def download_client(request):
     name = request.POST['cloud-name']
+    if request.POST['os-type'] == "none":
+        return HttpResponse("Sorry, your Operating System is not supported yet")
     cloud = Cloud.objects.get(owner=request.user, name=name)
     
     # if the cloud created exists, send them the cloud id and client executable in the zip file
     if cloud:
-        client_only = zip.ZipFile("laststandclient.zip", "w")
+        client_only = zip.ZipFile("/usr/local/www/Last-Stand-Website/laststand/laststandclient.zip", "w")
         with client_only.open("server_id", "w") as co:
             co.write(cloud.id.encode('utf-8'))
         
         with client_only.open("laststand", "w") as co:
-            with open("/Users/vinny/Desktop/Documents/Last-Stand-Website/laststand/static-folder/downloads/" +
+            with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/downloads/" +
                       request.POST["os-type"] + "/" + "laststand", "rb") as f:
                 co.write(f.read())
         
         client_only.close()
         
-        with open("laststandclient.zip", "rb") as f:
+        with open("/usr/local/www/Last-Stand-Website/laststand/laststandclient.zip", "rb") as f:
             response = HttpResponse(f.read())
 
         # these headers are needed so that the client understands the file being sent to them
         response["Content-Disposition"] = "attachment; filename=laststandclient.zip"
-        response["X-Sendfile"] = smart_str("/home/vinny/Documents/Last-Stand-Website/laststand/static-folder/downloads/" +
-                                           request.POST["os-type"] + "/laststandclient.zip")
-        os.remove("laststandclient.zip")
+        response["X-Sendfile"] = smart_str("/usr/local/www/Last-Stand-Website/laststand/laststandclient.zip")
+        os.remove("/usr/local/www/Last-Stand-Website/laststand/laststandclient.zip")
         return response
 
 
@@ -240,22 +241,22 @@ def submit_cloud(request):
     
         # now, the user is given a zip file containing what they need. Each of these files is stored on the server, so it is loaded
         # up and added to the zip archive
-        archive = zip.ZipFile("laststand.zip", "w")
+        archive = zip.ZipFile("/usr/local/www/Last-Stand-Website/laststand/laststand.zip", "w")
         with archive.open("Last Stand Cloud - End user License Agreement(EULA).pdf", "w") as ls:
 
-            with open("/Users/vinny/Desktop/Documents/Last-Stand-Website/laststand/static-folder/downloads/Last Stand Cloud - "
+            with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/downloads/Last Stand Cloud - "
                       "End user License Agreement(EULA).pdf", "rb") as f:
                 ls.write(f.read())
 
         # read the file as the contents of the message
         with archive.open("laststandserver", "w") as ls:
 
-            with open("/Users/vinny/Desktop/Documents/Last-Stand-Website/laststand/static-folder/downloads/" +
+            with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/downloads/" +
                       request.POST["os-type"] + "/laststandserver", "rb") as f:
                 ls.write(f.read())
 
         with archive.open("laststand", "w") as ls:
-            with open("/Users/vinny/Desktop/Documents/Last-Stand-Website/laststand/static-folder/downloads/" +
+            with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/downloads/" +
                       request.POST["os-type"] + "/" + "laststand", "rb") as f:
                 ls.write(f.read())
 
@@ -270,12 +271,11 @@ def submit_cloud(request):
 
         archive.close()
 
-        with open("laststand.zip", "rb") as f:
+        with open("/usr/local/www/Last-Stand-Website/laststand/laststand.zip", "rb") as f:
             response = HttpResponse(f.read())
 
         # these headers are needed so that the client understands the file being sent to them
         response["Content-Disposition"] = "attachment; filename=laststand.zip"
-        response["X-Sendfile"] = smart_str("/home/vinny/Documents/Last-Stand-Website/laststand/static-folder/downloads/" +
-                                           request.POST["os-type"] + "/laststand.zip")
-        os.remove("laststand.zip")
+        response["X-Sendfile"] = smart_str("/usr/local/www/Last-Stand-Website/laststand/laststand.zip")
+        os.remove("/usr/local/www/Last-Stand-Website/laststand/laststand.zip")
         return response
