@@ -23,7 +23,6 @@ def index(request):
 
 # this is where a cloud updates its own information stored on the website's databases
 @csrf_exempt
-@require_http_methods(["POST"])
 def set_info(request, name):
     owner = h.api_user_check(request)
 
@@ -49,7 +48,6 @@ def set_info(request, name):
 
 # api getters
 @csrf_exempt
-@require_http_methods(["POST"])
 def get_address(request, name):
     resp = HttpResponse("content: " + Cloud.objects.get(id=name).ip_address + "\r\n")
     return resp
@@ -80,7 +78,6 @@ def get_user_clouds(request):
         return HttpResponse(j.dumps(cl))
 
 
-@require_http_methods(["POST"])
 def get_user_info(request):
     if not request.user.is_authenticated:
         return HttpResponse("")
@@ -128,7 +125,6 @@ def is_cert_valid(request, name):
 
 
 @csrf_exempt
-@require_http_methods(["POST"])
 def renew_cert(request, name):
     owner = h.api_user_check(request)
 
