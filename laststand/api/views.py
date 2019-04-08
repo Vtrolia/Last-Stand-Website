@@ -29,7 +29,7 @@ def set_info(request, name):
     # if the owner is not the correct one, something is wrong, and nothing will be updated for security reasons
     if owner == Cloud.objects.get(id=name).owner:
         cloud = Cloud.objects.get(id=name)
-        cloud.ip_address = request.META["REMOTE_ADDR"]
+        cloud.ip_address = request.META["QUERY_STRING"].split("&")[2][3:]
 
         # while updating, if the ssl certificate is now expired, delete it.
         if dt.date.today() >= cloud.ssl_cert.date_expires:
