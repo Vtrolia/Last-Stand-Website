@@ -52,11 +52,11 @@ def generate_new_cert(ownername, ownerpass, name):
     # create a key
     key = c.PKey()
     key.generate_key(c.TYPE_RSA, 1024)
-    with open("usr/local/www/Last-Stand-Website/laststand/static-folder/certs/" + ownername + "-" + name + "-pri.pem", "wb") as pk:
+    with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/certs/" + ownername + "-" + name + "-pri.pem", "wb") as pk:
         pk.write(c.dump_privatekey(c.FILETYPE_PEM, key, passphrase=(str(ownername) + str(ownerpass)).encode()))
 
     # get laststand's key
-    with open("usr/local/www/Last-Stand-Website/laststand/static-folder/certs/ls/privkey.pem", 'rb') as f:
+    with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/certs/ls/privkey.pem", 'rb') as f:
         laststand_key = c.load_privatekey(c.FILETYPE_PEM, f.read())
 
     # create the new certificate, fill it with Last Stand Cloud's information, then sign it with our private key
@@ -71,7 +71,7 @@ def generate_new_cert(ownername, ownerpass, name):
     new_cert.sign(laststand_key, "sha256")
 
     # dump the new cert so it can be kept until it expires, sort of like the gold in Fort Knox backing up the dollar
-    with open("usr/local/www/Last-Stand-Website/laststand/static-folder/certs/" + ownername + "-" + name + "-cert.pem", "wb") as cert:
+    with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/certs/" + ownername + "-" + name + "-cert.pem", "wb") as cert:
         cert.write(c.dump_certificate(c.FILETYPE_PEM, new_cert))
     return c.dump_certificate(c.FILETYPE_PEM,  new_cert).decode('utf-8'), \
            c.dump_privatekey(c.FILETYPE_PEM, key, passphrase=str(ownername + ownerpass).encode()).decode("utf-8")

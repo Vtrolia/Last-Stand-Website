@@ -243,7 +243,6 @@ def submit_cloud(request):
                       "End user License Agreement(EULA).pdf", "rb") as f:
                 ls.write(f.read())
 
-        # read the file as the contents of the message
         with archive.open("laststandserver", "w") as ls:
             with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/downloads/" +
                       request.POST["os-type"] + "/laststandserver", "rb") as f:
@@ -255,7 +254,7 @@ def submit_cloud(request):
                 ls.write(f.read())
 
         with archive.open("README.pdf", "w") as ls:
-            with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/downloads/README.pdf" as f:
+            with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/downloads/README.pdf", "rb") as f:
                     ls.write(f.read())
 
         with archive.open("cacert.pem", "w") as ls:
