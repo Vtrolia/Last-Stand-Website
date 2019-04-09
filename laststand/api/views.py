@@ -14,6 +14,7 @@ import datetime as dt
 import helpers as h
 import json as j
 import os
+import tarfile as t
 import zipfile as zip
 
 
@@ -65,6 +66,7 @@ def get_ssl_cert(request, name):
     else:
         cert.delete()
         return HttpResponse("content: none")
+
 
 def get_user_clouds(request):
     if not request.user.is_authenticated:
@@ -181,25 +183,32 @@ def download_client(request):
     
     # if the cloud created exists, send them the cloud id and client executable in the zip file
     if cloud:
-        client_only = zip.ZipFile("/usr/local/www/Last-Stand-Website/laststand/laststandclient.zip", "w")
-        with client_only.open("server_id", "w") as co:
+        client_only = t.open(name="laststandclient.tar.gz", mode="w:gz")
+        old_dir = os.getcwd()
+        os.chdir("/Users/vinny/Desktop/Documents/Last-Stand-Website/laststand/static-folder/downloads")
+
+        with open("server_id", "wb") as co:
             co.write(cloud.id.encode('utf-8'))
-        
-        with client_only.open("laststand", "w") as co:
-            with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/downloads/" +
-                      request.POST["os-type"] + "/" + "laststand", "rb") as f:
-                co.write(f.read())
-        
+        client_only.add('server_id')
+        os.remove("server_id")
+
+        client_only.add(request.POST["os-type"] + "/laststand", arcname="laststand", recursive=False)
+        client_only.add("README.pdf", arcname="README.pdf")
+
         client_only.close()
-        
-        with open("/usr/local/www/Last-Stand-Website/laststand/laststandclient.zip", "rb") as f:
+
+        os.chdir(old_dir)
+
+        with open("/Users/vinny/Desktop/Documents/Last-Stand-Website/laststand/laststandclient.tar.gz", "rb") as f:
             response = HttpResponse(f.read())
 
         # these headers are needed so that the client understands the file being sent to them
-        response["Content-Disposition"] = "attachment; filename=laststandclient.zip"
-        response["X-Sendfile"] = smart_str("/usr/local/www/Last-Stand-Website/laststand/laststandclient.zip")
-        os.remove("/usr/local/www/Last-Stand-Website/laststand/laststandclient.zip")
+        response["Content-Disposition"] = "attachment; filename=laststandclient.tar.gz"
+        response["X-Sendfile"] = smart_str("/Users/vinny/Desktop/Documents/Last-Stand-Website/laststand/laststandclient.tar.gz")
+        os.remove("/Users/vinny/Desktop/Documents/Last-Stand-Website/laststand/laststandclient.tar.gz")
         return response
+    else:
+        return HttpResponse("Cloud was not found, sorry for the error")
 
 
 # when a user wants to create a new cloud, this view registers it, then sends them a download for this cloud
@@ -237,24 +246,24 @@ def submit_cloud(request):
     
         # now, the user is given a zip file containing what they need. Each of these files is stored on the server, so it is loaded
         # up and added to the zip archive
-        archive = zip.ZipFile("/usr/local/www/Last-Stand-Website/laststand/laststand.zip", "w")
+        archive = zip.ZipFile("/Users/vinny/Desktop/Documents/Last-Stand-Website/laststand/laststand.zip", "w")
         with archive.open("Last Stand Cloud - End user License Agreement(EULA).pdf", "w") as ls:
-            with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/downloads/Last Stand Cloud - "
+            with open("/Users/vinny/Desktop/Documents/Last-Stand-Website/laststand/static-folder/downloads/Last Stand Cloud - "
                       "End user License Agreement(EULA).pdf", "rb") as f:
                 ls.write(f.read())
 
         with archive.open("laststandserver", "w") as ls:
-            with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/downloads/" +
+            with open("/Users/vinny/Desktop/Documents/Last-Stand-Website/laststand/static-folder/downloads/" +
                       request.POST["os-type"] + "/laststandserver", "rb") as f:
                 ls.write(f.read())
 
         with archive.open("laststand", "w") as ls:
-            with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/downloads/" +
+            with open("/Users/vinny/Desktop/Documents/Last-Stand-Website/laststand/static-folder/downloads/" +
                       request.POST["os-type"] + "/" + "laststand", "rb") as f:
                 ls.write(f.read())
 
         with archive.open("README.pdf", "w") as ls:
-            with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/downloads/README.pdf", "rb") as f:
+            with open("/Users/vinny/Desktop/Documents/Last-Stand-Website/laststand/static-folder/downloads/README.pdf", "rb") as f:
                     ls.write(f.read())
 
         with archive.open("cacert.pem", "w") as ls:
