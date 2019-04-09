@@ -239,14 +239,12 @@ def submit_cloud(request):
         # up and added to the zip archive
         archive = zip.ZipFile("/usr/local/www/Last-Stand-Website/laststand/laststand.zip", "w")
         with archive.open("Last Stand Cloud - End user License Agreement(EULA).pdf", "w") as ls:
-
             with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/downloads/Last Stand Cloud - "
                       "End user License Agreement(EULA).pdf", "rb") as f:
                 ls.write(f.read())
 
         # read the file as the contents of the message
         with archive.open("laststandserver", "w") as ls:
-
             with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/downloads/" +
                       request.POST["os-type"] + "/laststandserver", "rb") as f:
                 ls.write(f.read())
@@ -255,6 +253,10 @@ def submit_cloud(request):
             with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/downloads/" +
                       request.POST["os-type"] + "/" + "laststand", "rb") as f:
                 ls.write(f.read())
+
+        with archive.open("README.pdf", "w") as ls:
+            with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/downloads/README.pdf" as f:
+                    ls.write(f.read())
 
         with archive.open("cacert.pem", "w") as ls:
             ls.write(auth_info[0].encode('utf-8'))
