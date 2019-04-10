@@ -15,7 +15,6 @@ import helpers as h
 import json as j
 import os
 import tarfile as t
-import zipfile as zip
 
 
 # Create your views here.
@@ -185,9 +184,9 @@ def download_client(request):
     if cloud:
 
         # move to the downloads to craft the archive
-        client_only = t.open(name="laststandclient.tar.gz", mode="w:gz")
         old_dir = os.getcwd()
         os.chdir("/usr/local/www/Last-Stand-Website/laststand/static-folder/downloads")
+        client_only = t.open(name="laststandclient.tar.gz", mode="w:gz")
 
         # add files
         with open("server_id", "wb") as co:
@@ -202,13 +201,13 @@ def download_client(request):
         client_only.close()
         os.chdir(old_dir)
 
-        with open("/usr/local/www/Last-Stand-Website/laststand/laststandclient.tar.gz", "rb") as f:
+        with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/downloads/laststandclient.tar.gz", "rb") as f:
             response = HttpResponse(f.read())
 
         # these headers are needed so that the client understands the file being sent to them
         response["Content-Disposition"] = "attachment; filename=laststandclient.tar.gz"
         response["X-Sendfile"] = smart_str("/usr/local/www/Last-Stand-Website/laststand/laststandclient.tar.gz")
-        os.remove("/usr/local/www/Last-Stand-Website/laststand/laststandclient.tar.gz")
+        os.remove("/usr/local/www/Last-Stand-Website/laststand/static-folder/downloads/laststandclient.tar.gz")
         return response
     else:
         return HttpResponse("Cloud was not found, sorry for the error")
