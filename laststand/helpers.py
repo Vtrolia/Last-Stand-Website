@@ -1,4 +1,4 @@
-#helper functions to be used in each app to simplify many of the basic functions of the website
+# helper functions to be used in each app to simplify many of the basic functions of the website
 
 import hashlib as h
 from OpenSSL import crypto as c
@@ -6,6 +6,7 @@ import random, time
 
 from django.shortcuts import render
 from django.contrib.auth import authenticate
+
 
 # not a view, this function is a helper so that the user can constantly be assured that they are still logged in.
 # it displays a greeting to the user with their first name, or their username if that was not provided
@@ -47,34 +48,6 @@ def api_user_check(request):
     is_user = authenticate(request, username=user, password=password)
     return is_user
 
-
-def generate_new_cert(ownername, ownerpass, name):
-    # create a key
-    key = c.PKey()
-    key.generate_key(c.TYPE_RSA, 1024)
-    with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/certs/" + ownername + "-" + name + "-pri.pem", "wb") as pk:
-        pk.write(c.dump_privatekey(c.FILETYPE_PEM, key, passphrase=(str(ownername) + str(ownerpass)).encode()))
-
-    # get laststand's key
-    with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/certs/ls/privkey.pem", 'rb') as f:
-        laststand_key = c.load_privatekey(c.FILETYPE_PEM, f.read())
-
-    # create the new certificate, fill it with Last Stand Cloud's information, then sign it with our private key
-    new_cert = c.X509()
-    new_cert.get_subject().C = "US"
-    new_cert.get_subject().ST = "Illinois"
-    new_cert.get_subject().L = "Joliet"
-    new_cert.get_subject().O = "Last Stand Cloud Software"
-    new_cert.get_subject().CN = "Last Stand Cloud"
-    new_cert.set_issuer(new_cert.get_subject())
-    new_cert.set_pubkey(key)
-    new_cert.sign(laststand_key, "sha256")
-
-    # dump the new cert so it can be kept until it expires, sort of like the gold in Fort Knox backing up the dollar
-    with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/certs/" + ownername + "-" + name + "-cert.pem", "wb") as cert:
-        cert.write(c.dump_certificate(c.FILETYPE_PEM, new_cert))
-    return c.dump_certificate(c.FILETYPE_PEM,  new_cert).decode('utf-8'), \
-           c.dump_privatekey(c.FILETYPE_PEM, key, passphrase=str(ownername + ownerpass).encode()).decode("utf-8")
 
 # the second usage of my old password generator program, is being revived as the function that created the ids of
 # the clouds. Good ol' TroliAlgorithm. Presented in its original, horribly designed form

@@ -6,7 +6,8 @@ from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.utils.encoding import smart_str
 
 # import api models
-from .models import Cloud, SSL
+from .models import Cloud
+from laststand.settings import HOME_DIR
 
 # regular imports
 from dateutil.relativedelta import relativedelta
@@ -15,6 +16,7 @@ import helpers as h
 import json as j
 import os
 import tarfile as t
+import zipfile as zip
 
 
 # Create your views here.
@@ -30,10 +32,6 @@ def set_info(request, name):
     if owner == Cloud.objects.get(id=name).owner:
         cloud = Cloud.objects.get(id=name)
         cloud.ip_address = request.META["QUERY_STRING"].split("&")[2][3:]
-
-        # while updating, if the ssl certificate is now expired, delete it.
-        if dt.date.today() >= cloud.ssl_cert.date_expires:
-            cloud.ssl_cert.delete()
 
         cloud.save()
         content = ""
@@ -51,20 +49,6 @@ def set_info(request, name):
 def get_address(request, name):
     resp = HttpResponse("content: " + Cloud.objects.get(id=name).ip_address + "\r\n")
     return resp
-
-
-@csrf_exempt
-def get_ssl_cert(request, name):
-    # anyone can get the certificate for a server, just not the private key or any other data
-    cert = Cloud.objects.get(id=name).ssl_cert
-
-    # delete an invalid cert
-    if cert.date_expires > dt.date.today():
-        cleaned_cert = "".join(cert.cacert.split('\r'))
-        return HttpResponse("content: " + cleaned_cert)
-    else:
-        cert.delete()
-        return HttpResponse("content: none")
 
 
 def get_user_clouds(request):
@@ -111,39 +95,6 @@ def verify(request):
         usernames["email"].append(user.email)
 
     return HttpResponse(j.dumps(usernames))
-        
-    
-# certification validation and renewal    
-@csrf_exempt
-def is_cert_valid(request, name):
-    # anyone can check whether or not a server has a valid ssl certificate or not
-    cert = Cloud.objects.get(id=name).ssl_cert
-    if cert.date_expires <= dt.date.today():
-        cert.delete()
-        return HttpResponse("content: expired")
-    else:
-        return HttpResponse("content: valid")
-
-
-@csrf_exempt
-def renew_cert(request, name):
-    owner = h.api_user_check(request)
-
-    # only the owner is allowed to make a request for a new ssl certificate
-    if owner:
-        cert = Cloud.objects.get(id=name).ssl_cert
-
-        # create a completely new cert w/o deleting
-        new_cert = h.generate_new_cert(ownername=owner.username, ownerpass=owner.password, name=name)
-        cert.cacert = new_cert[0]
-        cert.privkey = new_cert[1]
-        cert.date_created = dt.datetime.now()
-        cert.date_expires = dt.datetime.now() + relativedelta(month=6)
-        cert.save()
-        return HttpResponse(new_cert[0])
-    else:
-        return HttpResponse("")
-
     
 # Views for creating/deleting clouds
 
@@ -153,9 +104,7 @@ def delete_cloud(request):
     req = j.loads(request.body.decode("utf-8"))
     if request.user.check_password(req['password']):
         cloud = Cloud.objects.get(owner=request.user, name=req['name'])
-        ssl = cloud.ssl_cert
         cloud.delete()
-        ssl.delete()
         
         resp = {
             "flag": "success",
@@ -184,9 +133,9 @@ def download_client(request):
     if cloud:
 
         # move to the downloads to craft the archive
-        old_dir = os.getcwd()
-        os.chdir("/usr/local/www/Last-Stand-Website/laststand/static-folder/downloads")
         client_only = t.open(name="laststandclient.tar.gz", mode="w:gz")
+        old_dir = os.getcwd()
+        os.chdir(HOME_DIR + "Last-Stand-Website/laststand/static-folder/downloads")
 
         # add files
         with open("server_id", "wb") as co:
@@ -201,13 +150,13 @@ def download_client(request):
         client_only.close()
         os.chdir(old_dir)
 
-        with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/downloads/laststandclient.tar.gz", "rb") as f:
+        with open(HOME_DIR + "/Last-Stand-Website/laststand/laststandclient.tar.gz", "rb") as f:
             response = HttpResponse(f.read())
 
         # these headers are needed so that the client understands the file being sent to them
         response["Content-Disposition"] = "attachment; filename=laststandclient.tar.gz"
-        response["X-Sendfile"] = smart_str("/usr/local/www/Last-Stand-Website/laststand/laststandclient.tar.gz")
-        os.remove("/usr/local/www/Last-Stand-Website/laststand/static-folder/downloads/laststandclient.tar.gz")
+        response["X-Sendfile"] = smart_str(HOME_DIR + "Last-Stand-Website/laststand/laststandclient.tar.gz")
+        os.remove(HOME_DIR + "Last-Stand-Website/laststand/laststandclient.tar.gz")
         return response
     else:
         return HttpResponse("Cloud was not found, sorry for the error")
@@ -236,19 +185,16 @@ def submit_cloud(request):
         # first create the ssl cert
         name = h.troliAlgorithm(owner.username, owner.password)
         auth_info = h.generate_new_cert(owner.username, owner.password, name)
-        ssl = SSL.objects.create(cacert=auth_info[0], privkey=auth_info[1], date_created=created, date_expires=expires,
-                                 created_by=owner, owned_by=owner)
-        ssl.save()
 
         # once the cert is saved, now connect it to the cloud being created. The user can give it a custom name, but
         # its id is generated
         given_name = request.POST['name']
         ip_address = request.META["REMOTE_ADDR"]
-        cloud = Cloud.objects.create(id=name, name=given_name, ip_address=ip_address, ssl_cert=ssl, owner=owner, status=0)
+        cloud = Cloud.objects.create(id=name, name=given_name, ip_address=ip_address, owner=owner, status=0)
         cloud.save()
 
         old_dir = os.getcwd()
-        os.chdir("/usr/local/www/Last-Stand-Website/laststand/static-folder/downloads")
+        os.chdir(HOME_DIR + "Last-Stand-Website/laststand/static-folder/downloads")
 
         # craft the tarball
         archive = t.open(name="laststand.tar.gz", mode="w:gz")
@@ -258,16 +204,6 @@ def submit_cloud(request):
         archive.add(request.POST["os-type"] + "/laststand", arcname="laststand", recursive="False")
         archive.add("README.pdf", recursive=False)
 
-        with open("cacert.pem", "wb") as ls:
-            ls.write(auth_info[0].encode('utf-8'))
-        archive.add("cacert.pem")
-        os.remove("cacert.pem")
-
-        with open("privkey.pem", "wb") as ls:
-            ls.write(auth_info[1].encode('utf-8'))
-        archive.add("privkey.pem")
-        os.remove("privkey.pem")
-
         with open("server_id", "w") as ls:
             ls.write(cloud.id)
         archive.add("server_id")
@@ -276,11 +212,11 @@ def submit_cloud(request):
         os.chdir(old_dir)
         archive.close()
 
-        with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/downloads/laststand.tar.gz", "rb") as f:
+        with open(HOME_DIR + "/Last-Stand-Website/laststand/static-folder/downloads/laststand.tar.gz", "rb") as f:
             response = HttpResponse(f.read())
 
         # these headers are needed so that the client understands the file being sent to them
         response["Content-Disposition"] = "attachment; filename=laststand.tar.gz"
-        response["X-Sendfile"] = smart_str("/usr/local/www/Last-Stand-Website/laststand/laststand.tar.gz")
-        os.remove("/usr/local/www/Last-Stand-Website/laststand/static-folder/downloads/laststand.tar.gz")
+        response["X-Sendfile"] = smart_str(HOME_DIR + "/Last-Stand-Website/laststand/laststand.tar.gz")
+        os.remove(HOME_DIR + "Last-Stand-Website/laststand/static-folder/downloads/laststand.tar.gz")
         return response

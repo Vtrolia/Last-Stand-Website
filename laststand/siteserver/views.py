@@ -13,6 +13,7 @@ from django.utils.encoding import smart_str
 # imports from other parts of the web site
 from api.models import Cloud
 from .models import PublisherUsers, Articles
+from laststand.settings import HOME_DIR
 
 
 
@@ -114,7 +115,7 @@ def submit_article(request):
                 credit = credit.replace("<self>", "")
 
             # write the file to the article_images static directory. WAAAY easier than the Flask version
-            with open("/usr/local/www/Last-Stand-Website/laststand/static-folder/article_images/" + file.name, "wb+") as f:
+            with open(HOME_DIR + "/Last-Stand-Website/laststand/static-folder/article_images/" + file.name, "wb+") as f:
                 for chunk in file.chunks():
                     f.write(chunk)
 
