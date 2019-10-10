@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8" lang="en"/>
+        <meta name="keywords" content="SSL, TLS, security, authentication, https, certificate, openssl, verification, Certificate Authority"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" type="image/png" href="{% static 'source_images/favicon.ico' %}" sizes="32x32">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel=stylesheet type="text/css" href="{% static 'styles/headerstyles.css' %}">
+        {% block title %}{% endblock %}
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <div id="navbar" align=center>
+            <div class="container" align=left style="min-height: 4.3vw">
+                <header class="row">
+                    <a style='position: absolute; left: 0' title="Go to Last Stand Cloud" href="https://www.laststandcloud.com"><div class="col"><img src="{% static 'source_images/laststandcloud.png' %}"></div></a>
+                    <div id="softname" align=center style="position: absolute; left: 45%;" class="col-4">Last Stand Verify</div>
+                    {% if name %}
+                        <a href="">
+                            <div class="col">Log Out</div>
+                        </a>
+                        <a href="{% url 'cert_statuses' %}">
+                            <div class="col">Account</div>
+                        </a>
+                    {% else %}
+                        <a align=right style="position:absolute; left: 95%">
+                            <div class="col">Login</div>
+                        </a>
+                    {% endif %}
+                </header>
+            </div>
+        </div>
+    </body>
+</html>
