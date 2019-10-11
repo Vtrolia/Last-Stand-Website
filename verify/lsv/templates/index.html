@@ -6,4 +6,58 @@
     <meta name="description" content="Last Stand Verify is Last Stand Cloud's Certificate Authority for web ssl authentication as well as providing the certificates utilized by each Last Stand Cloud home server"/>
 {% endblock %}
 {% block body %}
+    <div id="home-content" style="color: whitesmoke">
+        <div id="intro">
+            <h2 align=center>Welcome to Last Stand Verify!</h2>
+            <nav>
+                Last Stand Verify is Last Stand Cloud Software's top level Certificate Authority. This is considered a separate entity from the Last Stand Cloud suite, and is maintained separately. Last Stand Verify does handle the SSL\TLS certification process for any user's Last Stand Cloud server, but it also handles certificate requests for web servers, email servers, or anyone who would like non self-signed certificates for any of their software needs.
+                Last Stand Verify is a paid subscription service for those who wish to utilize our securities services outside of Last Stand Cloud. To sign into Last Stand Verify, you need to sign into your Last Stand Cloud account.
+            </nav>
+            <div id="getting-started">
+                <h3>Getting started with your private key</h3>
+                <img style="padding:1em; float:left" alt="OpenSSL" src="{% static 'source_images/openssl.jpg' %}" width=400px>
+                <nav style="padding-top: 1em">To get started, you will need to have a private key and generate a request for us to sign. A simple, easy way that we use for our services is by using the library OpenSSL. OpenSSL comes by default with many operating systems but you can install it easily on the command line with:</nav>
+                <br><br><br><br>
+                <pre>
+(ubuntu)
+sudo apt-get install opensssl
+(freebsd)
+pkg install openssl
+                </pre>
+                <nav> Or the equivalent package installation manager on your own Operating System. Alternatively you can find it on <a  style="color:black" href="https://www.openssl.org/source/">OpenSSL's website</a> Last Stand Verify was built with OpenSSL and Last Stand Cloud is as well, as with many of the major software programs and certificates used by many major software companies, so you can trust that you will be secure in using OpenSSL</nav>
+            </div>
+            <div id="generating-key-and-csr">
+                <h3>Creating your Key and Signing Request</h3>
+                <nav>Once you have OpenSSL installed, now the fun begins. The first thing you want to do is create your private key. The key we'll create here is simple and not very secure, but there are many options you can use to increase the security of your key. Check it out at <a href="https://www.openssl.org/docs/" style="color:black">OpenSSL's Documentation. </a>Here's a simple command to create a basic private key:
+                </nav>
+                <pre>openssl genrsa -out privkey.pem</pre>
+                <nav><strong>Be Careful! Protect your private key and be sure to keep it safe from prying eyes, as it is one of the most important parts to ensuring your security's integrity! </strong> Once your key is created, you are ready to create a request for us to eventually sign and issue you Last Stand Verify certificate. To generate a basic Certificate Signing Request, you enter this command:</nav>
+                <pre>openssl req -new -key privkey.pem -out request.csr</pre>
+                <nav> This command will load your private key into OpenSSL, then  generate a request for us to sign and send you back a certificate. Now, when you enter this command, OpenSSL will prompt you for some information about your organization, and this information is critical to getting your certificate signed and verified by us. The prompt will look like:</nav>
+                    <pre>
+Country Name (2 letter code) [AU]:
+State or Province Name (full name) [Some-State]:
+Locality Name (eg, city) []:
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:
+Organizational Unit Name (eg, section) []:
+Common Name (e.g. server FQDN or YOUR name) []:
+Email Address []:
+                    </pre>
+                <nav>
+                    Enter this information truthfully and make sure the organization name is youre organization's name, and the common name is the service you wish to verify. The email address will also need to match you Last Stand Cloud account's email.
+                </nav>
+            </div>
+            <div id="send-us-your-request">
+                <h3>Sending us your request</h3>
+                <nav>Once your Certificate Signing Request is completed, you can send it to us via email at laststandcloud@protonmail.com. Once you have sent us your request, the auditing process will beging on our end in order to ensure you are who you claim to be. Soon, after you are audited by us, we will sign your request and email you back the signed certificate for you to use. Last Stand Verify certificates are valid for 90 days.
+                </nav>
+            </div>
+            <div id="coming-soon">
+                <h3>In the Future</h3>
+                <nav>Coming soon, Last Stand Verify will release a command-line tool available for anyone to download in order to autorenew certificates, much like Let's Encrypt's certbot tool, to ease use for subscribers and clients.
+                </nav>
+                <nav>Currently, Last Stand Verify is not a trusted authority by any major organization such as Mozilla, Microsoft or Google. We are working on the service and continuously upgrading its portability, usability and security features so that we can abide by their guidelines so that we can achieve accrediation. For this reason, the paid service is of course not available, and Last Stand Verify is only currently usable for Last Stand Cloud servers.</nav>
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -32,6 +32,7 @@ ADMINS = [("Vincent Trolia", "vtrolia@protonmail.com")]
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -101,6 +102,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+PASSWORD_HASHERS = [
+    'hasher.sha256Hasher'
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/

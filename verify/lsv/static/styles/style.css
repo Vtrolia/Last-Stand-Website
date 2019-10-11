@@ -21,7 +21,7 @@ code {
     padding: .5em;
 }
 
-form {
+form, #register-form {
     border: 2px solid whitesmoke;
     color: whitesmoke;
     left:26%;
@@ -36,10 +36,18 @@ h2 {
     margin-right: auto;
 }
 
+h3 {
+    margin-top: 1.5em;
+}
+
 input {
     height: 3em;
     margin-bottom: 3em;
     width: 40em;
+}
+
+nav {
+    margin-bottom: 1em;
 }
 
 pre {
@@ -483,23 +491,19 @@ textarea {
     margin-bottom: 1em;
 }
 
-#home-content, #article-page {
+#home-content{
     background-color:rgb(40, 40, 54);
     color:whitesmoke;
     display: flex;
     flex-direction: column;
     font-family: serif New Century Schoolbook;
-    font-size: 1.07em;
+    font-size: 1.2em;
     margin-bottom: 5em;
-    margin-left: auto;
-    margin-right: auto;
     position: relative;
+    margin-right: auto;
+    margin-left: auto;
     top: 10%;
-    width: 60vw;
-}
-
-#intro {
-    margin: 1em;
+    width: 50vw;
 }
 
 #intro img {

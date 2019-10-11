@@ -17,11 +17,11 @@
                 <header class="row">
                     <a style='position: absolute; left: 0' title="Go to Last Stand Cloud" href="https://www.laststandcloud.com"><div class="col"><img src="{% static 'source_images/laststandcloud.png' %}"></div></a>
                     <div id="softname" align=center style="position: absolute; left: 45%;" class="col-4" onclick="window.location.replace('/')">Last Stand Verify</div>
-                    {% if name %}
-                        <a href="">
+                    {% if name %} 
+                        <a href="{% url 'logout' %}" align=right style="position:absolute; left: 86%">
                             <div class="col">Log Out</div>
                         </a>
-                        <a href="{% url 'cert_statuses' %}">
+                        <a align=right href="{% url 'cert_statuses' %}" style="position:absolute; left: 93%">
                             <div class="col">Account</div>
                         </a>
                     {% else %}

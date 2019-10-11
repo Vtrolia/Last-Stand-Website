@@ -3,6 +3,10 @@
 {% block title %}<title>Login</title>{% endblock %}
 {% block head %}
     <script>
+        document.onload = () => {
+            document.getElementbyId("ls-button").onclick = laststand_login;
+        }
+        
         function laststand_login() {
             var username = document.getElementById("username");
             var password = document.getElementById("password");
@@ -10,13 +14,19 @@
                 "username": username.value.toString(),
                 "password": password.value.toString()
             }
-            console.log(typeof(data));
             
             var request = new XMLHttpRequest();
             request.open("POST", "https://127.0.0.1:8080/api/verify/login");
             request.onload = () => {
+                console.log("ststus");
                 if (request.responseText === "VALID") {
-                    document.getElementById("login-form").submit();
+                    var form = document.getElementById("login-form");
+                    form.action = "{% url 'submit_login' %}";
+                    form.method= "post";
+                    form.submit();
+                }
+                else {
+                    window.location.href = "/login";
                 }
             }
             request.send(JSON.stringify(data));
@@ -28,15 +38,15 @@
 {% block body %}
     <div align=left id="login" class="page user-auth">
         <h2 align=center>Last Stand Cloud login <img alt="security lock" src="{% static 'source_images/Lock.png' %}" width=20em height=25em/></h2> 
-        <form id="login-form" class="auth-form" action="{% url 'submit_login' %}" method="post">
+        <form id="login-form" class="auth-form" method="post">
             {% csrf_token %}
             <div class="form-text">Username:</div>
             <input type=text name="username" id="username" placeholder="Username...">
             <div class="form-text">Password:</div>
             <input type=password id="password" name="password" placeholder="Password...">
-            <div id="button">
-                <button onclick="laststand_login()">Sign In</button>
-            </div>
         </form>
+            <div id="button" style="position: absolute; left: 45%; margin-top: 2em">
+                <button id="ls-button", onclick="laststand_login()">Sign In</button>
+            </div>
     </div>
 {% endblock %}
