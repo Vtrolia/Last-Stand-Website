@@ -1,0 +1,42 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block title %}<title>Login</title>{% endblock %}
+{% block head %}
+    <script>
+        function laststand_login() {
+            var username = document.getElementById("username");
+            var password = document.getElementById("password");
+            let data = {
+                "username": username.value.toString(),
+                "password": password.value.toString()
+            }
+            console.log(typeof(data));
+            
+            var request = new XMLHttpRequest();
+            request.open("POST", "https://127.0.0.1:8080/api/verify/login");
+            request.onload = () => {
+                if (request.responseText === "VALID") {
+                    document.getElementById("login-form").submit();
+                }
+            }
+            request.send(JSON.stringify(data));
+        }
+    </script>
+    <meta name="description" content="sign into an existing Last Stand Cloud Software account">
+    <link type="text/css" rel="stylesheet" href="{% static 'styles/style.css' %}"/>
+{% endblock %}
+{% block body %}
+    <div align=left id="login" class="page user-auth">
+        <h2 align=center>Last Stand Cloud login <img alt="security lock" src="{% static 'source_images/Lock.png' %}" width=20em height=25em/></h2> 
+        <form id="login-form" class="auth-form" action="{% url 'submit_login' %}" method="post">
+            {% csrf_token %}
+            <div class="form-text">Username:</div>
+            <input type=text name="username" id="username" placeholder="Username...">
+            <div class="form-text">Password:</div>
+            <input type=password id="password" name="password" placeholder="Password...">
+            <div id="button">
+                <button onclick="laststand_login()">Sign In</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

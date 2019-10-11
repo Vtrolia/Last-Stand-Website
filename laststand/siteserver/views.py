@@ -156,7 +156,7 @@ def submit_issue(request):
     issue = request.POST["issue-text"]
 
     try:
-        success = send_mail(issue_type, name + ", " + email + " -\n" + issue, "issues@laststandcloud.com" ,["root@laststandcloud"])
+        success = send_mail(issue_type, name + ", " + email + " -\n" + issue, "issues@laststandcloud.com", ["root@laststandcloud"])
     except BadHeaderError:
         return h.return_as_wanted(request, "issue.html", ["danger", "Your email was unable to be sent!"])
 

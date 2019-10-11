@@ -16,7 +16,7 @@
             <div class="container" align=left style="min-height: 4.3vw">
                 <header class="row">
                     <a style='position: absolute; left: 0' title="Go to Last Stand Cloud" href="https://www.laststandcloud.com"><div class="col"><img src="{% static 'source_images/laststandcloud.png' %}"></div></a>
-                    <div id="softname" align=center style="position: absolute; left: 45%;" class="col-4">Last Stand Verify</div>
+                    <div id="softname" align=center style="position: absolute; left: 45%;" class="col-4" onclick="window.location.replace('/')">Last Stand Verify</div>
                     {% if name %}
                         <a href="">
                             <div class="col">Log Out</div>
@@ -25,12 +25,13 @@
                             <div class="col">Account</div>
                         </a>
                     {% else %}
-                        <a align=right style="position:absolute; left: 95%">
+                        <a align=right href="{% url 'login' %}" style="position:absolute; left: 95%">
                             <div class="col">Login</div>
                         </a>
                     {% endif %}
                 </header>
             </div>
         </div>
+        {% block body %}{% endblock %}
     </body>
 </html>
