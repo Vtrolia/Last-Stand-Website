@@ -1,6 +1,7 @@
 # django imports
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.utils.encoding import smart_str
@@ -16,12 +17,22 @@ import helpers as h
 import json as j
 import os
 import tarfile as t
-import zipfile as zip
 
 
 # Create your views here.
 def index(request):
     pass
+
+
+@csrf_exempt
+def lsverify_login(request):
+    req = j.loads(request.body)
+    user = authenticate(request, username=req['username'], password=req['password'])
+    if user:
+        login(request, user)
+        return HttpResponse("VALID")
+    else:
+        return HttpResponse("INVALID")
 
 # this is where a cloud updates its own information stored on the website's databases
 @csrf_exempt

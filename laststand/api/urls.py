@@ -9,5 +9,6 @@ urlpatterns = [
     path("verify", views.verify, name="verify"),
     path("delete-cloud", views.delete_cloud, name="delete_cloud"),
     path("download-client", views.download_client, name="download_client"),
-    path("submit-cloud", views.submit_cloud, name="submit_cloud")
+    path("submit-cloud", views.submit_cloud, name="submit_cloud"),
+    path("verify/login", views.lsverify_login, name="lsverify_login")
 ]
