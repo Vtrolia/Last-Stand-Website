@@ -19,13 +19,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = ""
 
-HOME_DIR = "/Users/vinny/Desktop/Documents/"
+HOME_DIR = "/usr/local/www"
 
 with open(HOME_DIR + '/Last-Stand-Website/laststand/secret_key.txt', "r") as f:
     SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 ADMINS = [("Vincent Trolia", "vtrolia@protonmail.com")]
 
 ALLOWED_HOSTS = ['*']
@@ -165,7 +165,6 @@ CACHES = {
 }
 
 # HTTPS
-"""
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 X_FRAME_OPTIONS = "DENY"
@@ -175,4 +174,3 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 SESSION_SAVE_EVERY_REQUEST = True
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_COOKIE_AGE = 60 * 120
-"""

@@ -1,6 +1,6 @@
-import socket as s, random as r
+import socket as s, random as r, subprocess as sub
 import crypt as c
-import ssl
+import ssl, os
 
 CA_DIR = ""
 key = "H1le0q013i1131839le"
@@ -10,7 +10,7 @@ def main():
     socket = s.socket()
     ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
     ctx.load_cert_chain("cacert.pem", "privkey.pem", "3sa6a423083V9h774")
-    socket.bind(("127.0.0.1", 9001))
+    socket.bind(("10.0.0.71", 85))
     socket.listen(10)
 
     while True:
@@ -27,20 +27,28 @@ def main():
                 cloud = True
             else:
                 cloud = False
+            print(cloud)
             csr = reciever.recv(5000)
             file = ""
             if cloud:
-                file = CA_DIR + "cloud_req/"
+                with open("req.tmp.csr", "wb") as f:
+                    f.write(csr)
+                cwd = os.getcwd()
+                os.chdir("/usr/local/www/LScert/root/ca/intermediate")
+                os.system("openssl ca -batch -config openssl.cnf -extensions server_cert -days 90 -notext -md sha256 -in '/usr/local/www/Last-Stand-Website/verify/req.tmp.csr' -out /usr/local/www/Last-Stand-Website/verify/client_cert.pem -passin pass:1LF26r213992c6e594")
+                os.chdir(cwd)
             else:
-                file = CA_DIR + "verify_req/"
+                reciever.send("not available")
+                reciever.close()
+                continue
 
-            with open(file + "request" + str(cloud_num) + ".csr", "wb") as f:
-                f.write(csr)
             cloud_num += 1
-
-            cert = open("cacert.pem").read()
+            cert_f = open("client_cert.pem")
+            cert = cert_f.read()
             reciever.send(cert.encode())
             reciever.close()
+            os.remove("client_cert.pem")
+            os.remove("req.tmp.csr")
 
 
 main()
