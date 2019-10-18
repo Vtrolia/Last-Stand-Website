@@ -16,7 +16,7 @@
             }
             
             var request = new XMLHttpRequest();
-            request.open("POST", "https://127.0.0.1:8080/api/verify/login");
+            request.open("POST", "https://laststandcloud.com/api/verify/login");
             request.onload = () => {
                 console.log("ststus");
                 if (request.responseText === "VALID") {
