@@ -10,7 +10,7 @@ def main():
     socket = s.socket()
     ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
     ctx.load_cert_chain("/usr/local/www/Last-Stand-Website/verify/cacert.pem", "/usr/local/www/Last-Stand-Website/verify/privkey.pem", "3sa6a423083V9h774")
-    socket.bind(("10.0.0.71", 86))
+    socket.bind(("10.0.0.71", 85))
     socket.listen(10)
 
     while True:
