@@ -212,7 +212,7 @@ def submit_cloud(request):
 
         archive.add("Last Stand Cloud - End user License Agreement(EULA).pdf", recursive=False)
         archive.add(request.POST["os-type"] + "/laststandserver", arcname="laststandserver", recursive=False)
-        archive.add(request.POST["os-type"] + "/laststand", arcname="laststand", recursive="False")
+        archive.add(request.POST["os-type"] + "/laststandcloud", arcname="laststandcloud", recursive="False")
         archive.add("README.pdf", recursive=False)
 
         with open("server_id", "w") as ls:
