@@ -16,6 +16,10 @@
         h3 {
             padding-top: 1em;
         }
+        @media only screen and (max-width: 850px) {
+            img {
+                height: 150px;
+                display: block;
     </style>
 {% endblock %}
 {% block body %}
@@ -31,6 +35,8 @@
         </div>
         <div>
             <h3>App</h3>
+            <img src="{% static 'source_images/ornament-app.png' %}" height=300px style="float:left; margin-right: 1em;">
+            <strong>NOTE: THE ORNAMENT WILL ASK YOU FOR A PASSWORD WHEN YOU PAIR TO IT, THE PASSWORD IS '1234'</strong><br><br>
             For usage of the app, it is nearly identical on the desktop/Windows version and the Android application (macOS and IOS devices are not currently supported). The layout will look like the picture on the left. While it is recommended to pre-connect and pair to the Ornament to save time, this is not required (it will take longer, though). When you open the app, wait for it to connect to the ornament, and it will notify you, then you can enter a message in the text field, then you hit send and your custom message will display on the ornament. Unfortunately at this time, the ornament does not store your message upon shutdown so it will have to be reset each time it is powered off.
         </div>
         <div>
