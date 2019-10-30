@@ -70,7 +70,7 @@ def get_user_clouds(request):
         
         cl = {}
         for cloud in clouds:
-            cl[cloud.name] = cloud.name
+            cl[cloud.name] = cloud.id
         return HttpResponse(j.dumps(cl))
 
 
@@ -195,7 +195,6 @@ def submit_cloud(request):
 
         # first create the ssl cert
         name = h.troliAlgorithm(owner.username, owner.password)
-        auth_info = h.generate_new_cert(owner.username, owner.password, name)
 
         # once the cert is saved, now connect it to the cloud being created. The user can give it a custom name, but
         # its id is generated
