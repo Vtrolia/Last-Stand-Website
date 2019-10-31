@@ -1,0 +1,1019 @@
+button {
+    align-self: center;
+    background-color: rgb(40, 40, 54);
+    color: whitesmoke;
+    height: 2em;
+    margin-bottom: 3em;
+    vertical-align: middle;
+    width: 6em;
+}
+
+button:disabled {
+    background-color: gray;
+    color: black;
+    opacity: .75;
+}
+
+code {
+    background-color: white;
+    color: black;
+    font-size: .8em;
+    padding: .5em;
+}
+
+form, #register-form {
+    border: 2px solid whitesmoke;
+    color: whitesmoke;
+    left:26%;
+    max-width: 45vw;
+    padding-left: 4.5vw;
+    position:relative;
+}
+
+h2 {
+    font-size: 3em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h3 {
+    margin-top: 1.5em;
+}
+
+input {
+    height: 3em;
+    margin-bottom: 3em;
+    width: 40em;
+}
+
+nav {
+    margin-bottom: 1em;
+}
+
+pre {
+    background-color: whitesmoke;
+    border-radius: 4px;
+    padding: 1em;
+}
+
+textarea {
+    margin-bottom: 1.5em;
+    margin-left: auto;
+    margin-right: auto;
+    resize: none;
+    width: 100%;
+}
+
+.auth-form {
+    margin-left: 1%;
+}
+
+.auth-form input {
+    width: 85%;
+}
+
+.bordered {
+    margin-left: -1.1vw;   
+}
+
+.bordered-download {
+    border: 1.5px solid black;
+    border-collapse: collapse;
+    color: black;
+    margin: 0;
+    max-width: 50%;
+    min-width: 50%;
+    max-height: 7em;
+    min-height: 7em;
+    padding-left: 1em;
+}
+
+.box-input {
+    height: 2em;
+    width: 30em;
+}
+
+.cloud-alert {
+    left: 0 !important;
+    margin-top: 4em;
+}
+
+.cloud-form-div {
+    display: none;
+    margin-left: 3em;
+}
+
+.detail-inputs {
+    height: 2em !important;
+    left: 1vw;
+    min-width: 30% !important;
+    margin-bottom: .8em !important;
+    position: relative;
+}
+
+.detail-option {
+    border: 2px solid rgb(40, 40, 54);
+    margin-bottom: 1.5em;
+}
+
+.detail-option input {
+    width: 50% !important;
+}
+
+.detail-option label {
+    font-size: 1.2em;
+    padding-left: .5em;
+}
+
+.detail-tip::after {
+    border-color: transparent transparent rgb(40, 40, 54) transparent;
+    border-style: solid;
+    border-width: 5px;
+    bottom: 100%;
+    content: " ";
+    display: inline-block;
+    left: 50%;
+    margin-left: -5px;
+    position: absolute;
+}
+
+.form-text {
+    font-size: 3vw;
+    padding-bottom: .5em;
+}
+
+.issue-text {
+    display: inline;
+    font-size: 1.5em;
+}
+
+.jumbotron {
+    color: black;
+    background-color: snow;
+    margin: 0;
+    max-width: 40em;
+    padding: 2em;
+}
+
+.option {
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: .7em;
+    padding-left: 0;
+}
+
+.option img {
+    margin-left: 1em;
+}
+
+.option:hover {
+    background-color: #a39f9f;
+    cursor: pointer;
+}
+
+.os-option {
+    border-top: 1px solid whitesmoke;
+    font-size: 1.5em;
+    list-style: none;
+    padding: 1em;
+    width: 40%;
+}
+
+.os-option:hover {
+    background-color: rgb(69, 67, 67);
+    color: black;
+    cursor: pointer;
+}
+
+.page {
+    background-color:rgb(40, 40, 54);
+    color:whitesmoke;
+    font-family: serif New Century Schoolbook;
+    height: 100%;
+    padding-top: 6em;
+    position: relative;
+}
+    
+.password-tip::after {
+    border-color: transparent rgb(40, 40, 54) transparent transparent;
+    border-style: solid;
+    border-width: 5px;
+    content: " ";
+    display: inline-block;
+    margin-top: -5px;
+    position: absolute;
+    right: 100%;
+    top: 50%;
+}
+
+.price:hover {
+    background-color: rgb(69, 67, 67);
+}
+
+.profile-pic {
+    display:inline-block; 
+    margin-bottom: .2em;
+}
+
+.radio-button {
+    height: auto;
+    margin: 0;
+    margin-left: 1em;
+    padding: 0;
+    width: auto;
+}
+
+.splash-display {
+    padding-left: .5em;
+}
+
+.tool-tip {
+    background-color: rgb(40, 40, 54);
+    border-radius: .5em;
+    color: whitesmoke;
+    display: inline;
+    font-size: 1vw;
+    left: 2%;
+    opacity: 0;
+    padding: .3em;
+    position: relative;
+    text-align: center;
+    top: 37.5%;
+    transition: .5s;
+    visibility: hidden;
+    width: auto;
+}
+
+.update {
+    animation: movein;
+    animation-duration: .5s;
+    border: 2px double snow;
+    margin: 0;
+    margin-bottom: 1em;
+    padding: 2em;
+    position: relative;
+}
+
+.update img {
+    border: 1px solid rgb(28, 28, 255);
+    margin-bottom: 1em;
+    max-width: 50vw;
+    max-height: 20em;
+}
+
+.user-auth {
+    margin-left: auto;
+    margin-right: auto;
+    width: auto !important;
+}
+
+#account-details {
+    background-color: #dbdbdb;
+    border-bottom-right-radius: 1em;
+    border-top-right-radius: 1em;
+    border: 1px solid black;
+    display: inline-block;
+    left: 0;
+    margin-top: -6em;
+    min-height: 57.4em;
+    padding-top: 6vw;
+    position: absolute;
+    width: 21vw;
+}
+
+#account-details li {
+    border-top: 1px solid black;
+    font-size: 1.2em;
+    margin: 0;
+    padding: 1em;
+}
+
+#account-details li:hover {
+    background-color: #a39f9f;
+    cursor: pointer;
+}
+
+#account-details ul {
+    margin-bottom: 0;
+    padding: 0;
+    width: 100%;
+}
+
+#account-page {
+    left: 0;
+    min-width: 80%;
+    min-height: 56.3em;
+    padding-top: 5em;
+    padding-left: .1em;
+    padding-right: 0;
+    padding-bottom: 0;
+    position: absolute;
+}
+
+#account-page input, #account-page button {
+    height: auto;
+    margin: .5em;
+    width: auto;
+}
+
+#account-picture {
+    padding-bottom: 1em;
+    padding-top: 1em;
+}
+
+#account-status {
+    margin-bottom: 0em;
+}
+
+#alerts {
+    animation: movein1;
+    animation-duration: 1s;
+    left: 27%;
+    max-width: 45vw;
+    position: relative;
+}
+
+#article-page {
+    padding-top: 6em;
+    width: 58%;
+}
+
+#article-page a:link, #article-page a:visited {
+    color: black;
+}
+
+#article-post {
+    left: 0;
+    min-width: 100%;
+    padding: 2em;
+    position: relative;
+}
+
+#back-button:hover {
+    width: 52px;
+}
+
+#change-details #alerts {
+    float: right;
+    left: -1vw;
+    margin-top: 5vw;
+    position: relative;
+    width: 40em;
+}
+
+#cloud-list {
+    border: 2px solid black;
+    max-height: 25em;
+    overflow-y: scroll;
+}
+
+#cloud-form {
+    border: 2px solid whitesmoke;
+    margin-right: auto; 
+    margin-left: auto;
+    width: 60%;
+}
+
+#cloud-name {
+    margin-top: 2.5em;
+    width: 44vw;
+}
+
+#cloud-name-form {
+    border-left: 0;
+    border-right: 0;
+    left: 0;
+    margin: 2em; 
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 54vw; 
+    padding-left: 2em;
+}
+
+#credit {
+    margin-right: 1em;
+}
+
+#delete-cloud-div {
+    border-top: 1px solid black;
+    font-size: 1.2em;
+    margin-top: 4em;
+    padding-top: 2em;
+}
+
+#delete-cloud-confirmation {
+    display: none;
+    font-size: 1vw;
+    margin-left: 4vw;
+}
+
+#detail-aside {
+    float: right;
+    left: 0%;
+    position: relative;
+    width: 50%;
+}
+
+#detail-settings { 
+    float: left;
+    width: 45%;
+}
+
+#download-buttons {
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    padding: 0;
+    position: relative;
+}
+
+#download-client-form {
+    border: 0;
+    color: black;
+    font-size: 1.2em;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3em;
+    padding: 0;
+}
+
+#enter-delete-cloud {
+    height: 1.8em !important;
+    margin-bottom: .9em !important;
+    width: 5em !important; 
+}
+
+#file {
+    border: 0;
+    margin: 0;
+    max-width: 300px;
+    padding: 0;
+}
+
+#first-downloads-page {
+    background-color: whitesmoke !important;
+    border-radius: 0.3em;
+    color: black !important;
+    height: 56em !important;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 6em !important;
+    position: relative !important;
+    width: 60%;
+}
+
+#first-downloads-page button {
+    background-color: black;
+    color: whitesmoke;
+    width: 10em;
+    
+}
+
+#first-downloads-page img {
+    margin-left: .6em;
+}
+
+#first-options {
+    display: inherit;
+}
+
+#home-content {
+    padding-top: 6em;
+}
+
+#home-content h3 {
+    border-bottom: 1px dashed whitesmoke;
+    font-size: 1.4em;
+    margin-bottom: 1em;
+}
+
+#home-content{
+    background-color:rgb(40, 40, 54);
+    color:whitesmoke;
+    display: flex;
+    flex-direction: column;
+    font-family: serif New Century Schoolbook;
+    font-size: 1.2em;
+    margin-bottom: 5em;
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    top: 10%;
+    width: 50vw;
+}
+
+#intro img {
+    float:right;
+}
+
+#issues, #table-info {
+    background-color:rgb(40, 40, 54);
+    color:whitesmoke;
+    font-family: serif New Century Schoolbook;
+    font-size: 1.07em;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 6em;
+    position: relative;
+    width: 60%;
+}
+
+#issue-form {
+    left: 0%;
+    min-width: 100%;
+    padding: 1em;
+    position: relative;
+}
+
+#issue-form input {
+    margin-bottom: 2em;
+}
+
+#legal-info {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#legal-info h2 {
+    padding-bottom: 1em;
+}
+
+#license-warning {
+    max-width: 80%;
+    padding-top: 2em;
+}
+
+#more {
+    padding-left: 1vw;
+    padding-right: 1vw;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#more-page input {
+    width: 95%;
+}
+
+#new-repeat {
+    top: 48%;
+}
+
+#password-form #alerts {
+    left: 20%;
+    margin-top: 10em;
+    max-width: 60%;
+}
+
+#publish-alert {
+    animation: movein2;
+    animation-duration: 1s;
+    left: 0%;
+    max-width: 100%;
+    position: relative;
+}
+
+#select-button {
+    width: 100%;
+}
+
+#select-plan {
+    left: 70%;
+    position:absolute;
+    top: 40%;
+    width: 10em;
+}
+
+#settings-bottom {
+    position: absolute;
+    bottom: 0%;
+    width: 74%;
+    left: 22.1vw;
+    height: 8%;
+}
+
+#settings-display{
+    left: 21.5vw;
+    max-height: 95%;
+    min-height: 95%;
+    padding-left: .5vw;
+    padding-right: 1vw;
+    position: relative;
+    top: 0%;
+    width: 59vw;
+}
+
+#skip {
+    display: inline-block;
+    float: right;
+    margin-right: 5%;
+    font-size: 1vw;
+}
+
+#storytime {
+    animation: fade;
+    animation-duration: 1.5s;
+    animation-play-state: paused;
+    position: relative;
+}
+
+#style-guide {
+    background-color: #e6e6e6;
+    border-radius: 10px;
+    height: 60%;
+    left: 20%;
+    overflow-y: scroll;
+    padding: 1em;
+    position: relative;
+    top: 10%;
+    width: 60%;
+}
+
+#style-guide-box {
+    background-color: rgba(0, 0, 0, .4);
+    display: none;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 8%;
+    width: 100%;
+    z-index: 1;
+}
+
+#submit-publisher {
+    float: right; 
+    width:15%;
+    margin: 0;
+    color: whitesmoke; 
+    background-color:rgb(40, 40, 54);
+}
+
+#submit-publisher-form {
+    margin-bottom: 0; 
+    color:black;
+    left: 0%; 
+    border: 0; 
+    margin: 0; 
+    padding: 0;
+}
+
+#tabs {
+    border: 1px solid whitesmoke;
+    border-color: whitesmoke;
+    font-size: 1.75em;
+    max-width: 50vw;
+}
+
+#tabs tr {
+    max-width: 50vw;
+}
+
+#tabs th {
+    align-content: center;
+    border: .5px double whitesmoke;  
+    font-size: 1.5vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10vw;
+    width: auto;
+}
+
+#tabs th, #tabs td {
+    border-left: 1px dashed whitesmoke;
+    height: 7vh;
+    max-width: 20vw;
+    overflow-x: hidden;
+    padding: 1.5vw;   
+}
+
+#tabs td li {
+    font-size: 1.3vw;
+    padding: .5em;
+}
+
+
+#tabs ul {
+    padding-left: 1.4vw;
+}
+
+
+#tabs:hover {
+    box-shadow:  5px 5px 5px #888888;
+}
+
+#table {
+    margin-left: 2em;
+}
+
+#updates {
+    margin: 1em;
+}
+
+#yes-remove {
+    color: gray;
+    font-size: .8em;
+}
+
+@media only screen and (max-width: 1700px) {
+    #become-publisher {
+        font-size: .95vw !important;
+    }
+    
+    #become-publisher h6 {
+        font-size: .85vw !important;
+    }
+    
+    #yes-remove {
+        font-size: .6em;
+    }
+
+}
+
+@media only screen and (max-width: 1200px) {
+    .cloud-form-title {
+        font-size: 1.25rem;
+    }
+    
+    .detail-option label {
+        font-size: 90%;
+    }
+    
+    #article-page, #issues {
+        width: 80%;
+    }
+    
+    #become-publisher h6 {
+        font-size: 1.5vw !important;
+    }
+    
+    #become-publisher {
+        font-size: 1vw !important;
+    }
+    
+    #cloud-form {
+        font-size: .8rem;
+    }
+    
+    #delete-cloud-confirmation {
+        font-size: .9vw;
+    }
+    
+    #download-buttons {
+        font-size: .7em;
+    }
+    
+    #first-downloads-page {
+        font-size: 1.5vw;
+    }
+    
+    #register {
+        font-size: .7em;
+    }
+    
+    #tabs {
+        max-width: 70vw;
+        min-height: 40vw;
+    }
+}
+
+@media only screen and (max-width: 910px) {
+    #yes-remove{
+        font-size: .58em;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    #cloud-page {
+        font-size: .8em;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    img {
+        display: none;
+    }
+    
+    .auth-form {
+        align-self: center;
+    }
+    
+    .bordered {
+        width: 107.1% !important;
+    }
+    
+    .cloud-form-title {
+        font-size: 1rem;
+    }
+    
+    .tool-tip {
+        font-size: 1.4vw;
+    }
+    
+    .user-auth {
+        font-size: .7em;
+        width: 100%;
+    }
+    
+    #account-details {
+        font-size: .8em;
+        min-height: 71.1em;
+    }
+    
+    #account-page {
+        min-width: 100%;
+        min-height: 56em;
+        padding-top: 4em;
+    }
+
+    #account-page h4 {
+        font-size: 1.5em;
+    }
+    
+    #account-page img {
+        display: inline-block;
+        width: 32px;
+    }
+    
+    #article-page, #issues {
+        width: 80%;
+    }
+    
+    #become-publisher {
+        font-size: 1.5vw !important;
+    }
+    
+    #become-publisher h6 {
+        font-size: 2vw;
+    }
+    
+    #cloud-form {
+        font-size: .5rem;
+    }
+    
+    #cloud-page {
+        font-size: .9em;
+    }
+    
+    #cloud-page img {
+        width: 20px;
+    }
+    
+    #delete-cloud-confirmation {
+        font-size: .8em;
+        margin-left: 0;
+        margin-top: 5em;
+        width: 100%;
+    }
+    
+    #download-buttons {
+        font-size: 100%;
+    }
+    
+    #first-downloads-page {
+        width: 90%;
+    }
+    
+    #greeting {
+        display: none;
+    }
+    
+    #licenser-agreement {
+        font-size: 1vw !important;
+    }
+    
+    #register-form {
+        font-size: .6em;
+    }
+    
+    #select-plan {
+        font-size: .7em;
+        top: 35%;
+    }
+    
+    #settings-display {
+        font-size: .8em;
+        width: 75vw;
+    }
+    
+    #settings-bottom img {
+        width: 48px;
+    }
+    
+    #skip {
+        font-size: 1.3vw;
+    }
+    
+    #tabs td li {
+        font-size: 2vw;
+    }
+    
+    #yes-remove{
+        font-size: 1.2vw;
+    }
+    
+    
+}
+
+@media only screen and (max-width: 768px) { 
+    .box-input {
+        max-width: 35vw;
+    } 
+    
+    .cloud-form-title {
+        font-size: .8rem;
+    }
+    
+    #article-page, #issues {
+         margin-left: auto;
+         margin-right: auto;
+         min-width: 95%;
+    }
+    
+    #cloud-form {
+        font-size: .3rem;
+    }
+    
+    #cloud-form h1 {
+        font-size: 1.5rem;
+    }
+    
+    #cloud-page {
+        font-size: .8em;
+    }
+    
+    #content {
+        width: 100%;
+    }
+    
+    #download-buttons {
+        font-size: 1.4vw;
+    }
+    
+    #home-content h3 {
+        font-size: 12px;
+    }
+    
+    #home-content, #updates {
+        margin-left: 10;
+        margin-right: 10;
+        min-width: 80%;
+    }
+    
+    #yes-remove {
+        font-size: 1.6vw;
+    }
+    
+}
+
+@media only screen and (max-width: 580px) { 
+    .cloud-form-title {
+        font-size: .5rem;
+    }
+    
+    #cloud-form {
+        font-size: .1rem;
+    }
+    
+     #cloud-page {
+        font-size: .7em;
+    }
+    
+}
+
+@media only screen and (max-width: 550px) { 
+    .tool-tip {
+        font-size: 1.3vw !important;
+    }
+    
+    .user-auth {
+        font-size: .3em;
+    }
+    
+     #cloud-page {
+        font-size: 1.8vw;
+    }
+    
+    #first-downloads-page {
+        font-size: 2vw;
+    }
+    
+    #select-plan {
+        position: relative;
+        left: 22%;
+        top: 100%;
+        margin-top: 2em;
+    }
+    
+    #skip {
+        font-size: 1.5vw;
+    }
+}
+
+::-webkit-scrollbar {
+    background: transparent;
+    width: 0px;
+}
