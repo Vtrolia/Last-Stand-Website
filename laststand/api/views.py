@@ -213,6 +213,7 @@ def submit_cloud(request):
         archive.add(request.POST["os-type"] + "/laststandserver", arcname="laststandserver", recursive=False)
         archive.add(request.POST["os-type"] + "/laststandcloud", arcname="laststandcloud", recursive="False")
         archive.add("README.pdf", recursive=False)
+        archive.add("csr-gen.sh", recursive=False)
 
         with open("server_id", "w") as ls:
             ls.write(cloud.id)
