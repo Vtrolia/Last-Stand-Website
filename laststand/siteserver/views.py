@@ -86,6 +86,9 @@ def relog_page(request):
     logout(request)
     return redirect("/login")
 
+def smart_ornament(request):
+    return h.return_as_wanted(request, "smart_ornament.html")
+
 def settings(request):
     return h.return_as_wanted(request, "construction.html")
 

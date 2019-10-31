@@ -10,6 +10,16 @@
         <script>var dark_burger = "{% static 'source_images/hamburger_dark.png' %}";
         var light_burger =  "{% static 'source_images/hamburger.png' %}"</script>
         <script src="{% static 'scripts/header.js' %}" async></script>
+        <script>
+            function hover() {
+                var dc = document.getElementById("dropdown-content");
+                dc.style.display = "block";
+            }
+            function dehover() {
+                var dc = document.getElementById("dropdown-content");
+                dc.style.display = "none";
+            }
+        </script>
         <link rel=stylesheet type="text/css" href="{% static 'styles/headerstyles.css' %}">
         {% block title %}{% endblock %}
         {% block head %}{% endblock %}
@@ -21,9 +31,13 @@
                 <header class="row">
                     <a href="{% url 'index' %}"><div class="col">Home</div></a>
                     <a href="{% url 'rates' %}"><div class="col">Rates</div></a>
-                    <a href="{% url 'create_cloud' %}">
-                        <div class="col">New Cloud</div>
-                    </a>
+                    <div id="dropdown-menu"style="max-width: auto; flex-grow: 0; cursor: pointer" onmouseover="hover()" class="col">
+                        <div class="dropdown-name">Products</div>
+                        <div class="dropdown-content" id="dropdown-content" style="display:none" onmouseout="dehover()">
+                            <a class="dropdown-element col" href="{% url 'create_cloud' %}">Create Cloud</a>
+                            <a class="dropdown-element col" href="{% url 'smart_ornament' %}">Smart Ornament</a>
+                        </div>
+                    </div>
                     <div id="softname" align=center class="col-4">Last Stand Cloud Software</div>
                     {% if name %}
                         <a href="{% url 'logout_user' %}">

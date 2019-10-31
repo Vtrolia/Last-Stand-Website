@@ -13,6 +13,7 @@ urlpatterns = [
     path("publish", views.publish_page, name="publish_page"),
     path("rates", views.rates, name="rates"),
     path("relog", views.relog_page, name="relog"),
+    path("smart-ornament", views.smart_ornament, name="smart_ornament"),
     path("settings", views.settings, name="settings"),
     path("signup", views.register_page, name="register_page"),
     path("submit-article", views.submit_article, name="submit_article"),

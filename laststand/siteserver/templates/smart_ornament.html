@@ -1,0 +1,63 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block title %}<title>Smart Ornament</title>{% endblock %}
+{% block head %}
+    <meta charset="utf-8" lang="en"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'styles/style.css' %}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        h2 {
+            font-size: 2em;
+            padding: 1em;
+        }
+        #home-content a:link, #home-content a:visited {
+            color: black;
+        }
+        h3 {
+            padding-top: 1em;
+        }
+        @media only screen and (max-width: 850px) {
+            img {
+                height: 150px;
+                display: block;
+            }
+            
+            #disp-home {
+                width: 50%;
+                margin-right: auto;
+                margin-left: auto;
+            }
+            
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div id="home-content">
+        <h2>Introducting our newest product: The Smart Ornament!</h2>
+        <img id="disp-home" src="{% static 'source_images/ornament_home.png' %}" width=100%>
+        <div>
+            <h3>Introduction</h3>
+            Last Stand Cloud's Smart Ornament is a Bluetooth enabled Christmas decoration, and is available now! It is a simple device that allows you to display a custom message on a tree or anywhere you wish to display it. Keeping in line with Last Stand Cloud's core tenants, this ornament or the app associated with it does not store any of your data, does not send any data to us, nor does it even connect to the Internet. This device and app only use your devices' Bluetooth capability to send messages between each other, and does not contain any network connectivity at all. Like we always say, your business is none of our business!
+        </div>
+        <div>
+            <h3>Getting Started</h3>
+            <img src="{% static 'source_images/ornament.png' %}" height=300px style="float:left; margin-right: 1em;">
+            Now, to use your ornament, all you need to do is plug a dc power cord into the jack at the bottom of the ornament, shown in the picture on the left. Once the power is on, the ornament will display "Merry Christmas!" and will be ready for you to connect to it through your phone or computer, using the Smart Ornament app.
+        </div>
+        <div>
+            <h3>App</h3>
+            <img src="{% static 'source_images/ornament-app.png' %}" height=300px style="float:left; margin-right: 1em;">
+            <strong>NOTE: THE ORNAMENT WILL ASK YOU FOR A PASSWORD WHEN YOU PAIR TO IT, THE PASSWORD IS '1234'</strong><br><br>
+            For usage of the app, it is nearly identical on the desktop/Windows version and the Android application (macOS and IOS devices are not currently supported). The layout will look like the picture on the left. While it is recommended to pre-connect and pair to the Ornament to save time, this is not required (it will take longer, though). When you open the app, wait for it to connect to the ornament, and it will notify you, then you can enter a message in the text field, then you hit send and your custom message will display on the ornament. Unfortunately at this time, the ornament does not store your message upon shutdown so it will have to be reset each time it is powered off.
+        </div>
+        <div>
+            <h3>Issues</h3>
+            There is no warranty for the Smart Ornament of any kind, but send it back to us if a manufacturing default occurs, user damages are not covered. If there are any issues with the app on mobile or desktop you can mail us at <a href="https://laststandcloud.com/issues">Our issues page.</a> Currently, getting the Android app on the Google Play Store is something we will be working on soon, but for now the app for both the desktop and mobile versions are available at the bottom of this page.
+        </div>
+        <div>
+            <h3>Downloads</h3>
+            <div>Android app: <a href="{% static 'downloads/app-release.apk' %}">Smart Ornament Mobile App</a></div>
+            <div>Desktop:<a href="{% static 'downloads/smart-ornament.tar' %}"> Smart Ornament Desktop Installer</a></div>
+        </div>
+    </div>
+{% endblock %}
