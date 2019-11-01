@@ -454,6 +454,29 @@ textarea {
     padding: 0;
 }
 
+.dropdown-content {
+    display: none;
+    position: absolute;
+    width: 180%;
+    background-color: rgb(31, 31, 42);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    left: 0;
+    margin-top: .7em;
+    z-index: 0;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-element {
+    padding: .5em;
+    font-size: .9em;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
 #enter-delete-cloud {
     height: 1.8em !important;
     margin-bottom: .9em !important;
