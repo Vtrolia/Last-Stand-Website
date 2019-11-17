@@ -201,6 +201,7 @@ def submit_cloud(request):
         given_name = request.POST['name']
         ip_address = request.META["REMOTE_ADDR"]
         cloud = Cloud.objects.create(id=name, name=given_name, ip_address=ip_address, owner=owner, status=0)
+        cloud.users.add(owner)
         cloud.save()
 
         old_dir = os.getcwd()
