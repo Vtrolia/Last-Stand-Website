@@ -139,12 +139,13 @@ def download_client(request):
     if request.POST['os-type'] == "none":
         return HttpResponse("Sorry, your Operating System is not supported yet")
     cloud = Cloud.objects.get(owner=request.user, name=name)
-    
+
     # if the cloud created exists, send them the cloud id and client executable in the zip file
     if cloud:
 
         # move to the downloads to craft the archive
-        client_only = t.open(name="laststandclient.tar.gz", mode="w:gz")
+        client_only = t.open(name=HOME_DIR + "Last-Stand-Website/laststand/static-folder/downloads/" + request.POST['os-type'] +
+                                  "/laststandclient.tar.gz", mode="w:gz")
         old_dir = os.getcwd()
         os.chdir(HOME_DIR + "Last-Stand-Website/laststand/static-folder/downloads")
 
@@ -154,20 +155,16 @@ def download_client(request):
         client_only.add('server_id')
         os.remove("server_id")
 
-        client_only.add(request.POST["os-type"] + "/laststand", arcname="laststand", recursive=False)
-        client_only.add("README.pdf", arcname="README.pdf")
-
         # close the archive and move back to the previous directory
         client_only.close()
         os.chdir(old_dir)
 
-        with open(HOME_DIR + "/Last-Stand-Website/laststand/laststandclient.tar.gz", "rb") as f:
+        with open(HOME_DIR + "/Last-Stand-Website/laststand/static-folder/downloads/" + request.POST['os-type'] + "/laststandclient.tar.gz", "rb") as f:
             response = HttpResponse(f.read())
-
+        print("here")
         # these headers are needed so that the client understands the file being sent to them
         response["Content-Disposition"] = "attachment; filename=laststandclient.tar.gz"
-        response["X-Sendfile"] = smart_str(HOME_DIR + "Last-Stand-Website/laststand/laststandclient.tar.gz")
-        os.remove(HOME_DIR + "Last-Stand-Website/laststand/laststandclient.tar.gz")
+        response["X-Sendfile"] = "laststandclient.tar.gz"
         return response
     else:
         return HttpResponse("Cloud was not found, sorry for the error")
@@ -206,5 +203,5 @@ def submit_cloud(request):
 
         # these headers are needed so that the client understands the file being sent to them
         response["Content-Disposition"] = "attachment; filename=laststandcloud.tar.gz"
-        response["X-Sendfile"] = smart_str(HOME_DIR + "/Last-Stand-Website/laststand/laststandcloud.tar.gz")
+        response["X-Sendfile"] = "laststandcloud.tar.gz"
         return response
