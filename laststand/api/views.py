@@ -183,10 +183,6 @@ def submit_cloud(request):
             return HttpResponse("Nice try, but setting the button back to active with inspect element is the easiest "
                                 "trick in the book, pick a new cloud name please")
 
-    # this is the initial creation of a cloud, so set the date
-    created = dt.datetime.now()
-    expires = created + relativedelta(month = 6)
-
     if not request.user.is_authenticated:
         return HttpResponse("")
     else:
@@ -204,31 +200,11 @@ def submit_cloud(request):
         cloud.users.add(owner)
         cloud.save()
 
-        old_dir = os.getcwd()
-        os.chdir(HOME_DIR + "Last-Stand-Website/laststand/static-folder/downloads")
-
-        # craft the tarball
-        archive = t.open(name="laststand.tar.gz", mode="w:gz")
-
-        archive.add("Last Stand Cloud - End user License Agreement(EULA).pdf", recursive=False)
-        archive.add(request.POST["os-type"] + "/laststandserver", arcname="laststandserver", recursive=False)
-        archive.add(request.POST["os-type"] + "/laststandcloud", arcname="laststandcloud", recursive="False")
-        archive.add("README.pdf", recursive=False)
-        archive.add("csr-gen.sh", recursive=False)
-
-        with open("server_id", "w") as ls:
-            ls.write(cloud.id)
-        archive.add("server_id")
-        os.remove("server_id")
-
-        os.chdir(old_dir)
-        archive.close()
-
-        with open(HOME_DIR + "/Last-Stand-Website/laststand/static-folder/downloads/laststand.tar.gz", "rb") as f:
+        with open(HOME_DIR + "/Last-Stand-Website/laststand/static-folder/downloads/" + request.POST["os-type"] + "/" +
+                  request.POST['os-type'] + ".tar.gz", "rb") as f:
             response = HttpResponse(f.read())
 
         # these headers are needed so that the client understands the file being sent to them
-        response["Content-Disposition"] = "attachment; filename=laststand.tar.gz"
-        response["X-Sendfile"] = smart_str(HOME_DIR + "/Last-Stand-Website/laststand/laststand.tar.gz")
-        os.remove(HOME_DIR + "Last-Stand-Website/laststand/static-folder/downloads/laststand.tar.gz")
+        response["Content-Disposition"] = "attachment; filename=laststandcloud.tar.gz"
+        response["X-Sendfile"] = smart_str(HOME_DIR + "/Last-Stand-Website/laststand/laststandcloud.tar.gz")
         return response
