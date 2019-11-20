@@ -43,6 +43,7 @@ def set_info(request, name):
     if owner == Cloud.objects.get(id=name).owner:
         cloud = Cloud.objects.get(id=name)
         cloud.ip_address = request.META["QUERY_STRING"].split("&")[2][3:]
+        cloud.remote_address = request.META["REMOTE_ADDR"]
 
         cloud.save()
         content = ""
@@ -193,7 +194,7 @@ def submit_cloud(request):
         # its id is generated
         given_name = request.POST['name']
         ip_address = request.META["REMOTE_ADDR"]
-        cloud = Cloud.objects.create(id=name, name=given_name, ip_address=ip_address, owner=owner, status=0)
+        cloud = Cloud.objects.create(id=name, name=given_name, remote_address=ip_address, owner=owner, status=0)
         cloud.users.add(owner)
         cloud.save()
 
