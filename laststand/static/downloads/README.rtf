@@ -18,7 +18,7 @@
 \cf0 \
 \pard\pardeftab720\sl-469\qc\partightenfactor0
 
-\fs72 \cf2 Last Stand Cloud - Alpha Build 2.0
+\fs72 \cf2 Last Stand Cloud - Alpha Build 3.0
 \fs26 \
 \pard\pardeftab720\sl-200\partightenfactor0
 \cf0 \
@@ -34,16 +34,23 @@
 \pard\pardeftab720\sl-291\partightenfactor0
 \cf0 \
 \pard\pardeftab720\sl-274\partightenfactor0
-\cf0 Hello! Thank you for enrolling in the latest Alpha build of Last Stand Cloud! The goal of this software is to allow anyone to create and host their own home cloud, accessible from both their own local network as well as anywhere out in the world! This software is intended to be used like popular cloud services from big companies, (iCloud, OneDrive, etc.) that you own yourself. This newest alpha build has added many useful and professional features that I believe are integral to the future development of this software. This update has been focus mainly on the interface, the way you/the web server/the client will interact with the server and the ability to use Last Stand Cloud as a true home-based cloud. Many of the long running bugs, errors with the interface, and privacy/security issues have been resolved and vastly improved upon. Alpha 2.0 is the framework that will carry Last Stand Cloud to its \uc0\u64257 nal commercially ready product. I will admit that I lied in the last build, where I stated that updates would be coming in smaller, more rapid packages. For now, each major alpha release will based around a big feature being included along with various minor updates. Currently, the FreeBSD version of the second alpha is not ready, but it will be getting worked on and hopefully will be included in alpha version 3.\
+\cf0 Hello! Thank you for enrolling in the latest Alpha build of Last Stand Cloud! The goal of this software is to allow anyone to create and host their own home cloud, accessible from both their own local network as well as anywhere out in the world! This software is intended to be used like popular cloud services from big companies, (iCloud, OneDrive, etc.) that you own yourself. This latest alpha build is the second to last alpha release for Last Stand Cloud. Following the next release, Last Stand Cloud will officially move to the Beta Stage hopefully by the next year. I am working on the final features needed on the checklist, including the most necessary features that have been Last Stand Cloud\'92s most marketable feature. \
 \pard\pardeftab720\sl-391\partightenfactor0
 \cf0 \
 \pard\pardeftab720\sl-274\partightenfactor0
-\cf0 Until the next year and beyond, Last Stand Cloud has some major objectives that will be worked on and included in the next release:\
+\cf0 The following features, promised in the last alpha, are finally here:\
 \pard\pardeftab720\sl-332\partightenfactor0
 \cf0 - Timed, scheduled backups for a drive/\uc0\u64257 le/directory that you can pass in as an argument to the client\
+- A database that the client utilizes upon the startup of your computer to continue your scheduled backups\
 - A database where the server stores the hashes of all \uc0\u64257 les to ensure correctness with \u64257 le retrieval without adding massive overhead to the server\
 - A con\uc0\u64257 guration \u64257 le for the server so no direct interaction with the server executable is required\
-- An installer script that will con\uc0\u64257 gure and allow the server to be run as a daemon process in the background so you don\'92t have to run it actively in a terminal\
+- An installer script that will con\uc0\u64257 gure and allow the server to be run as a daemon process in the background so you don\'92t have to run it actively in a terminal, there is also an installer script for the client.\
+\
+The final list, the features required for the end of the alpha stage are:\
+- Finally, the ability to remotely connect to your server outside of your local LAN, and connect to it over the internet. End to end encrypted, without our API acting as a middle man\
+- The ditching of the \'91server_id\'92 file, and the ability to connect to any of your servers from any client installed on any computer\
+\
+Now, these features may take longer than expected to develop, so I don\'92t know whether or not it will be completed before the new year, but I will try day in and day out to get this software to the next level. We are trying to surpass Nextcloud and Owncloud with our usability, because right now, Last Stand Cloud is just an inferior version of those companies\'92 products. I also have begun deciding a different monetization structure for the business, and that will be reflected on laststandcloud.com once the beta stage is reached.\
 \
 \pard\pardeftab720\sl-253\partightenfactor0
 \cf0 \
@@ -56,12 +63,15 @@
 \pard\pardeftab720\sl-291\partightenfactor0
 \cf0 \
 \pard\pardeftab720\sl-274\partightenfactor0
-\cf0 This alpha has re\uc0\u64257 ned the user interface to a more familiar, friendly *nix style command line interface. Now, for many of the added features, there are \u64258 ags to be passed in for statistics and version info. For laststandserver, you can call the executable with these \u64258 ags to get information separately from the running version of the server. Just like the previous version of the alpha, you must run these executables in the directory where you originally installed them into your computer.\
+\cf0 This alpha has expanded the user interface and functionality to allow for much more control on the client end. For many of the added features, there are \uc0\u64258 ags to be passed in for statistics and version info. For laststandserver, you can call the executable with these \u64258 ags to get information separately from the running version of the server. Now, once you run the install.sh and client-install.sh scripts, laststandcloud and laststandserver will be able to be called globally in your terminal/bash shell.\
+\
+To ensure full compatibility, when running the installer scripts, instead of running \'93sudo ./install.sh\'94, make sure to run:\
+\'93sudo bash ./install.sh\'94\
+\'93sudo bash ./client-install.sh\'94\
 \pard\pardeftab720\sl-391\partightenfactor0
 \cf0 \
 \pard\pardeftab720\sl-274\partightenfactor0
-\cf0 For dependencies, you will need to have OpenSSL, libssl and curl installed, which are included by default in many operating systems or can be installed easily with your operating system\'92s package manager. No longer is any version of python needed, as Last Stand Cloud is now solely based\
-on compiled C and Shell scripts.\
+\cf0 For dependencies, you will need to have OpenSSL, libssl and curl installed, which are included by default in many operating systems or can be installed easily with your operating system\'92s package manager. However, if they are not installed, the installer scripts for the server AND the client will install them for you. Python3 is a requirement once again, but it is only used by the installer scripts and are not needed to run the client or the server.\
 \pard\pardeftab720\sl-391\partightenfactor0
 \cf0 \
 \pard\pardeftab720\sl-274\partightenfactor0
@@ -76,15 +86,15 @@ on compiled C and Shell scripts.\
 Next, to run the server, you call the executable without any arguments or \uc0\u64258 ags.\
 The \uc0\u64258 ags available are:\
 [i,v,o,d]\
-	i/v - get the current information about the current version of Last Stand Cloud\
-	o - this \uc0\u64258 ags stands for OUTPUT. it takes an argument and will output to the console various usage\
+	i/v - stands for [INFORMATION/VERSION] get the current information about the current version of Last Stand Cloud\
+	o - this \uc0\u64258 ags stands for [OUTPUT]. it takes an argument and will output to the console various usage\
 	 statistics of a currently running laststandserver instance.\
 		[OPTIONS]\
 		if - prints out the server\'92s private and public IPv4 addresses\
 		hardware - prints out the server\'92s RAM and disk usage\
 		time - the current running time of the server\
 		all - print out all of the above information\
-		h - prints out a manual page that describes all of this information\
+	h - prints out a manual page that describes all of this information\
 \pard\pardeftab720\sl-391\partightenfactor0
 \cf0 \
 \pard\pardeftab720\sl-332\partightenfactor0
@@ -94,20 +104,25 @@ to run the client and backup a \uc0\u64257 le, run:\
 	./laststandcloud [\uc0\u64257 lepath]\
 and it with back up the \uc0\u64257 le speci\u64257 ed in [\u64257 lepath]. Now, similar to the server,\
 it can be called with \uc0\u64258 ags:\
-[i,v,f,s]\
+[i,v,f,s,t,b]\
 	i/v - same as server, get the information about the current version of Last Stand Cloud\
 	f [\uc0\u64257 lepath] - stands for [FETCH] grab the \u64257 le speci\u64257 ed by [\u64257 lepath] and store\
 	it in the designated location, ex. \'93home/user/\uc0\u64257 le.ext\'94 will store \'93\u64257 le.ext\'94 in\'93home/user/\'94\
 	s - this stands for [STATS] and is similar to -o all on the server end, it will \cf3 \expnd0\expndtw0\kerning0
 query the server for its \
 	usage statistics and print them to the terminal. \
+	t [hours] - stands for [TIMED] set to backup a file every [hours] hours. You will next be prompted for the file path of the file you want to backup 			      periodically\
+	b - stands for [BACKUPS], and you can get the information on all your timed backups, or remove one\
+		[OPTIONS]\
+		list - list the current backups running, shows the file being backed up and how often it is being run\
+		remove - lists the current backups running, and their current PID, 0 if it is not currently running\
 \pard\pardeftab720\sl280\partightenfactor0
 \cf3 \
 
 \fs36 \ul \ulc3 Scope: 
 \fs26 \ulnone \
 \
-This alpha has expanded the functionality of Last Stand Cloud in a major way. Now Last Stand Cloud is starting to take shape into its professional form and now the work done for this version will carry it to the future. Remote, peer to peer routing and being able to connect to multiple cloud from one client are not an immediate objective, but they are going to go into development soon after alpha version 3. This update was largely based on the user interface and refinement of access and security. Any faults in the user interface or bugs/vulnerabilities in the security are what we are going to look for. \
+This alpha is the last alpha to add non-keystone features of Last Stand Cloud before its beta stage. With this version, FreeBSD support has been added once again. The server is pretty much in its final state before it is released for beta, and the client still needs major work. Once beta is reached, more refined security and a GUI will be the main development goals. For now, the server will be installed as a daemon like it will in the finished product and run perpetually on your computer, so there is always major room for errors there.\
 \
 \pard\pardeftab720\sl280\qc\partightenfactor0
 

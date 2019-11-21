@@ -19,13 +19,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = ""
 
-HOME_DIR = "/usr/local/www/"
+HOME_DIR = "/Users/vinny/Desktop/Documents/"
 
 with open(HOME_DIR + '/Last-Stand-Website/laststand/secret_key.txt', "r") as f:
     SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 ADMINS = [("Vincent Trolia", "vtrolia@protonmail.com")]
 
 ALLOWED_HOSTS = ['*']

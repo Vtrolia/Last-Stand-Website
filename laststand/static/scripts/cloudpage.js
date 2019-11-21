@@ -28,9 +28,8 @@
 
     document.getElementById("hidden-os-type").value = os;
 }
+
 loadOS();
-
-
 /*
  * When a user first selects to delete a cloud, prompt them to enter their password again for security reasons. 
  * Making any changes to their account should first require reauthentication 
