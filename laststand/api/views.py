@@ -34,6 +34,7 @@ def lsverify_login(request):
     else:
         return HttpResponse("INVALID")
 
+
 # this is where a cloud updates its own information stored on the website's databases
 @csrf_exempt
 def set_info(request, name):
@@ -59,7 +60,7 @@ def set_info(request, name):
 # api getters
 @csrf_exempt
 def get_address(request, name):
-    resp = HttpResponse("content: " + Cloud.objects.get(id=name).ip_address + "\r\n")
+    resp = HttpResponse("content: " + Cloud.objects.get(id=name).ip_address + " " + Cloud.objects.get(id=name).remote_address + "\r\n")
     return resp
 
 
