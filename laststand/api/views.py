@@ -145,25 +145,9 @@ def download_client(request):
     # if the cloud created exists, send them the cloud id and client executable in the zip file
     if cloud:
 
-        # move to the downloads to craft the archive
-        client_only = t.open(name=HOME_DIR + "Last-Stand-Website/laststand/static-folder/downloads/" + request.POST['os-type'] +
-                                  "/laststandclient.tar.gz", mode="w:gz")
-        old_dir = os.getcwd()
-        os.chdir(HOME_DIR + "Last-Stand-Website/laststand/static-folder/downloads")
-
-        # add files
-        with open("server_id", "wb") as co:
-            co.write(cloud.id.encode('utf-8'))
-        client_only.add('server_id')
-        os.remove("server_id")
-
-        # close the archive and move back to the previous directory
-        client_only.close()
-        os.chdir(old_dir)
-
         with open(HOME_DIR + "/Last-Stand-Website/laststand/static-folder/downloads/" + request.POST['os-type'] + "/laststandclient.tar.gz", "rb") as f:
             response = HttpResponse(f.read())
-        print("here")
+
         # these headers are needed so that the client understands the file being sent to them
         response["Content-Disposition"] = "attachment; filename=laststandclient.tar.gz"
         response["X-Sendfile"] = "laststandclient.tar.gz"
@@ -195,6 +179,9 @@ def submit_cloud(request):
         # its id is generated
         given_name = request.POST['name']
         ip_address = request.META["REMOTE_ADDR"]
+
+        with open("var/log/iplog.txt", "w") as f:
+            f.write(str(request.META))
         cloud = Cloud.objects.create(id=name, name=given_name, remote_address=ip_address, owner=owner, status=0)
         cloud.users.add(owner)
         cloud.save()
