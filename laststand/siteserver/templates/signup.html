@@ -15,6 +15,7 @@
             </div>
         {% else %}
         {% endif %}
+	<form action="{% url 'submit_register' %}">
         <div id ="register-form" class="auth-form" method="post">
             {% csrf_token %}
             <div class="form-text">Email:</div>
@@ -31,5 +32,6 @@
                 <button type=submit id="register-button" disabled>Register</button>
             </div>
         </div>
+	</form>
     </div>
 {% endblock %}

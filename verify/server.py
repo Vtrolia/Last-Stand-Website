@@ -31,6 +31,7 @@ def main():
                 csr = reciever.recv(5000)
                 file = ""
                 if cloud:
+                    print("correct")
                     with open("req.tmp.csr", "wb") as f:
                         f.write(csr)
                     cwd = os.getcwd()
@@ -45,6 +46,7 @@ def main():
                 cloud_num += 1
                 cert_f = open("client_cert.pem")
                 cert = cert_f.read()
+                print(cert)
                 reciever.send(cert.encode())
                 reciever.close()
                 os.remove("client_cert.pem")
