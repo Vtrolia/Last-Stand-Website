@@ -43,6 +43,9 @@ def create_cloud(request):
         return h.return_as_wanted(request, "login.html", message=["warning", "You must sign in or sign up to download the cloud"])
     else:
         return h.return_as_wanted(request, "register-cloud.html")
+
+def client_page(request):
+    return h.return_as_wanted(request, "client-downloads.html")
     
 def issue_page(request):
     return h.return_as_wanted(request, "issue.html")

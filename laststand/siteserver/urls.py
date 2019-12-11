@@ -5,6 +5,7 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("account-settings", views.account_page, name="account_page"),
     path("create-cloud", views.create_cloud, name="create_cloud"),
+    path("client-downloads", views.client_page, name="client_downloads"),
     path("issues", views.issue_page, name="issue_page"),
     path("license", views.license_page, name="license_page"),
     path("login", views.login_page, name="login_page"),

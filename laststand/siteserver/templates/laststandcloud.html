@@ -53,7 +53,7 @@
                     <th><center>Server</center></th>
                 </tr>
                 <tr>
-                    <td><a href=""><div class="download-opt"><img src='{% static "source_images/cloud_up.png" %}' width=200px alt="access cloud"></div></a></td>
+                    <td><a href="{% url 'client_downloads' %}"><div class="download-opt"><img src='{% static "source_images/cloud_up.png" %}' width=200px alt="access cloud"></div></a></td>
                     <td><a href="{% url 'create_cloud' %}"><div class="download-opt"><img src='{% static "source_images/cloud_down.png" %}' width=200px alt="Cloud server"></div></a></td>
                 </tr>
             </table>
