@@ -30,6 +30,9 @@ def index(request):
 
 
 # other pages
+def last_stand_cloud_page(request):
+    return h.return_as_wanted(request, "laststandcloud.html")
+
 def account_page(request):
     if not request.user.is_authenticated:
         return HttpResponseNotFound(render(request, "error.html"))

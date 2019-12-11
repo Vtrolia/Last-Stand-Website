@@ -10,6 +10,7 @@ urlpatterns = [
     path("login", views.login_page, name="login_page"),
     path("logout", views.logout_user, name="logout_user"),
     path("more-info", views.more_info, name="more_info"),
+    path("last-stand-cloud", views.last_stand_cloud_page, name="last_stand_cloud"),
     path("publish", views.publish_page, name="publish_page"),
     path("rates", views.rates, name="rates"),
     path("relog", views.relog_page, name="relog"),
