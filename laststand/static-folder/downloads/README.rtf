@@ -1,10 +1,10 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf600
-{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;}
 {\colortbl;\red255\green255\blue255;\red0\green46\blue122;\red0\green0\blue0;\red11\green32\blue99;
 \red94\green255\blue255;\red252\green9\blue7;}
 {\*\expandedcolortbl;;\csgenericrgb\c0\c18039\c47843;\cssrgb\c0\c0\c0;\cssrgb\c4121\c18720\c46593;
 \cssrgb\c41630\c100000\c100000;\cssrgb\c100000\c15764\c0;}
-\margl0\margr0\margb0\margt0\vieww17400\viewh14220\viewkind0
+\margl0\margr0\margb0\margt0\vieww14940\viewh18220\viewkind0
 \deftab720
 \pard\pardeftab720\sl-200\partightenfactor0
 
@@ -18,7 +18,7 @@
 \cf0 \
 \pard\pardeftab720\sl-469\qc\partightenfactor0
 
-\fs72 \cf2 Last Stand Cloud - Alpha Build 3.0
+\fs72 \cf2 Last Stand Cloud - Final Alpha Build 4.0
 \fs26 \
 \pard\pardeftab720\sl-200\partightenfactor0
 \cf0 \
@@ -34,24 +34,14 @@
 \pard\pardeftab720\sl-291\partightenfactor0
 \cf0 \
 \pard\pardeftab720\sl-274\partightenfactor0
-\cf0 Hello! Thank you for enrolling in the latest Alpha build of Last Stand Cloud! The goal of this software is to allow anyone to create and host their own home cloud, accessible from both their own local network as well as anywhere out in the world! This software is intended to be used like popular cloud services from big companies, (iCloud, OneDrive, etc.) that you own yourself. This latest alpha build is the second to last alpha release for Last Stand Cloud. Following the next release, Last Stand Cloud will officially move to the Beta Stage hopefully by the next year. I am working on the final features needed on the checklist, including the most necessary features that have been Last Stand Cloud\'92s most marketable feature. \
-\pard\pardeftab720\sl-391\partightenfactor0
-\cf0 \
-\pard\pardeftab720\sl-274\partightenfactor0
-\cf0 The following features, promised in the last alpha, are finally here:\
+\cf0 Hello! This part of Last Stand Cloud\'92s journey has finally come to an end. The goals I had first set out for Last Stand Cloud have finally come to realization, and the alpha stage goals I have set from the beginning are finally complete. The main goal, for you to be able to access a locally hosted cloud from anywhere in the world is finally here! Now, Last Stand Cloud\'92s usability is the same as iCloud, OneDrive, Google Drive and the others. Along with being able to have a home cloud you can access from anywhere, it is also private, secure, and up to 2x faster than other competing home cloud software! This is the last alpha release, and probably the last release for a while, as now the beta stage is coming. Once the qa and bug testing of this build is complete, the first beta will finally begin. \
 \pard\pardeftab720\sl-332\partightenfactor0
-\cf0 - Timed, scheduled backups for a drive/\uc0\u64257 le/directory that you can pass in as an argument to the client\
-- A database that the client utilizes upon the startup of your computer to continue your scheduled backups\
-- A database where the server stores the hashes of all \uc0\u64257 les to ensure correctness with \u64257 le retrieval without adding massive overhead to the server\
-- A con\uc0\u64257 guration \u64257 le for the server so no direct interaction with the server executable is required\
-- An installer script that will con\uc0\u64257 gure and allow the server to be run as a daemon process in the background so you don\'92t have to run it actively in a terminal, there is also an installer script for the client.\
+\cf0 \
+As usual, the checklist for features as of the first beta release are as follows:\
+- a Graphical User Interface so that nearly everyone who uses a computer will be able to use Last Stand Cloud. The idea for this GUI is that it will essentially be a wrapper for the command line version as a separate executable. This would mean that the command line client would still be available for usage\
+- Server-end file encryption, so that even if someone somehow manages to get onto your cloud computer, they wouldn\'92t be able to retrieve any data from it. The only way that data can be read and accessed correctly would be through the client and server directly communicating and the server sending decrypted data. Turning on and off the file encryption will be an option stored in the laststand.cnf file\
 \
-The final list, the features required for the end of the alpha stage are:\
-- Finally, the ability to remotely connect to your server outside of your local LAN, and connect to it over the internet. End to end encrypted, without our API acting as a middle man\
-- The ditching of the \'91server_id\'92 file, and the ability to connect to any of your servers from any client installed on any computer\
-\
-Now, these features may take longer than expected to develop, so I don\'92t know whether or not it will be completed before the new year, but I will try day in and day out to get this software to the next level. We are trying to surpass Nextcloud and Owncloud with our usability, because right now, Last Stand Cloud is just an inferior version of those companies\'92 products. I also have begun deciding a different monetization structure for the business, and that will be reflected on laststandcloud.com once the beta stage is reached.\
-\
+I do not expect the beta features to be implemented until the qa and bug testing of this final alpha is complete. This means there will be months without a new official release as crafting the first beta will take up some time as well. The final alpha is pretty much feature complete, as that was its main goal, but this final alpha is meant for ironing out the last of the bugs that plague users.\
 \pard\pardeftab720\sl-253\partightenfactor0
 \cf0 \
 \pard\pardeftab720\sl-352\partightenfactor0
@@ -63,11 +53,13 @@ Now, these features may take longer than expected to develop, so I don\'92t know
 \pard\pardeftab720\sl-291\partightenfactor0
 \cf0 \
 \pard\pardeftab720\sl-274\partightenfactor0
-\cf0 This alpha has expanded the user interface and functionality to allow for much more control on the client end. For many of the added features, there are \uc0\u64258 ags to be passed in for statistics and version info. For laststandserver, you can call the executable with these \u64258 ags to get information separately from the running version of the server. Now, once you run the install.sh and client-install.sh scripts, laststandcloud and laststandserver will be able to be called globally in your terminal/bash shell.\
+\cf0 In the final alpha, one of the main changes is not to the user interface, so calling the software from the command line will look largely familiar. The main change is that laststandserver now automatically port forwards itself so that it can be accessed from anywhere on the internet. However, the only other change that is visible is the removal of the annoying server_id file and the limitation of having one client for each cloud. Now, when running the client end, it will ask you which cloud you want to connect to and connect you to whichever cloud you want. That limitation has been finally and wonderfully removed. For many of the added features, there are \uc0\u64258 ags to be passed in for statistics and version info. For laststandserver, you can call the executable with these \u64258 ags to get information separately from the running version of the server. Now, once you run the install.sh and client-install.sh scripts, laststandcloud and laststandserver will be able to be called globally in your terminal/bash shell.\
 \
 To ensure full compatibility, when running the installer scripts, instead of running \'93sudo ./install.sh\'94, make sure to run:\
 \'93sudo bash ./install.sh\'94\
 \'93sudo bash ./client-install.sh\'94\
+\
+The server\'92s installer script will configure itself to be a startup background daemon on the installing computer. The main purpose of calling the executable would be to get usage statistics from your running server daemon. Other than that, the server will run on its own on your computer on startup, so the command line server does not need to be called.\
 \pard\pardeftab720\sl-391\partightenfactor0
 \cf0 \
 \pard\pardeftab720\sl-274\partightenfactor0
@@ -76,10 +68,17 @@ To ensure full compatibility, when running the installer scripts, instead of run
 \cf0 \
 \pard\pardeftab720\sl-274\partightenfactor0
 \cf0 Also, a brand new service called Last Stand Verify has gone live to better authenticate servers AND protect your privacy. Previously, laststandcloud.com would authenticate your server and generate a certi\uc0\u64257 cate and private key, storing it in a database and the client would have to check if the certi\u64257 cate is valid after connecting to the server. This caused lots of problems in the previous version, and it would allow Last Stand Cloud to decrypt your data and analyze it. This has been completely overhauled and re-secured with Last Stand Verify. Last Stand Verify is our new Certi\u64257 cate Authority, and it functions just like a Certi\u64257 cate Authority that helps your favorite websites utilize HTTPS and secure mail, and coming soon you will be able to use Last Stand Verify for a web certi\u64257 cate. What this means for Last Stand Cloud, however, is that each server will create its own private key when it is \u64257 rst run, and generate a certi\u64257 cate request that will return a signed Last Stand Verify certi\u64257 cate. Then, the server will check every few hours to see if the certi\u64257 cate will expire, and request a new one when they certi\u64257 cate expires. This means that all we see is the server\'92s public certi\u64257 cate and we cannot decrypt your data even if we wanted to. Also, another step has been included so that the server will not run/handle clients if the server is using a self-signed certi\u64257 cate. This is done to ensure that the server is who it says it is and your data will not be compromised. Outside certi\u64257 cates are also \u64257 ne, but the server will automatically grab a new signed certi\u64257 cate from Last Stand Verify for free whenever it needs one.\
-\pard\pardeftab720\sl-200\partightenfactor0
-\cf0 \
-\pard\pardeftab720\sl-274\partightenfactor0
-\cf0 Now, for the actual usage of the server:\
+\
+
+\f1\b\fs36 \ul \ulc3 WINDOWS:\
+\
+
+\f0\b0\fs26 \ulnone That\'92s right, you read it here correctly! Last Stand Cloud has finally come to Windows! If you are a Windows user and have downloaded Last Stand Cloud, the setup process is much simpler than the Linux version, as it is meant to be standalone without much reliance on the Operating System for the needed functionality. Now, this of course means that while the client end is available on Windows, the server is not. At this point in time, I am working on figuring out how to get the server working on Windows Subsystem for Linux(WSL) and there are no plans to fully port the server to Windows. However, like I said before, getting the server working on WSL is actively being developed and hopefully will be able to be used soon. Check the Last Stand Cloud\'92s download page in  the future as I plan to publish a full guide on starting Last Stand Cloud on WSL as soon as I figure it out. This is not the case with the client, however, and the full functionality of the *nix version is completely available on Windows with no compromises. In order to get the client working, first a sqlite3.dll must be in your System32 folder. The dll comes with Last Stand Cloud and there\'92s a short installer batch file that will do this for you (make sure to run as  administrator) or you can find it on your own and install it if you don\'92t trust the one we provide or trust us to modify your System32 folder. Other than that, once the dll is installed in the correct place all you need to do is cd into the directory where you have the client installed and run it just like every other version of Last Stand Cloud, with 0 changes to the command line interface of the other versions, except for one. Because the Windows version is standalone without an installer script, the first time you run the client or if you delete its databases, it will prompt you for your Last Stand Cloud account login then store it. Other than this change there is absolutely no difference in the interface compared to the *nix version. Also just make sure to remember to call \'93laststandcloud.exe\'94 instead of \'93./laststandcloud\'94.\
+\
+Currently, the only version of Windows that is supported to work with Last Stand Cloud is Windows 10, at the minimum build of 17063. Versions of Windows without curl or tar will not work, including windows versions before 10.\
+\
+Now, for the actual usage of the server:\
+\
 \pard\pardeftab720\sl-332\partightenfactor0
 \cf0 - First of all, with the permissions and writing that the server needs to do its job, it must be run as \'91sudo\'92 or a superuser, or else it will exit. The server will not run if it is not being used as a superuser.\
 \
@@ -101,13 +100,13 @@ The \uc0\u64258 ags available are:\
 \cf0 For the client:\
 - This version of the client does not require \'91sudo\'92 access when it is \uc0\u64257 rst called. When the client requires root access, it will ask for the sudo password\
 to run the client and backup a \uc0\u64257 le, run:\
-	./laststandcloud [\uc0\u64257 lepath]\
+	laststandcloud [\uc0\u64257 lepath]\
 and it with back up the \uc0\u64257 le speci\u64257 ed in [\u64257 lepath]. Now, similar to the server,\
 it can be called with \uc0\u64258 ags:\
 [i,v,f,s,t,b]\
 	i/v - same as server, get the information about the current version of Last Stand Cloud\
 	f [\uc0\u64257 lepath] - stands for [FETCH] grab the \u64257 le speci\u64257 ed by [\u64257 lepath] and store\
-	it in the designated location, ex. \'93home/user/\uc0\u64257 le.ext\'94 will store \'93\u64257 le.ext\'94 in\'93home/user/\'94\
+	it in the designated location, ex. \'93home/user/\uc0\u64257 le.ext\'94 will store \'93\u64257 le.ext\'94 in \'93home/user/\'94\
 	s - this stands for [STATS] and is similar to -o all on the server end, it will \cf3 \expnd0\expndtw0\kerning0
 query the server for its \
 	usage statistics and print them to the terminal. \
@@ -122,7 +121,7 @@ query the server for its \
 \fs36 \ul \ulc3 Scope: 
 \fs26 \ulnone \
 \
-This alpha is the last alpha to add non-keystone features of Last Stand Cloud before its beta stage. With this version, FreeBSD support has been added once again. The server is pretty much in its final state before it is released for beta, and the client still needs major work. Once beta is reached, more refined security and a GUI will be the main development goals. For now, the server will be installed as a daemon like it will in the finished product and run perpetually on your computer, so there is always major room for errors there.\
+The final alpha is the version where all the serious bug hunting begins. The features I feel were needed for Last Stand Cloud to be complete are all here. The keystone features are all there, and its ready to go to the next level, and become fully legitimate software. As far as functionality, the server end is pretty much feature complete aside from a few optional things to add in the future with the beta. Now that Last Stand Cloud is moving forward with support for all major operating systems, in the beta there may be even more support for other distributions of Linux or other BSDs or even Windows older than Windows 10. While the server is basically complete, ensuring everything works correctly on the client and building upon its foundation will remain the main focus of its development in the near future.\
 \
 \pard\pardeftab720\sl280\qc\partightenfactor0
 
