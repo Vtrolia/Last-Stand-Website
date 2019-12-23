@@ -1,0 +1,65 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block title %}<title>Last Stand Cloud</title>{% endblock %}
+{% block head %}
+    <link rel= "stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+    <style>
+        #selection {
+            margin-top: 1em;
+            align-content: center;
+        }
+        table {
+            width: 80%;
+            margin-left:auto;
+            margin-right: auto;
+            margin-top: 2em;
+        }
+        
+        td {
+            outline: solid whitesmoke 1px;
+        }
+        .download-opt:hover {
+            background-color: #414040;
+        }
+        .download-opt{
+            min-height: 30vw;
+        }
+        
+        #selection img
+        {
+            margin: auto;
+            padding-top: 30%;
+            display: block;
+            vertical-align: center;
+        }
+        
+        @media only screen and (max-width: 850px) {
+            #selection img{
+                width: 150px;
+            }
+        }
+        
+        
+    </style>
+{% endblock %}
+{% block body %}
+    <div id="home-content">
+        <h2>Last Stand Cloud</h2>
+        <div id="selection">
+            <center><h4>Are you trying to create a server, or download our desktop client?</h4></center>
+            <table>
+                <tr>
+                    <th><center>Desktop Client</center></th>
+                    <th><center>Server</center></th>
+                </tr>
+                <tr>
+                    <td><a href="{% url 'client_downloads' %}"><div class="download-opt"><img src='{% static "source_images/cloud_up.png" %}' width=200px alt="access cloud"></div></a></td>
+                    <td><a href="{% url 'create_cloud' %}"><div class="download-opt"><img src='{% static "source_images/cloud_down.png" %}' width=200px alt="Cloud server"></div></a></td>
+                </tr>
+            </table>
+        </div>
+        <div style="margin:1em;">
+            For information on how to run a server on Windows, checkout our guide on <a style="color: black" href="">Last Stand Cloud on WSL</a>
+        </div>
+    </div>
+{% endblock %}

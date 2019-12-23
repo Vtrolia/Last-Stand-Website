@@ -1,0 +1,28 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block title %}<title>Client Downloads</title>{% endblock %}
+{% block head %}
+    <link rel= "stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+    <script>
+        function submit(selected) {
+            var os = selected.getAttribute("data-os");
+            document.getElementById("os-type").setAttribute("value", os);
+            document.getElementById("hidden-form").submit();
+        }
+    </script>
+{% endblock %}
+{% block body %}
+    <div id="home-content">
+        <h2><center>Pick the Operating System you'd like download for:</center></h2>
+        <form style="display: none" id="hidden-form" method="post" action="{% url 'download_client' %}">{% csrf_token %}<input type="hidden" id="os-type" name="os-type"></form>
+        <div id="os-es">
+            <center><ul style="margin-top: 5em; padding: 0">
+                <li data-os="Linux" class="os-option" onclick="submit(this)">Linux</li>
+                <li data-os="macOS" class="os-option" onclick="submit(this)">macOS</li>
+                <li data-os="FreeBSD" class="os-option" onclick="submit(this)">FreeBSD</li>
+                <li data-os="Windows" class="os-option" onclick="submit(this)">New: Windows!</li>
+            </ul>
+            </center>
+        </div>
+    </div>
+{% endblock %}

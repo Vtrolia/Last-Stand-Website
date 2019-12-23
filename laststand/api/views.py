@@ -137,14 +137,10 @@ def delete_cloud(request):
 # this view crafts a zip file with everything they need 
 @require_http_methods(["POST"]) 
 def download_client(request):
-    name = request.POST['cloud-name']
     if request.POST['os-type'] == "none":
         return HttpResponse("Sorry, your Operating System is not supported yet")
-    cloud = Cloud.objects.get(owner=request.user, name=name)
 
-    # if the cloud created exists, send them the cloud id and client executable in the zip file
-    if cloud:
-
+    try:
         with open(HOME_DIR + "/Last-Stand-Website/laststand/static-folder/downloads/" + request.POST['os-type'] + "/laststandclient.tar.gz", "rb") as f:
             response = HttpResponse(f.read())
 
@@ -152,8 +148,8 @@ def download_client(request):
         response["Content-Disposition"] = "attachment; filename=laststandclient.tar.gz"
         response["X-Sendfile"] = "laststandclient.tar.gz"
         return response
-    else:
-        return HttpResponse("Cloud was not found, sorry for the error")
+    except:
+        return HttpResponse("Operating System package not found")
 
 
 # when a user wants to create a new cloud, this view registers it, then sends them a download for this cloud
