@@ -180,9 +180,15 @@ def submit_cloud(request):
         cloud.users.add(owner)
         cloud.save()
 
-        with open(HOME_DIR + "/Last-Stand-Website/laststand/static-folder/downloads/" + request.POST["os-type"] + "/" +
-                  request.POST['os-type'] + ".tar.gz", "rb") as f:
-            response = HttpResponse(f.read())
+        # wsl server is different binary from regular Linux
+        if request.POST["os-type"] == "wsl":
+            with open(HOME_DIR + "/Last-Stand-Website/laststand/static-folder/downloads/Windows/" +
+                      request.POST['os-type'] + ".tar.gz", "rb") as f:
+                response = HttpResponse(f.read())
+        else:
+            with open(HOME_DIR + "/Last-Stand-Website/laststand/static-folder/downloads/" + request.POST["os-type"] + "/" +
+                      request.POST['os-type'] + ".tar.gz", "rb") as f:
+                response = HttpResponse(f.read())
 
         # these headers are needed so that the client understands the file being sent to them
         response["Content-Disposition"] = "attachment; filename=laststandcloud.tar.gz"
