@@ -25,7 +25,7 @@ with open(HOME_DIR + '/Last-Stand-Website/laststand/secret_key.txt', "r") as f:
     SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 ADMINS = [("Vincent Trolia", "vtrolia@protonmail.com")]
 
 ALLOWED_HOSTS = ['*']
