@@ -42,7 +42,7 @@ def main():
                     reciever.send("not available")
                     reciever.close()
                     continue
-
+                    
                 cloud_num += 1
                 cert_f = open("client_cert.pem")
                 cert = cert_f.read()
