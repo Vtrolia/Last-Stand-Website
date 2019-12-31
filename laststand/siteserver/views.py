@@ -33,6 +33,9 @@ def index(request):
 def last_stand_cloud_page(request):
     return h.return_as_wanted(request, "laststandcloud.html")
 
+def wsl_page(request):
+    return h.return_as_wanted(request, "wsl_guide.html")
+
 def account_page(request):
     if not request.user.is_authenticated:
         return HttpResponseNotFound(render(request, "error.html"))

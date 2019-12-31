@@ -1,0 +1,108 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block title %}<title>WSL server guide</title>{% endblock %}
+{% block head %}
+    <style>
+        #home-content img {
+            width: 500px;
+            display: block;
+            margin: 1em;
+            margin-left: 0em;
+        }
+        #home-content a {
+            color: black;
+        }
+        code {
+            display: block;
+            margin: 1em;
+            margin-left: 0em;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            margin-top: 2em;
+        }
+        @media only screen and (max-width: 850px) {
+            #home-content img {
+                height: 250px;
+            }
+            
+        }
+
+    </style>
+    <meta charset="utf-8" lang="en"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'styles/style.css' %}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock %}
+{% block body %}
+    <div id="home-content">
+        <div>
+            <h2>Last Stand Cloud Server on Windows Subsytem for Linux</h2>
+            While there is no native way for Last Stand Cloud Server to run on Linux,
+            Microsoft has made a virtual machine running Linux distributions that is fully compatible with Linux binaries. This means that Last Stand Cloud's Server is able to be used on your Windows computer!
+        </div>
+        <div>
+            <h3>Getting Started with WSL</h3>
+            Windows has an excellent <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">Guide on installing WSL on Windows 10.</a>
+            Now, while this is a good guide, the original version of WSL does not implement everything needed for Last Stand Cloud to run. For this, you will need WSL version 2, <a href="https://docs.microsoft.com/en-us/windows/wsl/wsl2-install">Which you can learn about installing here.</a>
+            Depending on the date you are reading this guide, you may have to sign up for the Windows Insider Program, which a link to the sign up can be found on the WSL2 page.
+            <br>
+            Once you have WSL2 enabled, the distro that is most recommended for use is Ubuntu 18.04. Other distributions have not been tested, but as long as you set its OpenSSL version to at least 1.1.x (default in newer Linux distros), it will work just fine.
+        </div>
+        <div>
+            <h3>Installing Last Stand Cloud</h3>
+            As usual, the first step to installing Last Stand Cloud's Server begins with downloading it onto your computer. For this, just use your Windows web browser to download it from the website. The WSL program is different from the Linux program for a few reasons, so at the server download screen, select the 'wsl' option. 
+            <br>
+            <img src="{% static 'source_images/explorer.JPG' %}" alt="explorer">
+            Once you have downloaded your new cloud, launch your new Ubuntu distribution which can be found in the Start Menu. Now, to move the files, enter:
+            <br><code>$ explorer.exe .</code><br>
+            And this will open a File Explorer window inside your Ubuntu machine. Once that is done, go to your Downloads folder and copy the wsl.tar.gz file.
+            <img src="{% static 'source_images/copy.jpg' %}" alt="copy">
+            
+            Paste it into the File Explorer window that is open inside your Ubuntu machine.
+            <img src="{% static 'source_images/paste.jpg' %}" alt="paste">
+        </div>
+        <div>
+            <h3>Configuration</h3>
+            Time for the ugly command line stuff. First, run the commands:
+            <code>$ tar -xf wsl.tar.gz<br>$ cd WSL<br>$ ls</code>
+            To extract the files from the download, and make sure all the files present in the picture below are listed on your console:
+            <img src="{% static 'source_images/check.jpg' %}" alt="check correctness">
+            If it is all correct, you are ready to being, so that you can run the installer script, which will configure the server for you. 
+            <code>$ sudo ./install.sh</code>
+            Respond to the following commands just like in the image below, except you select the cloud you want to set up, for example this Windows server is number 5. The login information is for your Last Stand Cloud Software account.
+            <img src="{% static 'source_images/install.jpg' %}" alt="install.sh">
+            
+            Make sure not to have the server running, as there is still some manual configuration required before the server can be run, due to some unique issues with running Last Stand Cloud Server on WSL.
+        </div>
+        <div>
+            <h3>Configuring Security</h3>
+            WSL's command line programs do not like to play well with Last Stand Verify. Because of this, a manual workaround must be done in order to have your server working properly. While this is unfortunate, hopefully later versions of WSL will work better with LSV.
+            <h5>Creating a Request</h5>
+            The first thing to do is to create a certificate request with your cloud's private key. In order to do that, you must find your private key that was created by the installer script, and generate the request. Last Stand Cloud installs its data in a consistent place, so you can find it and generate the request for a certificate.
+            <code>$ cd /usr/local/etc/laststandcloud<br></code>
+            This is where your private key is. Once you find it, you can create the request. Last Stand Verify authenticates your server based on its unique identifier created by Last Stand Cloud and it is stored in a configuration file, so enter:
+            <code>$ vim cnf/laststand.cnf</code>
+            You will see a lot of values and keys that serve as persistent settings for your server. The most important value is the value labeled SERVER_ID, this is the unique hash for your cloud. Though blurred out in the photo below, it will be where the red arrow is pointing.
+            <img src="{% static 'source_images/serverid.jpg' %}" alt="server_id">
+            Make sure you have this copied with CTRL-C or manually with the mouse, as this is very important for your verification. Now, you need to generate the actual request, with a command call to OpenSSL:
+            <code>$ openssl req -new -key privkey.pem -out request.csr</code>
+            This will generate a certificate request for Last Stand Verify to sign. You will need to answer a few questions and you need to answer them as follows or else your reauest will be denied. Paste the SERVER_ID you copied to the line the red arrow is pointing to, as your server's Common Name. (There was an error in my photo, the State or Province name should be Illinois. Do as I say not as I do)
+            <img src="{% static 'source_images/csr.jpg' %}" alt="Certificate Signing Request">
+            
+            <h5>Getting a Certificate</h5>
+            Once these steps have been completed, Email the request to Last Stand Cloud at laststandcloud@protonmail.com and we will sign your request (if done properly) and email you back a certificate named cacert.pem. Once again, to move these files to and from your Ubuntu machine and your Windows computer repeat the steps showed earlier, running:
+            <code>$ explorer.exe .</code>
+            to open the File Explorer on the Ubuntu environment. Once you have the certificate in your Ubuntu environment, you need to move the certificate to the /usr/local/etc/laststandcloud folder. You can do this with either copying the certificate and navigating to this directory, or much more simply run the command:
+            <code>$ mv cacert.pem /usr/local/etc/laststandcloud</code>
+            If the certificate is not in that folder, the server will NOT run. If you decide to self-issue a certificate, it will NOT run. Last Stand Cloud will only run with certificates signed by Last Stand Verify or another trusted Certificate Authority. This is to ensure another level of security to the user to ensure the server truly is who they say they are. For usage with Last Stand Cloud, Last Stand Verify certificates will always be free. Once this is all set, it is now time to run your server.
+        </div>
+        <div>
+            <h3>Final Steps</h3>
+            Finally, the last thing to do is run the server. The most important thing is to run the server in the background so it will run as long as the computer is turned on without needing any interaction with you. To do this, calling the server using:
+            <code>$ sudo laststandserverd &amp;</code>
+            will force the program into the background, and you will no longer need to worry about it. The console will print out a few numbers, that will let you know where the server is running. 
+            <img src="{% static 'source_images/end.jpg' %}" alt="daemonize"><strong>You are all set!</strong> This will run the cloud visible from anywhere in the world on your Windows machine! Keep in mind, however, that unlike the native Ubuntu version, the WSL version of Last Stand Cloud Server will need to be started up every time the computer is turned off and turned back on. All you will need to do is open the Ubuntu VM and run the last command again.
+        </div>
+        <h4>Now, enjoy freedom &amp; security in your cloud computing experience! Thank you for using Last Stand Cloud!</h4>
+    </div>
+{% endblock %}
