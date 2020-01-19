@@ -44,6 +44,7 @@ def set_info(request, name):
     if owner == Cloud.objects.get(id=name).owner:
         cloud = Cloud.objects.get(id=name)
         cloud.ip_address = request.META["QUERY_STRING"].split("&")[2][3:]
+        cloud.port = request.META["QUERY_STRING"].split("&")[3][5:]
         cloud.remote_address = request.META["REMOTE_ADDR"]
 
         cloud.save()
@@ -60,7 +61,8 @@ def set_info(request, name):
 # api getters
 @csrf_exempt
 def get_address(request, name):
-    resp = HttpResponse("content: " + Cloud.objects.get(id=name).ip_address + " " + Cloud.objects.get(id=name).remote_address + "\r\n")
+    resp = HttpResponse("content: " + Cloud.objects.get(id=name).ip_address + " " + Cloud.objects.get(id=name).remote_address + "\r\n"
+                        "content: " + Cloud.objects.get(id=name).port)
     return resp
 
 

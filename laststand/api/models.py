@@ -7,6 +7,7 @@ from django.db import models
 # data needed to be stored in order to allow clouds to be remote accessed and secure
 class Cloud(models.Model):
     id = models.TextField(primary_key=True, unique=True)
+    port = models.IntegerField(default=8675)
     ip_address = models.CharField(max_length=30)
     remote_address = models.CharField(max_length=30)
     name = models.CharField(max_length=40, default=id)
