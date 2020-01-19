@@ -62,7 +62,7 @@ def set_info(request, name):
 @csrf_exempt
 def get_address(request, name):
     resp = HttpResponse("content: " + Cloud.objects.get(id=name).ip_address + " " + Cloud.objects.get(id=name).remote_address + "\r\n"
-                        "content: " + Cloud.objects.get(id=name).port)
+                        "content: " + str(Cloud.objects.get(id=name).port))
     return resp
 
 
